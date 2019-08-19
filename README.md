@@ -1,29 +1,5 @@
 * [View the Wiki page](https://github.com/knights-of-balmoral/2D-Baseball/wiki)
 
-# 2D-Baseball
-
-/* Baaleras Edit */
-/* Baaleras Edit 2*/
-
-### Say hello and add your team member details below so we know you're ready to go!
-/* ============================================ */
-
-#### Stryyder aka Christian (studying at freeCodeCamp)
-* Beginning programmer studying front-end web development
-* Member of Knights of Balmoral for 16+ years (holy cow!)
-
-
-
-
-
-
-
-
-
-/* ============================================ */
-
-
-
 # Where are we at with this?
 * Filling team roles
 * Getting everyone spun up on GitHub
