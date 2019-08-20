@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - field-batter-view
   layers:
   - Default
   - TransparentFX
@@ -13,9 +14,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - ground-decor
+  - ground-collide
+  - actors
   - 
   - 
   - 
@@ -40,4 +41,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: ground
+    uniqueID: 2684847595
+    locked: 0
+  - name: decor
+    uniqueID: 3715637661
+    locked: 0
+  - name: actors
+    uniqueID: 1615387787
     locked: 0
