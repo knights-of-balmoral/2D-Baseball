@@ -3,12 +3,7 @@
 
 
 # Where are we at with this?
-* Filling team roles
-* Getting everyone spun up on GitHub
-* Talking about the rules of Baseball to incorporate
-* Discussing design setup/layout/etc
-* Deciding on how to best collaborate
-
+See the Wiki for details
 
 ## DETAILS:
 * What: Baseball Game
