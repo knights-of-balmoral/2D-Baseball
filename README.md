@@ -1,9 +1,5 @@
-* [View the Wiki page](https://github.com/knights-of-balmoral/2D-Baseball/wiki)
-
-
-
 # Where are we at with this?
-See the Wiki for details
+* [View the Wiki page](https://github.com/knights-of-balmoral/2D-Baseball/wiki) for details.
 
 ## DETAILS:
 * What: Baseball Game
@@ -13,13 +9,13 @@ See the Wiki for details
 * Commitment: 2-3 hours / week (mostly Saturdays)
 * Design/Communication Platforms: Unity / GitHub / Discord
 
-## Who am I?
+## Who are we?
 
+### Stryyder
 I'm a new coder currently attending a coding boot camp. My focus is web development, but I've found myself bored of playing games and I'm dying to make one instead. I'm fairly new to front-end style web development, but I'm looking to build something collaboratively because I think it would be extremely educational from a project construction and collaboration standpoint.
 
-Ideally, I'd like to find people who are Beginner/Intermediate programmers to start with. Some art/music aspects might be included, but I'm okay with having bad art and horrible music.
-
-However, I'm open to having one team member who is really good at this stuff and willing to walk the rest of us noobs through some of these processes. Lacking that, I'm okay with all 4 of us being noobs and figuring it out together.
+### Baaleras
+### Merremia
 
 ## Why Baseball?
 
