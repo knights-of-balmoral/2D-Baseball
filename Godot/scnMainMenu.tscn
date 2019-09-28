@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends LinkButton
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends LinkButton
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="btnPlayGame" type="LinkButton" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Play Game"
+underline = 1
+script = SubResource( 1 )
+
+[node name="btnQuitGame" type="LinkButton" parent="."]
+margin_left = 0.475647
+margin_top = 31.1553
+margin_right = 40.4756
+margin_bottom = 45.1553
+text = "Quit"
+underline = 1
+script = SubResource( 2 )
