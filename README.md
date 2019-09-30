@@ -7,7 +7,7 @@
 * Style: 2D prototype to get started with a plan to move to 3D
 * Language: Open to discussion - Most likely is C#
 * Commitment: 2-3 hours / week (mostly Saturdays)
-* Design/Communication Platforms: Unity / GitHub / Discord
+* Design/Communication Platforms: <s>Unity</s> Godot / GitHub / Discord
 
 ## Who are we?
 
