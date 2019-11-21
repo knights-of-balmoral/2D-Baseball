@@ -1,7 +1,6 @@
 # Where are we at with this?
 * This project is in a bit of a hiatus as other projects are finished up and more learning takes place.  The dream of open source baseball lives on.
 * [View the Wiki page](https://github.com/knights-of-balmoral/2D-Baseball/wiki) for details.
-* discord test
 
 ## DETAILS:
 * What: Baseball Game
