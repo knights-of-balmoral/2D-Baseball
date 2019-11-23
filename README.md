@@ -1,5 +1,6 @@
 # Where are we at with this?
 * This project is in a bit of a hiatus as other projects are finished up and more learning takes place.  The dream of open source baseball lives on.
+* Godot learning tutorials are becoming more prevalent - 2 major projects left before Stryyder gets back on board the baseball train
 * [View the Wiki page](https://github.com/knights-of-balmoral/2D-Baseball/wiki) for details.
 
 ## DETAILS:
