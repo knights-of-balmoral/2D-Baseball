@@ -1,14 +1,7 @@
 # Where are we at with this?
-<<<<<<< HEAD
-
 - [View the Wiki page](https://github.com/knights-of-balmoral/2D-Baseball/wiki) for details.
 - Learning continues for the Godot engine. It is extremely fast when compared to Unity. Documentation is starting to become more abundant on it as well.
 - Recommended watching: [Godot Tutorial](https://www.youtube.com/watch?v=Mc13Z2gboEk&list=PLhqJJNjsQ7KF0o0ke_CA2QlqK8BxQNSFS)
-=======
-* This project is in a bit of a hiatus as other projects are finished up and more learning takes place.  The dream of open source baseball lives on.
-* Godot learning tutorials are becoming more prevalent - 2 major projects left before Stryyder gets back on board the baseball train
-* [View the Wiki page](https://github.com/knights-of-balmoral/2D-Baseball/wiki) for details.
->>>>>>> a61e4161cd6823c3c1562038ee7381698a7ff9c8
 
 ## DETAILS:
 
