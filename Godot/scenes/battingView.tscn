@@ -142,7 +142,6 @@ scale = Vector2( 0.132227, 0.132227 )
 shape = SubResource( 5 )
 
 [node name="batter" type="KinematicBody2D" parent="Layers"]
-editor/display_folded = true
 script = ExtResource( 4 )
 
 [node name="rh-batter" type="Sprite" parent="Layers/batter"]
