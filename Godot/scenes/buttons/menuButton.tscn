@@ -2,9 +2,10 @@
 
 [ext_resource path="res://balmoralFont.tres" type="DynamicFont" id=1]
 
-[node name="PlayGame" type="Button"]
+[node name="MenuButton" type="Button"]
 margin_right = 1767.0
 margin_bottom = 20.0
+rect_min_size = Vector2( 360, 60 )
 flat = true
 
 [node name="Label" type="Label" parent="."]
