@@ -5,7 +5,7 @@ var velocity: = Vector2.ZERO # start with no velocity
 var speed: = 100
 var pitcherPositionRange: = 400
 var ballIsPitched = false
-onready var anim = get_node("ball")
+
 
 func _physics_process(delta): # delta times things with clock/render cycle
 	
@@ -16,7 +16,7 @@ func _physics_process(delta): # delta times things with clock/render cycle
 	
 	if Input.is_action_pressed("pitch_ball"):
 		ballIsPitched = true
-		if(not anim.is_playing()):
-			anim.play("pitch")
+		$AnimationPlayer.play("fade_in")
+		
 		
 		
