@@ -128,6 +128,7 @@ position = Vector2( -89.787, -240.235 )
 shape = SubResource( 4 )
 
 [node name="pitcher" type="KinematicBody2D" parent="Layers"]
+editor/display_folded = true
 script = ExtResource( 2 )
 
 [node name="rh-pitcher" type="Sprite" parent="Layers/pitcher"]
@@ -153,6 +154,8 @@ texture = ExtResource( 5 )
 visible = false
 position = Vector2( 380.662, 522.611 )
 shape = SubResource( 6 )
+
+[node name="SkeletonIK" type="SkeletonIK" parent="Layers/batter"]
 
 [node name="ball" type="KinematicBody2D" parent="Layers"]
 position = Vector2( 0, 120.155 )
