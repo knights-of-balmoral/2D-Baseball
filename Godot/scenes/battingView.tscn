@@ -1,13 +1,15 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://assets/views/batter-view.jpg" type="Texture" id=1]
-[ext_resource path="res://scripts/Actors/pitcher.gd" type="Script" id=2]
-[ext_resource path="res://assets/raw/pitcher.png" type="Texture" id=3]
-[ext_resource path="res://scripts/Actors/batter.gd" type="Script" id=4]
-[ext_resource path="res://assets/players/rh-batter.png" type="Texture" id=5]
-[ext_resource path="res://scripts/Objects/ball.gd" type="Script" id=6]
-[ext_resource path="res://assets/raw/baseball.png" type="Texture" id=7]
-[ext_resource path="res://animations/setup.tres" type="Animation" id=8]
+[ext_resource path="res://scenes/battingView.gd" type="Script" id=1]
+[ext_resource path="res://assets/views/batter-view.jpg" type="Texture" id=2]
+[ext_resource path="res://scripts/Actors/pitcher.gd" type="Script" id=3]
+[ext_resource path="res://assets/raw/pitcher.png" type="Texture" id=4]
+[ext_resource path="res://scripts/Actors/batter.gd" type="Script" id=5]
+[ext_resource path="res://assets/players/rh-batter.png" type="Texture" id=6]
+[ext_resource path="res://scripts/Objects/ball.gd" type="Script" id=7]
+[ext_resource path="res://assets/raw/baseball.png" type="Texture" id=8]
+[ext_resource path="res://animations/setup.tres" type="Animation" id=9]
+[ext_resource path="res://balmoralFontMid.tres" type="DynamicFont" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 82.2814, 3.89081 )
@@ -83,6 +85,7 @@ tracks/3/keys = {
 }
 
 [node name="battingView" type="Node2D"]
+script = ExtResource( 1 )
 
 [node name="Layers" type="CanvasLayer" parent="."]
 
@@ -90,12 +93,13 @@ tracks/3/keys = {
 editor/display_folded = true
 position = Vector2( 510.194, 303.91 )
 scale = Vector2( 0.533363, 0.560511 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="battersBox" type="StaticBody2D" parent="Layers/player-bounds"]
+editor/display_folded = true
 visible = false
 position = Vector2( -959.615, -537.26 )
 scale = Vector2( 1.8749, 1.78409 )
@@ -117,6 +121,7 @@ position = Vector2( 464.847, 521.789 )
 shape = SubResource( 3 )
 
 [node name="pitchersBox" type="StaticBody2D" parent="Layers/player-bounds"]
+editor/display_folded = true
 visible = false
 
 [node name="right" type="CollisionShape2D" parent="Layers/player-bounds/pitchersBox"]
@@ -129,12 +134,12 @@ shape = SubResource( 4 )
 
 [node name="pitcher" type="KinematicBody2D" parent="Layers"]
 editor/display_folded = true
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="rh-pitcher" type="Sprite" parent="Layers/pitcher"]
 position = Vector2( 498.032, 134.169 )
 scale = Vector2( 0.132227, 0.132227 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/pitcher"]
 visible = false
@@ -143,12 +148,12 @@ scale = Vector2( 0.132227, 0.132227 )
 shape = SubResource( 5 )
 
 [node name="batter" type="KinematicBody2D" parent="Layers"]
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 
 [node name="rh-batter" type="Sprite" parent="Layers/batter"]
 position = Vector2( 382.349, 430.555 )
 scale = Vector2( 0.704962, 0.71281 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/batter"]
 visible = false
@@ -159,12 +164,12 @@ shape = SubResource( 6 )
 
 [node name="ball" type="KinematicBody2D" parent="Layers"]
 position = Vector2( 0, 120.155 )
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 
 [node name="baseball" type="Sprite" parent="Layers/ball"]
 position = Vector2( 459.9, -8.16699 )
 scale = Vector2( -0.0126509, -0.0126509 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="ball_collider" type="CollisionShape2D" parent="Layers/ball"]
 position = Vector2( 459.881, -8.24103 )
@@ -173,4 +178,41 @@ shape = SubResource( 7 )
 
 [node name="anim_ball" type="AnimationPlayer" parent="Layers/ball"]
 "anims/move ball" = SubResource( 8 )
-anims/pitch = ExtResource( 8 )
+anims/pitch = ExtResource( 9 )
+
+[node name="scoreboard" type="Node" parent="Layers"]
+
+[node name="ColorRect" type="ColorRect" parent="Layers/scoreboard"]
+margin_left = 769.972
+margin_top = 436.68
+margin_right = 809.972
+margin_bottom = 476.68
+rect_scale = Vector2( 6, 3.6 )
+color = Color( 0, 0, 0, 0.545098 )
+
+[node name="score_strikes" type="Label" parent="Layers/scoreboard"]
+margin_left = 775.0
+margin_top = 448.0
+margin_right = 821.0
+margin_bottom = 475.0
+custom_fonts/font = ExtResource( 10 )
+text = "S"
+align = 1
+
+[node name="score_balls" type="Label" parent="Layers/scoreboard"]
+margin_left = 773.64
+margin_top = 479.289
+margin_right = 819.64
+margin_bottom = 506.289
+custom_fonts/font = ExtResource( 10 )
+text = "B"
+align = 1
+
+[node name="score_outs" type="Label" parent="Layers/scoreboard"]
+margin_left = 775.0
+margin_top = 506.496
+margin_right = 821.0
+margin_bottom = 533.496
+custom_fonts/font = ExtResource( 10 )
+text = "O"
+align = 1

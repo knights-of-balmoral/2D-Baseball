@@ -28,7 +28,7 @@ margin_left = -960.0
 margin_top = -540.0
 margin_right = -960.0
 margin_bottom = -540.0
-color = Color( 0, 0, 0, 0.776471 )
+color = Color( 0, 0, 0, 0.87451 )
 
 [node name="batterLogo" type="Sprite" parent="titleBG"]
 position = Vector2( -780.938, -429.088 )
@@ -39,74 +39,63 @@ texture = ExtResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -960.0
-margin_top = -540.0
+margin_top = -542.091
 margin_right = -960.0
-margin_bottom = -540.0
+margin_bottom = -542.091
 
 [node name="Menu" type="VBoxContainer" parent="titleBG/TitleScreen"]
-editor/display_folded = true
-margin_left = 84.0
-margin_top = 29.0
-margin_right = 1851.0
+margin_left = 475.0
+margin_top = 198.0
+margin_right = 1445.0
 margin_bottom = 1006.0
+alignment = 1
 
 [node name="Logo" type="TextureRect" parent="titleBG/TitleScreen/Menu"]
-margin_right = 1767.0
+margin_right = 970.0
 margin_bottom = 82.0
 texture = ExtResource( 3 )
 stretch_mode = 4
 
 [node name="CenterRow" type="HBoxContainer" parent="titleBG/TitleScreen/Menu"]
 margin_top = 86.0
-margin_right = 1767.0
-margin_bottom = 529.0
+margin_right = 970.0
+margin_bottom = 445.0
 size_flags_vertical = 3
+alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="titleBG/TitleScreen/Menu/CenterRow"]
-margin_right = 881.0
-margin_bottom = 443.0
+editor/display_folded = true
+margin_right = 970.0
+margin_bottom = 359.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
 alignment = 1
 
 [node name="PlayButton" parent="titleBG/TitleScreen/Menu/CenterRow/Buttons" instance=ExtResource( 4 )]
-margin_top = 111.0
-margin_right = 881.0
-margin_bottom = 171.0
+margin_top = 69.0
+margin_right = 970.0
+margin_bottom = 129.0
 
 [node name="OptionsButton" parent="titleBG/TitleScreen/Menu/CenterRow/Buttons" instance=ExtResource( 5 )]
-margin_top = 191.0
-margin_right = 881.0
-margin_bottom = 251.0
+margin_top = 149.0
+margin_right = 970.0
+margin_bottom = 209.0
 
 [node name="QuitButton" parent="titleBG/TitleScreen/Menu/CenterRow/Buttons" instance=ExtResource( 6 )]
-margin_top = 271.0
-margin_right = 881.0
-margin_bottom = 331.0
+margin_top = 229.0
+margin_right = 970.0
+margin_bottom = 289.0
 script = ExtResource( 7 )
 
-[node name="CenterContainer" type="CenterContainer" parent="titleBG/TitleScreen/Menu/CenterRow"]
-editor/display_folded = true
-margin_left = 885.0
-margin_right = 1767.0
-margin_bottom = 443.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Characters" type="TextureRect" parent="titleBG/TitleScreen/Menu/CenterRow/CenterContainer"]
-margin_left = 441.0
-margin_top = 221.0
-margin_right = 441.0
-margin_bottom = 221.0
-
 [node name="VersionLabel" type="Label" parent="titleBG/TitleScreen/Menu"]
-margin_top = 533.0
-margin_right = 1767.0
-margin_bottom = 977.0
+margin_top = 449.0
+margin_right = 970.0
+margin_bottom = 808.0
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
 text = "Version 1.0"
+align = 1
 
 [node name="FadeIn" parent="titleBG/TitleScreen" instance=ExtResource( 9 )]
 visible = false
