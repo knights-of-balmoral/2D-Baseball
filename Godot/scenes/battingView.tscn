@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scenes/battingView.gd" type="Script" id=1]
 [ext_resource path="res://assets/views/batter-view.jpg" type="Texture" id=2]
@@ -15,9 +15,8 @@
 [ext_resource path="res://animations/idle_bat.tres" type="Animation" id=13]
 [ext_resource path="res://scripts/Objects/ball.gd" type="Script" id=14]
 [ext_resource path="res://assets/raw/baseball.png" type="Texture" id=15]
-[ext_resource path="res://animations/setup.tres" type="Animation" id=16]
-[ext_resource path="res://balmoralFontMid.tres" type="DynamicFont" id=17]
-[ext_resource path="res://assets/raw/batter/scoreboard.png" type="Texture" id=18]
+[ext_resource path="res://balmoralFontMid.tres" type="DynamicFont" id=16]
+[ext_resource path="res://assets/raw/batter/scoreboard.png" type="Texture" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 82.2814, 3.89081 )
@@ -34,14 +33,12 @@ extents = Vector2( 4.99011, 29.6729 )
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 20.6311, 114.315 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 43.0915, 12.0798 )
 
-[sub_resource type="CircleShape2D" id=8]
-radius = 0.20047
-
-[sub_resource type="Animation" id=9]
-length = 2.0
+[sub_resource type="Animation" id=7]
+resource_name = "fastball"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("baseball:position")
 tracks/0/interp = 1
@@ -49,47 +46,37 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 452.008, -8.04492 ), Vector2( 488.25, 310.625 ) ]
+"values": [ Vector2( 465.648, 123.748 ), Vector2( 481.893, 280.783 ), Vector2( 483.059, 549.043 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("baseball:scale")
+tracks/1/path = NodePath("baseball:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0.00750849, 0.00750849 ), Vector2( -0.0324915, -0.0324915 ) ]
+"values": [ -180.0, -303.992, -362.76 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("ball_collider:position")
+tracks/2/path = NodePath("baseball:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 451.998, -8.03104 ), Vector2( 488.241, 310.639 ) ]
+"values": [ Vector2( 0.01, 0.01 ), Vector2( 0.02, 0.02 ), Vector2( 0.03, 0.03 ) ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("ball_collider:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 3.60001, 3.60001 ), Vector2( 15.92, 15.92 ) ]
-}
+
+[sub_resource type="CircleShape2D" id=8]
 
 [node name="battingView" type="Node2D"]
 script = ExtResource( 1 )
@@ -176,8 +163,8 @@ scale = Vector2( 0.704962, 0.71281 )
 texture = ExtResource( 9 )
 
 [node name="bat" type="Sprite" parent="Layers/batter"]
-position = Vector2( 359.503, 433.834 )
-rotation = -1.31714
+position = Vector2( 387.367, 403.317 )
+rotation = -0.610947
 texture = ExtResource( 10 )
 
 [node name="left leg" type="Sprite" parent="Layers/batter"]
@@ -193,55 +180,58 @@ anims/bat_swing = ExtResource( 13 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/batter"]
 visible = false
 position = Vector2( 380.662, 522.611 )
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 
 [node name="ball" type="KinematicBody2D" parent="Layers"]
-position = Vector2( 0, 120.155 )
 script = ExtResource( 14 )
 
 [node name="baseball" type="Sprite" parent="Layers/ball"]
-position = Vector2( 459.9, -8.16699 )
-scale = Vector2( -0.0126509, -0.0126509 )
+position = Vector2( 465.648, 123.748 )
+rotation = 3.14159
+scale = Vector2( 0.01, 0.01 )
 texture = ExtResource( 15 )
 
-[node name="ball_collider" type="CollisionShape2D" parent="Layers/ball"]
-position = Vector2( 459.881, -8.24103 )
-scale = Vector2( 15.92, 15.92 )
+[node name="anim_ball" type="AnimationPlayer" parent="Layers/ball"]
+anims/fastball = SubResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/ball"]
+position = Vector2( 466.413, 123.49 )
 shape = SubResource( 8 )
 
-[node name="anim_ball" type="AnimationPlayer" parent="Layers/ball"]
-"anims/move ball" = SubResource( 9 )
-anims/pitch = ExtResource( 16 )
-
 [node name="scoreboard" type="Node" parent="Layers"]
+editor/display_folded = true
 
 [node name="score_strikes" type="Label" parent="Layers/scoreboard"]
+visible = false
 margin_left = 39.4626
 margin_top = 452.513
 margin_right = 85.4626
 margin_bottom = 479.513
-custom_fonts/font = ExtResource( 17 )
+custom_fonts/font = ExtResource( 16 )
 text = "S"
 align = 1
 
 [node name="score_balls" type="Label" parent="Layers/scoreboard"]
+visible = false
 margin_left = 101.278
 margin_top = 451.312
 margin_right = 147.278
 margin_bottom = 478.312
-custom_fonts/font = ExtResource( 17 )
+custom_fonts/font = ExtResource( 16 )
 text = "B"
 align = 1
 
 [node name="score_outs" type="Label" parent="Layers/scoreboard"]
+visible = false
 margin_left = 158.593
 margin_top = 449.639
 margin_right = 204.593
 margin_bottom = 476.638
-custom_fonts/font = ExtResource( 17 )
+custom_fonts/font = ExtResource( 16 )
 text = "O"
 align = 1
 
 [node name="scoreboard" type="Sprite" parent="Layers/scoreboard"]
+visible = false
 position = Vector2( 135.373, 518.636 )
-texture = ExtResource( 18 )
+texture = ExtResource( 17 )
