@@ -1,6 +1,6 @@
 extends KinematicBody2D
 class_name Batter
-
+onready var anim = get_node("bat_idle_anim")
 var velocity: = Vector2.ZERO # start with no velocity
 var speed: = 200
 var batterPositionRange: = 400
@@ -17,3 +17,9 @@ func _physics_process(delta): # delta times things with clock/render cycle
 		velocity.y = velocity.y - 1
 	
 	velocity = move_and_slide(velocity)  # delta auto in move and slide function
+	
+	if(Input.get_action_strength("swing_bat")):
+		anim.play("Swing")
+	
+	if(not anim.is_playing()):
+		anim.play("bat_swing")
