@@ -10,10 +10,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.3, 0.5, 2 ),
-"transitions": PoolRealArray( 6.9644, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 387.367, 403.317 ), Vector2( 462.997, 486.244 ), Vector2( 446.411, 421.892 ), Vector2( 373.435, 414.595 ), Vector2( 359.503, 433.834 ) ]
+"values": [ Vector2( 387.367, 403.317 ), Vector2( 462.997, 486.244 ), Vector2( 467.464, 438.734 ), Vector2( 401.397, 421.406 ), Vector2( 384.521, 399.087 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("bat:rotation_degrees")
@@ -22,8 +22,20 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.3, 0.5, 2 ),
-"transitions": PoolRealArray( 6.9644, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ -35.0047, 111.994, 35.0678, -49.3973, -75.4668 ]
+"values": [ -35.0047, 111.994, 61.9482, -22.6269, -25.7084 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("bat:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.507671, 0.507671 ), Vector2( 1, 1 ) ]
 }

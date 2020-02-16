@@ -5,11 +5,11 @@
 [ext_resource path="res://scripts/Actors/pitcher.gd" type="Script" id=3]
 [ext_resource path="res://assets/raw/pitcher.png" type="Texture" id=4]
 [ext_resource path="res://scripts/Actors/batter.gd" type="Script" id=5]
-[ext_resource path="res://assets/raw/batter/arm_l.png" type="Texture" id=6]
-[ext_resource path="res://assets/raw/batter/Torso.png" type="Texture" id=7]
-[ext_resource path="res://assets/raw/batter/arm_r.png" type="Texture" id=8]
-[ext_resource path="res://assets/raw/batter/leg_r.png" type="Texture" id=9]
-[ext_resource path="res://assets/raw/batter/bat.png" type="Texture" id=10]
+[ext_resource path="res://assets/raw/batter/bat.png" type="Texture" id=6]
+[ext_resource path="res://assets/raw/batter/arm_l.png" type="Texture" id=7]
+[ext_resource path="res://assets/raw/batter/Torso.png" type="Texture" id=8]
+[ext_resource path="res://assets/raw/batter/arm_r.png" type="Texture" id=9]
+[ext_resource path="res://assets/raw/batter/leg_r.png" type="Texture" id=10]
 [ext_resource path="res://assets/raw/batter/leg_l.png" type="Texture" id=11]
 [ext_resource path="res://animations/swing.tres" type="Animation" id=12]
 [ext_resource path="res://animations/idle_bat.tres" type="Animation" id=13]
@@ -144,27 +144,28 @@ shape = SubResource( 5 )
 [node name="batter" type="KinematicBody2D" parent="Layers"]
 script = ExtResource( 5 )
 
+[node name="bat" type="Sprite" parent="Layers/batter"]
+position = Vector2( 387.367, 403.317 )
+rotation = -0.610947
+scale = Vector2( 1, 1 )
+texture = ExtResource( 6 )
+
 [node name="left arm" type="Sprite" parent="Layers/batter"]
 position = Vector2( 404.856, 450.479 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="torso" type="Sprite" parent="Layers/batter"]
 position = Vector2( 382.349, 430.555 )
 scale = Vector2( 0.704962, 0.71281 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="right arm" type="Sprite" parent="Layers/batter"]
 position = Vector2( 392.78, 444.064 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="right leg" type="Sprite" parent="Layers/batter"]
 position = Vector2( 377.253, 503.292 )
 scale = Vector2( 0.704962, 0.71281 )
-texture = ExtResource( 9 )
-
-[node name="bat" type="Sprite" parent="Layers/batter"]
-position = Vector2( 387.367, 403.317 )
-rotation = -0.610947
 texture = ExtResource( 10 )
 
 [node name="left leg" type="Sprite" parent="Layers/batter"]
