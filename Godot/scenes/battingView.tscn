@@ -1,22 +1,18 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scenes/battingView.gd" type="Script" id=1]
 [ext_resource path="res://assets/views/batter-view.jpg" type="Texture" id=2]
 [ext_resource path="res://scripts/Actors/pitcher.gd" type="Script" id=3]
 [ext_resource path="res://assets/raw/pitcher.png" type="Texture" id=4]
 [ext_resource path="res://scripts/Actors/batter.gd" type="Script" id=5]
-[ext_resource path="res://assets/raw/batter/bat.png" type="Texture" id=6]
-[ext_resource path="res://assets/raw/batter/arm_l.png" type="Texture" id=7]
-[ext_resource path="res://assets/raw/batter/Torso.png" type="Texture" id=8]
-[ext_resource path="res://assets/raw/batter/arm_r.png" type="Texture" id=9]
-[ext_resource path="res://assets/raw/batter/leg_r.png" type="Texture" id=10]
-[ext_resource path="res://assets/raw/batter/leg_l.png" type="Texture" id=11]
-[ext_resource path="res://animations/swing.tres" type="Animation" id=12]
-[ext_resource path="res://animations/idle_bat.tres" type="Animation" id=13]
-[ext_resource path="res://scripts/Objects/ball.gd" type="Script" id=14]
-[ext_resource path="res://assets/raw/baseball.png" type="Texture" id=15]
-[ext_resource path="res://balmoralFontMid.tres" type="DynamicFont" id=16]
-[ext_resource path="res://assets/raw/batter/scoreboard.png" type="Texture" id=17]
+[ext_resource path="res://assets/raw/batter/swing_f1.png" type="Texture" id=6]
+[ext_resource path="res://assets/raw/batter/swing_f2.png" type="Texture" id=7]
+[ext_resource path="res://assets/raw/batter/swing_f3.png" type="Texture" id=8]
+[ext_resource path="res://assets/raw/batter/swing_f4.png" type="Texture" id=9]
+[ext_resource path="res://scripts/Objects/ball.gd" type="Script" id=10]
+[ext_resource path="res://assets/raw/baseball.png" type="Texture" id=11]
+[ext_resource path="res://balmoralFontMid.tres" type="DynamicFont" id=12]
+[ext_resource path="res://assets/raw/batter/scoreboard.png" type="Texture" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 82.2814, 3.89081 )
@@ -33,11 +29,23 @@ extents = Vector2( 4.99011, 29.6729 )
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 20.6311, 114.315 )
 
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 43.0915, 12.0798 )
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "idle",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": false,
+"name": "swing",
+"speed": 4.0
+} ]
 
-[sub_resource type="Animation" id=7]
-resource_name = "fastball"
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 10, 32.3281 )
+
+[sub_resource type="Animation" id=8]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("baseball:position")
@@ -76,7 +84,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0.01, 0.01 ), Vector2( 0.02, 0.02 ), Vector2( 0.03, 0.03 ) ]
 }
 
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="CircleShape2D" id=9]
 
 [node name="battingView" type="Node2D"]
 script = ExtResource( 1 )
@@ -144,60 +152,33 @@ shape = SubResource( 5 )
 [node name="batter" type="KinematicBody2D" parent="Layers"]
 script = ExtResource( 5 )
 
-[node name="bat" type="Sprite" parent="Layers/batter"]
-position = Vector2( 387.367, 403.317 )
-rotation = -0.610947
-scale = Vector2( 1, 1 )
-texture = ExtResource( 6 )
-
-[node name="left arm" type="Sprite" parent="Layers/batter"]
-position = Vector2( 404.856, 450.479 )
-texture = ExtResource( 7 )
-
-[node name="torso" type="Sprite" parent="Layers/batter"]
-position = Vector2( 382.349, 430.555 )
-scale = Vector2( 0.704962, 0.71281 )
-texture = ExtResource( 8 )
-
-[node name="right arm" type="Sprite" parent="Layers/batter"]
-position = Vector2( 392.78, 444.064 )
-texture = ExtResource( 9 )
-
-[node name="right leg" type="Sprite" parent="Layers/batter"]
-position = Vector2( 377.253, 503.292 )
-scale = Vector2( 0.704962, 0.71281 )
-texture = ExtResource( 10 )
-
-[node name="left leg" type="Sprite" parent="Layers/batter"]
-position = Vector2( 372.157, 506.071 )
-scale = Vector2( 0.704962, 0.71281 )
-texture = ExtResource( 11 )
-
-[node name="bat_idle_anim" type="AnimationPlayer" parent="Layers/batter"]
-autoplay = "bat_swing"
-anims/Swing = ExtResource( 12 )
-anims/bat_swing = ExtResource( 13 )
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Layers/batter"]
+position = Vector2( 364.929, 408.157 )
+scale = Vector2( 0.800001, 0.800001 )
+frames = SubResource( 6 )
+animation = "swing"
+speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/batter"]
-visible = false
-position = Vector2( 380.662, 522.611 )
-shape = SubResource( 6 )
+position = Vector2( 386.244, 510.959 )
+scale = Vector2( 3.28, 1 )
+shape = SubResource( 10 )
 
 [node name="ball" type="KinematicBody2D" parent="Layers"]
-script = ExtResource( 14 )
+script = ExtResource( 10 )
 
 [node name="baseball" type="Sprite" parent="Layers/ball"]
 position = Vector2( 465.648, 123.748 )
 rotation = 3.14159
 scale = Vector2( 0.01, 0.01 )
-texture = ExtResource( 15 )
+texture = ExtResource( 11 )
 
 [node name="anim_ball" type="AnimationPlayer" parent="Layers/ball"]
-anims/fastball = SubResource( 7 )
+anims/fastball = SubResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/ball"]
 position = Vector2( 466.413, 123.49 )
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
 [node name="scoreboard" type="Node" parent="Layers"]
 editor/display_folded = true
@@ -208,7 +189,7 @@ margin_left = 39.4626
 margin_top = 452.513
 margin_right = 85.4626
 margin_bottom = 479.513
-custom_fonts/font = ExtResource( 16 )
+custom_fonts/font = ExtResource( 12 )
 text = "S"
 align = 1
 
@@ -218,7 +199,7 @@ margin_left = 101.278
 margin_top = 451.312
 margin_right = 147.278
 margin_bottom = 478.312
-custom_fonts/font = ExtResource( 16 )
+custom_fonts/font = ExtResource( 12 )
 text = "B"
 align = 1
 
@@ -228,11 +209,11 @@ margin_left = 158.593
 margin_top = 449.639
 margin_right = 204.593
 margin_bottom = 476.638
-custom_fonts/font = ExtResource( 16 )
+custom_fonts/font = ExtResource( 12 )
 text = "O"
 align = 1
 
 [node name="scoreboard" type="Sprite" parent="Layers/scoreboard"]
 visible = false
 position = Vector2( 135.373, 518.636 )
-texture = ExtResource( 17 )
+texture = ExtResource( 13 )

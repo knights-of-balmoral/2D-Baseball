@@ -15,18 +15,12 @@ _global_script_classes=[ {
 "path": "res://scripts/Objects/ball.gd"
 }, {
 "base": "KinematicBody2D",
-"class": "Batter",
-"language": "GDScript",
-"path": "res://scripts/Actors/batter.gd"
-}, {
-"base": "KinematicBody2D",
 "class": "Pitcher",
 "language": "GDScript",
 "path": "res://scripts/Actors/pitcher.gd"
 } ]
 _global_script_class_icons={
 "Ball": "",
-"Batter": "",
 "Pitcher": ""
 }
 
