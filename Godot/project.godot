@@ -30,6 +30,10 @@ config/name="KoB Baseball"
 run/main_scene="res://scenes/mainMenu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+mainMenu="*res://scenes/mainMenu.tscn"
+
 [display]
 
 window/size/fullscreen=true

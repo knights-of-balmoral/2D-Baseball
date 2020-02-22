@@ -6,3 +6,4 @@
 
 [node name="Label" parent="." index="0"]
 text = "Options"
+align = 1
