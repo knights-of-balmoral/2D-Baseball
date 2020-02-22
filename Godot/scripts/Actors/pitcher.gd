@@ -1,6 +1,6 @@
 extends KinematicBody2D
 class_name Pitcher
-onready var anim = get_node("anim_ball")
+
 var velocity: = Vector2.ZERO # start with no velocity
 var speed: = 100
 var pitcherPositionRange: = 400

@@ -39,16 +39,16 @@ margin_right = -960.0
 margin_bottom = -542.091
 
 [node name="UI" type="VBoxContainer" parent="titleBG/TitleScreen"]
-margin_left = 15.0
+margin_left = 59.0
 margin_top = 29.0
-margin_right = 1888.0
-margin_bottom = 1069.0
+margin_right = 1879.0
+margin_bottom = 1050.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
 [node name="Logo" type="TextureRect" parent="titleBG/TitleScreen/UI"]
-margin_right = 1873.0
+margin_right = 1820.0
 margin_bottom = 82.0
 texture = ExtResource( 2 )
 stretch_mode = 4
@@ -62,40 +62,40 @@ texture = ExtResource( 3 )
 modulate = Color( 0.980392, 0.917647, 0.917647, 1 )
 self_modulate = Color( 0.647059, 0.211765, 0.211765, 1 )
 margin_top = 86.0
-margin_right = 1873.0
-margin_bottom = 1040.0
+margin_right = 1820.0
+margin_bottom = 1021.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="titleBG/TitleScreen/UI/CenterRow"]
-margin_right = 1588.0
-margin_bottom = 954.0
+margin_right = 1535.0
+margin_bottom = 935.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 50
 alignment = 1
 
 [node name="PlayButton" parent="titleBG/TitleScreen/UI/CenterRow/Buttons" instance=ExtResource( 4 )]
-margin_top = 337.0
-margin_right = 1588.0
-margin_bottom = 397.0
+margin_top = 327.0
+margin_right = 1535.0
+margin_bottom = 387.0
 
 [node name="OptionsButton" parent="titleBG/TitleScreen/UI/CenterRow/Buttons" instance=ExtResource( 5 )]
-margin_top = 447.0
-margin_right = 1588.0
-margin_bottom = 507.0
+margin_top = 437.0
+margin_right = 1535.0
+margin_bottom = 497.0
 
 [node name="QuitButton" parent="titleBG/TitleScreen/UI/CenterRow/Buttons" instance=ExtResource( 6 )]
-margin_top = 557.0
-margin_right = 1588.0
-margin_bottom = 617.0
+margin_top = 547.0
+margin_right = 1535.0
+margin_bottom = 607.0
 script = ExtResource( 7 )
 
 [node name="VersionLabel" type="Label" parent="titleBG/TitleScreen/UI/CenterRow"]
-margin_left = 1592.0
-margin_right = 1873.0
-margin_bottom = 954.0
+margin_left = 1539.0
+margin_right = 1820.0
+margin_bottom = 935.0
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
 text = "Version 1.0"

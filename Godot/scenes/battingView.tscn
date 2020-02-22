@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scenes/battingView.gd" type="Script" id=1]
 [ext_resource path="res://assets/views/batter-view.jpg" type="Texture" id=2]
@@ -11,8 +11,10 @@
 [ext_resource path="res://assets/raw/batter/swing_f4.png" type="Texture" id=9]
 [ext_resource path="res://scripts/Objects/ball.gd" type="Script" id=10]
 [ext_resource path="res://assets/raw/baseball.png" type="Texture" id=11]
-[ext_resource path="res://balmoralFontMid.tres" type="DynamicFont" id=12]
-[ext_resource path="res://assets/raw/batter/scoreboard.png" type="Texture" id=13]
+[ext_resource path="res://assets/raw/gui/strike-zone.png" type="Texture" id=12]
+[ext_resource path="res://balmoralFontMid.tres" type="DynamicFont" id=13]
+[ext_resource path="res://assets/raw/batter/scoreboard.png" type="Texture" id=14]
+[ext_resource path="res://assets/sound/stadium_ambient.ogg" type="AudioStream" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 82.2814, 3.89081 )
@@ -42,7 +44,7 @@ animations = [ {
 "speed": 4.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 10, 32.3281 )
 
 [sub_resource type="Animation" id=8]
@@ -57,7 +59,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 465.648, 123.748 ), Vector2( 481.893, 280.783 ), Vector2( 483.059, 549.043 ) ]
+"values": [ Vector2( 465.648, 123.748 ), Vector2( 481.893, 280.783 ), Vector2( 479.259, 632.643 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("baseball:rotation_degrees")
@@ -89,9 +91,9 @@ tracks/2/keys = {
 [node name="battingView" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Layers" type="CanvasLayer" parent="."]
+[node name="batter_view" type="CanvasLayer" parent="."]
 
-[node name="player-bounds" type="Sprite" parent="Layers"]
+[node name="player-bounds" type="Sprite" parent="batter_view"]
 editor/display_folded = true
 position = Vector2( 510.194, 303.91 )
 scale = Vector2( 0.533363, 0.560511 )
@@ -100,120 +102,140 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="battersBox" type="StaticBody2D" parent="Layers/player-bounds"]
+[node name="battersBox" type="StaticBody2D" parent="batter_view/player-bounds"]
 editor/display_folded = true
 visible = false
 position = Vector2( -959.615, -537.26 )
 scale = Vector2( 1.8749, 1.78409 )
 
-[node name="bottom" type="CollisionShape2D" parent="Layers/player-bounds/battersBox"]
+[node name="bottom" type="CollisionShape2D" parent="batter_view/player-bounds/battersBox"]
 position = Vector2( 382.75, 593.199 )
 shape = SubResource( 1 )
 
-[node name="top" type="CollisionShape2D" parent="Layers/player-bounds/battersBox"]
+[node name="top" type="CollisionShape2D" parent="batter_view/player-bounds/battersBox"]
 position = Vector2( 385.308, 444.022 )
 shape = SubResource( 2 )
 
-[node name="left" type="CollisionShape2D" parent="Layers/player-bounds/battersBox"]
+[node name="left" type="CollisionShape2D" parent="batter_view/player-bounds/battersBox"]
 position = Vector2( 304.428, 512.724 )
 shape = SubResource( 3 )
 
-[node name="right" type="CollisionShape2D" parent="Layers/player-bounds/battersBox"]
+[node name="right" type="CollisionShape2D" parent="batter_view/player-bounds/battersBox"]
 position = Vector2( 464.847, 521.789 )
 shape = SubResource( 3 )
 
-[node name="pitchersBox" type="StaticBody2D" parent="Layers/player-bounds"]
+[node name="pitchersBox" type="StaticBody2D" parent="batter_view/player-bounds"]
 editor/display_folded = true
 visible = false
 
-[node name="right" type="CollisionShape2D" parent="Layers/player-bounds/pitchersBox"]
+[node name="right" type="CollisionShape2D" parent="batter_view/player-bounds/pitchersBox"]
 position = Vector2( -1.026, -239.652 )
 shape = SubResource( 4 )
 
-[node name="left" type="CollisionShape2D" parent="Layers/player-bounds/pitchersBox"]
+[node name="left" type="CollisionShape2D" parent="batter_view/player-bounds/pitchersBox"]
 position = Vector2( -89.787, -240.235 )
 shape = SubResource( 4 )
 
-[node name="pitcher" type="KinematicBody2D" parent="Layers"]
+[node name="pitcher" type="KinematicBody2D" parent="batter_view"]
 editor/display_folded = true
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="rh-pitcher" type="Sprite" parent="Layers/pitcher"]
+[node name="rh-pitcher" type="Sprite" parent="batter_view/pitcher"]
 position = Vector2( 498.032, 134.169 )
 scale = Vector2( 0.132227, 0.132227 )
 texture = ExtResource( 4 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/pitcher"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="batter_view/pitcher"]
 visible = false
 position = Vector2( 493.753, 165.19 )
 scale = Vector2( 0.132227, 0.132227 )
 shape = SubResource( 5 )
 
-[node name="batter" type="KinematicBody2D" parent="Layers"]
+[node name="batter" type="KinematicBody2D" parent="batter_view"]
+editor/display_folded = true
 script = ExtResource( 5 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Layers/batter"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="batter_view/batter"]
 position = Vector2( 364.929, 408.157 )
-scale = Vector2( 0.800001, 0.800001 )
+scale = Vector2( 0.680001, 0.680001 )
 frames = SubResource( 6 )
 animation = "swing"
 speed_scale = 2.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/batter"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="batter_view/batter"]
 position = Vector2( 386.244, 510.959 )
 scale = Vector2( 3.28, 1 )
-shape = SubResource( 10 )
+shape = SubResource( 7 )
 
-[node name="ball" type="KinematicBody2D" parent="Layers"]
+[node name="ball" type="KinematicBody2D" parent="batter_view"]
+editor/display_folded = true
 script = ExtResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="baseball" type="Sprite" parent="Layers/ball"]
-position = Vector2( 465.648, 123.748 )
-rotation = 3.14159
-scale = Vector2( 0.01, 0.01 )
+[node name="baseball" type="Sprite" parent="batter_view/ball"]
+position = Vector2( 479.259, 632.643 )
+rotation = -6.33136
+scale = Vector2( 0.03, 0.03 )
 texture = ExtResource( 11 )
 
-[node name="anim_ball" type="AnimationPlayer" parent="Layers/ball"]
+[node name="anim_ball" type="AnimationPlayer" parent="batter_view/ball"]
 anims/fastball = SubResource( 8 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/ball"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="batter_view/ball"]
 position = Vector2( 466.413, 123.49 )
 shape = SubResource( 9 )
 
-[node name="scoreboard" type="Node" parent="Layers"]
+[node name="UI" type="Node2D" parent="batter_view"]
+
+[node name="strikezone" type="Sprite" parent="batter_view/UI"]
+modulate = Color( 1, 1, 1, 0.329412 )
+position = Vector2( 484.292, 438.325 )
+scale = Vector2( 0.12, 0.12 )
+texture = ExtResource( 12 )
+
+[node name="scoreboard" type="Node" parent="batter_view/UI"]
 editor/display_folded = true
 
-[node name="score_strikes" type="Label" parent="Layers/scoreboard"]
+[node name="score_strikes" type="Label" parent="batter_view/UI/scoreboard"]
 visible = false
 margin_left = 39.4626
 margin_top = 452.513
 margin_right = 85.4626
 margin_bottom = 479.513
-custom_fonts/font = ExtResource( 12 )
+custom_fonts/font = ExtResource( 13 )
 text = "S"
 align = 1
 
-[node name="score_balls" type="Label" parent="Layers/scoreboard"]
+[node name="score_balls" type="Label" parent="batter_view/UI/scoreboard"]
 visible = false
 margin_left = 101.278
 margin_top = 451.312
 margin_right = 147.278
 margin_bottom = 478.312
-custom_fonts/font = ExtResource( 12 )
+custom_fonts/font = ExtResource( 13 )
 text = "B"
 align = 1
 
-[node name="score_outs" type="Label" parent="Layers/scoreboard"]
+[node name="score_outs" type="Label" parent="batter_view/UI/scoreboard"]
 visible = false
 margin_left = 158.593
 margin_top = 449.639
 margin_right = 204.593
 margin_bottom = 476.638
-custom_fonts/font = ExtResource( 12 )
+custom_fonts/font = ExtResource( 13 )
 text = "O"
 align = 1
 
-[node name="scoreboard" type="Sprite" parent="Layers/scoreboard"]
-visible = false
+[node name="scoreboard" type="Sprite" parent="batter_view/UI/scoreboard"]
 position = Vector2( 135.373, 518.636 )
-texture = ExtResource( 13 )
+z_index = 20
+texture = ExtResource( 14 )
+
+[node name="bg_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+autoplay = true
