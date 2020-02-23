@@ -1,20 +1,24 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://scenes/battingView.gd" type="Script" id=1]
 [ext_resource path="res://assets/views/batter-view.jpg" type="Texture" id=2]
 [ext_resource path="res://scripts/Actors/pitcher.gd" type="Script" id=3]
 [ext_resource path="res://assets/raw/pitcher.png" type="Texture" id=4]
 [ext_resource path="res://scripts/Actors/batter.gd" type="Script" id=5]
-[ext_resource path="res://assets/raw/batter/swing_f1.png" type="Texture" id=6]
-[ext_resource path="res://assets/raw/batter/swing_f2.png" type="Texture" id=7]
-[ext_resource path="res://assets/raw/batter/swing_f3.png" type="Texture" id=8]
-[ext_resource path="res://assets/raw/batter/swing_f4.png" type="Texture" id=9]
-[ext_resource path="res://scripts/Objects/ball.gd" type="Script" id=10]
-[ext_resource path="res://assets/raw/baseball.png" type="Texture" id=11]
-[ext_resource path="res://assets/raw/gui/strike-zone.png" type="Texture" id=12]
-[ext_resource path="res://assets/fonts/balmoralFontMid.tres" type="DynamicFont" id=13]
-[ext_resource path="res://assets/raw/batter/scoreboard.png" type="Texture" id=14]
-[ext_resource path="res://assets/sound/stadium_ambient.ogg" type="AudioStream" id=15]
+[ext_resource path="res://assets/raw/batter/idle_1.png" type="Texture" id=6]
+[ext_resource path="res://assets/raw/batter/idle_2.png" type="Texture" id=7]
+[ext_resource path="res://assets/raw/batter/idle_3.png" type="Texture" id=8]
+[ext_resource path="res://assets/raw/batter/idle_4.png" type="Texture" id=9]
+[ext_resource path="res://assets/raw/batter/swing_f1.png" type="Texture" id=10]
+[ext_resource path="res://assets/raw/batter/swing_f2.png" type="Texture" id=11]
+[ext_resource path="res://assets/raw/batter/swing_f3.png" type="Texture" id=12]
+[ext_resource path="res://assets/raw/batter/swing_f4.png" type="Texture" id=13]
+[ext_resource path="res://scripts/Objects/ball.gd" type="Script" id=14]
+[ext_resource path="res://assets/raw/baseball.png" type="Texture" id=15]
+[ext_resource path="res://assets/raw/gui/strike-zone.png" type="Texture" id=16]
+[ext_resource path="res://assets/fonts/balmoralFontMid.tres" type="DynamicFont" id=17]
+[ext_resource path="res://assets/raw/batter/scoreboard.png" type="Texture" id=18]
+[ext_resource path="res://assets/sound/stadium_ambient.ogg" type="AudioStream" id=19]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 82.2814, 3.89081 )
@@ -33,21 +37,48 @@ extents = Vector2( 20.6311, 114.315 )
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "idle",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": false,
 "name": "swing",
-"speed": 4.0
+"speed": 8.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 10, 32.3281 )
 
 [sub_resource type="Animation" id=8]
+resource_name = "ball_idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("baseball:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 465.693, 126.18 ), Vector2( 465.693, 126.18 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("baseball:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -362.76, -362.76 ]
+}
+
+[sub_resource type="Animation" id=9]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("baseball:position")
@@ -86,7 +117,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0.01, 0.01 ), Vector2( 0.02, 0.02 ), Vector2( 0.03, 0.03 ) ]
 }
 
-[sub_resource type="CircleShape2D" id=9]
+[sub_resource type="CircleShape2D" id=10]
 
 [node name="battingView" type="Node2D"]
 script = ExtResource( 1 )
@@ -137,7 +168,6 @@ position = Vector2( -89.787, -240.235 )
 shape = SubResource( 4 )
 
 [node name="pitcher" type="KinematicBody2D" parent="batter_view"]
-editor/display_folded = true
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
@@ -155,15 +185,13 @@ scale = Vector2( 0.132227, 0.132227 )
 shape = SubResource( 5 )
 
 [node name="batter" type="KinematicBody2D" parent="batter_view"]
-editor/display_folded = true
 script = ExtResource( 5 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="batter_view/batter"]
+[node name="anim_batter" type="AnimatedSprite" parent="batter_view/batter"]
 position = Vector2( 364.929, 408.157 )
 scale = Vector2( 0.680001, 0.680001 )
 frames = SubResource( 6 )
 animation = "swing"
-speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="batter_view/batter"]
 position = Vector2( 386.244, 510.959 )
@@ -171,24 +199,34 @@ scale = Vector2( 3.28, 1 )
 shape = SubResource( 7 )
 
 [node name="ball" type="KinematicBody2D" parent="batter_view"]
-editor/display_folded = true
-script = ExtResource( 10 )
+script = ExtResource( 14 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="baseball" type="Sprite" parent="batter_view/ball"]
-position = Vector2( 479.259, 632.643 )
-rotation = -6.33136
-scale = Vector2( 0.03, 0.03 )
-texture = ExtResource( 11 )
+position = Vector2( 465.648, 123.748 )
+rotation = -3.14159
+scale = Vector2( 0.01, 0.01 )
+texture = ExtResource( 15 )
 
 [node name="anim_ball" type="AnimationPlayer" parent="batter_view/ball"]
-anims/fastball = SubResource( 8 )
+autoplay = "ball_idle"
+anims/ball_idle = SubResource( 8 )
+anims/fastball = SubResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="batter_view/ball"]
 position = Vector2( 466.413, 123.49 )
-shape = SubResource( 9 )
+shape = SubResource( 10 )
+
+[node name="console_log" type="RichTextLabel" parent="batter_view/ball"]
+margin_left = 576.994
+margin_top = 277.997
+margin_right = 616.994
+margin_bottom = 317.997
+rect_scale = Vector2( 3.92, 0.96 )
+custom_colors/default_color = Color( 0.827451, 0.0196078, 0.0196078, 1 )
+text = "Nothing here"
 
 [node name="UI" type="Node2D" parent="batter_view"]
 
@@ -196,7 +234,7 @@ shape = SubResource( 9 )
 modulate = Color( 1, 1, 1, 0.329412 )
 position = Vector2( 484.292, 438.325 )
 scale = Vector2( 0.12, 0.12 )
-texture = ExtResource( 12 )
+texture = ExtResource( 16 )
 
 [node name="scoreboard" type="Node" parent="batter_view/UI"]
 editor/display_folded = true
@@ -207,7 +245,7 @@ margin_left = 39.4626
 margin_top = 452.513
 margin_right = 85.4626
 margin_bottom = 479.513
-custom_fonts/font = ExtResource( 13 )
+custom_fonts/font = ExtResource( 17 )
 text = "S"
 align = 1
 
@@ -217,7 +255,7 @@ margin_left = 101.278
 margin_top = 451.312
 margin_right = 147.278
 margin_bottom = 478.312
-custom_fonts/font = ExtResource( 13 )
+custom_fonts/font = ExtResource( 17 )
 text = "B"
 align = 1
 
@@ -227,15 +265,16 @@ margin_left = 158.593
 margin_top = 449.639
 margin_right = 204.593
 margin_bottom = 476.638
-custom_fonts/font = ExtResource( 13 )
+custom_fonts/font = ExtResource( 17 )
 text = "O"
 align = 1
 
 [node name="scoreboard" type="Sprite" parent="batter_view/UI/scoreboard"]
 position = Vector2( 135.373, 518.636 )
 z_index = 20
-texture = ExtResource( 14 )
+texture = ExtResource( 18 )
 
 [node name="bg_music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 15 )
-autoplay = true
+stream = ExtResource( 19 )
+volume_db = -3.841
+pitch_scale = 1.12

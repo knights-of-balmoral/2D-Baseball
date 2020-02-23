@@ -1,8 +1,9 @@
 extends KinematicBody2D
-onready var anim = get_node("AnimatedSprite")
+onready var anim = get_node("anim_batter")
 var velocity: = Vector2.ZERO # start with no velocity
 var speed: = 200
 var batterPositionRange: = 400
+var bat_state = "idle"
 
 func _physics_process(delta): # delta times things with clock/render cycle
 	
@@ -19,6 +20,8 @@ func _physics_process(delta): # delta times things with clock/render cycle
 	
 	if(Input.is_action_pressed("swing_bat")):
 		anim.play("swing")
+		bat_state = "swing"
 	else:
 		anim.play("idle")
+		bat_state = "idle"
 	
