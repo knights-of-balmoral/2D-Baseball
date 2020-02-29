@@ -21,7 +21,8 @@ func _physics_process(delta): # delta times things with clock/render cycle
 	if(Input.is_action_pressed("swing_bat")):
 		anim.play("swing")
 		bat_state = "swing"
+		
 	else:
 		anim.play("idle")
 		bat_state = "idle"
-	
+		
