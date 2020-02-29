@@ -1,10 +1,50 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/field_overhead.gd" type="Script" id=1]
 [ext_resource path="res://assets/views/overhead-view.jpg" type="Texture" id=2]
 [ext_resource path="res://assets/sound/ball_hit.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/raw/baseball.png" type="Texture" id=4]
 [ext_resource path="res://scripts/global.gd" type="Script" id=5]
+
+[sub_resource type="Animation" id=3]
+resource_name = "foul_ball"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("baseball:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 530, 500 ), Vector2( 310, 400 ), Vector2( 200, 340 ), Vector2( 30, 250 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("baseball:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 165.0, 315.0, 479.999, 599.999 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("baseball:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.01, 0.01 ), Vector2( 0.02, 0.02 ), Vector2( 0.01, 0.01 ), Vector2( 0.01, 0.01 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "line_drive"
@@ -46,6 +86,46 @@ tracks/2/keys = {
 "values": [ Vector2( 0.01, 0.01 ), Vector2( -0.0299219, -0.0299219 ), Vector2( 0.01, 0.01 ) ]
 }
 
+[sub_resource type="Animation" id=2]
+resource_name = "pop_fly"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("baseball:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 530, 500 ), Vector2( 640, 290 ), Vector2( 700, 260 ), Vector2( 720, 290 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("baseball:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 165.0, 330.0, 464.999, 569.999 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("baseball:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.01, 0.01 ), Vector2( 0.04, 0.04 ), Vector2( 0.02, 0.02 ), Vector2( 0.01, 0.01 ) ]
+}
+
 [node name="OverheadView" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -61,21 +141,13 @@ autoplay = true
 [node name="anim_ball_in_play" type="Node" parent="."]
 
 [node name="baseball" type="Sprite" parent="anim_ball_in_play"]
-position = Vector2( 280, 130 )
-rotation = 2.87979
+position = Vector2( 30, 250 )
+rotation = 10.472
 scale = Vector2( 0.01, 0.01 )
 texture = ExtResource( 4 )
 
 [node name="ball_in_play" type="AnimationPlayer" parent="anim_ball_in_play"]
+anims/foul_ball = SubResource( 3 )
 anims/line_drive = SubResource( 1 )
+anims/pop_fly = SubResource( 2 )
 script = ExtResource( 5 )
-
-[node name="test_label" type="Label" parent="anim_ball_in_play"]
-margin_left = 770.0
-margin_top = 390.0
-margin_right = 810.0
-margin_bottom = 404.0
-rect_scale = Vector2( 2.64, 2.68 )
-size_flags_horizontal = 5
-text = "test"
-align = 1
