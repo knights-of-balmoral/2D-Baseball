@@ -11,7 +11,7 @@ resource_name = "line_drive"
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("baseball:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -23,7 +23,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("baseball:rotation_degrees")
-tracks/1/interp = 1
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -35,7 +35,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("baseball:scale")
-tracks/2/interp = 1
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
@@ -69,3 +69,13 @@ texture = ExtResource( 4 )
 [node name="ball_in_play" type="AnimationPlayer" parent="anim_ball_in_play"]
 anims/line_drive = SubResource( 1 )
 script = ExtResource( 5 )
+
+[node name="test_label" type="Label" parent="anim_ball_in_play"]
+margin_left = 770.0
+margin_top = 390.0
+margin_right = 810.0
+margin_bottom = 404.0
+rect_scale = Vector2( 2.64, 2.68 )
+size_flags_horizontal = 5
+text = "test"
+align = 1
