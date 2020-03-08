@@ -4,7 +4,6 @@ class_name Pitcher
 var velocity: = Vector2.ZERO # start with no velocity
 var speed: = 100
 var pitcherPositionRange: = 400
-var ballIsPitched = false
 
 
 func _physics_process(delta): # delta times things with clock/render cycle
