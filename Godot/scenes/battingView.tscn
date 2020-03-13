@@ -13,13 +13,13 @@
 [ext_resource path="res://assets/raw/batter/swing_f2.png" type="Texture" id=11]
 [ext_resource path="res://assets/raw/batter/swing_f3.png" type="Texture" id=12]
 [ext_resource path="res://assets/raw/batter/swing_f4.png" type="Texture" id=13]
-[ext_resource path="res://scripts/Objects/ball.gd" type="Script" id=14]
-[ext_resource path="res://assets/raw/baseball.png" type="Texture" id=15]
-[ext_resource path="res://balmoralFont.tres" type="DynamicFont" id=16]
-[ext_resource path="res://assets/raw/gui/strike-zone.png" type="Texture" id=17]
-[ext_resource path="res://assets/fonts/balmoralFontMid.tres" type="DynamicFont" id=18]
-[ext_resource path="res://assets/raw/batter/scoreboard.png" type="Texture" id=19]
-[ext_resource path="res://assets/sound/stadium_ambient.ogg" type="AudioStream" id=20]
+[ext_resource path="res://assets/raw/baseball.png" type="Texture" id=14]
+[ext_resource path="res://balmoralFont.tres" type="DynamicFont" id=15]
+[ext_resource path="res://assets/raw/gui/strike-zone.png" type="Texture" id=16]
+[ext_resource path="res://assets/fonts/balmoralFontMid.tres" type="DynamicFont" id=17]
+[ext_resource path="res://assets/raw/batter/scoreboard.png" type="Texture" id=18]
+[ext_resource path="res://assets/sound/stadium_ambient.ogg" type="AudioStream" id=19]
+[ext_resource path="res://assets/sound/strike_call.wav" type="AudioStream" id=20]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 82.2814, 3.89081 )
@@ -200,16 +200,15 @@ scale = Vector2( 3.28, 1 )
 shape = SubResource( 7 )
 
 [node name="ball" type="KinematicBody2D" parent="batter_view"]
-script = ExtResource( 14 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="baseball" type="Sprite" parent="batter_view/ball"]
-position = Vector2( 465.648, 123.748 )
-rotation = -3.14159
-scale = Vector2( 0.01, 0.01 )
-texture = ExtResource( 15 )
+position = Vector2( 479.259, 632.643 )
+rotation = -6.33136
+scale = Vector2( 0.03, 0.03 )
+texture = ExtResource( 14 )
 
 [node name="anim_ball" type="AnimationPlayer" parent="batter_view/ball"]
 autoplay = "ball_idle"
@@ -227,7 +226,7 @@ margin_top = 239.05
 margin_right = 671.1
 margin_bottom = 577.05
 rect_scale = Vector2( 0.960001, 0.96 )
-custom_fonts/normal_font = ExtResource( 16 )
+custom_fonts/normal_font = ExtResource( 15 )
 custom_colors/default_color = Color( 0.827451, 0.0196078, 0.0196078, 1 )
 text = "status"
 
@@ -237,47 +236,73 @@ text = "status"
 modulate = Color( 1, 1, 1, 0.329412 )
 position = Vector2( 484.292, 438.325 )
 scale = Vector2( 0.12, 0.12 )
-texture = ExtResource( 17 )
+texture = ExtResource( 16 )
 
 [node name="scoreboard" type="Node" parent="batter_view/UI"]
-editor/display_folded = true
-
-[node name="score_strikes" type="Label" parent="batter_view/UI/scoreboard"]
-visible = false
-margin_left = 39.4626
-margin_top = 452.513
-margin_right = 85.4626
-margin_bottom = 479.513
-custom_fonts/font = ExtResource( 18 )
-text = "S"
-align = 1
 
 [node name="score_balls" type="Label" parent="batter_view/UI/scoreboard"]
-visible = false
-margin_left = 101.278
-margin_top = 451.312
-margin_right = 147.278
-margin_bottom = 478.312
-custom_fonts/font = ExtResource( 18 )
+margin_left = 12.2839
+margin_top = 474.478
+margin_right = 58.2839
+margin_bottom = 501.478
+custom_fonts/font = ExtResource( 17 )
 text = "B"
 align = 1
 
+[node name="balls_display" type="Label" parent="batter_view/UI/scoreboard/score_balls"]
+margin_left = 36.0
+margin_top = -13.0
+margin_right = 87.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 15 )
+text = "0"
+
+[node name="score_strikes" type="Label" parent="batter_view/UI/scoreboard"]
+margin_left = 95.2651
+margin_top = 473.164
+margin_right = 141.265
+margin_bottom = 500.164
+custom_fonts/font = ExtResource( 17 )
+text = "S"
+align = 1
+
+[node name="strikes_display" type="Label" parent="batter_view/UI/scoreboard/score_strikes"]
+margin_left = 43.0
+margin_top = -11.0
+margin_right = 94.0
+margin_bottom = 41.0
+custom_fonts/font = ExtResource( 15 )
+text = "0"
+
 [node name="score_outs" type="Label" parent="batter_view/UI/scoreboard"]
-visible = false
-margin_left = 158.593
-margin_top = 449.639
-margin_right = 204.593
-margin_bottom = 476.638
-custom_fonts/font = ExtResource( 18 )
+margin_left = 40.3528
+margin_top = 552.523
+margin_right = 86.3528
+margin_bottom = 579.522
+custom_fonts/font = ExtResource( 17 )
 text = "O"
 align = 1
 
+[node name="outs_display" type="Label" parent="batter_view/UI/scoreboard/score_outs"]
+margin_left = 44.547
+margin_top = -14.6034
+margin_right = 88.547
+margin_bottom = 37.3966
+custom_fonts/font = ExtResource( 15 )
+text = "0"
+
 [node name="scoreboard" type="Sprite" parent="batter_view/UI/scoreboard"]
+visible = false
 position = Vector2( 135.373, 518.636 )
 z_index = 20
-texture = ExtResource( 19 )
+texture = ExtResource( 18 )
 
-[node name="bg_music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 20 )
+[node name="Sound" type="Node" parent="batter_view"]
+
+[node name="bg_music" type="AudioStreamPlayer" parent="batter_view/Sound"]
+stream = ExtResource( 19 )
 volume_db = -3.841
 pitch_scale = 1.12
+
+[node name="strike" type="AudioStreamPlayer" parent="batter_view/Sound"]
+stream = ExtResource( 20 )
