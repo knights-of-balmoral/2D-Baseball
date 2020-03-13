@@ -16,15 +16,15 @@ func _physics_process(delta): # delta times things with clock/render cycle
 	
 	# If ball hasn't been pitched, pitch it
 	if Input.is_action_pressed("pitch_ball") && globals.ball_status == "P":
-		globals.pitch_location = pitchComputation()
+		globals.pitch_potential_result = pitchComputation(globals.pitch_target)
 		anim.play("fastball") #replace with a pitch selection function
-		globals.ball_status = "Pitched"
+		globals.ball_status = "PITCHED"
 		# $console_log.text = str(ball_timer)
 	
 
 
 	
-func pitchComputation():
+func pitchComputation(target): #accepts where pitcher aimed and then calculates result
 	return "S"
 	
 		
