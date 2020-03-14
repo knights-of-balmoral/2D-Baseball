@@ -1,6 +1,9 @@
 extends Node2D
 onready var anim = get_node("anim_ball_in_play/ball_in_play")
 
+func _ready():
+	globals.bg_fans.volume_db = -20
+	
 func _process(delta):
 	if Input.is_action_just_released("toggle_menu") == true:
 		get_tree().change_scene("res://scenes/mainMenu.tscn")

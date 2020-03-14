@@ -11,3 +11,4 @@ var balls = 0
 var outs = 0
 var inning = 1
 var team_at_bat = false # false = Visitor,  true = Home Team
+onready var bg_fans = get_node("/root/global_scene/bgStadium")

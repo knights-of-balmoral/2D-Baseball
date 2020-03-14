@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://scripts/battingView.gd" type="Script" id=1]
 [ext_resource path="res://assets/views/batter-view.jpg" type="Texture" id=2]
@@ -18,8 +18,9 @@
 [ext_resource path="res://assets/raw/gui/strike-zone.png" type="Texture" id=16]
 [ext_resource path="res://assets/fonts/balmoralFontMid.tres" type="DynamicFont" id=17]
 [ext_resource path="res://assets/raw/batter/scoreboard.png" type="Texture" id=18]
-[ext_resource path="res://assets/sound/stadium_ambient.ogg" type="AudioStream" id=19]
-[ext_resource path="res://assets/sound/strike_call.wav" type="AudioStream" id=20]
+[ext_resource path="res://assets/sound/strike_call.wav" type="AudioStream" id=19]
+[ext_resource path="res://assets/sound/ball.wav" type="AudioStream" id=20]
+[ext_resource path="res://assets/sound/hbp.wav" type="AudioStream" id=21]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 82.2814, 3.89081 )
@@ -46,7 +47,7 @@ animations = [ {
 "frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": false,
 "name": "swing",
-"speed": 8.0
+"speed": 16.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=7]
@@ -169,6 +170,7 @@ position = Vector2( -89.787, -240.235 )
 shape = SubResource( 4 )
 
 [node name="pitcher" type="KinematicBody2D" parent="batter_view"]
+editor/display_folded = true
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
@@ -200,6 +202,7 @@ scale = Vector2( 3.28, 1 )
 shape = SubResource( 7 )
 
 [node name="ball" type="KinematicBody2D" parent="batter_view"]
+editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -231,6 +234,7 @@ custom_colors/default_color = Color( 0.827451, 0.0196078, 0.0196078, 1 )
 text = "status"
 
 [node name="UI" type="Node2D" parent="batter_view"]
+editor/display_folded = true
 
 [node name="strikezone" type="Sprite" parent="batter_view/UI"]
 modulate = Color( 1, 1, 1, 0.329412 )
@@ -239,6 +243,24 @@ scale = Vector2( 0.12, 0.12 )
 texture = ExtResource( 16 )
 
 [node name="scoreboard" type="Node" parent="batter_view/UI"]
+
+[node name="status" type="Label" parent="batter_view/UI/scoreboard"]
+margin_left = 101.909
+margin_top = 38.1399
+margin_right = 335.909
+margin_bottom = 65.1399
+custom_fonts/font = ExtResource( 17 )
+text = "pitch result"
+align = 1
+
+[node name="status_display" type="Label" parent="batter_view/UI/scoreboard/status"]
+margin_left = -41.6841
+margin_top = 28.5441
+margin_right = 9.31592
+margin_bottom = 80.5441
+custom_fonts/font = ExtResource( 15 )
+text = "0"
+valign = 1
 
 [node name="score_balls" type="Label" parent="batter_view/UI/scoreboard"]
 margin_left = 12.2839
@@ -299,10 +321,11 @@ texture = ExtResource( 18 )
 
 [node name="Sound" type="Node" parent="batter_view"]
 
-[node name="bg_music" type="AudioStreamPlayer" parent="batter_view/Sound"]
-stream = ExtResource( 19 )
-volume_db = -3.841
-pitch_scale = 1.12
-
 [node name="strike" type="AudioStreamPlayer" parent="batter_view/Sound"]
+stream = ExtResource( 19 )
+
+[node name="ball" type="AudioStreamPlayer" parent="batter_view/Sound"]
 stream = ExtResource( 20 )
+
+[node name="hitByPitch" type="AudioStreamPlayer" parent="batter_view/Sound"]
+stream = ExtResource( 21 )

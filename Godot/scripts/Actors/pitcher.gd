@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name Pitcher
 onready var anim = get_node("../ball/anim_ball")
-
+onready var ui_status = get_node("../UI/scoreboard/status/status_display")
 var velocity: = Vector2.ZERO # start with no velocity
 var speed: = 100
 var pitcherPositionRange: = 400
@@ -25,7 +25,22 @@ func _physics_process(delta): # delta times things with clock/render cycle
 
 	
 func pitchComputation(target): #accepts where pitcher aimed and then calculates result
-	return "S"
+	var random_pitch = randi()%4 + 1 # replace with pitch logic
+	
+	match random_pitch:
+		1: 
+			ui_status.text = "Strike"	
+			return "S"
+		2: 
+			ui_status.text = "Ball"	
+			return "B"
+		3: 
+			ui_status.text = "Wild Pitch"	
+			return "W"
+		4: 
+			ui_status.text = "Hit Batter"	
+			return "HBP"
+	
 	
 		
 		

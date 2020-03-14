@@ -26,6 +26,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+global_scene="*res://scenes/global_scene.tscn"
 globals="*res://scripts/globals.gd"
 mainMenu="*res://scenes/mainMenu.tscn"
 
