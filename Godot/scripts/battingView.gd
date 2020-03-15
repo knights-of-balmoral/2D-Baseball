@@ -1,7 +1,7 @@
 extends Node2D
-onready var ui_balls = get_node("batter_view/UI/scoreboard/score_balls/balls_display")
-onready var ui_strikes = get_node("batter_view/UI/scoreboard/score_strikes/strikes_display")
-onready var ui_outs = get_node("batter_view/UI/scoreboard/score_outs/outs_display")
+onready var ui_balls = get_node("batter_view/UI/scoreboard/balls_display")
+onready var ui_strikes = get_node("batter_view/UI/scoreboard/strikes_display")
+onready var ui_outs = get_node("batter_view/UI/scoreboard/outs_display")
 onready var si_strike = get_node("batter_view/Sound/strike")
 onready var si_ball = get_node("batter_view/Sound/ball")
 onready var si_hbp = get_node("batter_view/Sound/hitByPitch")
