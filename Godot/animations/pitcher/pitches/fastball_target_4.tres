@@ -1,0 +1,52 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+resource_name = "fastball_target_1"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ball:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 483.981, 165.334 ), Vector2( 480.112, 285.269 ), Vector2( 483.62, 435.614 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ball:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -2.76001, 124.834, 219.356 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ball:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.004, 0.004 ), Vector2( 0.02, 0.02 ), Vector2( 0.03, 0.03 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ball:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}

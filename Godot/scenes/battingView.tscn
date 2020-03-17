@@ -1,7 +1,7 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://scripts/battingView.gd" type="Script" id=1]
-[ext_resource path="res://assets/views/batter-view.jpg" type="Texture" id=2]
+[ext_resource path="res://assets/raw/stadiums/kob_field.jpg" type="Texture" id=2]
 [ext_resource path="res://scripts/Actors/pitcher.gd" type="Script" id=3]
 [ext_resource path="res://assets/raw/pitcher.png" type="Texture" id=4]
 [ext_resource path="res://scripts/Actors/batter.gd" type="Script" id=5]
@@ -14,13 +14,31 @@
 [ext_resource path="res://assets/raw/batter/swing_f3.png" type="Texture" id=12]
 [ext_resource path="res://assets/raw/batter/swing_f4.png" type="Texture" id=13]
 [ext_resource path="res://assets/raw/baseball.png" type="Texture" id=14]
-[ext_resource path="res://balmoralFont.tres" type="DynamicFont" id=15]
-[ext_resource path="res://assets/raw/gui/strike-zone.png" type="Texture" id=16]
-[ext_resource path="res://assets/fonts/balmoralFontMid.tres" type="DynamicFont" id=17]
-[ext_resource path="res://assets/raw/scoreboard/scoreboard.png" type="Texture" id=18]
-[ext_resource path="res://assets/sound/strike_call.wav" type="AudioStream" id=19]
-[ext_resource path="res://assets/sound/ball.wav" type="AudioStream" id=20]
-[ext_resource path="res://assets/sound/hbp.wav" type="AudioStream" id=21]
+[ext_resource path="res://animations/pitcher/pitches/fastball_target_1.tres" type="Animation" id=15]
+[ext_resource path="res://animations/pitcher/pitches/fastball_target_11.tres" type="Animation" id=16]
+[ext_resource path="res://animations/pitcher/pitches/fastball_target_11_5.tres" type="Animation" id=17]
+[ext_resource path="res://animations/pitcher/pitches/fastball_target_12.tres" type="Animation" id=18]
+[ext_resource path="res://animations/pitcher/pitches/fastball_target_12_5.tres" type="Animation" id=19]
+[ext_resource path="res://animations/pitcher/pitches/fastball_target_13.tres" type="Animation" id=20]
+[ext_resource path="res://animations/pitcher/pitches/fastball_target_13_5.tres" type="Animation" id=21]
+[ext_resource path="res://animations/pitcher/pitches/fastball_target_14.tres" type="Animation" id=22]
+[ext_resource path="res://animations/pitcher/pitches/fastball_target_2.tres" type="Animation" id=23]
+[ext_resource path="res://animations/pitcher/pitches/fastball_target_3.tres" type="Animation" id=24]
+[ext_resource path="res://animations/pitcher/pitches/fastball_target_4.tres" type="Animation" id=25]
+[ext_resource path="res://animations/pitcher/pitches/fastball_target_5.tres" type="Animation" id=26]
+[ext_resource path="res://animations/pitcher/pitches/fastball_target_6.tres" type="Animation" id=27]
+[ext_resource path="res://animations/pitcher/pitches/fastball_target_7.tres" type="Animation" id=28]
+[ext_resource path="res://animations/pitcher/pitches/fastball_target_8.tres" type="Animation" id=29]
+[ext_resource path="res://animations/pitcher/pitches/fastball_target_9.tres" type="Animation" id=30]
+[ext_resource path="res://assets/raw/gui/strike-zone.png" type="Texture" id=31]
+[ext_resource path="res://assets/fonts/balmoralFontMid.tres" type="DynamicFont" id=32]
+[ext_resource path="res://balmoralFont.tres" type="DynamicFont" id=33]
+[ext_resource path="res://assets/raw/scoreboard/scoreboard.png" type="Texture" id=34]
+[ext_resource path="res://assets/raw/gui/yellow_circle.png" type="Texture" id=35]
+[ext_resource path="res://assets/sound/strike_call.wav" type="AudioStream" id=36]
+[ext_resource path="res://assets/sound/ball.wav" type="AudioStream" id=37]
+[ext_resource path="res://assets/sound/hbp.wav" type="AudioStream" id=38]
+[ext_resource path="res://assets/sound/glove_catch.wav" type="AudioStream" id=39]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 82.2814, 3.89081 )
@@ -52,74 +70,6 @@ animations = [ {
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 10, 32.3281 )
-
-[sub_resource type="Animation" id=8]
-resource_name = "ball_idle"
-tracks/0/type = "value"
-tracks/0/path = NodePath("baseball:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 465.693, 126.18 ), Vector2( 465.693, 126.18 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("baseball:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ -362.76, -362.76 ]
-}
-
-[sub_resource type="Animation" id=9]
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("baseball:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 465.648, 123.748 ), Vector2( 481.893, 280.783 ), Vector2( 479.259, 632.643 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("baseball:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ -180.0, -303.992, -362.76 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("baseball:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.01, 0.01 ), Vector2( 0.02, 0.02 ), Vector2( 0.03, 0.03 ) ]
-}
-
-[sub_resource type="CircleShape2D" id=10]
 
 [node name="battingView" type="Node2D"]
 script = ExtResource( 1 )
@@ -158,8 +108,7 @@ position = Vector2( 464.847, 521.789 )
 shape = SubResource( 3 )
 
 [node name="pitchersBox" type="StaticBody2D" parent="batter_view/player-bounds"]
-editor/display_folded = true
-visible = false
+position = Vector2( 24.6963, 81.1824 )
 
 [node name="right" type="CollisionShape2D" parent="batter_view/player-bounds/pitchersBox"]
 position = Vector2( -1.026, -239.652 )
@@ -177,7 +126,7 @@ __meta__ = {
 }
 
 [node name="rh-pitcher" type="Sprite" parent="batter_view/pitcher"]
-position = Vector2( 498.032, 134.169 )
+position = Vector2( 510.605, 187.456 )
 scale = Vector2( 0.132227, 0.132227 )
 texture = ExtResource( 4 )
 
@@ -188,84 +137,82 @@ scale = Vector2( 0.132227, 0.132227 )
 shape = SubResource( 5 )
 
 [node name="batter" type="KinematicBody2D" parent="batter_view"]
-editor/display_folded = true
 script = ExtResource( 5 )
 
 [node name="anim_batter" type="AnimatedSprite" parent="batter_view/batter"]
-position = Vector2( 364.929, 408.157 )
-scale = Vector2( 0.680001, 0.680001 )
+position = Vector2( 352.038, 389.982 )
+scale = Vector2( 0.874744, 0.874744 )
 frames = SubResource( 6 )
 animation = "swing"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="batter_view/batter"]
+visible = false
 position = Vector2( 386.244, 510.959 )
 scale = Vector2( 3.28, 1 )
 shape = SubResource( 7 )
 
-[node name="ball" type="KinematicBody2D" parent="batter_view"]
-editor/display_folded = true
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="ball_group" type="Node" parent="batter_view"]
 
-[node name="baseball" type="Sprite" parent="batter_view/ball"]
-position = Vector2( 479.259, 632.643 )
-rotation = -6.33136
-scale = Vector2( 0.03, 0.03 )
+[node name="ball" type="Sprite" parent="batter_view/ball_group"]
+position = Vector2( 488.194, 161.637 )
+rotation = 3.82848
+scale = Vector2( 1e-005, 1e-005 )
 texture = ExtResource( 14 )
 
-[node name="anim_ball" type="AnimationPlayer" parent="batter_view/ball"]
-autoplay = "ball_idle"
-anims/ball_idle = SubResource( 8 )
-anims/fastball = SubResource( 9 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="batter_view/ball"]
-position = Vector2( 466.413, 123.49 )
-shape = SubResource( 10 )
-
-[node name="console_log" type="RichTextLabel" parent="batter_view/ball"]
-visible = false
-margin_left = 575.1
-margin_top = 239.05
-margin_right = 671.1
-margin_bottom = 577.05
-rect_scale = Vector2( 0.960001, 0.96 )
-custom_fonts/normal_font = ExtResource( 15 )
-custom_colors/default_color = Color( 0.827451, 0.0196078, 0.0196078, 1 )
-text = "status"
+[node name="anim_ball" type="AnimationPlayer" parent="batter_view/ball_group"]
+anims/fastball_target_1 = ExtResource( 15 )
+anims/fastball_target_11 = ExtResource( 16 )
+anims/fastball_target_11_5 = ExtResource( 17 )
+anims/fastball_target_12 = ExtResource( 18 )
+anims/fastball_target_12_5 = ExtResource( 19 )
+anims/fastball_target_13 = ExtResource( 20 )
+anims/fastball_target_13_5 = ExtResource( 21 )
+anims/fastball_target_14 = ExtResource( 22 )
+anims/fastball_target_2 = ExtResource( 23 )
+anims/fastball_target_3 = ExtResource( 24 )
+anims/fastball_target_4 = ExtResource( 25 )
+anims/fastball_target_5 = ExtResource( 26 )
+anims/fastball_target_6 = ExtResource( 27 )
+anims/fastball_target_7 = ExtResource( 28 )
+anims/fastball_target_8 = ExtResource( 29 )
+anims/fastball_target_9 = ExtResource( 30 )
 
 [node name="UI" type="Node2D" parent="batter_view"]
 
 [node name="strikezone" type="Sprite" parent="batter_view/UI"]
+visible = false
 modulate = Color( 1, 1, 1, 0.329412 )
-position = Vector2( 484.292, 438.325 )
+position = Vector2( 508.84, 435.331 )
 scale = Vector2( 0.12, 0.12 )
-texture = ExtResource( 16 )
+texture = ExtResource( 31 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="scoreboard" type="Node" parent="batter_view/UI"]
 
 [node name="status" type="Label" parent="batter_view/UI/scoreboard"]
-editor/display_folded = true
-margin_left = 41.9095
-margin_top = 43.403
-margin_right = 275.909
-margin_bottom = 70.403
-custom_fonts/font = ExtResource( 17 )
+margin_left = 101.561
+margin_top = 20.0265
+margin_right = 335.561
+margin_bottom = 47.0265
+custom_fonts/font = ExtResource( 32 )
 text = "pitch result"
 align = 1
 
 [node name="status_display" type="Label" parent="batter_view/UI/scoreboard/status"]
-margin_left = -41.6841
-margin_top = 28.5441
-margin_right = 9.31592
-margin_bottom = 80.5441
-custom_fonts/font = ExtResource( 15 )
+margin_left = -149.0
+margin_top = 29.0
+margin_right = 338.0
+margin_bottom = 81.0
+custom_fonts/font = ExtResource( 33 )
 text = "0"
+align = 1
 valign = 1
 
 [node name="scoreboard" type="Sprite" parent="batter_view/UI/scoreboard"]
 position = Vector2( 876.835, 544.206 )
-texture = ExtResource( 18 )
+texture = ExtResource( 34 )
 
 [node name="balls_display" type="Label" parent="batter_view/UI/scoreboard"]
 margin_left = 835.94
@@ -273,7 +220,7 @@ margin_top = 560.621
 margin_right = 886.94
 margin_bottom = 612.621
 rect_scale = Vector2( 0.28, 0.28 )
-custom_fonts/font = ExtResource( 15 )
+custom_fonts/font = ExtResource( 33 )
 custom_colors/font_color = Color( 0.717647, 0.831373, 0.0235294, 1 )
 custom_colors/font_outline_modulate = Color( 0.301961, 0.733333, 0.831373, 1 )
 custom_colors/font_color_shadow = Color( 0.866667, 0.866667, 0.866667, 1 )
@@ -286,28 +233,35 @@ margin_top = 561.398
 margin_right = 920.895
 margin_bottom = 613.398
 rect_scale = Vector2( 0.28, 0.28 )
-custom_fonts/font = ExtResource( 15 )
+custom_fonts/font = ExtResource( 33 )
 custom_colors/font_color = Color( 0.717647, 0.831373, 0.0235294, 1 )
 custom_colors/font_outline_modulate = Color( 0.792157, 0.85098, 0.443137, 1 )
 custom_colors/font_color_shadow = Color( 0.513726, 0.505882, 0.505882, 1 )
 text = "0"
 max_lines_visible = 1
 
-[node name="outs_display" type="Label" parent="batter_view/UI/scoreboard"]
-margin_left = 730.894
-margin_top = 522.92
-margin_right = 781.894
-margin_bottom = 574.92
-custom_fonts/font = ExtResource( 15 )
-text = "0"
+[node name="out_1" type="Sprite" parent="batter_view/UI/scoreboard"]
+visible = false
+position = Vector2( 806.452, 567.6 )
+scale = Vector2( 0.159961, 0.159961 )
+texture = ExtResource( 35 )
+
+[node name="out_2" type="Sprite" parent="batter_view/UI/scoreboard"]
+visible = false
+position = Vector2( 822.573, 567.6 )
+scale = Vector2( 0.159961, 0.159961 )
+texture = ExtResource( 35 )
 
 [node name="Sound" type="Node" parent="batter_view"]
 
 [node name="strike" type="AudioStreamPlayer" parent="batter_view/Sound"]
-stream = ExtResource( 19 )
+stream = ExtResource( 36 )
 
 [node name="ball" type="AudioStreamPlayer" parent="batter_view/Sound"]
-stream = ExtResource( 20 )
+stream = ExtResource( 37 )
 
 [node name="hitByPitch" type="AudioStreamPlayer" parent="batter_view/Sound"]
-stream = ExtResource( 21 )
+stream = ExtResource( 38 )
+
+[node name="glove_catch" type="AudioStreamPlayer" parent="batter_view/Sound"]
+stream = ExtResource( 39 )

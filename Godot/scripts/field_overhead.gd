@@ -18,6 +18,8 @@ func _process(delta):
 		# anim.position = Vector2(100,100) Does not work 
 		anim.play(hit_animation())
 		globals.ball_status = "P" # resetting ball position to pitcher after line drive (will be changed)
+		yield(get_tree().create_timer(2.0), "timeout") # temporary timer to return us to batting view
+		get_tree().change_scene("res://scenes/battingView.tscn")
 	else:
 		pass
 

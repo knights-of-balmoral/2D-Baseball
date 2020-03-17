@@ -40,6 +40,7 @@ margin_right = -960.0
 margin_bottom = -542.091
 
 [node name="UI" type="VBoxContainer" parent="titleBG/TitleScreen"]
+editor/display_folded = true
 margin_left = 59.0
 margin_top = 29.0
 margin_right = 1879.0
