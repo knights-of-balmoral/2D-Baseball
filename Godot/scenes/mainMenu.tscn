@@ -40,7 +40,6 @@ margin_right = -960.0
 margin_bottom = -542.091
 
 [node name="UI" type="VBoxContainer" parent="titleBG/TitleScreen"]
-editor/display_folded = true
 margin_left = 59.0
 margin_top = 29.0
 margin_right = 1879.0
@@ -69,7 +68,6 @@ text = "Version 1.0"
 align = 1
 
 [node name="CenterRow" type="HBoxContainer" parent="titleBG/TitleScreen/UI"]
-editor/display_folded = true
 modulate = Color( 0.980392, 0.917647, 0.917647, 1 )
 self_modulate = Color( 0.647059, 0.211765, 0.211765, 1 )
 margin_top = 86.0

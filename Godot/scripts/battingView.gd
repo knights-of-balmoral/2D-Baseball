@@ -7,12 +7,18 @@ onready var si_strike = get_node("batter_view/Sound/strike")
 onready var si_ball = get_node("batter_view/Sound/ball")
 onready var si_hbp = get_node("batter_view/Sound/hitByPitch")
 onready var si_gc = get_node("batter_view/Sound/glove_catch")
-onready var anim_pitch = get_node("batter_view/ball_group/anim_ball")
+onready var anim_ball = get_node("batter_view/ball_group/anim_ball")
 onready var batter_anim = get_node("batter_view/batter/anim_batter")
+onready var pitcher_anim = get_node("batter_view/pitcher/anim_pitcher")
+
+var batter_swung = false
+
+
 
 func _ready():
 	globals.bg_fans.play()
 	globals.bg_fans.volume_db = -30
+		
 	
 func _process(delta):
 # Toggle Menu 
@@ -26,26 +32,27 @@ func _process(delta):
 		batter_anim.play("idle")
 		globals.swing_target = "idle"
 #------------------------------------
-# Pitcher Idle Animations
 
 # BALL PITCHED
 	if globals.ball_status == "PITCHED":
-		batter_anim.play("idle") # Reset better animations in case mid-practice-swing
-		animatePitch()
-	
-		# BAT SWUNG (handle HIT)
-		if(Input.is_action_pressed("swing_bat")):
+		animateBall()
+		
+		# BAT SWUNG and missed ball
+		if(Input.is_action_just_pressed("swing_bat")) && anim_ball.current_animation_position < globals.swing_window_min:
 			batter_anim.play("swing")
-			# Compute hit result
-			globals.ball_status = "IP" #yields a hit every swing right now
+			batter_swung = true
+		
+		# If we swing within the hit window as determined by global variables	
+		if(Input.is_action_just_pressed("swing_bat")) && anim_ball.current_animation_position >= globals.swing_window_min && anim_ball.current_animation_position < globals.swing_window_max:
+			batter_anim.play("swing")
+			globals.ball_status = "IP" # In Play 
 			get_tree().change_scene('res://scenes/field_overhead.tscn')
-			
-		# BAT NOT SWUNG (handle no swing)
-		else:
+		else: # BAT NOT SWUNG (handle no swing)
 			# check for end of animation
-			if anim_pitch.current_animation_position >= 0.9:
+			if anim_ball.current_animation_position >= 0.9:
 				si_gc.play()
 				globals.ball_status = "P" #PITCHER for now - but will need some update functions
+								
 				
 				
 				match globals.pitch_potential_result:
@@ -72,13 +79,17 @@ func updateStrikes():
 		
 
 func updateBalls():
-	if globals.balls >= 3:
-		globals.balls = 0
-		globals.strikes = 0
+	if batter_swung == false:
+		if globals.balls >= 3:
+			globals.balls = 0
+			globals.strikes = 0
 		
-		updateRunners()
+			updateRunners()
+		else:
+			globals.balls += 1
 	else:
-		globals.balls += 1
+		batter_swung = false
+		updateStrikes()
 		
 		
 func updateOuts():
@@ -131,7 +142,11 @@ func updateUI():
 	else:
 		ui_out_1.visible = false
 		ui_out_2.visible = false	
-		
-func animatePitch():
-	anim_pitch.playback_speed = globals.pitch_strength
-	anim_pitch.play(globals.pitch_target)	
+
+func animateBall():
+	anim_ball.playback_speed = globals.pitch_strength
+	anim_ball.play(globals.pitch_target)
+
+
+func _on_anim_ball_animation_finished(anim_name):
+	globals.ball_status = "P"
