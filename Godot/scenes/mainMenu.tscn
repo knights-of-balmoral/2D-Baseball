@@ -55,7 +55,7 @@ texture = ExtResource( 3 )
 stretch_mode = 4
 
 [node name="batterLogo" type="Sprite" parent="titleBG/TitleScreen/UI/Logo"]
-position = Vector2( 164.062, 84.003 )
+position = Vector2( 137.405, 129.995 )
 scale = Vector2( 1.87066, 1.79305 )
 texture = ExtResource( 4 )
 

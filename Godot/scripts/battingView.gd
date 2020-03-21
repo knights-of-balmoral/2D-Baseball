@@ -58,11 +58,11 @@ func _process(delta):
 				match globals.pitch_potential_result:
 					0,1,2,3,4,5,6,7,8:
 						updateStrikes()
-						si_strike.play() 
+						
 						
 					9,10,11,12,13,14,15,16:
 						updateBalls()
-						si_ball.play()
+						
 				
 				globals.pitch_potential_result = ""
 				updateUI()
@@ -76,7 +76,7 @@ func updateStrikes():
 		updateOuts()
 	else:
 		globals.strikes += 1
-		
+		si_strike.play() 
 
 func updateBalls():
 	if batter_swung == false:
@@ -87,11 +87,11 @@ func updateBalls():
 			updateRunners()
 		else:
 			globals.balls += 1
+			si_ball.play()
 	else:
 		batter_swung = false
 		updateStrikes()
-		
-		
+
 func updateOuts():
 	if globals.outs > 2:
 		globals.outs = 0
@@ -99,8 +99,7 @@ func updateOuts():
 		updateInnings()
 	else:
 		globals.outs += 1
-		
-	
+
 func updateInnings():
 	# need to update for bottom and top of innings
 	updateScores()
@@ -146,7 +145,6 @@ func updateUI():
 func animateBall():
 	anim_ball.playback_speed = globals.pitch_strength
 	anim_ball.play(globals.pitch_target)
-
 
 func _on_anim_ball_animation_finished(anim_name):
 	globals.ball_status = "P"
