@@ -96,11 +96,13 @@ extents = Vector2( 10, 32.3281 )
 
 [node name="battingView" type="Node2D"]
 position = Vector2( 0.841415, -2.82823 )
+scale = Vector2( 1, 0.996986 )
 script = ExtResource( 1 )
 
 [node name="batter_view" type="Node2D" parent="."]
 
-[node name="player-bounds" type="Sprite" parent="batter_view"]
+[node name="player_bounds" type="Sprite" parent="batter_view"]
+editor/display_folded = true
 position = Vector2( 510.194, 303.91 )
 scale = Vector2( 0.533363, 0.560511 )
 texture = ExtResource( 2 )
@@ -108,37 +110,37 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="battersBox" type="StaticBody2D" parent="batter_view/player-bounds"]
+[node name="battersBox" type="StaticBody2D" parent="batter_view/player_bounds"]
 editor/display_folded = true
 visible = false
 position = Vector2( -959.615, -537.26 )
 scale = Vector2( 1.8749, 1.78409 )
 
-[node name="bottom" type="CollisionShape2D" parent="batter_view/player-bounds/battersBox"]
+[node name="bottom" type="CollisionShape2D" parent="batter_view/player_bounds/battersBox"]
 position = Vector2( 382.75, 593.199 )
 shape = SubResource( 1 )
 
-[node name="top" type="CollisionShape2D" parent="batter_view/player-bounds/battersBox"]
+[node name="top" type="CollisionShape2D" parent="batter_view/player_bounds/battersBox"]
 position = Vector2( 385.308, 444.022 )
 shape = SubResource( 2 )
 
-[node name="left" type="CollisionShape2D" parent="batter_view/player-bounds/battersBox"]
+[node name="left" type="CollisionShape2D" parent="batter_view/player_bounds/battersBox"]
 position = Vector2( 304.428, 512.724 )
 shape = SubResource( 3 )
 
-[node name="right" type="CollisionShape2D" parent="batter_view/player-bounds/battersBox"]
+[node name="right" type="CollisionShape2D" parent="batter_view/player_bounds/battersBox"]
 position = Vector2( 464.847, 521.789 )
 shape = SubResource( 3 )
 
-[node name="pitchersBox" type="StaticBody2D" parent="batter_view/player-bounds"]
+[node name="pitchersBox" type="StaticBody2D" parent="batter_view/player_bounds"]
 visible = false
 position = Vector2( 22.3446, 77.4526 )
 
-[node name="right" type="CollisionShape2D" parent="batter_view/player-bounds/pitchersBox"]
+[node name="right" type="CollisionShape2D" parent="batter_view/player_bounds/pitchersBox"]
 position = Vector2( 26.0845, -240.458 )
 shape = SubResource( 4 )
 
-[node name="left" type="CollisionShape2D" parent="batter_view/player-bounds/pitchersBox"]
+[node name="left" type="CollisionShape2D" parent="batter_view/player_bounds/pitchersBox"]
 position = Vector2( -110.12, -241.444 )
 shape = SubResource( 4 )
 
@@ -158,6 +160,7 @@ scale = Vector2( 1.64, 1.64 )
 shape = SubResource( 6 )
 
 [node name="batter" type="KinematicBody2D" parent="batter_view"]
+editor/display_folded = true
 script = ExtResource( 15 )
 
 [node name="anim_batter" type="AnimatedSprite" parent="batter_view/batter"]
@@ -173,6 +176,7 @@ scale = Vector2( 3.28, 1 )
 shape = SubResource( 8 )
 
 [node name="ball_group" type="Node" parent="batter_view"]
+editor/display_folded = true
 
 [node name="ball" type="Sprite" parent="batter_view/ball_group"]
 position = Vector2( 496.02, 158.737 )
@@ -199,6 +203,7 @@ anims/fastball_target_8 = ExtResource( 39 )
 anims/fastball_target_9 = ExtResource( 40 )
 
 [node name="UI" type="Node2D" parent="batter_view"]
+editor/display_folded = true
 
 [node name="strikezone" type="Sprite" parent="batter_view/UI"]
 visible = false
@@ -277,15 +282,15 @@ texture = ExtResource( 45 )
 
 [node name="Sound" type="Node" parent="batter_view"]
 
-[node name="strike" type="AudioStreamPlayer" parent="batter_view/Sound"]
+[node name="s_strike" type="AudioStreamPlayer" parent="batter_view/Sound"]
 stream = ExtResource( 46 )
 
-[node name="ball" type="AudioStreamPlayer" parent="batter_view/Sound"]
+[node name="s_ball" type="AudioStreamPlayer" parent="batter_view/Sound"]
 stream = ExtResource( 47 )
 
-[node name="hitByPitch" type="AudioStreamPlayer" parent="batter_view/Sound"]
+[node name="s_hit_by_pitch" type="AudioStreamPlayer" parent="batter_view/Sound"]
 stream = ExtResource( 48 )
 
-[node name="glove_catch" type="AudioStreamPlayer" parent="batter_view/Sound"]
+[node name="s_glove_catch" type="AudioStreamPlayer" parent="batter_view/Sound"]
 stream = ExtResource( 49 )
 [connection signal="animation_finished" from="batter_view/pitcher/anim_pitcher" to="batter_view/pitcher" method="_on_anim_pitcher_animation_finished"]

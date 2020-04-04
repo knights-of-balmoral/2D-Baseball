@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/12_string_ramble.ogg-64c4fd90e12edb59f54aff19f72eabea.oggstr"
+
+[deps]
+
+source_file="res://assets/sound/12_string_ramble.ogg"
+dest_files=[ "res://.import/12_string_ramble.ogg-64c4fd90e12edb59f54aff19f72eabea.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

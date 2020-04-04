@@ -23,4 +23,13 @@ var balls = 0
 var outs = 0
 var inning = 1
 var team_at_bat = false # false = Visitor,  true = Home Team
+
+# Sound effects
 onready var bg_fans = get_node("/root/global_scene/bgStadium")
+onready var bg_music = get_node("/root/global_scene/bgMusic")
+var ambience_volume = 0
+var music_volume = 0
+
+# Theme
+var hover_color = Color(150, 150, 10, 0.8)
+var button_color = Color(1, 1, 1, 1)

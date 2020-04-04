@@ -3,21 +3,22 @@ onready var ui_balls = get_node("batter_view/UI/scoreboard/balls_display")
 onready var ui_strikes = get_node("batter_view/UI/scoreboard/strikes_display")
 onready var ui_out_1 = get_node("batter_view/UI/scoreboard/out_1")
 onready var ui_out_2 = get_node("batter_view/UI/scoreboard/out_2")
-onready var si_strike = get_node("batter_view/Sound/strike")
-onready var si_ball = get_node("batter_view/Sound/ball")
-onready var si_hbp = get_node("batter_view/Sound/hitByPitch")
-onready var si_gc = get_node("batter_view/Sound/glove_catch")
+onready var si_strike = get_node("batter_view/Sound/s_strike")
+onready var si_ball = get_node("batter_view/Sound/s_ball")
+onready var si_hbp = get_node("batter_view/Sound/s_hit_by_pitch")
+onready var si_gc = get_node("batter_view/Sound/s_glove_catch")
 onready var anim_ball = get_node("batter_view/ball_group/anim_ball")
 onready var batter_anim = get_node("batter_view/batter/anim_batter")
 onready var pitcher_anim = get_node("batter_view/pitcher/anim_pitcher")
 
 var batter_swung = false
 
-
-
 func _ready():
+	globals.bg_fans.volume_db = globals.ambience_volume
+	globals.bg_music.volume_db = globals.music_volume
 	globals.bg_fans.play()
-	globals.bg_fans.volume_db = -30
+	
+	globals.bg_music.stop()
 		
 	
 func _process(delta):

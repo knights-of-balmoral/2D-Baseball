@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scripts/field_overhead.gd" type="Script" id=1]
 [ext_resource path="res://assets/views/overhead-view.jpg" type="Texture" id=2]
@@ -7,6 +7,45 @@
 [ext_resource path="res://assets/raw/baseball.png" type="Texture" id=5]
 [ext_resource path="res://assets/raw/ball_shadow.png" type="Texture" id=6]
 [ext_resource path="res://animations/hits/line_drive.tres" type="Animation" id=7]
+
+[sub_resource type="Curve" id=1]
+max_value = 200.0
+_data = [ Vector2( 0, 97.36 ), 0.0, 0.0, 0, 0, Vector2( 1, 200 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.0545 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.4912 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+width = 2041
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+trail_size_modifier = SubResource( 6 )
+emission_shape = 2
+emission_box_extents = Vector3( 5, 18, 1 )
+flag_disable_z = true
+spread = 37.91
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 1.57
+tangential_accel = 28.35
+tangential_accel_random = 0.07
+scale = 37.04
+scale_curve = SubResource( 4 )
+color = Color( 0.513726, 0.917647, 0.0627451, 1 )
+anim_speed = 14.11
+anim_speed_random = 0.09
+anim_speed_curve = SubResource( 2 )
 
 [node name="OverheadView" type="Node2D"]
 script = ExtResource( 1 )
@@ -44,6 +83,15 @@ texture = ExtResource( 6 )
 
 [node name="ball_in_play" type="AnimationPlayer" parent="anim_ball_in_play/anim_start_point"]
 anims/line_drive = ExtResource( 7 )
+
+[node name="Particles2D" type="Particles2D" parent="anim_ball_in_play/anim_start_point"]
+modulate = Color( 1, 1, 1, 0.133333 )
+show_behind_parent = true
+position = Vector2( 540, 520 )
+scale = Vector2( 0.470039, 0.630039 )
+amount = 25
+lifetime = 2.0
+process_material = SubResource( 7 )
 
 [node name="realistic_ball" type="Node" parent="."]
 editor/display_folded = true
