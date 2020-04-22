@@ -29,6 +29,7 @@ width = 2041
 curve = SubResource( 5 )
 
 [sub_resource type="ParticlesMaterial" id=7]
+trail_divisor = 8
 trail_size_modifier = SubResource( 6 )
 emission_shape = 2
 emission_box_extents = Vector3( 5, 18, 1 )
@@ -90,7 +91,7 @@ show_behind_parent = true
 position = Vector2( 540, 520 )
 scale = Vector2( 0.470039, 0.630039 )
 amount = 25
-lifetime = 2.0
+lifetime = 4.0
 process_material = SubResource( 7 )
 
 [node name="realistic_ball" type="Node" parent="."]

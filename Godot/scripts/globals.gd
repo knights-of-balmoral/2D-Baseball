@@ -27,8 +27,8 @@ var team_at_bat = false # false = Visitor,  true = Home Team
 # Sound effects
 onready var bg_fans = get_node("/root/global_scene/bgStadium")
 onready var bg_music = get_node("/root/global_scene/bgMusic")
-var ambience_volume = 0
-var music_volume = 0
+var ambience_volume = -12
+var music_volume = -12
 
 # Theme
 var hover_color = Color(150, 150, 10, 0.8)

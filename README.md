@@ -8,8 +8,8 @@
 - What: Baseball Game
 - Skill Level: Novice to Intermediate
 - Style: 2D prototype to get started with a plan to move to 3D
-- Language: Open to discussion - Most likely is C#
-- Commitment: 2-3 hours / week (mostly Saturdays)
+- Language: GDScript
+- Commitment: 1-2 hours / week (mostly Saturdays)
 - Design/Communication Platforms: <s>Unity</s> Godot / GitHub / Discord
 
 ## Who are we?

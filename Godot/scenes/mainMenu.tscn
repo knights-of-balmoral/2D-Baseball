@@ -27,15 +27,16 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.5088 ), 0.0, 0.0, 0, 0 
 curve = SubResource( 4 )
 
 [sub_resource type="ParticlesMaterial" id=6]
+trail_divisor = 9
 trail_size_modifier = SubResource( 5 )
 emission_shape = 2
 emission_box_extents = Vector3( 50, 50, 1 )
 flag_disable_z = true
-gravity = Vector3( 0, -20, 0 )
+gravity = Vector3( 0, -5, 0 )
 angular_velocity = 1.72232e-038
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 8.87
+scale = 4.0
 color = Color( 1, 1, 1, 0.0392157 )
 hue_variation = -0.38
 hue_variation_random = 0.51
@@ -121,9 +122,10 @@ custom_constants/separation = 50
 alignment = 1
 
 [node name="ui_particles" type="Particles2D" parent="bg/g_ui/ui/ui_main/ui_view"]
-position = Vector2( 899.848, 445.84 )
+position = Vector2( 912.284, 473.655 )
 scale = Vector2( 8.70711, 4.76366 )
-amount = 20
+amount = 50
+lifetime = 8.0
 process_material = SubResource( 6 )
 
 [node name="ui_play_button" parent="bg/g_ui/ui/ui_main/ui_view" instance=ExtResource( 6 )]

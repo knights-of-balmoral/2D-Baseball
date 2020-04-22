@@ -43,10 +43,15 @@ func calculateBallY():
 	
 func calculateBallX():
 	randomize()
-	var num = randf()*1 + 1 # X needs to be either positive or negative
-	var horizontal_shifter = randi()%2 + 1
+	var num = randf()*1 + 1 
+	
+	# X needs to be either positive or negative and sometimes zero
+	var horizontal_shifter = randi()%3 + 1
 	if horizontal_shifter <= 1:
 		num *= -1
+	elif horizontal_shifter >= 3:
+		num = 0
+		
 	
 	return num
 
