@@ -32,7 +32,7 @@ func _process(delta):
 		sp.position.x += globals.ball_x
 		
 		if anim.current_animation_position >= 1.9:
-			anim.stop()
+			globals.ball_status = "END"
 			ball_shadow.position.x = sp.position.x
 			ball_shadow.position.y = sp.position.y
 		
