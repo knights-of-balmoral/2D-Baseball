@@ -4,8 +4,8 @@
 [ext_resource path="res://assets/views/overhead-view.jpg" type="Texture" id=2]
 [ext_resource path="res://temp/download.jpg" type="Texture" id=3]
 [ext_resource path="res://assets/sound/hit.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/raw/baseball.png" type="Texture" id=5]
-[ext_resource path="res://assets/raw/ball_shadow.png" type="Texture" id=6]
+[ext_resource path="res://assets/raw/ball_shadow.png" type="Texture" id=5]
+[ext_resource path="res://assets/raw/baseball.png" type="Texture" id=6]
 [ext_resource path="res://animations/hits/line_drive.tres" type="Animation" id=7]
 
 [node name="OverheadView" type="Node2D"]
@@ -30,16 +30,16 @@ autoplay = true
 
 [node name="anim_start_point" type="Node2D" parent="anim_ball_in_play"]
 
-[node name="baseball" type="Sprite" parent="anim_ball_in_play/anim_start_point"]
+[node name="ball_shadow" type="Sprite" parent="anim_ball_in_play/anim_start_point"]
 position = Vector2( 540, 520 )
-rotation = 3.66519
-scale = Vector2( 0.02, 0.02 )
+rotation = 0.523599
+scale = Vector2( 0.009, 0.009 )
 texture = ExtResource( 5 )
 
-[node name="ball_shadow" type="Sprite" parent="anim_ball_in_play/anim_start_point"]
-position = Vector2( 540, 550 )
-rotation = 0.523599
-scale = Vector2( 0.00916654, 0.00916654 )
+[node name="baseball" type="Sprite" parent="anim_ball_in_play/anim_start_point"]
+position = Vector2( 540, 520 )
+rotation = 7.24835
+scale = Vector2( 0.02, 0.02 )
 texture = ExtResource( 6 )
 
 [node name="ball_in_play" type="AnimationPlayer" parent="anim_ball_in_play/anim_start_point"]
@@ -53,4 +53,4 @@ visible = false
 position = Vector2( 540, 500 )
 rotation = 10.472
 scale = Vector2( 0.02, 0.02 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )

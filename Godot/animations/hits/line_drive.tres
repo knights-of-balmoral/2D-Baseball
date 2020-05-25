@@ -9,10 +9,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 1, 1.5, 1.8, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ -45.0, 74.9999, 210.0 ]
+"values": [ -45.0, 74.9999, 210.0, 364.3, 415.3 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("baseball:scale")
@@ -21,8 +21,32 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1, 2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 1, 1.5, 1.8, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0.02, 0.02 ), Vector2( 0.04, 0.04 ), Vector2( 0.02, 0.02 ) ]
+"values": [ Vector2( 0.02, 0.02 ), Vector2( 0.06, 0.06 ), Vector2( 0.02, 0.02 ), Vector2( 0.03, 0.03 ), Vector2( 0.02, 0.02 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ball_shadow:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 1.5, 1.8, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.05, 0.05 ), Vector2( 0.00916654, 0.00916654 ), Vector2( 0.05, 0.05 ), Vector2( 0.02, 0.02 ), Vector2( 0.009, 0.009 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ball_shadow:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1, 1.5, 1.8, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 540, 520 ), Vector2( 540, 560 ), Vector2( 540, 520 ), Vector2( 540, 540 ), Vector2( 540, 520 ) ]
 }
