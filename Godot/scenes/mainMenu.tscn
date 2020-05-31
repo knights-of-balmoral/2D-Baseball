@@ -83,19 +83,19 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="ui_header" type="TextureRect" parent="bg/g_ui/ui"]
+[node name="header" type="TextureRect" parent="bg/g_ui/ui"]
 editor/display_folded = true
 margin_right = 1820.0
 margin_bottom = 82.0
 texture = ExtResource( 3 )
 stretch_mode = 4
 
-[node name="ui_batter" type="Sprite" parent="bg/g_ui/ui/ui_header"]
+[node name="ui_batter" type="Sprite" parent="bg/g_ui/ui/header"]
 position = Vector2( 137.405, 129.995 )
 scale = Vector2( 1.87066, 1.79305 )
 texture = ExtResource( 4 )
 
-[node name="ui_version" type="Label" parent="bg/g_ui/ui/ui_header"]
+[node name="ui_version" type="Label" parent="bg/g_ui/ui/header"]
 margin_right = 281.0
 margin_bottom = 34.0
 size_flags_vertical = 3
@@ -103,7 +103,7 @@ custom_fonts/font = SubResource( 1 )
 text = "Version 1.0"
 align = 1
 
-[node name="ui_main" type="HBoxContainer" parent="bg/g_ui/ui"]
+[node name="main" type="HBoxContainer" parent="bg/g_ui/ui"]
 modulate = Color( 0.980392, 0.917647, 0.917647, 1 )
 self_modulate = Color( 0.647059, 0.211765, 0.211765, 1 )
 margin_top = 86.0
@@ -113,7 +113,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="ui_view" type="VBoxContainer" parent="bg/g_ui/ui/ui_main"]
+[node name="view" type="VBoxContainer" parent="bg/g_ui/ui/main"]
 margin_right = 1820.0
 margin_bottom = 917.0
 size_flags_horizontal = 3
@@ -121,24 +121,24 @@ size_flags_vertical = 3
 custom_constants/separation = 50
 alignment = 1
 
-[node name="ui_particles" type="Particles2D" parent="bg/g_ui/ui/ui_main/ui_view"]
+[node name="particles" type="Particles2D" parent="bg/g_ui/ui/main/view"]
 position = Vector2( 912.284, 473.655 )
 scale = Vector2( 8.70711, 4.76366 )
 amount = 50
 lifetime = 8.0
 process_material = SubResource( 6 )
 
-[node name="ui_play_button" parent="bg/g_ui/ui/ui_main/ui_view" instance=ExtResource( 6 )]
+[node name="play_button" parent="bg/g_ui/ui/main/view" instance=ExtResource( 6 )]
 margin_top = 318.0
 margin_right = 1820.0
 margin_bottom = 378.0
 
-[node name="ui_options_button" parent="bg/g_ui/ui/ui_main/ui_view" instance=ExtResource( 7 )]
+[node name="options_button" parent="bg/g_ui/ui/main/view" instance=ExtResource( 7 )]
 margin_top = 428.0
 margin_right = 1820.0
 margin_bottom = 488.0
 
-[node name="ui_quit_button" parent="bg/g_ui/ui/ui_main/ui_view" instance=ExtResource( 8 )]
+[node name="quit_button" parent="bg/g_ui/ui/main/view" instance=ExtResource( 8 )]
 margin_top = 538.0
 margin_right = 1820.0
 margin_bottom = 598.0
@@ -149,12 +149,12 @@ margin_right = 1820.0
 margin_bottom = 1021.0
 text = "\"12 String Ramble\" by Stockwrock"
 align = 2
-[connection signal="mouse_entered" from="bg/g_ui/ui/ui_main/ui_view/ui_play_button" to="bg/g_ui/ui/ui_main/ui_view/ui_play_button" method="_on_ui_button_hover"]
-[connection signal="mouse_exited" from="bg/g_ui/ui/ui_main/ui_view/ui_play_button" to="bg/g_ui/ui/ui_main/ui_view/ui_play_button" method="_on_ui_button_unhover"]
-[connection signal="pressed" from="bg/g_ui/ui/ui_main/ui_view/ui_play_button" to="bg/g_ui/ui/ui_main/ui_view/ui_play_button" method="_on_ui_play_button_pressed"]
-[connection signal="mouse_entered" from="bg/g_ui/ui/ui_main/ui_view/ui_options_button" to="bg/g_ui/ui/ui_main/ui_view/ui_options_button" method="_on_ui_button_hover"]
-[connection signal="mouse_exited" from="bg/g_ui/ui/ui_main/ui_view/ui_options_button" to="bg/g_ui/ui/ui_main/ui_view/ui_options_button" method="_on_ui_button_unhover"]
-[connection signal="pressed" from="bg/g_ui/ui/ui_main/ui_view/ui_options_button" to="bg/g_ui/ui/ui_main/ui_view/ui_options_button" method="_on_ui_options_button_pressed"]
-[connection signal="mouse_entered" from="bg/g_ui/ui/ui_main/ui_view/ui_quit_button" to="bg/g_ui/ui/ui_main/ui_view/ui_quit_button" method="_on_ui_button_hover"]
-[connection signal="mouse_exited" from="bg/g_ui/ui/ui_main/ui_view/ui_quit_button" to="bg/g_ui/ui/ui_main/ui_view/ui_quit_button" method="_on_ui_button_unhover"]
-[connection signal="pressed" from="bg/g_ui/ui/ui_main/ui_view/ui_quit_button" to="bg/g_ui/ui/ui_main/ui_view/ui_quit_button" method="_on_ui_quit_button_pressed"]
+[connection signal="mouse_entered" from="bg/g_ui/ui/main/view/play_button" to="bg/g_ui/ui/main/view/play_button" method="_on_ui_button_hover"]
+[connection signal="mouse_exited" from="bg/g_ui/ui/main/view/play_button" to="bg/g_ui/ui/main/view/play_button" method="_on_ui_button_unhover"]
+[connection signal="pressed" from="bg/g_ui/ui/main/view/play_button" to="bg/g_ui/ui/main/view/play_button" method="_on_ui_play_button_pressed"]
+[connection signal="mouse_entered" from="bg/g_ui/ui/main/view/options_button" to="bg/g_ui/ui/main/view/options_button" method="_on_ui_button_hover"]
+[connection signal="mouse_exited" from="bg/g_ui/ui/main/view/options_button" to="bg/g_ui/ui/main/view/options_button" method="_on_ui_button_unhover"]
+[connection signal="pressed" from="bg/g_ui/ui/main/view/options_button" to="bg/g_ui/ui/main/view/options_button" method="_on_ui_options_button_pressed"]
+[connection signal="mouse_entered" from="bg/g_ui/ui/main/view/quit_button" to="bg/g_ui/ui/main/view/quit_button" method="_on_ui_button_hover"]
+[connection signal="mouse_exited" from="bg/g_ui/ui/main/view/quit_button" to="bg/g_ui/ui/main/view/quit_button" method="_on_ui_button_unhover"]
+[connection signal="pressed" from="bg/g_ui/ui/main/view/quit_button" to="bg/g_ui/ui/main/view/quit_button" method="_on_ui_quit_button_pressed"]

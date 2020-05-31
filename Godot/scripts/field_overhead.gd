@@ -29,7 +29,8 @@ func _process(delta):
 		
 		# transform from the starting point of the animation
 		sp.position.y -= globals.ball_y
-		sp.position.x += globals.ball_x
+		sp.position.x += globals.ball_x 
+				
 		
 		if anim.current_animation_position >= 1.9:
 			globals.ball_status = "END"
@@ -39,7 +40,7 @@ func _process(delta):
 func calculateBallY():
 	randomize()
 	var num = randf()*1 + 1 # Y will most likely be always subtracted unless it's a foul ball straight back
-	return num
+	return num + globals.ball_speed
 	
 func calculateBallX():
 	randomize()
@@ -51,9 +52,11 @@ func calculateBallX():
 		num *= -1
 	elif horizontal_shifter >= 3:
 		num = 0
+	else: 
+		num = 2
 		
 	
-	return num
+	return num 
 
 func hit_animation():
 	var anim_matrix = ["line_drive","line_drive", "pop_fly", "foul_ball"] 
