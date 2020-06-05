@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/field_overhead.gd" type="Script" id=1]
 [ext_resource path="res://assets/views/overhead-view.jpg" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/raw/ball_shadow.png" type="Texture" id=5]
 [ext_resource path="res://assets/raw/baseball.png" type="Texture" id=6]
 [ext_resource path="res://animations/hits/line_drive.tres" type="Animation" id=7]
+[ext_resource path="res://balmoralFont.tres" type="DynamicFont" id=8]
 
 [node name="OverheadView" type="Node2D"]
 script = ExtResource( 1 )
@@ -53,6 +54,18 @@ editor_draw_limits = true
 
 [node name="ball_in_play" type="AnimationPlayer" parent="anim_ball_in_play/anim_start_point"]
 anims/line_drive = ExtResource( 7 )
+
+[node name="coords" type="Label" parent="anim_ball_in_play/anim_start_point"]
+margin_left = 530.0
+margin_top = 540.0
+margin_right = 570.0
+margin_bottom = 647.0
+rect_scale = Vector2( 0.680005, 0.56 )
+custom_fonts/font = ExtResource( 8 )
+text = "x,y"
+align = 1
+autowrap = true
+uppercase = true
 
 [node name="realistic_ball" type="Node" parent="."]
 editor/display_folded = true
