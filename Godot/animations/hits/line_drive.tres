@@ -27,7 +27,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.02, 0.02 ), Vector2( 0.06, 0.06 ), Vector2( 0.02, 0.02 ), Vector2( 0.03, 0.03 ), Vector2( 0.02, 0.02 ), Vector2( 0.02, 0.02 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("ball_shadow:scale")
+tracks/2/path = NodePath("../../field/ball/ball_shadow:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -39,7 +39,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0.05, 0.05 ), Vector2( 0.00916654, 0.00916654 ), Vector2( 0.05, 0.05 ), Vector2( 0.02, 0.02 ), Vector2( 0.009, 0.009 ), Vector2( 0.009, 0.009 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("ball_shadow:position")
+tracks/3/path = NodePath("../../field/ball/ball_shadow:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false

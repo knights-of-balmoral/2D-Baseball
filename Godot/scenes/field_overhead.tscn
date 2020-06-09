@@ -1,13 +1,24 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/field_overhead.gd" type="Script" id=1]
 [ext_resource path="res://assets/views/overhead-view.jpg" type="Texture" id=2]
 [ext_resource path="res://temp/download.jpg" type="Texture" id=3]
 [ext_resource path="res://assets/sound/hit.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/raw/ball_shadow.png" type="Texture" id=5]
-[ext_resource path="res://assets/raw/baseball.png" type="Texture" id=6]
-[ext_resource path="res://animations/hits/line_drive.tres" type="Animation" id=7]
-[ext_resource path="res://balmoralFont.tres" type="DynamicFont" id=8]
+[ext_resource path="res://assets/raw/baseball.png" type="Texture" id=5]
+[ext_resource path="res://animations/hits/line_drive.tres" type="Animation" id=6]
+[ext_resource path="res://font_small.tres" type="DynamicFont" id=7]
+[ext_resource path="res://scenes/ball.gd" type="Script" id=8]
+[ext_resource path="res://assets/raw/ball_shadow.png" type="Texture" id=9]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 2.0
+bounce = 0.005
+
+[sub_resource type="PhysicsMaterial" id=3]
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 8.77666
 
 [node name="OverheadView" type="Node2D"]
 script = ExtResource( 1 )
@@ -29,21 +40,16 @@ autoplay = true
 
 [node name="anim_ball_in_play" type="Node" parent="."]
 
-[node name="anim_start_point" type="Node2D" parent="anim_ball_in_play"]
+[node name="anim_position" type="Node2D" parent="anim_ball_in_play"]
+visible = false
 
-[node name="ball_shadow" type="Sprite" parent="anim_ball_in_play/anim_start_point"]
-position = Vector2( 540, 520 )
-rotation = 0.523599
-scale = Vector2( 0.05, 0.05 )
-texture = ExtResource( 5 )
-
-[node name="baseball" type="Sprite" parent="anim_ball_in_play/anim_start_point"]
+[node name="baseball" type="Sprite" parent="anim_ball_in_play/anim_position"]
 position = Vector2( 540, 520 )
 rotation = -0.785398
 scale = Vector2( 0.02, 0.02 )
-texture = ExtResource( 6 )
+texture = ExtResource( 5 )
 
-[node name="ballCamera" type="Camera2D" parent="anim_ball_in_play/anim_start_point/baseball"]
+[node name="ballCamera" type="Camera2D" parent="anim_ball_in_play/anim_position/baseball"]
 rotation = 0.785398
 scale = Vector2( 277.778, 277.778 )
 current = true
@@ -52,27 +58,63 @@ smoothing_enabled = true
 smoothing_speed = 3.0
 editor_draw_limits = true
 
-[node name="ball_in_play" type="AnimationPlayer" parent="anim_ball_in_play/anim_start_point"]
-anims/line_drive = ExtResource( 7 )
+[node name="ball_in_play" type="AnimationPlayer" parent="anim_ball_in_play/anim_position"]
+anims/line_drive = ExtResource( 6 )
 
-[node name="coords" type="Label" parent="anim_ball_in_play/anim_start_point"]
+[node name="coords" type="Label" parent="anim_ball_in_play/anim_position"]
 margin_left = 530.0
 margin_top = 540.0
 margin_right = 570.0
 margin_bottom = 647.0
 rect_scale = Vector2( 0.680005, 0.56 )
-custom_fonts/font = ExtResource( 8 )
+custom_fonts/font = ExtResource( 7 )
 text = "x,y"
 align = 1
 autowrap = true
 uppercase = true
 
-[node name="realistic_ball" type="Node" parent="."]
-editor/display_folded = true
+[node name="field" type="Node" parent="."]
 
-[node name="ball" type="Sprite" parent="realistic_ball"]
-visible = false
-position = Vector2( 540, 500 )
-rotation = 10.472
+[node name="field_obstacles" type="StaticBody2D" parent="field"]
+physics_material_override = SubResource( 1 )
+
+[node name="outfield_fence" type="CollisionPolygon2D" parent="field/field_obstacles"]
+position = Vector2( -383.876, -284.596 )
+rotation = 0.409826
+scale = Vector2( 1, 2.5 )
+polygon = PoolVector2Array( -10.525, 9.80404, -18.7351, -69.9095, 14.4019, -134.57, 71.7714, -197.778, 246.291, -288.705, 393.024, -337.424, 743.732, -397.8, 906.281, -408.489, 1119.98, -405.977, 1371.72, -374.961, 1489.19, -348.932, 1589.31, -319.322, 1681.15, -284.307, 1668.61, -277.597, 1567.56, -313.276, 1473.75, -342.285, 1353.9, -367.9, 1126.76, -395.827, 912.022, -399.292, 750.146, -389.286, 550.457, -361.949, 403.012, -329.531, 260.37, -280.957, 92.9969, -191.271, 31.1753, -129.555, 2.54901, -72.4752, 10.9688, 9.91605 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ball" type="RigidBody2D" parent="field"]
+physics_material_override = SubResource( 3 )
+applied_force = Vector2( 10, -300 )
+script = ExtResource( 8 )
+
+[node name="ball_collision" type="CollisionShape2D" parent="field/ball"]
+position = Vector2( 540, 520 )
+rotation = -0.785398
+scale = Vector2( 1.17967, 1.12307 )
+shape = SubResource( 2 )
+
+[node name="ball_shadow" type="Sprite" parent="field/ball"]
+position = Vector2( 540, 520 )
+rotation = 0.523599
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 9 )
+
+[node name="ball_sprite" type="Sprite" parent="field/ball"]
+position = Vector2( 540, 520 )
+rotation = -0.785398
 scale = Vector2( 0.02, 0.02 )
-texture = ExtResource( 6 )
+texture = ExtResource( 5 )
+
+[node name="ballCamera" type="Camera2D" parent="field/ball/ball_sprite"]
+rotation = 0.785398
+scale = Vector2( 277.778, 277.778 )
+current = true
+limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 3.0
+editor_draw_limits = true
