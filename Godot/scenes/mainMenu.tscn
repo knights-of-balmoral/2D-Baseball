@@ -33,7 +33,7 @@ emission_shape = 2
 emission_box_extents = Vector3( 50, 50, 1 )
 flag_disable_z = true
 gravity = Vector3( 0, -5, 0 )
-angular_velocity = 1.72232e-038
+angular_velocity = 1.72232e-38
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 4.0
@@ -84,7 +84,6 @@ __meta__ = {
 }
 
 [node name="header" type="TextureRect" parent="bg/g_ui/ui"]
-editor/display_folded = true
 margin_right = 1820.0
 margin_bottom = 82.0
 texture = ExtResource( 3 )

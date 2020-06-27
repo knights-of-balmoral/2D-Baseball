@@ -1,8 +1,7 @@
 extends Node2D
-onready var anim = get_node("anim_ball_in_play/anim_position/ball_in_play")
-onready var ball_pos = get_node("anim_ball_in_play/anim_position")
-onready var ball_shadow = get_node("anim_ball_in_play/anim_position/ball_shadow")
-onready var lbl_ball_pos = get_node("anim_ball_in_play/anim_position/coords") # default ball start = 540,520
+onready var anim = get_node("anim_position/ball_in_play")
+onready var ball_pos = get_node("anim_position")
+onready var lbl_ball_pos = get_node("anim_position/coords") # default ball start = 540,520
 onready var ball_current_location = ball_pos.position
 onready var ball = get_node("field/ball")
 var ball_destination = Vector2(0, 0)
@@ -22,6 +21,8 @@ func _ready():
 		globals.ball_status = "AIR"
 		anim.playback_speed = globals.ball_speed
 		anim.play("line_drive")
+		
+		
 
 func _process(delta):
 	

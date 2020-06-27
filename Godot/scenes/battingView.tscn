@@ -102,7 +102,6 @@ script = ExtResource( 1 )
 [node name="batter_view" type="Node2D" parent="."]
 
 [node name="player_bounds" type="Sprite" parent="batter_view"]
-editor/display_folded = true
 position = Vector2( 510.194, 303.91 )
 scale = Vector2( 0.533363, 0.560511 )
 texture = ExtResource( 2 )
@@ -111,7 +110,6 @@ __meta__ = {
 }
 
 [node name="battersBox" type="StaticBody2D" parent="batter_view/player_bounds"]
-editor/display_folded = true
 visible = false
 position = Vector2( -959.615, -537.26 )
 scale = Vector2( 1.8749, 1.78409 )
@@ -160,7 +158,6 @@ scale = Vector2( 1.64, 1.64 )
 shape = SubResource( 6 )
 
 [node name="batter" type="KinematicBody2D" parent="batter_view"]
-editor/display_folded = true
 script = ExtResource( 15 )
 
 [node name="anim_batter" type="AnimatedSprite" parent="batter_view/batter"]
@@ -176,12 +173,11 @@ scale = Vector2( 3.28, 1 )
 shape = SubResource( 8 )
 
 [node name="ball_group" type="Node" parent="batter_view"]
-editor/display_folded = true
 
 [node name="ball" type="Sprite" parent="batter_view/ball_group"]
 position = Vector2( 496.02, 158.737 )
 rotation = 3.14281
-scale = Vector2( 1e-005, 1e-005 )
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 24 )
 
 [node name="anim_ball" type="AnimationPlayer" parent="batter_view/ball_group"]
@@ -203,7 +199,6 @@ anims/fastball_target_8 = ExtResource( 39 )
 anims/fastball_target_9 = ExtResource( 40 )
 
 [node name="UI" type="Node2D" parent="batter_view"]
-editor/display_folded = true
 
 [node name="strikezone" type="Sprite" parent="batter_view/UI"]
 visible = false
