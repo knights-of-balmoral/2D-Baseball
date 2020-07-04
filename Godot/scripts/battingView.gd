@@ -20,8 +20,8 @@ func _ready():
 	
 func _process(delta):
 # Toggle Menu 
-	if Input.is_action_just_released("toggle_menu") == true:
-		get_tree().change_scene("res://scenes/mainMenu.tscn")
+#	if Input.is_action_just_released("toggle_menu") == true:
+#		get_tree().change_scene("res://scenes/mainMenu.tscn")
 #------------------------------------	
 # Batter Idle Animations	
 	if(Input.is_action_pressed("swing_bat")):

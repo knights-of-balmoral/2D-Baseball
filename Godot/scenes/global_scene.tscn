@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/sound/stadium_ambient.ogg" type="AudioStream" id=1]
 [ext_resource path="res://assets/sound/12_string_ramble.ogg" type="AudioStream" id=2]
+[ext_resource path="res://scenes/global_scene.gd" type="Script" id=3]
 
 [node name="global_scene" type="Node"]
+script = ExtResource( 3 )
 
 [node name="bgStadium" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
