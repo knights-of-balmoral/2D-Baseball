@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scripts/field_overhead.gd" type="Script" id=1]
 [ext_resource path="res://assets/views/overhead-view.jpg" type="Texture" id=2]
+[ext_resource path="res://scripts/anim_tree.gd" type="Script" id=3]
 [ext_resource path="res://assets/sound/hit.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/raw/baseball.png" type="Texture" id=5]
-[ext_resource path="res://animations/hits/line_drive.tres" type="Animation" id=6]
-[ext_resource path="res://font_small.tres" type="DynamicFont" id=7]
 [ext_resource path="res://scenes/ball.gd" type="Script" id=8]
 [ext_resource path="res://assets/raw/ball_shadow.png" type="Texture" id=9]
 
@@ -13,11 +12,120 @@
 friction = 2.0
 bounce = 0.005
 
-[sub_resource type="PhysicsMaterial" id=2]
-bounce = 0.5
+[sub_resource type="PhysicsMaterial" id=14]
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 8.77666
+
+[sub_resource type="Animation" id=4]
+resource_name = "hit"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ball_sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -45.0, 90.0, 270.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ball_sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.01, 0.01 ), Vector2( 0.0765674, 0.0765674 ), Vector2( 0.01, 0.01 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ball_shadow:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.05, 0.05 ), Vector2( 0.01, 0.01 ), Vector2( 0.05, 0.05 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ball_sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -63.1945, -63.1945 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ball_sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.01, 0.01 ), Vector2( 0.01, 0.01 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ball_sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -307.239, -130.346, -34.4153 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "hit"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "roll"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=12]
+states/hit/node = SubResource( 7 )
+states/hit/position = Vector2( 186, 188 )
+states/idle/node = SubResource( 8 )
+states/idle/position = Vector2( 634, 188 )
+states/roll/node = SubResource( 9 )
+states/roll/position = Vector2( 412, 188 )
+transitions = [ "hit", "roll", SubResource( 10 ), "roll", "idle", SubResource( 11 ) ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
 
 [node name="OverheadView" type="Node2D"]
 script = ExtResource( 1 )
@@ -59,9 +167,25 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="red_dugout" type="CollisionPolygon2D" parent="field/field_obstacles"]
+position = Vector2( -79.7784, 277.008 )
+polygon = PoolVector2Array( 9.8631, -52.9938, 163.821, 97.4654, 111.336, 155.783, -44.9554, 6.49008 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="blue_dugout" type="CollisionPolygon2D" parent="field/field_obstacles"]
+position = Vector2( 983.933, 291.004 )
+polygon = PoolVector2Array( 98.5056, -52.9938, 153.324, 5.32373, 0.532227, 156.949, -54.2861, 95.1327 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="ball" type="RigidBody2D" parent="field"]
-physics_material_override = SubResource( 2 )
-applied_force = Vector2( -100, 200 )
+physics_material_override = SubResource( 14 )
+gravity_scale = 0.0
+applied_force = Vector2( 10, -200 )
+applied_torque = 1.0
 script = ExtResource( 8 )
 
 [node name="ball_collision" type="CollisionShape2D" parent="field/ball"]
@@ -71,15 +195,15 @@ scale = Vector2( 1.17967, 1.12307 )
 shape = SubResource( 3 )
 
 [node name="ball_shadow" type="Sprite" parent="field/ball"]
-position = Vector2( 540, 520 )
+position = Vector2( 540.922, 520.922 )
 rotation = 0.523599
 scale = Vector2( 0.05, 0.05 )
 texture = ExtResource( 9 )
 
 [node name="ball_sprite" type="Sprite" parent="field/ball"]
 position = Vector2( 540, 520 )
-rotation = -0.785398
-scale = Vector2( 0.02, 0.02 )
+rotation = 4.71239
+scale = Vector2( 0.01, 0.01 )
 texture = ExtResource( 5 )
 
 [node name="ballCamera" type="Camera2D" parent="field/ball/ball_sprite"]
@@ -91,35 +215,13 @@ smoothing_enabled = true
 smoothing_speed = 3.0
 editor_draw_limits = true
 
-[node name="anim_position" type="Node2D" parent="."]
-visible = false
+[node name="anim" type="AnimationPlayer" parent="field/ball"]
+anims/hit = SubResource( 4 )
+anims/idle = SubResource( 5 )
+anims/roll = SubResource( 6 )
 
-[node name="baseball" type="Sprite" parent="anim_position"]
-position = Vector2( 540, 520 )
-rotation = -0.785398
-scale = Vector2( 0.02, 0.02 )
-texture = ExtResource( 5 )
-
-[node name="ballCamera" type="Camera2D" parent="anim_position/baseball"]
-rotation = 0.785398
-scale = Vector2( 277.778, 277.778 )
-current = true
-limit_smoothed = true
-smoothing_enabled = true
-smoothing_speed = 3.0
-editor_draw_limits = true
-
-[node name="ball_in_play" type="AnimationPlayer" parent="anim_position"]
-anims/line_drive = ExtResource( 6 )
-
-[node name="coords" type="Label" parent="anim_position"]
-margin_left = 530.0
-margin_top = 540.0
-margin_right = 570.0
-margin_bottom = 647.0
-rect_scale = Vector2( 0.680005, 0.56 )
-custom_fonts/font = ExtResource( 7 )
-text = "x,y"
-align = 1
-autowrap = true
-uppercase = true
+[node name="anim_tree" type="AnimationTree" parent="field/ball"]
+tree_root = SubResource( 12 )
+anim_player = NodePath("../anim")
+parameters/playback = SubResource( 13 )
+script = ExtResource( 3 )
