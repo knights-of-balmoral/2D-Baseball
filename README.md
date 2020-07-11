@@ -1,7 +1,5 @@
 # Where are we at with this?
 - [View the Wiki page](https://github.com/knights-of-balmoral/2D-Baseball/wiki) for details.
-- Learning continues for the Godot engine. It is extremely fast when compared to Unity. Documentation is starting to become more abundant on it as well.
-- Recommended watching: [Godot Tutorial](https://www.youtube.com/watch?v=Mc13Z2gboEk&list=PLhqJJNjsQ7KF0o0ke_CA2QlqK8BxQNSFS)
 
 ## DETAILS:
 
@@ -17,12 +15,6 @@
 ### Stryyder
 
 I'm a new coder currently attending a coding boot camp. My focus is web development, but I've found myself bored of playing games and I'm dying to make one instead. I'm fairly new to front-end style web development, but I'm looking to build something collaboratively because I think it would be extremely educational from a project construction and collaboration standpoint. One of the first games I ever made was in QBasic. It was called [Danger House](https://github.com/Stryyder/Danger-House).
-
-### Baaleras
-
-I have only old school game development experience from back in the MUD days. I ran and modified several different MUDS over the years. Mostly experience in C and GCC. No formal training in programming. Lots to learn, but up for a challenge.
-
-### Merremia
 
 ## Why Baseball?
 

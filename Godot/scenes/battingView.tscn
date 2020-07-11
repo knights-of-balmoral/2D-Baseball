@@ -142,6 +142,7 @@ position = Vector2( -110.12, -241.444 )
 shape = SubResource( 4 )
 
 [node name="pitcher" type="KinematicBody2D" parent="batter_view"]
+position = Vector2( -3.80005, -12.3874 )
 script = ExtResource( 3 )
 
 [node name="anim_pitcher" type="AnimatedSprite" parent="batter_view/pitcher"]
@@ -202,7 +203,7 @@ anims/fastball_target_9 = ExtResource( 40 )
 [node name="strikezone" type="Sprite" parent="batter_view/UI"]
 visible = false
 modulate = Color( 1, 1, 1, 0.329412 )
-position = Vector2( 508.84, 435.331 )
+position = Vector2( 508.84, 413.651 )
 scale = Vector2( 0.12, 0.12 )
 texture = ExtResource( 41 )
 __meta__ = {

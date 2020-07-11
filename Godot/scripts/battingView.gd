@@ -3,6 +3,7 @@ onready var ui_balls = get_node("batter_view/UI/scoreboard/balls_display")
 onready var ui_strikes = get_node("batter_view/UI/scoreboard/strikes_display")
 onready var ui_out_1 = get_node("batter_view/UI/scoreboard/out_1")
 onready var ui_out_2 = get_node("batter_view/UI/scoreboard/out_2")
+onready var ui_strike_zone = get_node("batter_view/UI/strikezone")
 onready var si_strike = get_node("batter_view/Sound/s_strike")
 onready var si_ball = get_node("batter_view/Sound/s_ball")
 onready var si_hbp = get_node("batter_view/Sound/s_hit_by_pitch")
@@ -10,6 +11,7 @@ onready var si_gc = get_node("batter_view/Sound/s_glove_catch")
 onready var anim_ball = get_node("batter_view/ball_group/anim_ball")
 onready var batter_anim = get_node("batter_view/batter/anim_batter")
 onready var pitcher_anim = get_node("batter_view/pitcher/anim_pitcher")
+
 
 var batter_swung = false
 
@@ -33,6 +35,7 @@ func _process(delta):
 
 # BALL PITCHED
 	if globals.ball_status == "PITCHED":
+		
 		animateBall()
 		
 		# BAT SWUNG and missed ball
@@ -50,6 +53,7 @@ func _process(delta):
 			if anim_ball.current_animation_position >= 0.9:
 				si_gc.play()
 				globals.ball_status = "P" #PITCHER for now - but will need some update functions
+				
 								
 				
 				
