@@ -1,6 +1,6 @@
 extends KinematicBody2D
 class_name Pitcher
-onready var ui_status = get_node("../UI/scoreboard/status/status_display")
+
 onready var anim_pitcher = get_node("anim_pitcher")
 
 
@@ -30,7 +30,7 @@ func pitchComputation(): #accepts where pitcher aimed and then calculates result
 	"fastball_target_13_5","fastball_target_14"]
 	var random_pitch = randi()%16 # replace with pitch logic
 	var random_speed = randf()*2 + 1 # pitch speed
-	ui_status.text = str(random_pitch)
+
 	globals.pitch_target = str(pitch_matrix[random_pitch])
 	globals.pitch_strength = random_speed
 	return random_pitch

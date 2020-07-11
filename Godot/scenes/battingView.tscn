@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://scripts/battingView.gd" type="Script" id=1]
 [ext_resource path="res://assets/raw/stadiums/kob_field.jpg" type="Texture" id=2]
@@ -41,7 +41,6 @@
 [ext_resource path="res://animations/pitcher/pitches/fastball_target_8.tres" type="Animation" id=39]
 [ext_resource path="res://animations/pitcher/pitches/fastball_target_9.tres" type="Animation" id=40]
 [ext_resource path="res://assets/raw/gui/strike-zone.png" type="Texture" id=41]
-[ext_resource path="res://assets/fonts/balmoralFontMid.tres" type="DynamicFont" id=42]
 [ext_resource path="res://balmoralFont.tres" type="DynamicFont" id=43]
 [ext_resource path="res://assets/raw/scoreboard/scoreboard.png" type="Texture" id=44]
 [ext_resource path="res://assets/raw/gui/yellow_circle.png" type="Texture" id=45]
@@ -211,27 +210,6 @@ __meta__ = {
 }
 
 [node name="scoreboard" type="Node" parent="batter_view/UI"]
-
-[node name="status" type="Label" parent="batter_view/UI/scoreboard"]
-margin_left = 418.455
-margin_top = 20.0265
-margin_right = 652.455
-margin_bottom = 47.0265
-rect_scale = Vector2( 0.708375, 1.16489 )
-custom_fonts/font = ExtResource( 42 )
-text = "pitch result"
-align = 1
-
-[node name="status_display" type="Label" parent="batter_view/UI/scoreboard/status"]
-margin_left = -237.522
-margin_top = 27.0976
-margin_right = 249.478
-margin_bottom = 79.0976
-rect_scale = Vector2( 1.42034, 0.682854 )
-custom_fonts/font = ExtResource( 43 )
-text = "0"
-align = 1
-valign = 1
 
 [node name="scoreboard" type="Sprite" parent="batter_view/UI/scoreboard"]
 position = Vector2( 876.835, 544.206 )

@@ -1,8 +1,8 @@
 extends RigidBody2D
 var speed = globals.ball_speed
 var ball_has_been_hit = false
-
-
+onready var anim = get_node("anim")
+onready var ball = get_node("../ball")
 #randi()%10+1 returns an int from 1 to 10
 #randf()*10.0+1.0 returns a float from 1.0 to 10.999999~
 #rand_range(1,11) returns a float from 1.0 to 10.999999~
@@ -14,7 +14,7 @@ func _ready():
 func _integrate_forces(state):
 	# get ball vector 
 	if(ball_has_been_hit):
-		pass # don't get another vector
+		pass
 	else:	
 		set_applied_force(calcBallDirection())
 		ball_has_been_hit = true
@@ -51,8 +51,4 @@ func calcBallVelocity():
 	randomize()
 	var num = randf()*1 + 1
 	return num
-	
-
-
-
 
