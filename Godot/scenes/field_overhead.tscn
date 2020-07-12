@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scripts/field_overhead.gd" type="Script" id=1]
 [ext_resource path="res://assets/views/overhead-view.jpg" type="Texture" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://assets/raw/baseball.png" type="Texture" id=5]
 [ext_resource path="res://scenes/ball.gd" type="Script" id=8]
 [ext_resource path="res://assets/raw/ball_shadow.png" type="Texture" id=9]
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 1603.15, 1081.14 )
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 2.0
@@ -124,6 +127,7 @@ states/idle/position = Vector2( 634, 188 )
 states/roll/node = SubResource( 9 )
 states/roll/position = Vector2( 408, 72 )
 transitions = [ "hit", "roll", SubResource( 10 ), "roll", "idle", SubResource( 11 ) ]
+graph_offset = Vector2( -67, 29 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=13]
 
@@ -141,6 +145,22 @@ autoplay = true
 
 [node name="field" type="Node" parent="."]
 
+[node name="physics" type="Node" parent="field"]
+
+[node name="infield_dirt" type="Area2D" parent="field/physics"]
+input_pickable = false
+space_override = 1
+gravity = 0.0
+linear_damp = 0.0
+
+[node name="dirt" type="CollisionShape2D" parent="field/physics/infield_dirt"]
+visible = false
+position = Vector2( 436.475, -205.977 )
+shape = SubResource( 14 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="field_obstacles" type="StaticBody2D" parent="field"]
 physics_material_override = SubResource( 1 )
 
@@ -156,7 +176,7 @@ __meta__ = {
 [node name="game_border" type="CollisionPolygon2D" parent="field/field_obstacles"]
 position = Vector2( 559.704, -59.7742 )
 scale = Vector2( 48.84, 42.32 )
-polygon = PoolVector2Array( -23.4175, 17.5293, -23.4175, 18.905, 21.461, 18.8241, 21.4918, -6.30603, 14.8302, -19.9137, -1.75731, -28.8318, -17.5454, -19.9906, -23.6075, -6.69043, -23.4727, 17.3787, -22.9743, 17.4126, -22.8747, -6.84419, -17.0605, -19.5293, -1.80536, -28.063, 14.4491, -19.0681, 20.8442, -5.92163, 20.8442, 17.7573 )
+polygon = PoolVector2Array( -23.4238, 19.0785, -23.4238, 20.432, 21.4941, 19.9244, 21.4918, -6.30603, 14.8302, -19.9137, -1.75731, -28.8318, -17.5454, -19.9906, -23.6075, -6.69043, -23.4238, 18.9093, -22.984, 18.9432, -22.8747, -6.84419, -17.0605, -19.5293, -1.80536, -28.063, 14.4491, -19.0681, 20.8442, -5.92163, 20.9077, 18.774 )
 __meta__ = {
 "_edit_lock_": true
 }

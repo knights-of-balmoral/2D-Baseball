@@ -3,6 +3,7 @@ var speed = globals.ball_speed
 var ball_has_been_hit = false
 onready var anim = get_node("anim")
 onready var ball = get_node("../ball")
+
 #randi()%10+1 returns an int from 1 to 10
 #randf()*10.0+1.0 returns a float from 1.0 to 10.999999~
 #rand_range(1,11) returns a float from 1.0 to 10.999999~
@@ -18,27 +19,29 @@ func _integrate_forces(state):
 	else:	
 		set_applied_force(calcBallDirection())
 		ball_has_been_hit = true
+
 	
 func calcBallDirection():
 	randomize()
-	var random_x_factor = randi()%2+1
-	var random_y_factor = randi()%2+1
+	var random_x_factor = randi()%12+1
+	var random_y_factor = randi()%12+1
 	
 	# decide X velocity
-	var ball_x = randf()*100 + 1
+	var ball_x = randf()*200 + 1
 	match random_x_factor:
-		1:
-			pass
-		2: 
+		1,2,3,4,5,6,7,8,9,10:
+			print("x" + str(random_x_factor))
+		11,12: 
 			ball_x *= -1
 		
 	# decide Y velocity
-	var ball_y = (randf()*100 + 1) * -1
+	var ball_y = (randf()*200 + 1) * -1
 	match random_y_factor:
-		1:
-			pass
-		2:
+		1,2,3,4,5,6,7,8,9,10:
+			print("y" + str(random_y_factor))
+		11,12:
 			ball_y *= -1
+			print("y" + str(random_y_factor))
 
 				
 	print(ball_x, ball_y) # debug - remove
@@ -51,4 +54,7 @@ func calcBallVelocity():
 	randomize()
 	var num = randf()*1 + 1
 	return num
+
+
+
 
