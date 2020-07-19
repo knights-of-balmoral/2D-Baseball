@@ -9,7 +9,6 @@ func _on_ui_options_button_pressed():
 func _on_ui_quit_button_pressed():
 	get_tree().quit()	
 
-
 func _on_ui_button_hover():
 	$Label.modulate = globals.hover_color
 
