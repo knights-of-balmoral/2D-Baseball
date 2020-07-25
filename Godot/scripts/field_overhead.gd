@@ -12,10 +12,4 @@ func _process(delta):
 	if Input.is_action_just_released("toggle_menu") == true:
 		globals.ball_status = "P"
 		get_tree().change_scene("res://scenes/battingView.tscn")
-	
-
-
-
-	
-
 

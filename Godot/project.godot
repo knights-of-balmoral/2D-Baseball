@@ -21,6 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="KoB Baseball"
+config/description="2D Baseball game by the Knights of Balmoral"
 run/main_scene="res://scenes/mainMenu.tscn"
 config/icon="res://icon.png"
 
@@ -28,7 +29,6 @@ config/icon="res://icon.png"
 
 global_scene="*res://scenes/global_scene.tscn"
 globals="*res://scripts/globals.gd"
-mainMenu="*res://scenes/mainMenu.tscn"
 
 [debug]
 
@@ -39,7 +39,7 @@ gdscript/warnings/return_value_discarded=false
 [display]
 
 window/stretch/mode="2d"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep"
 
 [input]
 
@@ -102,9 +102,11 @@ toggle_menu={
 
 [physics]
 
-2d/default_linear_damp=0.05
+2d/default_gravity=0
+2d/default_linear_damp=100.0
 2d/default_angular_damp=0.0
 
 [rendering]
 
+environment/default_clear_color=Color( 0.0588235, 0.117647, 0.141176, 1 )
 environment/default_environment="res://default_env.tres"

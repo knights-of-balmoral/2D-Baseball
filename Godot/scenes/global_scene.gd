@@ -1,7 +1,6 @@
 extends Node
 
 func _ready():
-	pass # Replace with function body.
+	#get_tree().change_scene("res://scenes/mainMenu.tscn")
+	get_tree().change_scene("res://scenes/field_overhead.tscn")
 
-func _process(delta):
-	pass

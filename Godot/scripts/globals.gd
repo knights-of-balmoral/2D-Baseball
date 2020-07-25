@@ -12,7 +12,8 @@ var ball_origin = Vector2(-25,-9)
 
 # smallest x coord we allow the ball to be, etc
 var ball_speed = 1
-var hit_power = 50
+var hit_power_max = 1000
+var hit_power = 1
 var strikes = 0
 var balls = 0
 var outs = 0

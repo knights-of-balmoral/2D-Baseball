@@ -11,19 +11,17 @@ onready var ball = get_node("../ball")
 #range(1,11)[randi()%range(1,11).size()] is a little ugly and less efficient but returns an int from 1 to 10 without you having to do the math yourself (aka the 11+1 part) because all you need to do is set the range()
 
 func _ready():
-	# get ball vector 
-	#if(ball_has_been_hit):
-	#	print(ball_has_been_hit)
-	#	pass
-	#else:	
-		#set_applied_force(calcBallDirection())
-	#	print(ball_has_been_hit)
+	print ("initial velocity:" + str(ball.linear_velocity))
+# set_applied_force??	
+func _integrate_forces(state):
+	
+	if (!ball_has_been_hit):
 		ball.apply_impulse(ball_english, calcBallDirection())
-	#	ball_has_been_hit = true
+		print ("hit velocity:" + str(state.linear_velocity))
+		ball_has_been_hit = true
+	else:
+		pass#print ("then:" + str(state.linear_velocity))
 		
-	
-#func _integrate_forces(state):
-	
 
 	
 func calcBallDirection():
@@ -31,11 +29,14 @@ func calcBallDirection():
 	var random_x_factor = randi()%2+1
 	var random_y_factor = randi()%52+1
 	
+	#get a random hit velocity bonus calmped to max from global settings
+	globals.hit_power = randi()%globals.hit_power_max + 1
+	
 	# decide X velocity
 	var ball_x = randf()*globals.hit_power + 1
 	match random_x_factor:
 		1:
-			print("x" + str(random_x_factor))
+			pass#print("x" + str(random_x_factor))
 		2: 
 			ball_x *= -1
 		
@@ -44,22 +45,13 @@ func calcBallDirection():
 	match random_y_factor:
 		51,52:
 			ball_y *= -1
-			print("y" + str(random_y_factor))
+			#print("y" + str(random_y_factor))
 		_:
-			print("y" + str(random_y_factor))
+			pass#print("y" + str(random_y_factor))
 
 				
-	print(ball_x, ball_y) # debug - remove
+	#print(ball_x, ball_y) # debug - remove
 	
 	var ball_direction = Vector2(ball_x, ball_y)
-	print("Angle:" + str(globals.ball_origin.angle_to_point(ball_direction)))
+	#print("Angle:" + str(globals.ball_origin.angle_to_point(ball_direction)))
 	return ball_direction
-
-func calcBallVelocity():
-	randomize()
-	var num = randf()*1 + 1
-	return num
-
-
-
-

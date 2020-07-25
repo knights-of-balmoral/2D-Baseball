@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/main_menu.gd" type="Script" id=1]
-[ext_resource path="res://assets/views/overhead-view.jpg" type="Texture" id=2]
+[ext_resource path="res://assets/raw/gui/menu-bg.jpg" type="Texture" id=2]
 [ext_resource path="res://assets/raw/title.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/imagine_font.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://scenes/buttons/PlayButton.tscn" type="PackedScene" id=6]
@@ -46,8 +46,8 @@ position = Vector2( 0, -1.10803 )
 script = ExtResource( 1 )
 
 [node name="bg" type="Sprite" parent="."]
-position = Vector2( 510, 300 )
-scale = Vector2( 0.534571, 0.557709 )
+position = Vector2( 513.429, 304.269 )
+scale = Vector2( 0.270548, 0.282258 )
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
@@ -56,43 +56,44 @@ __meta__ = {
 [node name="bg_filter" type="ColorRect" parent="bg"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -960.0
-margin_top = -540.0
-margin_right = -960.0
-margin_bottom = -540.0
-color = Color( 0, 0, 0, 0.87451 )
+margin_left = -1908.0
+margin_top = -1074.0
+margin_right = -1919.0
+margin_bottom = -1080.0
+color = Color( 0, 0, 0, 0.360784 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="game_title" type="Sprite" parent="."]
-position = Vector2( 504, 137.108 )
+position = Vector2( 512, 81.108 )
 scale = Vector2( 1.25, 1.25 )
 texture = ExtResource( 3 )
 
 [node name="play_button" parent="." instance=ExtResource( 6 )]
-margin_left = 8.0
-margin_top = 241.108
-margin_right = 993.65
-margin_bottom = 301.108
+margin_left = -152.0
+margin_top = 177.108
+margin_right = 833.65
+margin_bottom = 237.108
 
 [node name="options_button" parent="." instance=ExtResource( 7 )]
-margin_left = 16.0
-margin_top = 337.108
-margin_right = 1011.65
-margin_bottom = 397.108
+margin_left = -216.0
+margin_top = 257.108
+margin_right = 779.65
+margin_bottom = 317.108
 
 [node name="quit_button" parent="." instance=ExtResource( 8 )]
-margin_left = 16.0
-margin_top = 425.108
-margin_right = 1009.65
-margin_bottom = 485.108
+margin_left = -168.0
+margin_top = 345.108
+margin_right = 825.65
+margin_bottom = 405.108
 
 [node name="ui_version" type="Label" parent="."]
-margin_left = 376.0
-margin_top = 57.108
-margin_right = 657.0
-margin_bottom = 91.108
+margin_left = 720.0
+margin_top = 553.108
+margin_right = 1001.0
+margin_bottom = 587.108
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
 text = "Version 1.0"
@@ -103,10 +104,10 @@ __meta__ = {
 
 [node name="game_music" type="Label" parent="."]
 visible = false
-margin_left = 48.0
-margin_top = 521.108
-margin_right = 958.0
-margin_bottom = 555.108
+margin_left = 88.0
+margin_top = 1025.11
+margin_right = 998.0
+margin_bottom = 1059.11
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
 text = "\"12 String Ramble\" by Stockwrock"
@@ -116,8 +117,10 @@ __meta__ = {
 }
 
 [node name="particles" type="Particles2D" parent="."]
-position = Vector2( 504, 297.108 )
-scale = Vector2( 4.65457, 2.65674 )
+visible = false
+position = Vector2( 1312, 721.108 )
+rotation = -1.50993
+scale = Vector2( 9.3, 8 )
 amount = 50
 lifetime = 8.0
 process_material = SubResource( 6 )
