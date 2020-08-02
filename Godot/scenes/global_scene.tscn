@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/sound/stadium_ambient.ogg" type="AudioStream" id=1]
+[ext_resource path="res://assets/sfx/crowd.ogg" type="AudioStream" id=1]
 [ext_resource path="res://assets/sound/12_string_ramble.ogg" type="AudioStream" id=2]
 [ext_resource path="res://scenes/global_scene.gd" type="Script" id=3]
 
@@ -10,7 +10,8 @@ script = ExtResource( 3 )
 [node name="bgStadium" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 volume_db = -80.0
+bus = "ambience"
 
-[node name="bgMusic" type="AudioStreamPlayer2D" parent="."]
+[node name="bgMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
-volume_db = -80.0
+bus = "music"

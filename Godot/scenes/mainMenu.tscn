@@ -1,45 +1,19 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/raw/gui/menu-bg.jpg" type="Texture" id=2]
-[ext_resource path="res://assets/raw/title.png" type="Texture" id=3]
+[ext_resource path="res://fonts/40_standard.tres" type="DynamicFont" id=3]
+[ext_resource path="res://fx/button_theme.tres" type="Theme" id=4]
 [ext_resource path="res://assets/fonts/imagine_font.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://scenes/buttons/PlayButton.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/buttons/OptionsButton.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/buttons/QuitButton.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scripts/buttons/buttons.gd" type="Script" id=6]
+[ext_resource path="res://sfx/organ_1.wav" type="AudioStream" id=7]
+[ext_resource path="res://sfx/organ_2.wav" type="AudioStream" id=8]
+[ext_resource path="res://sfx/organ_3.wav" type="AudioStream" id=9]
+[ext_resource path="res://sfx/organ_4.wav" type="AudioStream" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 44
 font_data = ExtResource( 5 )
-
-[sub_resource type="Curve" id=2]
-min_value = -1.0
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, -0.0286 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=3]
-curve = SubResource( 2 )
-
-[sub_resource type="Curve" id=4]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.5088 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=5]
-curve = SubResource( 4 )
-
-[sub_resource type="ParticlesMaterial" id=6]
-trail_divisor = 9
-trail_size_modifier = SubResource( 5 )
-emission_shape = 2
-emission_box_extents = Vector3( 50, 50, 1 )
-flag_disable_z = true
-gravity = Vector3( 0, -5, 0 )
-angular_velocity = 1.72232e-38
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 4.0
-color = Color( 1, 1, 1, 0.0392157 )
-hue_variation = -0.38
-hue_variation_random = 0.51
-hue_variation_curve = SubResource( 3 )
 
 [node name="main" type="Node2D"]
 position = Vector2( 0, -1.10803 )
@@ -66,48 +40,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="game_title" type="Sprite" parent="."]
-position = Vector2( 512, 81.108 )
-scale = Vector2( 1.25, 1.25 )
-texture = ExtResource( 3 )
+[node name="ui" type="Node" parent="."]
 
-[node name="play_button" parent="." instance=ExtResource( 6 )]
-margin_left = -152.0
-margin_top = 177.108
-margin_right = 833.65
-margin_bottom = 237.108
-
-[node name="options_button" parent="." instance=ExtResource( 7 )]
-margin_left = -216.0
-margin_top = 257.108
-margin_right = 779.65
-margin_bottom = 317.108
-
-[node name="quit_button" parent="." instance=ExtResource( 8 )]
-margin_left = -168.0
-margin_top = 345.108
-margin_right = 825.65
-margin_bottom = 405.108
-
-[node name="ui_version" type="Label" parent="."]
+[node name="ui_version" type="Label" parent="ui"]
+visible = false
 margin_left = 720.0
-margin_top = 553.108
+margin_top = 552.0
 margin_right = 1001.0
-margin_bottom = 587.108
+margin_bottom = 586.0
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
-text = "Version 1.0"
+text = "ALPHA .011"
 align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="game_music" type="Label" parent="."]
+[node name="music_credit" type="Label" parent="ui"]
 visible = false
-margin_left = 88.0
-margin_top = 1025.11
-margin_right = 998.0
-margin_bottom = 1059.11
+margin_left = 68.8667
+margin_top = 641.336
+margin_right = 978.867
+margin_bottom = 675.336
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
 text = "\"12 String Ramble\" by Stockwrock"
@@ -116,20 +71,116 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="particles" type="Particles2D" parent="."]
-visible = false
-position = Vector2( 1312, 721.108 )
-rotation = -1.50993
-scale = Vector2( 9.3, 8 )
-amount = 50
-lifetime = 8.0
-process_material = SubResource( 6 )
-[connection signal="mouse_entered" from="play_button" to="play_button" method="_on_ui_button_hover"]
-[connection signal="mouse_exited" from="play_button" to="play_button" method="_on_ui_button_unhover"]
-[connection signal="pressed" from="play_button" to="play_button" method="_on_ui_play_button_pressed"]
-[connection signal="mouse_entered" from="options_button" to="options_button" method="_on_ui_button_hover"]
-[connection signal="mouse_exited" from="options_button" to="options_button" method="_on_ui_button_unhover"]
-[connection signal="pressed" from="options_button" to="options_button" method="_on_ui_options_button_pressed"]
-[connection signal="mouse_entered" from="quit_button" to="quit_button" method="_on_ui_button_hover"]
-[connection signal="mouse_exited" from="quit_button" to="quit_button" method="_on_ui_button_unhover"]
-[connection signal="pressed" from="quit_button" to="quit_button" method="_on_ui_quit_button_pressed"]
+[node name="buttons" type="Node" parent="ui"]
+
+[node name="btn_exhibition" type="Button" parent="ui/buttons"]
+margin_left = 134.104
+margin_top = 124.313
+margin_right = 434.104
+margin_bottom = 178.313
+theme = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
+text = "EXHIBITION"
+flat = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ui/buttons/btn_exhibition"]
+stream = ExtResource( 7 )
+
+[node name="btn_season" type="Button" parent="ui/buttons"]
+margin_left = 138.436
+margin_top = 188.444
+margin_right = 438.436
+margin_bottom = 242.444
+theme = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
+text = "NEW SEASON"
+flat = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="ui/buttons/btn_season"]
+stream = ExtResource( 8 )
+
+[node name="btn_teams" type="Button" parent="ui/buttons"]
+margin_left = 131.284
+margin_top = 252.647
+margin_right = 431.284
+margin_bottom = 306.647
+theme = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
+text = "MANAGE TEAM"
+flat = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="ui/buttons/btn_teams"]
+stream = ExtResource( 9 )
+
+[node name="btn_batting_practice" type="Button" parent="ui/buttons"]
+margin_left = 101.169
+margin_top = 320.565
+margin_right = 483.169
+margin_bottom = 374.565
+theme = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
+text = "BATTING PRACTICE"
+flat = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="ui/buttons/btn_batting_practice"]
+stream = ExtResource( 10 )
+
+[node name="btn_settings" type="Button" parent="ui/buttons"]
+margin_left = 137.126
+margin_top = 393.561
+margin_right = 437.126
+margin_bottom = 447.561
+theme = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
+text = "SETTINGS"
+flat = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="ui/buttons/btn_settings"]
+stream = ExtResource( 10 )
+
+[node name="btn_quit" type="Button" parent="ui/buttons"]
+margin_left = 136.06
+margin_top = 459.582
+margin_right = 436.059
+margin_bottom = 513.582
+theme = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
+text = "QUIT"
+flat = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="ui/buttons/btn_quit"]
+stream = ExtResource( 10 )
+[connection signal="mouse_entered" from="ui/buttons/btn_exhibition" to="ui/buttons/btn_exhibition" method="_on_btn_exhibition_mouse_entered"]
+[connection signal="pressed" from="ui/buttons/btn_exhibition" to="ui/buttons/btn_exhibition" method="_on_btn_exhibition_pressed"]
+[connection signal="mouse_entered" from="ui/buttons/btn_season" to="ui/buttons/btn_season" method="_on_btn_season_mouse_entered"]
+[connection signal="mouse_entered" from="ui/buttons/btn_teams" to="ui/buttons/btn_teams" method="_on_btn_teams_mouse_entered"]
+[connection signal="mouse_entered" from="ui/buttons/btn_batting_practice" to="ui/buttons/btn_batting_practice" method="_on_btn_batting_practice_mouse_entered"]
+[connection signal="pressed" from="ui/buttons/btn_batting_practice" to="ui/buttons/btn_batting_practice" method="_on_btn_batting_practice_pressed"]
+[connection signal="mouse_entered" from="ui/buttons/btn_settings" to="ui/buttons/btn_settings" method="_on_btn_settings_mouse_entered"]
+[connection signal="pressed" from="ui/buttons/btn_settings" to="ui/buttons/btn_settings" method="_on_btn_settings_pressed"]
+[connection signal="mouse_entered" from="ui/buttons/btn_quit" to="ui/buttons/btn_quit" method="_on_btn_quit_mouse_entered"]
+[connection signal="pressed" from="ui/buttons/btn_quit" to="ui/buttons/btn_quit" method="_on_btn_quit_pressed"]

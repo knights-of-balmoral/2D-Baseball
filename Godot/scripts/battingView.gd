@@ -16,8 +16,7 @@ onready var pitcher_anim = get_node("batter_view/pitcher/anim_pitcher")
 var batter_swung = false
 
 func _ready():
-	globals.bg_fans.play()
-	globals.bg_music.stop()
+	updateUI()
 		
 	
 func _process(delta):

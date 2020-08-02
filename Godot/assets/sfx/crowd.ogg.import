@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/crowd.ogg-6635de989bea13d6c61016822886d9d3.oggstr"
+
+[deps]
+
+source_file="res://assets/sfx/crowd.ogg"
+dest_files=[ "res://.import/crowd.ogg-6635de989bea13d6c61016822886d9d3.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -12,8 +12,13 @@ var ball_origin = Vector2(-25,-9)
 
 # smallest x coord we allow the ball to be, etc
 var ball_speed = 1
-var hit_power_max = 1000
+var hit_power_default = 2000
+var hit_power_max = 0
+var hit_power_bonus = 1000
+var hit_power_penalty = -3000
 var hit_power = 1
+var distance_conversion = 6.5 # reduces vector toDistance size to convert to "feet"
+var hit_distance = "0 '"
 var strikes = 0
 var balls = 0
 var outs = 0
@@ -21,11 +26,13 @@ var inning = 1
 var team_at_bat = false # false = Visitor,  true = Home Team
 
 # Sound effects
-onready var bg_fans = get_node("/root/global_scene/bgStadium")
-onready var bg_music = get_node("/root/global_scene/bgMusic")
 var ambience_volume = -12
 var music_volume = -12
 
 # Theme
 var hover_color = Color(150, 150, 10, 0.8)
 var button_color = Color(1, 1, 1, 1)
+
+# Fielders
+var fielder_velocity: = Vector2.ZERO # start with no velocity
+var fielder_speed: = 200

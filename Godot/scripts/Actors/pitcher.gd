@@ -11,7 +11,7 @@ var pitcherPositionRange: = 400
 
 func _physics_process(delta): # delta times things with clock/render cycle
 	
-	velocity.x = (Input.get_action_strength("pitcher_move_right") - Input.get_action_strength("pitcher_move_left")) * speed
+	velocity.x = (Input.get_action_strength("defense_move_right") - Input.get_action_strength("pitcher_move_left")) * speed
 	if velocity.x >= pitcherPositionRange:
 		velocity.x = velocity.x - 1
 	velocity = move_and_slide(velocity)  # delta auto in move and slide function

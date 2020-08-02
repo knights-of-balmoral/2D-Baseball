@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/organ_2.wav-6ccb3fa24c2e2fe159bb39753683900e.sample"
+
+[deps]
+
+source_file="res://sfx/organ_2.wav"
+dest_files=[ "res://.import/organ_2.wav-6ccb3fa24c2e2fe159bb39753683900e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

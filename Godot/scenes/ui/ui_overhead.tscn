@@ -1,0 +1,109 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://fonts/40_standard.tres" type="DynamicFont" id=1]
+[ext_resource path="res://fx/g_patriot.tres" type="Gradient" id=2]
+
+[sub_resource type="GradientTexture" id=1]
+gradient = ExtResource( 2 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = ExtResource( 2 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0.273864 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.692045 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+lifetime_randomness = 0.5
+trail_size_modifier = SubResource( 4 )
+trail_color_modifier = SubResource( 2 )
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 100, 0 )
+initial_velocity = 137.25
+initial_velocity_random = 0.42
+angular_velocity_random = 0.77
+orbit_velocity = 0.0
+orbit_velocity_random = 0.39
+linear_accel_random = 0.44
+radial_accel_random = 0.23
+angle_random = 0.36
+scale = 3.0
+scale_random = 1.0
+color_ramp = SubResource( 1 )
+
+[node name="ui" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 225.15
+margin_top = -32.1643
+margin_right = 225.15
+margin_bottom = -32.1643
+rect_min_size = Vector2( 800, 600 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="home_run" type="Label" parent="."]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.87451 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = ExtResource( 1 )
+text = "HOME RUN!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Particles2D" type="Particles2D" parent="home_run"]
+position = Vector2( 378.251, 314.364 )
+scale = Vector2( 3, 3 )
+amount = 50
+process_material = SubResource( 5 )
+
+[node name="Particles2D2" type="Particles2D" parent="home_run"]
+position = Vector2( 601.309, 314.717 )
+scale = Vector2( 3, 3 )
+amount = 50
+process_material = SubResource( 5 )
+
+[node name="Particles2D3" type="Particles2D" parent="home_run"]
+position = Vector2( 500.818, 239.619 )
+scale = Vector2( 3, 3 )
+amount = 50
+process_material = SubResource( 5 )
+
+[node name="distance" type="Label" parent="home_run"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.30518
+margin_top = 38.4115
+margin_right = 8.30518
+margin_bottom = 38.4115
+rect_min_size = Vector2( 100, 100 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.494118, 0.596078, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "0 '"
+align = 1
+valign = 1
+
+[node name="foul" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 800, 600 )
+custom_fonts/font = ExtResource( 1 )
+text = "FOUL BALL!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

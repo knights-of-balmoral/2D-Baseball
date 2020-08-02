@@ -1,20 +1,41 @@
 extends Button
+onready var sound_1 = get_node("../btn_exhibition/AudioStreamPlayer")
+onready var sound_2 = get_node("../btn_season/AudioStreamPlayer2")
+onready var sound_3 = get_node("../btn_teams/AudioStreamPlayer3")
+onready var sound_4 = get_node("../btn_settings/AudioStreamPlayer4")
 
-func _on_ui_play_button_pressed():
+# BUTTON ACTIONS
+func _on_btn_exhibition_pressed():
 	get_tree().change_scene('res://scenes/battingView.tscn')
 
-func _on_ui_options_button_pressed():
-	get_tree().change_scene('res://scenes/options.tscn')
+func _on_btn_settings_pressed():
+	get_tree().change_scene('res://scenes/settings.tscn')
 	
-func _on_ui_quit_button_pressed():
+func _on_btn_quit_pressed():
 	get_tree().quit()	
 
-func _on_ui_button_hover():
-	$Label.modulate = globals.hover_color
+func _on_btn_batting_practice_pressed():
+	get_tree().change_scene('res://scenes/battingView.tscn')
 
-func _on_ui_button_unhover():
-	$Label.modulate = globals.button_color
-
-
+# BUTTON SOUNDS
+func _on_btn_exhibition_mouse_entered():
+	sound_1.play() 
+		
+func _on_btn_season_mouse_entered():
+	sound_2.play()
+	
+func _on_btn_teams_mouse_entered():
+	sound_3.play()
+	
+func _on_btn_batting_practice_mouse_entered():
+	sound_4.play()
+	
+func _on_btn_settings_mouse_entered():
+	sound_3.play()
+	
+func _on_btn_quit_mouse_entered():
+	sound_4.play()
+	
+	
 
 

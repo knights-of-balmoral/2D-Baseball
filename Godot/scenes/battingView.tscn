@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://scripts/battingView.gd" type="Script" id=1]
 [ext_resource path="res://assets/raw/stadiums/kob_field.jpg" type="Texture" id=2]
@@ -41,9 +41,7 @@
 [ext_resource path="res://animations/pitcher/pitches/fastball_target_8.tres" type="Animation" id=39]
 [ext_resource path="res://animations/pitcher/pitches/fastball_target_9.tres" type="Animation" id=40]
 [ext_resource path="res://assets/raw/gui/strike-zone.png" type="Texture" id=41]
-[ext_resource path="res://assets/raw/scoreboard/scoreboard2.png" type="Texture" id=42]
-[ext_resource path="res://balmoralFont.tres" type="DynamicFont" id=43]
-[ext_resource path="res://assets/raw/gui/yellow_circle.png" type="Texture" id=45]
+[ext_resource path="res://scenes/ui/scoreboard.tscn" type="PackedScene" id=42]
 [ext_resource path="res://assets/sound/strike_call.wav" type="AudioStream" id=46]
 [ext_resource path="res://assets/sound/ball.wav" type="AudioStream" id=47]
 [ext_resource path="res://assets/sound/hbp.wav" type="AudioStream" id=48]
@@ -177,9 +175,9 @@ shape = SubResource( 8 )
 [node name="ball_group" type="Node" parent="batter_view"]
 
 [node name="ball" type="Sprite" parent="batter_view/ball_group"]
-position = Vector2( 496.02, 158.737 )
-rotation = 3.14281
-scale = Vector2( 1e-05, 1e-05 )
+position = Vector2( 483.981, 165.334 )
+rotation = -0.0481713
+scale = Vector2( 0.004, 0.004 )
 texture = ExtResource( 24 )
 
 [node name="anim_ball" type="AnimationPlayer" parent="batter_view/ball_group"]
@@ -212,66 +210,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="scoreboard" type="Node" parent="batter_view/UI"]
-
-[node name="scoreboard" type="Sprite" parent="batter_view/UI/scoreboard"]
-self_modulate = Color( 1, 1, 1, 0.631373 )
-position = Vector2( 887.915, 494.344 )
-texture = ExtResource( 42 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="balls_display" type="Label" parent="batter_view/UI/scoreboard"]
-margin_left = 803.807
-margin_top = 537.352
-margin_right = 854.807
-margin_bottom = 589.352
-rect_scale = Vector2( 0.28, 0.28 )
-custom_fonts/font = ExtResource( 43 )
-custom_colors/font_color = Color( 0.717647, 0.831373, 0.0235294, 1 )
-custom_colors/font_outline_modulate = Color( 0.301961, 0.733333, 0.831373, 1 )
-custom_colors/font_color_shadow = Color( 0.866667, 0.866667, 0.866667, 1 )
-text = "0"
-max_lines_visible = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="strikes_display" type="Label" parent="batter_view/UI/scoreboard"]
-margin_left = 826.122
-margin_top = 537.247
-margin_right = 877.122
-margin_bottom = 589.247
-rect_scale = Vector2( 0.28, 0.28 )
-custom_fonts/font = ExtResource( 43 )
-custom_colors/font_color = Color( 0.717647, 0.831373, 0.0235294, 1 )
-custom_colors/font_outline_modulate = Color( 0.792157, 0.85098, 0.443137, 1 )
-custom_colors/font_color_shadow = Color( 0.513726, 0.505882, 0.505882, 1 )
-text = "0"
-max_lines_visible = 1
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="out_1" type="Sprite" parent="batter_view/UI/scoreboard"]
-visible = false
-position = Vector2( 940.791, 543.072 )
-scale = Vector2( 0.159961, 0.159961 )
-texture = ExtResource( 45 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="out_2" type="Sprite" parent="batter_view/UI/scoreboard"]
-visible = false
-position = Vector2( 953.893, 543.072 )
-scale = Vector2( 0.159961, 0.159961 )
-texture = ExtResource( 45 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="scoreboard" parent="batter_view/UI" instance=ExtResource( 42 )]
 
 [node name="Sound" type="Node" parent="batter_view"]
 
