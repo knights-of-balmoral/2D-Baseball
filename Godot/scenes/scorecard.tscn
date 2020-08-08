@@ -1,0 +1,475 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://themes/toggles.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/player_block.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/inning-totals.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/batter_status.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/zoom_cam.gd" type="Script" id=5]
+[ext_resource path="res://scenes/scorecard_headers.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/raw/ball_shadow.png" type="Texture" id=8]
+
+[node name="scorecard" type="Control"]
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="head" type="CanvasLayer" parent="."]
+layer = 0
+follow_viewport_enable = true
+
+[node name="bg" type="Panel" parent="head"]
+self_modulate = Color( 0.494118, 0.682353, 0.882353, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="labels" type="Node" parent="head"]
+
+[node name="run" type="Label" parent="head/labels"]
+margin_left = 854.146
+margin_top = 513.003
+margin_right = 894.146
+margin_bottom = 527.003
+text = "R"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hit" type="Label" parent="head/labels"]
+margin_left = 854.73
+margin_top = 534.319
+margin_right = 894.73
+margin_bottom = 548.319
+text = "H"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="error" type="Label" parent="head/labels"]
+margin_left = 855.314
+margin_top = 556.802
+margin_right = 895.314
+margin_bottom = 570.802
+text = "E"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="left-on-base" type="Label" parent="head/labels"]
+margin_left = 854.73
+margin_top = 579.577
+margin_right = 894.73
+margin_bottom = 593.577
+text = "LB"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="totals" type="Label" parent="head/labels"]
+margin_left = 895.002
+margin_top = 494.001
+margin_right = 943.002
+margin_bottom = 508.001
+text = "TOTALS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="runs" type="Label" parent="head/labels/totals"]
+margin_left = 1.84875
+margin_top = 18.0001
+margin_right = 41.8488
+margin_bottom = 32.0001
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hits" type="Label" parent="head/labels/totals"]
+margin_left = 1.84875
+margin_top = 39.4286
+margin_right = 41.8488
+margin_bottom = 53.4286
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="errors" type="Label" parent="head/labels/totals"]
+margin_left = 2.479
+margin_top = 62.7479
+margin_right = 42.479
+margin_bottom = 76.7479
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="left-on-bases" type="Label" parent="head/labels/totals"]
+margin_left = 2.479
+margin_top = 84.1763
+margin_right = 42.479
+margin_bottom = 98.1763
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="scorecard_headers" parent="head/labels" instance=ExtResource( 6 )]
+
+[node name="controls" type="CanvasLayer" parent="."]
+follow_viewport_enable = true
+
+[node name="team_name" type="TextEdit" parent="controls"]
+anchor_left = 0.03
+anchor_top = 0.072
+anchor_right = 0.133
+anchor_bottom = 0.117
+margin_left = 0.279499
+margin_top = -0.199802
+margin_right = -0.192001
+margin_bottom = -0.199806
+text = "Team"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="game_date" type="TextEdit" parent="controls"]
+margin_left = 32.349
+margin_top = 78.0003
+margin_right = 137.349
+margin_bottom = 105.0
+text = "Date"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="home_team_toggle" type="Button" parent="controls"]
+margin_left = 1.7668
+margin_top = 46.3713
+margin_right = 25.7668
+margin_bottom = 66.3713
+theme = ExtResource( 1 )
+toggle_mode = true
+text = "@"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="players" type="Control" parent="controls"]
+anchor_left = 0.164
+anchor_top = 0.049
+anchor_right = 0.329
+anchor_bottom = 1.0
+margin_left = -167.936
+margin_top = -29.4
+margin_right = -336.896
+margin_bottom = -600.0
+mouse_default_cursor_shape = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="player_block" parent="controls/players" instance=ExtResource( 2 )]
+mouse_default_cursor_shape = 1
+
+[node name="player_block2" parent="controls/players" instance=ExtResource( 2 )]
+margin_left = 125.28
+margin_top = 121.591
+margin_right = 125.28
+margin_bottom = 121.591
+mouse_default_cursor_shape = 1
+
+[node name="player_block3" parent="controls/players" instance=ExtResource( 2 )]
+margin_left = 124.582
+margin_top = 164.888
+margin_right = 124.582
+margin_bottom = 164.888
+mouse_default_cursor_shape = 1
+
+[node name="player_block4" parent="controls/players" instance=ExtResource( 2 )]
+margin_left = 124.582
+margin_top = 209.582
+margin_right = 124.582
+margin_bottom = 209.582
+mouse_default_cursor_shape = 1
+
+[node name="player_block5" parent="controls/players" instance=ExtResource( 2 )]
+margin_left = 124.582
+margin_top = 254.275
+margin_right = 124.582
+margin_bottom = 254.275
+mouse_default_cursor_shape = 1
+
+[node name="player_block6" parent="controls/players" instance=ExtResource( 2 )]
+margin_left = 124.582
+margin_top = 296.874
+margin_right = 124.582
+margin_bottom = 296.874
+mouse_default_cursor_shape = 1
+
+[node name="player_block7" parent="controls/players" instance=ExtResource( 2 )]
+margin_left = 125.28
+margin_top = 342.266
+margin_right = 125.28
+margin_bottom = 342.266
+mouse_default_cursor_shape = 1
+
+[node name="player_block8" parent="controls/players" instance=ExtResource( 2 )]
+margin_left = 124.582
+margin_top = 385.563
+margin_right = 124.582
+margin_bottom = 385.563
+mouse_default_cursor_shape = 1
+
+[node name="player_block9" parent="controls/players" instance=ExtResource( 2 )]
+margin_left = 124.582
+margin_top = 430.955
+margin_right = 124.582
+margin_bottom = 430.955
+mouse_default_cursor_shape = 1
+
+[node name="player_block10" parent="controls/players" instance=ExtResource( 2 )]
+margin_left = 125.28
+margin_top = 474.252
+margin_right = 125.28
+margin_bottom = 474.252
+mouse_default_cursor_shape = 1
+
+[node name="player_block11" parent="controls/players" instance=ExtResource( 2 )]
+margin_left = 124.582
+margin_top = 517.549
+margin_right = 124.582
+margin_bottom = 517.549
+mouse_default_cursor_shape = 1
+
+[node name="pitcher_block" parent="controls/players" instance=ExtResource( 2 )]
+margin_left = 125.439
+margin_top = 562.133
+margin_right = 125.439
+margin_bottom = 562.133
+mouse_default_cursor_shape = 1
+
+[node name="pitcher_block2" parent="controls/players" instance=ExtResource( 2 )]
+margin_left = 124.582
+margin_top = 605.859
+margin_right = 124.582
+margin_bottom = 605.859
+mouse_default_cursor_shape = 1
+
+[node name="inning_summary" type="Control" parent="controls"]
+margin_left = 340.0
+margin_top = 510.0
+margin_right = 850.0
+margin_bottom = 597.0
+
+[node name="inning-totals" parent="controls/inning_summary" instance=ExtResource( 3 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 41.0
+margin_bottom = 20.0
+
+[node name="inning-totals2" parent="controls/inning_summary" instance=ExtResource( 3 )]
+margin_left = 42.4153
+margin_top = 0.307373
+margin_right = 83.4153
+margin_bottom = 20.3074
+
+[node name="inning-totals3" parent="controls/inning_summary" instance=ExtResource( 3 )]
+margin_left = 85.138
+margin_top = 0.307373
+margin_right = 126.138
+margin_bottom = 20.3074
+
+[node name="inning-totals4" parent="controls/inning_summary" instance=ExtResource( 3 )]
+margin_left = 128.168
+margin_top = -0.307373
+margin_right = 169.168
+margin_bottom = 19.6926
+
+[node name="inning-totals5" parent="controls/inning_summary" instance=ExtResource( 3 )]
+margin_left = 169.661
+margin_top = -0.307373
+margin_right = 210.661
+margin_bottom = 19.6926
+
+[node name="inning-totals6" parent="controls/inning_summary" instance=ExtResource( 3 )]
+margin_left = 213.306
+margin_top = -0.614746
+margin_right = 254.306
+margin_bottom = 19.3853
+
+[node name="inning-totals7" parent="controls/inning_summary" instance=ExtResource( 3 )]
+margin_left = 254.799
+margin_top = -0.922119
+margin_right = 295.799
+margin_bottom = 19.0779
+
+[node name="inning-totals8" parent="controls/inning_summary" instance=ExtResource( 3 )]
+margin_left = 297.83
+margin_top = -1.22943
+margin_right = 338.83
+margin_bottom = 18.7706
+
+[node name="inning-totals9" parent="controls/inning_summary" instance=ExtResource( 3 )]
+margin_left = 339.63
+margin_top = -0.922058
+margin_right = 380.63
+margin_bottom = 19.0779
+
+[node name="inning-totals10" parent="controls/inning_summary" instance=ExtResource( 3 )]
+margin_left = 382.998
+margin_top = -0.922058
+margin_right = 423.998
+margin_bottom = 19.0779
+
+[node name="inning-totals11" parent="controls/inning_summary" instance=ExtResource( 3 )]
+margin_left = 425.414
+margin_top = -1.16797
+margin_right = 466.414
+margin_bottom = 18.832
+
+[node name="inning-totals12" parent="controls/inning_summary" instance=ExtResource( 3 )]
+margin_left = 467.814
+margin_top = -0.660828
+margin_right = 508.814
+margin_bottom = 19.3392
+
+[node name="batter_statuses" type="Control" parent="controls"]
+margin_left = 340.132
+margin_top = 465.938
+margin_right = 380.132
+margin_bottom = 505.938
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="batter_status" parent="controls/batter_statuses" instance=ExtResource( 4 )]
+margin_left = 0.264008
+margin_top = -440.59
+margin_right = 40.264
+margin_bottom = -395.59
+rect_scale = Vector2( 0.9, 0.9 )
+rect_clip_content = true
+
+[node name="batter_status2" parent="controls/batter_statuses" instance=ExtResource( 4 )]
+margin_left = 0.264008
+margin_top = -396.379
+margin_right = 40.264
+margin_bottom = -351.38
+rect_scale = Vector2( 0.9, 0.9 )
+rect_clip_content = true
+
+[node name="batter_status3" parent="controls/batter_statuses" instance=ExtResource( 4 )]
+margin_left = 0.264008
+margin_top = -353.341
+margin_right = 40.264
+margin_bottom = -308.341
+rect_scale = Vector2( 0.9, 0.9 )
+rect_clip_content = true
+
+[node name="batter_status4" parent="controls/batter_statuses" instance=ExtResource( 4 )]
+margin_left = 0.264008
+margin_top = -308.16
+margin_right = 40.264
+margin_bottom = -263.16
+rect_scale = Vector2( 0.9, 0.9 )
+rect_clip_content = true
+
+[node name="batter_status5" parent="controls/batter_statuses" instance=ExtResource( 4 )]
+margin_left = 0.0
+margin_top = -264.943
+margin_right = 40.0
+margin_bottom = -219.943
+rect_scale = Vector2( 0.9, 0.9 )
+rect_clip_content = true
+
+[node name="batter_status6" parent="controls/batter_statuses" instance=ExtResource( 4 )]
+margin_left = -0.306976
+margin_top = -220.99
+margin_right = 39.693
+margin_bottom = -175.99
+rect_scale = Vector2( 0.9, 0.9 )
+rect_clip_content = true
+
+[node name="batter_status7" parent="controls/batter_statuses" instance=ExtResource( 4 )]
+margin_left = 0.0
+margin_top = -176.423
+margin_right = 40.0
+margin_bottom = -131.423
+rect_scale = Vector2( 0.9, 0.9 )
+rect_clip_content = true
+
+[node name="batter_status8" parent="controls/batter_statuses" instance=ExtResource( 4 )]
+margin_left = 0.307007
+margin_top = -132.471
+margin_right = 40.307
+margin_bottom = -87.471
+rect_scale = Vector2( 0.9, 0.9 )
+rect_clip_content = true
+
+[node name="batter_status9" parent="controls/batter_statuses" instance=ExtResource( 4 )]
+margin_left = 0.440002
+margin_top = -88.876
+margin_right = 40.44
+margin_bottom = -43.876
+rect_scale = Vector2( 0.9, 0.9 )
+rect_clip_content = true
+
+[node name="batter_status10" parent="controls/batter_statuses" instance=ExtResource( 4 )]
+margin_left = 0.307007
+margin_top = -43.952
+margin_right = 40.307
+margin_bottom = 1.048
+rect_scale = Vector2( 0.9, 0.9 )
+rect_clip_content = true
+
+[node name="batter_status11" parent="controls/batter_statuses" instance=ExtResource( 4 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 40.0
+margin_bottom = 45.0
+rect_scale = Vector2( 0.9, 0.9 )
+rect_clip_content = true
+
+[node name="zoom_cam" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+limit_left = -100
+limit_top = -100
+limit_right = 1200
+limit_bottom = 800
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+drag_margin_left = 0.5
+drag_margin_top = 0.5
+drag_margin_right = 0.5
+drag_margin_bottom = 0.5
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource( 5 )
+
+[node name="Light2D" type="Light2D" parent="zoom_cam"]
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 8 )

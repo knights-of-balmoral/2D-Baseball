@@ -1,0 +1,31 @@
+[gd_resource type="Theme" load_steps=5 format=2]
+
+[ext_resource path="res://fonts/10_standard.tres" type="DynamicFont" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[resource]
+default_font = ExtResource( 1 )
+HScrollBar/icons/decrement = null
+HScrollBar/icons/decrement_highlight = null
+HScrollBar/icons/increment = null
+HScrollBar/icons/increment_highlight = null
+HScrollBar/styles/grabber = null
+HScrollBar/styles/grabber_highlight = null
+HScrollBar/styles/grabber_pressed = null
+HScrollBar/styles/scroll = SubResource( 1 )
+HScrollBar/styles/scroll_focus = null
+ScrollContainer/styles/bg = SubResource( 2 )
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = null
+VScrollBar/styles/grabber_highlight = null
+VScrollBar/styles/grabber_pressed = null
+VScrollBar/styles/scroll = SubResource( 3 )
+VScrollBar/styles/scroll_focus = null

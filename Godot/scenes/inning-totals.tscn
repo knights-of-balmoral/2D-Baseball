@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://themes/no-scroll.tres" type="Theme" id=1]
+[ext_resource path="res://fonts/10_standard.tres" type="DynamicFont" id=2]
+
+[node name="inning-totals" type="Control"]
+margin_left = 340.0
+margin_top = 510.0
+margin_right = 381.0
+margin_bottom = 530.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="runs" type="TextEdit" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "0"
+
+[node name="hits" type="TextEdit" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 21.6957
+margin_bottom = 21.6957
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "0"
+
+[node name="errors" type="TextEdit" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 44.1663
+margin_bottom = 44.1663
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "0"
+
+[node name="left-on-bases" type="TextEdit" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.193695
+margin_top = 65.8621
+margin_right = -0.193695
+margin_bottom = 65.8621
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "0"

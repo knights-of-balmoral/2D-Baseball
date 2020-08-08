@@ -71,13 +71,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="buttons" type="Node" parent="ui"]
+[node name="buttons" type="Control" parent="ui"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="btn_exhibition" type="Button" parent="ui/buttons"]
-margin_left = 134.104
-margin_top = 124.313
-margin_right = 434.104
-margin_bottom = 178.313
+[node name="menu_buttons" type="VBoxContainer" parent="ui/buttons"]
+margin_left = 57.8949
+margin_top = 96.8423
+margin_right = 439.895
+margin_bottom = 498.842
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btn_exhibition" type="Button" parent="ui/buttons/menu_buttons"]
+margin_right = 382.0
+margin_bottom = 54.0
 theme = ExtResource( 4 )
 custom_fonts/font = ExtResource( 3 )
 text = "EXHIBITION"
@@ -87,14 +97,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ui/buttons/btn_exhibition"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ui/buttons/menu_buttons/btn_exhibition"]
 stream = ExtResource( 7 )
 
-[node name="btn_season" type="Button" parent="ui/buttons"]
-margin_left = 138.436
-margin_top = 188.444
-margin_right = 438.436
-margin_bottom = 242.444
+[node name="btn_season" type="Button" parent="ui/buttons/menu_buttons"]
+margin_top = 58.0
+margin_right = 382.0
+margin_bottom = 112.0
 theme = ExtResource( 4 )
 custom_fonts/font = ExtResource( 3 )
 text = "NEW SEASON"
@@ -104,14 +113,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="ui/buttons/btn_season"]
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="ui/buttons/menu_buttons/btn_season"]
 stream = ExtResource( 8 )
 
-[node name="btn_teams" type="Button" parent="ui/buttons"]
-margin_left = 131.284
-margin_top = 252.647
-margin_right = 431.284
-margin_bottom = 306.647
+[node name="btn_teams" type="Button" parent="ui/buttons/menu_buttons"]
+margin_top = 116.0
+margin_right = 382.0
+margin_bottom = 170.0
 theme = ExtResource( 4 )
 custom_fonts/font = ExtResource( 3 )
 text = "MANAGE TEAM"
@@ -121,14 +129,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="ui/buttons/btn_teams"]
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="ui/buttons/menu_buttons/btn_teams"]
 stream = ExtResource( 9 )
 
-[node name="btn_batting_practice" type="Button" parent="ui/buttons"]
-margin_left = 101.169
-margin_top = 320.565
-margin_right = 483.169
-margin_bottom = 374.565
+[node name="btn_batting_practice" type="Button" parent="ui/buttons/menu_buttons"]
+margin_top = 174.0
+margin_right = 382.0
+margin_bottom = 228.0
 theme = ExtResource( 4 )
 custom_fonts/font = ExtResource( 3 )
 text = "BATTING PRACTICE"
@@ -138,14 +145,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="ui/buttons/btn_batting_practice"]
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="ui/buttons/menu_buttons/btn_batting_practice"]
 stream = ExtResource( 10 )
 
-[node name="btn_settings" type="Button" parent="ui/buttons"]
-margin_left = 137.126
-margin_top = 393.561
-margin_right = 437.126
-margin_bottom = 447.561
+[node name="btn_scorecard" type="Button" parent="ui/buttons/menu_buttons"]
+margin_top = 232.0
+margin_right = 382.0
+margin_bottom = 286.0
+theme = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
+text = "SCORECARD TOOL"
+flat = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer7" type="AudioStreamPlayer" parent="ui/buttons/menu_buttons/btn_scorecard"]
+stream = ExtResource( 10 )
+
+[node name="btn_settings" type="Button" parent="ui/buttons/menu_buttons"]
+margin_top = 290.0
+margin_right = 382.0
+margin_bottom = 344.0
 theme = ExtResource( 4 )
 custom_fonts/font = ExtResource( 3 )
 text = "SETTINGS"
@@ -155,14 +177,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="ui/buttons/btn_settings"]
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="ui/buttons/menu_buttons/btn_settings"]
 stream = ExtResource( 10 )
 
-[node name="btn_quit" type="Button" parent="ui/buttons"]
-margin_left = 136.06
-margin_top = 459.582
-margin_right = 436.059
-margin_bottom = 513.582
+[node name="btn_quit" type="Button" parent="ui/buttons/menu_buttons"]
+margin_top = 348.0
+margin_right = 382.0
+margin_bottom = 402.0
 theme = ExtResource( 4 )
 custom_fonts/font = ExtResource( 3 )
 text = "QUIT"
@@ -172,15 +193,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="ui/buttons/btn_quit"]
+[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="ui/buttons/menu_buttons/btn_quit"]
 stream = ExtResource( 10 )
-[connection signal="mouse_entered" from="ui/buttons/btn_exhibition" to="ui/buttons/btn_exhibition" method="_on_btn_exhibition_mouse_entered"]
-[connection signal="pressed" from="ui/buttons/btn_exhibition" to="ui/buttons/btn_exhibition" method="_on_btn_exhibition_pressed"]
-[connection signal="mouse_entered" from="ui/buttons/btn_season" to="ui/buttons/btn_season" method="_on_btn_season_mouse_entered"]
-[connection signal="mouse_entered" from="ui/buttons/btn_teams" to="ui/buttons/btn_teams" method="_on_btn_teams_mouse_entered"]
-[connection signal="mouse_entered" from="ui/buttons/btn_batting_practice" to="ui/buttons/btn_batting_practice" method="_on_btn_batting_practice_mouse_entered"]
-[connection signal="pressed" from="ui/buttons/btn_batting_practice" to="ui/buttons/btn_batting_practice" method="_on_btn_batting_practice_pressed"]
-[connection signal="mouse_entered" from="ui/buttons/btn_settings" to="ui/buttons/btn_settings" method="_on_btn_settings_mouse_entered"]
-[connection signal="pressed" from="ui/buttons/btn_settings" to="ui/buttons/btn_settings" method="_on_btn_settings_pressed"]
-[connection signal="mouse_entered" from="ui/buttons/btn_quit" to="ui/buttons/btn_quit" method="_on_btn_quit_mouse_entered"]
-[connection signal="pressed" from="ui/buttons/btn_quit" to="ui/buttons/btn_quit" method="_on_btn_quit_pressed"]
+[connection signal="mouse_entered" from="ui/buttons/menu_buttons/btn_exhibition" to="ui/buttons/menu_buttons/btn_exhibition" method="_on_btn_exhibition_mouse_entered"]
+[connection signal="pressed" from="ui/buttons/menu_buttons/btn_exhibition" to="ui/buttons/menu_buttons/btn_exhibition" method="_on_btn_exhibition_pressed"]
+[connection signal="mouse_entered" from="ui/buttons/menu_buttons/btn_season" to="ui/buttons/menu_buttons/btn_season" method="_on_btn_season_mouse_entered"]
+[connection signal="mouse_entered" from="ui/buttons/menu_buttons/btn_teams" to="ui/buttons/menu_buttons/btn_teams" method="_on_btn_teams_mouse_entered"]
+[connection signal="mouse_entered" from="ui/buttons/menu_buttons/btn_batting_practice" to="ui/buttons/menu_buttons/btn_batting_practice" method="_on_btn_batting_practice_mouse_entered"]
+[connection signal="pressed" from="ui/buttons/menu_buttons/btn_batting_practice" to="ui/buttons/menu_buttons/btn_batting_practice" method="_on_btn_batting_practice_pressed"]
+[connection signal="mouse_entered" from="ui/buttons/menu_buttons/btn_scorecard" to="ui/buttons/menu_buttons/btn_scorecard" method="_on_btn_scorecard_mouse_entered"]
+[connection signal="pressed" from="ui/buttons/menu_buttons/btn_scorecard" to="ui/buttons/menu_buttons/btn_scorecard" method="_on_btn_scorecard_pressed"]
+[connection signal="mouse_entered" from="ui/buttons/menu_buttons/btn_settings" to="ui/buttons/menu_buttons/btn_settings" method="_on_btn_settings_mouse_entered"]
+[connection signal="pressed" from="ui/buttons/menu_buttons/btn_settings" to="ui/buttons/menu_buttons/btn_settings" method="_on_btn_settings_pressed"]
+[connection signal="mouse_entered" from="ui/buttons/menu_buttons/btn_quit" to="ui/buttons/menu_buttons/btn_quit" method="_on_btn_quit_mouse_entered"]
+[connection signal="pressed" from="ui/buttons/menu_buttons/btn_quit" to="ui/buttons/menu_buttons/btn_quit" method="_on_btn_quit_pressed"]
