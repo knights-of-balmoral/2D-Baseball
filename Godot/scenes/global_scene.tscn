@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/sfx/crowd.ogg" type="AudioStream" id=1]
 [ext_resource path="res://assets/sound/12_string_ramble.ogg" type="AudioStream" id=2]
-[ext_resource path="res://scenes/global_scene.gd" type="Script" id=3]
+[ext_resource path="res://scripts/global_scene.gd" type="Script" id=3]
 
 [node name="global_scene" type="Node"]
 script = ExtResource( 3 )
@@ -14,4 +14,3 @@ bus = "ambience"
 
 [node name="bgMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
-bus = "music"

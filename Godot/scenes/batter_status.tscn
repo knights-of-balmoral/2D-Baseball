@@ -6,37 +6,37 @@
 [ext_resource path="res://assets/raw/gui/scorecard_base.png" type="Texture" id=4]
 
 [node name="batter_status" type="Control"]
-margin_left = 340.0
-margin_top = 26.0
-margin_right = 384.0
-margin_bottom = 72.0
+margin_right = 43.0
+margin_bottom = 46.0
+rect_min_size = Vector2( 50, 50 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="control_bg" type="Panel" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 50.0
+margin_bottom = 50.0
 custom_styles/panel = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="hit_status" parent="." instance=ExtResource( 1 )]
-margin_left = 33.8997
-margin_top = 1.35599
-margin_right = 25.8997
-margin_bottom = 127.356
+margin_left = 40.0227
+margin_top = 3.06474
+margin_right = 40.0227
+margin_bottom = 3.06474
 rect_scale = Vector2( 0.25, 0.25 )
 
 [node name="pitch_count" parent="." instance=ExtResource( 2 )]
-margin_left = 11.0006
-margin_top = 27.947
-margin_right = 81.0006
-margin_bottom = 77.947
+margin_left = 14.1333
+margin_top = 31.7917
+margin_right = 84.1333
+margin_bottom = 81.7917
 rect_scale = Vector2( 0.3, 0.3 )
 
 [node name="bases" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.282353 )
 position = Vector2( 18.2026, 13.7409 )
 scale = Vector2( 0.101159, 0.101159 )
 texture = ExtResource( 4 )

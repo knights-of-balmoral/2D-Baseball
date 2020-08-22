@@ -1,0 +1,884 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://themes/toggles.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/at_bat_result.gd" type="Script" id=2]
+[ext_resource path="res://fonts/10_standard.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/raw/gui/scorecard_base.png" type="Texture" id=4]
+[ext_resource path="res://assets/raw/gui/arrow_right.png" type="Texture" id=5]
+[ext_resource path="res://fonts/40_standard.tres" type="DynamicFont" id=6]
+[ext_resource path="res://scripts/team_card.gd" type="Script" id=7]
+
+[node name="team_card" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="team_name" type="LineEdit" parent="."]
+margin_left = 452.115
+margin_top = 120.463
+margin_right = 602.115
+margin_bottom = 145.463
+rect_min_size = Vector2( 150, 0 )
+hint_tooltip = "Enter Batter's Name"
+custom_fonts/font = ExtResource( 3 )
+align = 1
+max_length = 20
+clear_button_enabled = true
+placeholder_text = "Team"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="date" type="LineEdit" parent="."]
+margin_left = 606.016
+margin_top = 120.621
+margin_right = 756.016
+margin_bottom = 145.621
+rect_min_size = Vector2( 150, 0 )
+hint_tooltip = "Enter Batter's Name"
+custom_fonts/font = ExtResource( 3 )
+align = 1
+max_length = 20
+clear_button_enabled = true
+placeholder_text = "Date"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="batting_order" type="VBoxContainer" parent="."]
+margin_left = 170.119
+margin_top = 149.907
+margin_right = 438.119
+margin_bottom = 451.907
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="batter_1" type="Control" parent="batting_order"]
+margin_right = 268.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="batter_pos" type="Label" parent="batting_order/batter_1"]
+margin_top = 5.0
+margin_right = 7.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 3 )
+text = "1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="jersey_no" type="LineEdit" parent="batting_order/batter_1"]
+margin_left = 11.0
+margin_right = 57.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+align = 1
+max_length = 3
+placeholder_text = "#"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="player_position" type="LineEdit" parent="batting_order/batter_1"]
+margin_left = 61.0
+margin_right = 107.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+max_length = 2
+placeholder_text = "POS"
+
+[node name="player_name" type="LineEdit" parent="batting_order/batter_1"]
+margin_left = 111.0
+margin_right = 261.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 150, 0 )
+hint_tooltip = "Enter Batter's Name"
+custom_fonts/font = ExtResource( 3 )
+max_length = 20
+clear_button_enabled = true
+placeholder_text = "Player Name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="batter_2" type="Control" parent="batting_order"]
+margin_top = 34.0
+margin_right = 268.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="batter_pos" type="Label" parent="batting_order/batter_2"]
+margin_top = 5.0
+margin_right = 7.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 3 )
+text = "2"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="jersey_no" type="LineEdit" parent="batting_order/batter_2"]
+margin_left = 11.0
+margin_right = 57.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+align = 1
+max_length = 3
+placeholder_text = "#"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="player_position" type="LineEdit" parent="batting_order/batter_2"]
+margin_left = 61.0
+margin_right = 107.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+max_length = 2
+placeholder_text = "POS"
+
+[node name="player_name" type="LineEdit" parent="batting_order/batter_2"]
+margin_left = 111.0
+margin_right = 261.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 150, 0 )
+hint_tooltip = "Enter Batter's Name"
+custom_fonts/font = ExtResource( 3 )
+max_length = 20
+clear_button_enabled = true
+placeholder_text = "Player Name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="batter_3" type="Control" parent="batting_order"]
+margin_top = 68.0
+margin_right = 268.0
+margin_bottom = 98.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="batter_pos" type="Label" parent="batting_order/batter_3"]
+margin_top = 5.0
+margin_right = 7.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 3 )
+text = "3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="jersey_no" type="LineEdit" parent="batting_order/batter_3"]
+margin_left = 11.0
+margin_right = 57.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+align = 1
+max_length = 3
+placeholder_text = "#"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="player_position" type="LineEdit" parent="batting_order/batter_3"]
+margin_left = 61.0
+margin_right = 107.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+max_length = 2
+placeholder_text = "POS"
+
+[node name="player_name" type="LineEdit" parent="batting_order/batter_3"]
+margin_left = 111.0
+margin_right = 261.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 150, 0 )
+hint_tooltip = "Enter Batter's Name"
+custom_fonts/font = ExtResource( 3 )
+max_length = 20
+clear_button_enabled = true
+placeholder_text = "Player Name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="batter_4" type="Control" parent="batting_order"]
+margin_top = 102.0
+margin_right = 268.0
+margin_bottom = 132.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="batter_pos" type="Label" parent="batting_order/batter_4"]
+margin_top = 5.0
+margin_right = 7.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 3 )
+text = "4"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="jersey_no" type="LineEdit" parent="batting_order/batter_4"]
+margin_left = 11.0
+margin_right = 57.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+align = 1
+max_length = 3
+placeholder_text = "#"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="player_position" type="LineEdit" parent="batting_order/batter_4"]
+margin_left = 61.0
+margin_right = 107.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+max_length = 2
+placeholder_text = "POS"
+
+[node name="player_name" type="LineEdit" parent="batting_order/batter_4"]
+margin_left = 111.0
+margin_right = 261.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 150, 0 )
+hint_tooltip = "Enter Batter's Name"
+custom_fonts/font = ExtResource( 3 )
+max_length = 20
+clear_button_enabled = true
+placeholder_text = "Player Name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="batter_5" type="Control" parent="batting_order"]
+margin_top = 136.0
+margin_right = 268.0
+margin_bottom = 166.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="batter_pos" type="Label" parent="batting_order/batter_5"]
+margin_top = 5.0
+margin_right = 7.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 3 )
+text = "5"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="jersey_no" type="LineEdit" parent="batting_order/batter_5"]
+margin_left = 11.0
+margin_right = 57.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+align = 1
+max_length = 3
+placeholder_text = "#"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="player_position" type="LineEdit" parent="batting_order/batter_5"]
+margin_left = 61.0
+margin_right = 107.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+max_length = 2
+placeholder_text = "POS"
+
+[node name="player_name" type="LineEdit" parent="batting_order/batter_5"]
+margin_left = 111.0
+margin_right = 261.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 150, 0 )
+hint_tooltip = "Enter Batter's Name"
+custom_fonts/font = ExtResource( 3 )
+max_length = 20
+clear_button_enabled = true
+placeholder_text = "Player Name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="batter_6" type="Control" parent="batting_order"]
+margin_top = 170.0
+margin_right = 268.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="batter_pos" type="Label" parent="batting_order/batter_6"]
+margin_top = 5.0
+margin_right = 7.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 3 )
+text = "6"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="jersey_no" type="LineEdit" parent="batting_order/batter_6"]
+margin_left = 11.0
+margin_right = 57.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+align = 1
+max_length = 3
+placeholder_text = "#"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="player_position" type="LineEdit" parent="batting_order/batter_6"]
+margin_left = 61.0
+margin_right = 107.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+max_length = 2
+placeholder_text = "POS"
+
+[node name="player_name" type="LineEdit" parent="batting_order/batter_6"]
+margin_left = 111.0
+margin_right = 261.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 150, 0 )
+hint_tooltip = "Enter Batter's Name"
+custom_fonts/font = ExtResource( 3 )
+max_length = 20
+clear_button_enabled = true
+placeholder_text = "Player Name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="batter_7" type="Control" parent="batting_order"]
+margin_top = 204.0
+margin_right = 268.0
+margin_bottom = 234.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="batter_pos" type="Label" parent="batting_order/batter_7"]
+margin_top = 5.0
+margin_right = 7.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 3 )
+text = "7"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="jersey_no" type="LineEdit" parent="batting_order/batter_7"]
+margin_left = 11.0
+margin_right = 57.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+align = 1
+max_length = 3
+placeholder_text = "#"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="player_position" type="LineEdit" parent="batting_order/batter_7"]
+margin_left = 61.0
+margin_right = 107.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+max_length = 2
+placeholder_text = "POS"
+
+[node name="player_name" type="LineEdit" parent="batting_order/batter_7"]
+margin_left = 111.0
+margin_right = 261.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 150, 0 )
+hint_tooltip = "Enter Batter's Name"
+custom_fonts/font = ExtResource( 3 )
+max_length = 20
+clear_button_enabled = true
+placeholder_text = "Player Name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="batter_8" type="Control" parent="batting_order"]
+margin_top = 238.0
+margin_right = 268.0
+margin_bottom = 268.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="batter_pos" type="Label" parent="batting_order/batter_8"]
+margin_top = 5.0
+margin_right = 7.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 3 )
+text = "8"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="jersey_no" type="LineEdit" parent="batting_order/batter_8"]
+margin_left = 11.0
+margin_right = 57.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+align = 1
+max_length = 3
+placeholder_text = "#"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="player_position" type="LineEdit" parent="batting_order/batter_8"]
+margin_left = 61.0
+margin_right = 107.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+max_length = 2
+placeholder_text = "POS"
+
+[node name="player_name" type="LineEdit" parent="batting_order/batter_8"]
+margin_left = 111.0
+margin_right = 261.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 150, 0 )
+hint_tooltip = "Enter Batter's Name"
+custom_fonts/font = ExtResource( 3 )
+max_length = 20
+clear_button_enabled = true
+placeholder_text = "Player Name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="batter_9" type="Control" parent="batting_order"]
+margin_top = 272.0
+margin_right = 268.0
+margin_bottom = 302.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="batter_pos" type="Label" parent="batting_order/batter_9"]
+margin_top = 5.0
+margin_right = 7.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 3 )
+text = "9"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="jersey_no" type="LineEdit" parent="batting_order/batter_9"]
+margin_left = 11.0
+margin_right = 57.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+align = 1
+max_length = 3
+placeholder_text = "#"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="player_position" type="LineEdit" parent="batting_order/batter_9"]
+margin_left = 61.0
+margin_right = 107.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+max_length = 2
+placeholder_text = "POS"
+
+[node name="player_name" type="LineEdit" parent="batting_order/batter_9"]
+margin_left = 111.0
+margin_right = 261.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 150, 0 )
+hint_tooltip = "Enter Batter's Name"
+custom_fonts/font = ExtResource( 3 )
+max_length = 20
+clear_button_enabled = true
+placeholder_text = "Player Name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="batter_indicator" type="Sprite" parent="batting_order"]
+position = Vector2( -16.6465, 11.9681 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="at_bat" type="Node2D" parent="."]
+position = Vector2( 592.821, 301.907 )
+
+[node name="bg" type="Panel" parent="at_bat"]
+margin_left = -141.0
+margin_top = -149.0
+margin_right = 270.0
+margin_bottom = 144.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="at_bat_field" type="Sprite" parent="at_bat"]
+self_modulate = Color( 1, 1, 1, 0.533333 )
+texture = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="first_base" type="Button" parent="at_bat/at_bat_field"]
+margin_left = 87.3685
+margin_top = -33.6842
+margin_right = 137.369
+margin_bottom = 16.3158
+rect_min_size = Vector2( 50, 50 )
+rect_rotation = 45.0
+theme = ExtResource( 1 )
+toggle_mode = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="second_base" type="Button" parent="at_bat/at_bat_field"]
+margin_left = -1.05261
+margin_top = -121.053
+margin_right = 48.9474
+margin_bottom = -71.0527
+rect_min_size = Vector2( 50, 50 )
+rect_rotation = 45.0
+theme = ExtResource( 1 )
+toggle_mode = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="third_base" type="Button" parent="at_bat/at_bat_field"]
+margin_left = -84.2106
+margin_top = -34.7368
+margin_right = -34.2106
+margin_bottom = 15.2632
+rect_min_size = Vector2( 50, 50 )
+rect_rotation = 45.0
+theme = ExtResource( 1 )
+toggle_mode = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="home" type="Button" parent="at_bat/at_bat_field"]
+margin_left = 6.10352e-05
+margin_top = 49.4738
+margin_right = 50.0001
+margin_bottom = 99.4738
+rect_min_size = Vector2( 50, 50 )
+rect_rotation = 45.0
+theme = ExtResource( 1 )
+toggle_mode = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pitches" type="VBoxContainer" parent="at_bat/at_bat_field"]
+margin_left = 138.054
+margin_top = 14.5703
+margin_right = 302.054
+margin_bottom = 118.57
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="balls" type="HBoxContainer" parent="at_bat/at_bat_field/pitches"]
+margin_right = 163.0
+margin_bottom = 25.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ball_1" type="Button" parent="at_bat/at_bat_field/pitches/balls"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 1 )
+toggle_mode = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ball_2" type="Button" parent="at_bat/at_bat_field/pitches/balls"]
+margin_left = 29.0
+margin_right = 54.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 1 )
+toggle_mode = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ball_3" type="Button" parent="at_bat/at_bat_field/pitches/balls"]
+margin_left = 58.0
+margin_right = 83.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 1 )
+toggle_mode = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="strikes" type="HBoxContainer" parent="at_bat/at_bat_field/pitches"]
+margin_top = 29.0
+margin_right = 163.0
+margin_bottom = 54.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="strike_1" type="Button" parent="at_bat/at_bat_field/pitches/strikes"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 1 )
+toggle_mode = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="strike_2" type="Button" parent="at_bat/at_bat_field/pitches/strikes"]
+margin_left = 29.0
+margin_right = 54.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 1 )
+toggle_mode = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="result_selection" type="OptionButton" parent="at_bat/at_bat_field"]
+margin_left = 132.941
+margin_top = 78.17
+margin_right = 264.941
+margin_bottom = 119.17
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="substitutions" type="HBoxContainer" parent="."]
+margin_left = 171.519
+margin_top = 455.807
+margin_right = 632.519
+margin_bottom = 485.807
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="batter_pos" type="Label" parent="substitutions"]
+margin_top = 7.0
+margin_right = 7.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 3 )
+text = "S"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="jersey_no" type="LineEdit" parent="substitutions"]
+margin_left = 11.0
+margin_right = 57.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 3 )
+align = 1
+max_length = 3
+placeholder_text = "#"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="player_position" type="LineEdit" parent="substitutions"]
+margin_left = 61.0
+margin_right = 107.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 3 )
+max_length = 2
+placeholder_text = "POS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lineup_position" type="LineEdit" parent="substitutions"]
+margin_left = 111.0
+margin_right = 211.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 100, 0 )
+custom_fonts/font = ExtResource( 3 )
+max_length = 1
+placeholder_text = "Lineup Position"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="inning_entered" type="LineEdit" parent="substitutions"]
+margin_left = 215.0
+margin_right = 261.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 3 )
+max_length = 2
+placeholder_text = "INN"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="player_name" type="LineEdit" parent="substitutions"]
+margin_left = 265.0
+margin_right = 415.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 150, 0 )
+hint_tooltip = "Enter Batter's Name"
+custom_fonts/font = ExtResource( 3 )
+max_length = 20
+clear_button_enabled = true
+placeholder_text = "Player Name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sub_in" type="Button" parent="substitutions"]
+margin_left = 419.0
+margin_right = 457.0
+margin_bottom = 30.0
+text = "SUB"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="scoreboard" type="HBoxContainer" parent="."]
+margin_left = 251.516
+margin_top = 60.8624
+margin_right = 806.516
+margin_bottom = 108.862
+grow_horizontal = 2
+grow_vertical = 2
+custom_constants/separation = 56
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score_home" type="Label" parent="scoreboard"]
+margin_right = 23.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 6 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="team_home" type="Label" parent="scoreboard"]
+margin_left = 79.0
+margin_right = 192.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 6 )
+text = "HOME"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="dash" type="Label" parent="scoreboard"]
+margin_left = 248.0
+margin_right = 266.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 6 )
+text = "-"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="team_visitor" type="Label" parent="scoreboard"]
+margin_left = 322.0
+margin_right = 476.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 6 )
+text = "VISITOR"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score_visitor" type="Label" parent="scoreboard"]
+margin_left = 532.0
+margin_right = 555.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 6 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="outs" type="HBoxContainer" parent="."]
+margin_left = 688.085
+margin_top = 455.399
+margin_right = 825.085
+margin_bottom = 503.399
+custom_constants/separation = 29
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score_outs" type="Label" parent="outs"]
+margin_right = 23.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 6 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score_outs_label" type="Label" parent="outs"]
+margin_left = 52.0
+margin_right = 137.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 6 )
+text = "Outs"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="text_changed" from="team_name" to="." method="_on_team_name_text_changed"]

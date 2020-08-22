@@ -1,0 +1,1511 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/team_card.tscn" type="PackedScene" id=1]
+[ext_resource path="res://themes/toggles.tres" type="Theme" id=4]
+[ext_resource path="res://fonts/10_standard.tres" type="DynamicFont" id=5]
+[ext_resource path="res://scenes/scorecard_tool.gd" type="Script" id=6]
+
+[node name="scorecard_tool" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="card_mini" type="Node2D" parent="."]
+visible = false
+position = Vector2( -136.08, 133.877 )
+
+[node name="aesthetics" type="Control" parent="card_mini"]
+margin_left = 135.85
+margin_top = -133.95
+margin_right = 135.85
+margin_bottom = -133.95
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="Panel" parent="card_mini/aesthetics"]
+margin_left = 29.9202
+margin_top = 127.877
+margin_right = 575.92
+margin_bottom = 556.877
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="batter_position" type="Label" parent="card_mini/aesthetics"]
+margin_left = 45.3539
+margin_top = 410.311
+margin_right = 160.354
+margin_bottom = 424.311
+rect_rotation = -90.0
+text = "BATTER POSITION"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="inning_no" type="Label" parent="card_mini/aesthetics"]
+margin_left = 269.811
+margin_top = 140.875
+margin_right = 362.811
+margin_bottom = 155.875
+custom_fonts/font = ExtResource( 5 )
+text = "Inning Number"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="card_mini_wrapper" type="HBoxContainer" parent="card_mini"]
+margin_left = 199.8
+margin_top = 27.5597
+margin_right = 580.8
+margin_bottom = 313.56
+rect_scale = Vector2( 1.3, 1.3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bat_order" type="GridContainer" parent="card_mini/card_mini_wrapper"]
+margin_right = 25.0
+margin_bottom = 286.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="spacer" type="Label" parent="card_mini/card_mini_wrapper/bat_order"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+
+[node name="order_1" type="Label" parent="card_mini/card_mini_wrapper/bat_order"]
+margin_top = 29.0
+margin_right = 25.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 25, 25 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="order_2" type="Label" parent="card_mini/card_mini_wrapper/bat_order"]
+margin_top = 58.0
+margin_right = 25.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 25, 25 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="order_3" type="Label" parent="card_mini/card_mini_wrapper/bat_order"]
+margin_top = 87.0
+margin_right = 25.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 25, 25 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="order_4" type="Label" parent="card_mini/card_mini_wrapper/bat_order"]
+margin_top = 116.0
+margin_right = 25.0
+margin_bottom = 141.0
+rect_min_size = Vector2( 25, 25 )
+text = "4"
+align = 1
+valign = 1
+
+[node name="order_5" type="Label" parent="card_mini/card_mini_wrapper/bat_order"]
+margin_top = 145.0
+margin_right = 25.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 25, 25 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="order_6" type="Label" parent="card_mini/card_mini_wrapper/bat_order"]
+margin_top = 174.0
+margin_right = 25.0
+margin_bottom = 199.0
+rect_min_size = Vector2( 25, 25 )
+text = "6"
+align = 1
+valign = 1
+
+[node name="order_7" type="Label" parent="card_mini/card_mini_wrapper/bat_order"]
+margin_top = 203.0
+margin_right = 25.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 25, 25 )
+text = "7"
+align = 1
+valign = 1
+
+[node name="order_8" type="Label" parent="card_mini/card_mini_wrapper/bat_order"]
+margin_top = 232.0
+margin_right = 25.0
+margin_bottom = 257.0
+rect_min_size = Vector2( 25, 25 )
+text = "8"
+align = 1
+valign = 1
+
+[node name="order_9" type="Label" parent="card_mini/card_mini_wrapper/bat_order"]
+margin_top = 261.0
+margin_right = 25.0
+margin_bottom = 286.0
+rect_min_size = Vector2( 25, 25 )
+text = "9"
+align = 1
+valign = 1
+
+[node name="card_mini" type="VBoxContainer" parent="card_mini/card_mini_wrapper"]
+margin_left = 29.0
+margin_right = 373.0
+margin_bottom = 286.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="innings" type="GridContainer" parent="card_mini/card_mini_wrapper/card_mini"]
+margin_right = 344.0
+margin_bottom = 25.0
+columns = 12
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="inning_1" type="Label" parent="card_mini/card_mini_wrapper/card_mini/innings"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+custom_fonts/font = ExtResource( 5 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="inning_2" type="Label" parent="card_mini/card_mini_wrapper/card_mini/innings"]
+margin_left = 29.0
+margin_right = 54.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+custom_fonts/font = ExtResource( 5 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="inning_3" type="Label" parent="card_mini/card_mini_wrapper/card_mini/innings"]
+margin_left = 58.0
+margin_right = 83.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+custom_fonts/font = ExtResource( 5 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="inning_4" type="Label" parent="card_mini/card_mini_wrapper/card_mini/innings"]
+margin_left = 87.0
+margin_right = 112.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+custom_fonts/font = ExtResource( 5 )
+text = "4"
+align = 1
+valign = 1
+
+[node name="inning_5" type="Label" parent="card_mini/card_mini_wrapper/card_mini/innings"]
+margin_left = 116.0
+margin_right = 141.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+custom_fonts/font = ExtResource( 5 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="inning_6" type="Label" parent="card_mini/card_mini_wrapper/card_mini/innings"]
+margin_left = 145.0
+margin_right = 170.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+custom_fonts/font = ExtResource( 5 )
+text = "6"
+align = 1
+valign = 1
+
+[node name="inning_7" type="Label" parent="card_mini/card_mini_wrapper/card_mini/innings"]
+margin_left = 174.0
+margin_right = 199.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+custom_fonts/font = ExtResource( 5 )
+text = "7"
+align = 1
+valign = 1
+
+[node name="inning_8" type="Label" parent="card_mini/card_mini_wrapper/card_mini/innings"]
+margin_left = 203.0
+margin_right = 228.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+custom_fonts/font = ExtResource( 5 )
+text = "8"
+align = 1
+valign = 1
+
+[node name="inning_9" type="Label" parent="card_mini/card_mini_wrapper/card_mini/innings"]
+margin_left = 232.0
+margin_right = 257.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+custom_fonts/font = ExtResource( 5 )
+text = "9"
+align = 1
+valign = 1
+
+[node name="inning_10" type="Label" parent="card_mini/card_mini_wrapper/card_mini/innings"]
+margin_left = 261.0
+margin_right = 286.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+custom_fonts/font = ExtResource( 5 )
+text = "10"
+align = 1
+valign = 1
+
+[node name="inning_11" type="Label" parent="card_mini/card_mini_wrapper/card_mini/innings"]
+margin_left = 290.0
+margin_right = 315.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+custom_fonts/font = ExtResource( 5 )
+text = "11"
+align = 1
+valign = 1
+
+[node name="inning_12" type="Label" parent="card_mini/card_mini_wrapper/card_mini/innings"]
+margin_left = 319.0
+margin_right = 344.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+custom_fonts/font = ExtResource( 5 )
+text = "12"
+align = 1
+valign = 1
+
+[node name="card_mini_buttons" type="GridContainer" parent="card_mini/card_mini_wrapper/card_mini"]
+margin_top = 29.0
+margin_right = 344.0
+margin_bottom = 286.0
+rect_min_size = Vector2( 25, 25 )
+columns = 12
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="batter_1_1" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_1_2" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 29.0
+margin_right = 54.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_1_3" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 58.0
+margin_right = 83.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_1_4" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 87.0
+margin_right = 112.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_1_5" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 116.0
+margin_right = 141.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_1_6" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 145.0
+margin_right = 170.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_1_7" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 174.0
+margin_right = 199.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_1_8" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 203.0
+margin_right = 228.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_1_9" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 232.0
+margin_right = 257.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_1_10" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 261.0
+margin_right = 286.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_1_11" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 290.0
+margin_right = 315.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_1_12" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 319.0
+margin_right = 344.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_2_1" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_top = 29.0
+margin_right = 25.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_2_2" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 29.0
+margin_top = 29.0
+margin_right = 54.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_2_3" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 58.0
+margin_top = 29.0
+margin_right = 83.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_2_4" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 87.0
+margin_top = 29.0
+margin_right = 112.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_2_5" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 116.0
+margin_top = 29.0
+margin_right = 141.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_2_6" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 145.0
+margin_top = 29.0
+margin_right = 170.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_2_7" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 174.0
+margin_top = 29.0
+margin_right = 199.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_2_8" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 203.0
+margin_top = 29.0
+margin_right = 228.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_2_9" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 232.0
+margin_top = 29.0
+margin_right = 257.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_2_10" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 261.0
+margin_top = 29.0
+margin_right = 286.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_2_11" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 290.0
+margin_top = 29.0
+margin_right = 315.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_2_12" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 319.0
+margin_top = 29.0
+margin_right = 344.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_3_1" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_top = 58.0
+margin_right = 25.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_3_2" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 29.0
+margin_top = 58.0
+margin_right = 54.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_3_3" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 58.0
+margin_top = 58.0
+margin_right = 83.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_3_4" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 87.0
+margin_top = 58.0
+margin_right = 112.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_3_5" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 116.0
+margin_top = 58.0
+margin_right = 141.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_3_6" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 145.0
+margin_top = 58.0
+margin_right = 170.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_3_7" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 174.0
+margin_top = 58.0
+margin_right = 199.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_3_8" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 203.0
+margin_top = 58.0
+margin_right = 228.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_3_9" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 232.0
+margin_top = 58.0
+margin_right = 257.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_3_10" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 261.0
+margin_top = 58.0
+margin_right = 286.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_3_11" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 290.0
+margin_top = 58.0
+margin_right = 315.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_3_12" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 319.0
+margin_top = 58.0
+margin_right = 344.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_4_1" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_top = 87.0
+margin_right = 25.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_4_2" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 29.0
+margin_top = 87.0
+margin_right = 54.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_4_3" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 58.0
+margin_top = 87.0
+margin_right = 83.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_4_4" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 87.0
+margin_top = 87.0
+margin_right = 112.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_4_5" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 116.0
+margin_top = 87.0
+margin_right = 141.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_4_6" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 145.0
+margin_top = 87.0
+margin_right = 170.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_4_7" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 174.0
+margin_top = 87.0
+margin_right = 199.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_4_8" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 203.0
+margin_top = 87.0
+margin_right = 228.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_4_9" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 232.0
+margin_top = 87.0
+margin_right = 257.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_4_10" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 261.0
+margin_top = 87.0
+margin_right = 286.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_4_11" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 290.0
+margin_top = 87.0
+margin_right = 315.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_4_12" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 319.0
+margin_top = 87.0
+margin_right = 344.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_5_1" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_top = 116.0
+margin_right = 25.0
+margin_bottom = 141.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_5_2" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 29.0
+margin_top = 116.0
+margin_right = 54.0
+margin_bottom = 141.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_5_3" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 58.0
+margin_top = 116.0
+margin_right = 83.0
+margin_bottom = 141.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_5_4" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 87.0
+margin_top = 116.0
+margin_right = 112.0
+margin_bottom = 141.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_5_5" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 116.0
+margin_top = 116.0
+margin_right = 141.0
+margin_bottom = 141.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_5_6" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 145.0
+margin_top = 116.0
+margin_right = 170.0
+margin_bottom = 141.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_5_7" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 174.0
+margin_top = 116.0
+margin_right = 199.0
+margin_bottom = 141.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_5_8" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 203.0
+margin_top = 116.0
+margin_right = 228.0
+margin_bottom = 141.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_5_9" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 232.0
+margin_top = 116.0
+margin_right = 257.0
+margin_bottom = 141.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_5_10" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 261.0
+margin_top = 116.0
+margin_right = 286.0
+margin_bottom = 141.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_5_11" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 290.0
+margin_top = 116.0
+margin_right = 315.0
+margin_bottom = 141.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_5_12" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 319.0
+margin_top = 116.0
+margin_right = 344.0
+margin_bottom = 141.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_6_1" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_top = 145.0
+margin_right = 25.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_6_2" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 29.0
+margin_top = 145.0
+margin_right = 54.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_6_3" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 58.0
+margin_top = 145.0
+margin_right = 83.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_6_4" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 87.0
+margin_top = 145.0
+margin_right = 112.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_6_5" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 116.0
+margin_top = 145.0
+margin_right = 141.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_6_6" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 145.0
+margin_top = 145.0
+margin_right = 170.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_6_7" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 174.0
+margin_top = 145.0
+margin_right = 199.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_6_8" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 203.0
+margin_top = 145.0
+margin_right = 228.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_6_9" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 232.0
+margin_top = 145.0
+margin_right = 257.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_6_10" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 261.0
+margin_top = 145.0
+margin_right = 286.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_6_11" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 290.0
+margin_top = 145.0
+margin_right = 315.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_6_12" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 319.0
+margin_top = 145.0
+margin_right = 344.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_7_1" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_top = 174.0
+margin_right = 25.0
+margin_bottom = 199.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_7_2" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 29.0
+margin_top = 174.0
+margin_right = 54.0
+margin_bottom = 199.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_7_3" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 58.0
+margin_top = 174.0
+margin_right = 83.0
+margin_bottom = 199.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_7_4" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 87.0
+margin_top = 174.0
+margin_right = 112.0
+margin_bottom = 199.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_7_5" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 116.0
+margin_top = 174.0
+margin_right = 141.0
+margin_bottom = 199.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_7_6" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 145.0
+margin_top = 174.0
+margin_right = 170.0
+margin_bottom = 199.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_7_7" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 174.0
+margin_top = 174.0
+margin_right = 199.0
+margin_bottom = 199.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_7_8" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 203.0
+margin_top = 174.0
+margin_right = 228.0
+margin_bottom = 199.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_7_9" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 232.0
+margin_top = 174.0
+margin_right = 257.0
+margin_bottom = 199.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_7_10" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 261.0
+margin_top = 174.0
+margin_right = 286.0
+margin_bottom = 199.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_7_11" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 290.0
+margin_top = 174.0
+margin_right = 315.0
+margin_bottom = 199.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_7_12" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 319.0
+margin_top = 174.0
+margin_right = 344.0
+margin_bottom = 199.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_8_1" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_top = 203.0
+margin_right = 25.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_8_2" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 29.0
+margin_top = 203.0
+margin_right = 54.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_8_3" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 58.0
+margin_top = 203.0
+margin_right = 83.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_8_4" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 87.0
+margin_top = 203.0
+margin_right = 112.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_8_5" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 116.0
+margin_top = 203.0
+margin_right = 141.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_8_6" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 145.0
+margin_top = 203.0
+margin_right = 170.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_8_7" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 174.0
+margin_top = 203.0
+margin_right = 199.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_8_8" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 203.0
+margin_top = 203.0
+margin_right = 228.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_8_9" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 232.0
+margin_top = 203.0
+margin_right = 257.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_8_10" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 261.0
+margin_top = 203.0
+margin_right = 286.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_8_11" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 290.0
+margin_top = 203.0
+margin_right = 315.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_8_12" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 319.0
+margin_top = 203.0
+margin_right = 344.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_9_1" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_top = 232.0
+margin_right = 25.0
+margin_bottom = 257.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_9_2" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 29.0
+margin_top = 232.0
+margin_right = 54.0
+margin_bottom = 257.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_9_3" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 58.0
+margin_top = 232.0
+margin_right = 83.0
+margin_bottom = 257.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_9_4" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 87.0
+margin_top = 232.0
+margin_right = 112.0
+margin_bottom = 257.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_9_5" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 116.0
+margin_top = 232.0
+margin_right = 141.0
+margin_bottom = 257.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_9_6" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 145.0
+margin_top = 232.0
+margin_right = 170.0
+margin_bottom = 257.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_9_7" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 174.0
+margin_top = 232.0
+margin_right = 199.0
+margin_bottom = 257.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_9_8" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 203.0
+margin_top = 232.0
+margin_right = 228.0
+margin_bottom = 257.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_9_9" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 232.0
+margin_top = 232.0
+margin_right = 257.0
+margin_bottom = 257.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_9_10" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 261.0
+margin_top = 232.0
+margin_right = 286.0
+margin_bottom = 257.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_9_11" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 290.0
+margin_top = 232.0
+margin_right = 315.0
+margin_bottom = 257.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="batter_9_12" type="Button" parent="card_mini/card_mini_wrapper/card_mini/card_mini_buttons" groups=[
+"batter_card",
+]]
+margin_left = 319.0
+margin_top = 232.0
+margin_right = 344.0
+margin_bottom = 257.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 4 )
+toggle_mode = true
+
+[node name="tabs" type="TabContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1022.0
+margin_bottom = 601.0
+tab_align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Home" type="Tabs" parent="tabs"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+tab_align = 0
+
+[node name="home_team_card" parent="tabs/Home" instance=ExtResource( 1 )]
+
+[node name="Visitor" type="Tabs" parent="tabs"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="visitor_team_card" parent="tabs/Visitor" instance=ExtResource( 1 )]
+[connection signal="tab_changed" from="tabs" to="." method="_on_tabs_tab_changed"]

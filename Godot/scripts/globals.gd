@@ -36,3 +36,9 @@ var button_color = Color(1, 1, 1, 1)
 # Fielders
 var fielder_velocity: = Vector2.ZERO # start with no velocity
 var fielder_speed: = 200
+
+# Scorecard Tool
+var home_order = []
+var visitor_order = []
+var home_team = ""
+var visitor_team = ""

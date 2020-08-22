@@ -10,7 +10,7 @@ func _on_btn_exhibition_pressed():
 	get_tree().change_scene('res://scenes/battingView.tscn')
 
 func _on_btn_scorecard_pressed():
-	get_tree().change_scene('res://scenes/scorecard.tscn')
+	get_tree().change_scene('res://scenes/scorecard_tool.tscn')
 
 func _on_btn_settings_pressed():
 	get_tree().change_scene('res://scenes/settings.tscn')
