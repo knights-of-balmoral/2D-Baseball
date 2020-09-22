@@ -2,13 +2,16 @@ extends KinematicBody2D
 onready var fielder = get_node("defender_selected")
 onready var fielders = get_tree().get_nodes_in_group("fielders")
 onready var ball = get_tree().get_nodes_in_group("ball")
-var MAX_SPEED = 500
-var ACCELERATION = 2000
+var MAX_SPEED = 400
+var ACCELERATION = 1500
 var motion = Vector2.ZERO
 
 
 func _ready():
-	fielder.visible = false
+	if fielder.visible:
+		fielder.visible = false # meaning fielder is selected (shows selection bubble)
+	else: 
+		fielder.visible = true
 
 func _physics_process(delta):
 	var axis = get_input_axis()
@@ -16,7 +19,9 @@ func _physics_process(delta):
 		apply_friction(ACCELERATION * delta)
 	else: 
 		apply_movement(axis * ACCELERATION * delta)
-	motion = move_and_slide(motion)
+		
+	if fielder.visible: # only move if selected
+		motion = move_and_slide(motion)
 
 func _process(delta):
 	select_fielder()
@@ -38,8 +43,6 @@ func apply_friction(amount):
 func apply_movement(acceleration):
 	motion += acceleration
 	motion = motion.clamped(MAX_SPEED)
-
-
 
 func select_fielder():
 	
@@ -80,7 +83,7 @@ func select_fielder():
 		reselect_fielders(9)
 		print ("RIGHT FIELDER SELECTED")
 		
-	elif Input.is_action_just_pressed("closest_fielder"):
+	elif Input.is_action_just_pressed("closest_fielder"): #KP-ADD is the key
 		reselect_fielders(0)
 		print ("CLOSEST FIELDER SELECTED")
 			

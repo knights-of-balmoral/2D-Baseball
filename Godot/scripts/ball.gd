@@ -65,8 +65,10 @@ func _on_foul_area_body_entered(body):
 
 
 func _on_home_run_area_body_entered(body):
-	home_run_banner.visible = true
-	home_run_distance.text = globals.hit_distance
+	if (body.name == "ball"):
+		print (body.name)
+		home_run_banner.visible = true
+		home_run_distance.text = globals.hit_distance
 	#uiCam.make_current()
 
 	#globals.ball_status = "P"

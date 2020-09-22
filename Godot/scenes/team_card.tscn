@@ -1,18 +1,33 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://themes/toggles.tres" type="Theme" id=1]
-[ext_resource path="res://scripts/at_bat_result.gd" type="Script" id=2]
+[ext_resource path="res://assets/raw/fielder_positions.png" type="Texture" id=2]
 [ext_resource path="res://fonts/10_standard.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/raw/gui/scorecard_base.png" type="Texture" id=4]
 [ext_resource path="res://assets/raw/gui/arrow_right.png" type="Texture" id=5]
 [ext_resource path="res://fonts/40_standard.tres" type="DynamicFont" id=6]
 [ext_resource path="res://scripts/team_card.gd" type="Script" id=7]
 
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.933333, 0.717647, 0.368627, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.270588, 0.258824, 0.258824, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
 [node name="team_card" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 7 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -29,6 +44,7 @@ max_length = 20
 clear_button_enabled = true
 placeholder_text = "Team"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -41,10 +57,11 @@ rect_min_size = Vector2( 150, 0 )
 hint_tooltip = "Enter Batter's Name"
 custom_fonts/font = ExtResource( 3 )
 align = 1
-max_length = 20
+max_length = 10
 clear_button_enabled = true
 placeholder_text = "Date"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -74,7 +91,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="jersey_no" type="LineEdit" parent="batting_order/batter_1"]
+[node name="jersey_no" type="LineEdit" parent="batting_order/batter_1" groups=[
+"ROSTER",
+]]
 margin_left = 11.0
 margin_right = 57.0
 margin_bottom = 25.0
@@ -86,7 +105,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="player_position" type="LineEdit" parent="batting_order/batter_1"]
+[node name="player_position" type="LineEdit" parent="batting_order/batter_1" groups=[
+"ROSTER",
+]]
 margin_left = 61.0
 margin_right = 107.0
 margin_bottom = 25.0
@@ -94,7 +115,9 @@ custom_fonts/font = ExtResource( 3 )
 max_length = 2
 placeholder_text = "POS"
 
-[node name="player_name" type="LineEdit" parent="batting_order/batter_1"]
+[node name="player_name" type="LineEdit" parent="batting_order/batter_1" groups=[
+"ROSTER",
+]]
 margin_left = 111.0
 margin_right = 261.0
 margin_bottom = 25.0
@@ -106,6 +129,14 @@ clear_button_enabled = true
 placeholder_text = "Player Name"
 __meta__ = {
 "_edit_use_anchors_": false
+}
+
+[node name="batter_indicator" type="Sprite" parent="batting_order/batter_1"]
+position = Vector2( -16.6465, 11.9681 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
 }
 
 [node name="batter_2" type="Control" parent="batting_order"]
@@ -126,7 +157,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="jersey_no" type="LineEdit" parent="batting_order/batter_2"]
+[node name="jersey_no" type="LineEdit" parent="batting_order/batter_2" groups=[
+"ROSTER",
+]]
 margin_left = 11.0
 margin_right = 57.0
 margin_bottom = 25.0
@@ -138,7 +171,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="player_position" type="LineEdit" parent="batting_order/batter_2"]
+[node name="player_position" type="LineEdit" parent="batting_order/batter_2" groups=[
+"ROSTER",
+]]
 margin_left = 61.0
 margin_right = 107.0
 margin_bottom = 25.0
@@ -146,7 +181,9 @@ custom_fonts/font = ExtResource( 3 )
 max_length = 2
 placeholder_text = "POS"
 
-[node name="player_name" type="LineEdit" parent="batting_order/batter_2"]
+[node name="player_name" type="LineEdit" parent="batting_order/batter_2" groups=[
+"ROSTER",
+]]
 margin_left = 111.0
 margin_right = 261.0
 margin_bottom = 25.0
@@ -158,6 +195,15 @@ clear_button_enabled = true
 placeholder_text = "Player Name"
 __meta__ = {
 "_edit_use_anchors_": false
+}
+
+[node name="batter_indicator2" type="Sprite" parent="batting_order/batter_2"]
+visible = false
+position = Vector2( -16.6465, 12.0144 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
 }
 
 [node name="batter_3" type="Control" parent="batting_order"]
@@ -178,7 +224,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="jersey_no" type="LineEdit" parent="batting_order/batter_3"]
+[node name="jersey_no" type="LineEdit" parent="batting_order/batter_3" groups=[
+"ROSTER",
+]]
 margin_left = 11.0
 margin_right = 57.0
 margin_bottom = 25.0
@@ -190,7 +238,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="player_position" type="LineEdit" parent="batting_order/batter_3"]
+[node name="player_position" type="LineEdit" parent="batting_order/batter_3" groups=[
+"ROSTER",
+]]
 margin_left = 61.0
 margin_right = 107.0
 margin_bottom = 25.0
@@ -198,7 +248,9 @@ custom_fonts/font = ExtResource( 3 )
 max_length = 2
 placeholder_text = "POS"
 
-[node name="player_name" type="LineEdit" parent="batting_order/batter_3"]
+[node name="player_name" type="LineEdit" parent="batting_order/batter_3" groups=[
+"ROSTER",
+]]
 margin_left = 111.0
 margin_right = 261.0
 margin_bottom = 25.0
@@ -210,6 +262,15 @@ clear_button_enabled = true
 placeholder_text = "Player Name"
 __meta__ = {
 "_edit_use_anchors_": false
+}
+
+[node name="batter_indicator3" type="Sprite" parent="batting_order/batter_3"]
+visible = false
+position = Vector2( -17.4203, 12.0605 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
 }
 
 [node name="batter_4" type="Control" parent="batting_order"]
@@ -230,7 +291,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="jersey_no" type="LineEdit" parent="batting_order/batter_4"]
+[node name="jersey_no" type="LineEdit" parent="batting_order/batter_4" groups=[
+"ROSTER",
+]]
 margin_left = 11.0
 margin_right = 57.0
 margin_bottom = 25.0
@@ -242,7 +305,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="player_position" type="LineEdit" parent="batting_order/batter_4"]
+[node name="player_position" type="LineEdit" parent="batting_order/batter_4" groups=[
+"ROSTER",
+]]
 margin_left = 61.0
 margin_right = 107.0
 margin_bottom = 25.0
@@ -250,7 +315,9 @@ custom_fonts/font = ExtResource( 3 )
 max_length = 2
 placeholder_text = "POS"
 
-[node name="player_name" type="LineEdit" parent="batting_order/batter_4"]
+[node name="player_name" type="LineEdit" parent="batting_order/batter_4" groups=[
+"ROSTER",
+]]
 margin_left = 111.0
 margin_right = 261.0
 margin_bottom = 25.0
@@ -262,6 +329,15 @@ clear_button_enabled = true
 placeholder_text = "Player Name"
 __meta__ = {
 "_edit_use_anchors_": false
+}
+
+[node name="batter_indicator4" type="Sprite" parent="batting_order/batter_4"]
+visible = false
+position = Vector2( -16.6465, 11.333 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
 }
 
 [node name="batter_5" type="Control" parent="batting_order"]
@@ -282,7 +358,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="jersey_no" type="LineEdit" parent="batting_order/batter_5"]
+[node name="jersey_no" type="LineEdit" parent="batting_order/batter_5" groups=[
+"ROSTER",
+]]
 margin_left = 11.0
 margin_right = 57.0
 margin_bottom = 25.0
@@ -294,7 +372,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="player_position" type="LineEdit" parent="batting_order/batter_5"]
+[node name="player_position" type="LineEdit" parent="batting_order/batter_5" groups=[
+"ROSTER",
+]]
 margin_left = 61.0
 margin_right = 107.0
 margin_bottom = 25.0
@@ -302,7 +382,9 @@ custom_fonts/font = ExtResource( 3 )
 max_length = 2
 placeholder_text = "POS"
 
-[node name="player_name" type="LineEdit" parent="batting_order/batter_5"]
+[node name="player_name" type="LineEdit" parent="batting_order/batter_5" groups=[
+"ROSTER",
+]]
 margin_left = 111.0
 margin_right = 261.0
 margin_bottom = 25.0
@@ -314,6 +396,15 @@ clear_button_enabled = true
 placeholder_text = "Player Name"
 __meta__ = {
 "_edit_use_anchors_": false
+}
+
+[node name="batter_indicator5" type="Sprite" parent="batting_order/batter_5"]
+visible = false
+position = Vector2( -16.6465, 11.3794 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
 }
 
 [node name="batter_6" type="Control" parent="batting_order"]
@@ -334,7 +425,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="jersey_no" type="LineEdit" parent="batting_order/batter_6"]
+[node name="jersey_no" type="LineEdit" parent="batting_order/batter_6" groups=[
+"ROSTER",
+]]
 margin_left = 11.0
 margin_right = 57.0
 margin_bottom = 25.0
@@ -346,7 +439,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="player_position" type="LineEdit" parent="batting_order/batter_6"]
+[node name="player_position" type="LineEdit" parent="batting_order/batter_6" groups=[
+"ROSTER",
+]]
 margin_left = 61.0
 margin_right = 107.0
 margin_bottom = 25.0
@@ -354,7 +449,9 @@ custom_fonts/font = ExtResource( 3 )
 max_length = 2
 placeholder_text = "POS"
 
-[node name="player_name" type="LineEdit" parent="batting_order/batter_6"]
+[node name="player_name" type="LineEdit" parent="batting_order/batter_6" groups=[
+"ROSTER",
+]]
 margin_left = 111.0
 margin_right = 261.0
 margin_bottom = 25.0
@@ -366,6 +463,15 @@ clear_button_enabled = true
 placeholder_text = "Player Name"
 __meta__ = {
 "_edit_use_anchors_": false
+}
+
+[node name="batter_indicator6" type="Sprite" parent="batting_order/batter_6"]
+visible = false
+position = Vector2( -16.6465, 10.6519 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
 }
 
 [node name="batter_7" type="Control" parent="batting_order"]
@@ -386,7 +492,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="jersey_no" type="LineEdit" parent="batting_order/batter_7"]
+[node name="jersey_no" type="LineEdit" parent="batting_order/batter_7" groups=[
+"ROSTER",
+]]
 margin_left = 11.0
 margin_right = 57.0
 margin_bottom = 25.0
@@ -398,7 +506,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="player_position" type="LineEdit" parent="batting_order/batter_7"]
+[node name="player_position" type="LineEdit" parent="batting_order/batter_7" groups=[
+"ROSTER",
+]]
 margin_left = 61.0
 margin_right = 107.0
 margin_bottom = 25.0
@@ -406,7 +516,9 @@ custom_fonts/font = ExtResource( 3 )
 max_length = 2
 placeholder_text = "POS"
 
-[node name="player_name" type="LineEdit" parent="batting_order/batter_7"]
+[node name="player_name" type="LineEdit" parent="batting_order/batter_7" groups=[
+"ROSTER",
+]]
 margin_left = 111.0
 margin_right = 261.0
 margin_bottom = 25.0
@@ -418,6 +530,15 @@ clear_button_enabled = true
 placeholder_text = "Player Name"
 __meta__ = {
 "_edit_use_anchors_": false
+}
+
+[node name="batter_indicator7" type="Sprite" parent="batting_order/batter_7"]
+visible = false
+position = Vector2( -16.6465, 10.698 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
 }
 
 [node name="batter_8" type="Control" parent="batting_order"]
@@ -438,7 +559,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="jersey_no" type="LineEdit" parent="batting_order/batter_8"]
+[node name="jersey_no" type="LineEdit" parent="batting_order/batter_8" groups=[
+"ROSTER",
+]]
 margin_left = 11.0
 margin_right = 57.0
 margin_bottom = 25.0
@@ -450,7 +573,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="player_position" type="LineEdit" parent="batting_order/batter_8"]
+[node name="player_position" type="LineEdit" parent="batting_order/batter_8" groups=[
+"ROSTER",
+]]
 margin_left = 61.0
 margin_right = 107.0
 margin_bottom = 25.0
@@ -458,7 +583,9 @@ custom_fonts/font = ExtResource( 3 )
 max_length = 2
 placeholder_text = "POS"
 
-[node name="player_name" type="LineEdit" parent="batting_order/batter_8"]
+[node name="player_name" type="LineEdit" parent="batting_order/batter_8" groups=[
+"ROSTER",
+]]
 margin_left = 111.0
 margin_right = 261.0
 margin_bottom = 25.0
@@ -470,6 +597,15 @@ clear_button_enabled = true
 placeholder_text = "Player Name"
 __meta__ = {
 "_edit_use_anchors_": false
+}
+
+[node name="batter_indicator8" type="Sprite" parent="batting_order/batter_8"]
+visible = false
+position = Vector2( -15.8728, 11.5181 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
 }
 
 [node name="batter_9" type="Control" parent="batting_order"]
@@ -490,7 +626,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="jersey_no" type="LineEdit" parent="batting_order/batter_9"]
+[node name="jersey_no" type="LineEdit" parent="batting_order/batter_9" groups=[
+"ROSTER",
+]]
 margin_left = 11.0
 margin_right = 57.0
 margin_bottom = 25.0
@@ -502,7 +640,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="player_position" type="LineEdit" parent="batting_order/batter_9"]
+[node name="player_position" type="LineEdit" parent="batting_order/batter_9" groups=[
+"ROSTER",
+]]
 margin_left = 61.0
 margin_right = 107.0
 margin_bottom = 25.0
@@ -510,7 +650,9 @@ custom_fonts/font = ExtResource( 3 )
 max_length = 2
 placeholder_text = "POS"
 
-[node name="player_name" type="LineEdit" parent="batting_order/batter_9"]
+[node name="player_name" type="LineEdit" parent="batting_order/batter_9" groups=[
+"ROSTER",
+]]
 margin_left = 111.0
 margin_right = 261.0
 margin_bottom = 25.0
@@ -524,8 +666,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="batter_indicator" type="Sprite" parent="batting_order"]
-position = Vector2( -16.6465, 11.9681 )
+[node name="batter_indicator9" type="Sprite" parent="batting_order/batter_9"]
+visible = false
+position = Vector2( -15.099, 12.3381 )
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 5 )
 __meta__ = {
@@ -547,7 +690,6 @@ __meta__ = {
 [node name="at_bat_field" type="Sprite" parent="at_bat"]
 self_modulate = Color( 1, 1, 1, 0.533333 )
 texture = ExtResource( 4 )
-script = ExtResource( 2 )
 
 [node name="first_base" type="Button" parent="at_bat/at_bat_field"]
 margin_left = 87.3685
@@ -683,6 +825,213 @@ margin_left = 132.941
 margin_top = 78.17
 margin_right = 264.941
 margin_bottom = 119.17
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="outs" type="HBoxContainer" parent="at_bat"]
+margin_left = 59.873
+margin_top = 86.049
+margin_right = 117.873
+margin_bottom = 111.049
+custom_constants/separation = 7
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="out_1" type="Button" parent="at_bat/outs"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+toggle_mode = true
+
+[node name="out_2" type="Button" parent="at_bat/outs"]
+margin_left = 32.0
+margin_right = 57.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+toggle_mode = true
+
+[node name="out_selector" type="GridContainer" parent="at_bat"]
+margin_left = 141.137
+margin_top = -122.76
+margin_right = 166.137
+margin_bottom = -97.7598
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="F" type="Button" parent="at_bat/out_selector"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 1 )
+toggle_mode = true
+text = "F"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="L" type="Button" parent="at_bat/out_selector"]
+margin_left = 29.0
+margin_right = 54.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 1 )
+toggle_mode = true
+text = "L"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="P" type="Button" parent="at_bat/out_selector"]
+margin_left = 58.0
+margin_right = 83.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 1 )
+toggle_mode = true
+text = "P"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="f1" type="Button" parent="at_bat/out_selector"]
+margin_top = 29.0
+margin_right = 25.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 1 )
+toggle_mode = true
+text = "1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="f2" type="Button" parent="at_bat/out_selector"]
+margin_left = 29.0
+margin_top = 29.0
+margin_right = 54.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 1 )
+toggle_mode = true
+text = "2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="f3" type="Button" parent="at_bat/out_selector"]
+margin_left = 58.0
+margin_top = 29.0
+margin_right = 83.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 1 )
+toggle_mode = true
+text = "3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="f4" type="Button" parent="at_bat/out_selector"]
+margin_top = 58.0
+margin_right = 25.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 1 )
+toggle_mode = true
+text = "4"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="f5" type="Button" parent="at_bat/out_selector"]
+margin_left = 29.0
+margin_top = 58.0
+margin_right = 54.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 1 )
+toggle_mode = true
+text = "5"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="f6" type="Button" parent="at_bat/out_selector"]
+margin_left = 58.0
+margin_top = 58.0
+margin_right = 83.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 1 )
+toggle_mode = true
+text = "6"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="f7" type="Button" parent="at_bat/out_selector"]
+margin_top = 87.0
+margin_right = 25.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 1 )
+toggle_mode = true
+text = "7"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="f8" type="Button" parent="at_bat/out_selector"]
+margin_left = 29.0
+margin_top = 87.0
+margin_right = 54.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 1 )
+toggle_mode = true
+text = "8"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="f9" type="Button" parent="at_bat/out_selector"]
+margin_left = 58.0
+margin_top = 87.0
+margin_right = 83.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 25, 25 )
+theme = ExtResource( 1 )
+toggle_mode = true
+text = "9"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ui_ref" type="Node2D" parent="at_bat"]
+
+[node name="fielder_ref" type="Sprite" parent="at_bat/ui_ref"]
+visible = false
+position = Vector2( -0.439148, -1.94766 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 2 )
+
+[node name="tog_fielder_ref" type="Button" parent="at_bat/ui_ref"]
+margin_left = 230.67
+margin_top = -35.9241
+margin_right = 255.67
+margin_bottom = -10.9241
+rect_min_size = Vector2( 25, 25 )
+toggle_mode = true
+text = "?"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -848,37 +1197,6 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="outs" type="HBoxContainer" parent="."]
-margin_left = 688.085
-margin_top = 455.399
-margin_right = 825.085
-margin_bottom = 503.399
-custom_constants/separation = 29
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="score_outs" type="Label" parent="outs"]
-margin_right = 23.0
-margin_bottom = 48.0
-custom_fonts/font = ExtResource( 6 )
-text = "0"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="score_outs_label" type="Label" parent="outs"]
-margin_left = 52.0
-margin_right = 137.0
-margin_bottom = 48.0
-custom_fonts/font = ExtResource( 6 )
-text = "Outs"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 [connection signal="text_changed" from="team_name" to="." method="_on_team_name_text_changed"]
+[connection signal="text_changed" from="date" to="." method="_on_date_text_changed"]
+[connection signal="toggled" from="at_bat/ui_ref/tog_fielder_ref" to="." method="_on_tog_fielder_ref_toggled"]

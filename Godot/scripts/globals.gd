@@ -38,7 +38,13 @@ var fielder_velocity: = Vector2.ZERO # start with no velocity
 var fielder_speed: = 200
 
 # Scorecard Tool
-var home_order = []
-var visitor_order = []
-var home_team = ""
-var visitor_team = ""
+var home_lineup = [[8, "CF", "Happ"], [12, "LF", "Schwarber"], [22, "RF", "Heyward"], 
+[40, "C", "Contreras"], [44, "1B", "Rizzo"], [9, "SS", "Baez"], 
+[13, "3B", "Bote"], [1, "2B", "Hoerner"], [24, "DH", "Caratini"], ]
+
+var visitor_lineup = [[1, "CF", "Happ"], [2, "LF", "Schwarber"], [3, "RF", "Heyward"], 
+[4, "C", "Contreras"], [5, "1B", "Rizzo"], [6, "SS", "Baez"], 
+[7, "3B", "Bote"], [8, "2B", "Hoerner"], [9, "DH", "Caratini"], ]
+
+var teams = ["",""]
+var game_date = ""
