@@ -2,7 +2,7 @@ extends KinematicBody2D
 class_name Pitcher
 
 onready var anim_pitcher = get_node("anim_pitcher")
-
+onready var ball = get_node("../ball_group/ball")
 
 var velocity: = Vector2.ZERO # start with no velocity
 var speed: = 100
@@ -21,6 +21,8 @@ func _physics_process(delta): # delta times things with clock/render cycle
 	if Input.is_action_just_pressed("pitch_ball") && globals.ball_status == "P":
 		globals.pitch_potential_result = pitchComputation() #replace with a pitch selection function
 		anim_pitcher.play("pitch_motion")
+	
+		
 		
 func pitchComputation(): #accepts where pitcher aimed and then calculates result
 	# These are the different animations possible for a fastball
@@ -36,8 +38,9 @@ func pitchComputation(): #accepts where pitcher aimed and then calculates result
 	return random_pitch
 
 func _on_anim_pitcher_animation_finished():
-		if anim_pitcher.animation == "idle":
-			pass
-		else:
-			globals.ball_status = "PITCHED"
-			anim_pitcher.play("idle")
+	ball.visible = true
+	if anim_pitcher.animation == "idle":
+		pass
+	else:
+		globals.ball_status = "PITCHED"
+		anim_pitcher.play("idle")

@@ -175,6 +175,7 @@ shape = SubResource( 8 )
 [node name="ball_group" type="Node" parent="batter_view"]
 
 [node name="ball" type="Sprite" parent="batter_view/ball_group"]
+visible = false
 position = Vector2( 483.981, 165.334 )
 rotation = -0.0481713
 scale = Vector2( 0.004, 0.004 )

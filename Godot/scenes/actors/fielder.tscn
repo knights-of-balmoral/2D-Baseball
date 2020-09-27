@@ -37,7 +37,7 @@ extents = Vector2( 9.51407, 30.1683 )
 
 [node name="fielder" type="KinematicBody2D"]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 2
 script = ExtResource( 3 )
 
 [node name="defender_not_selected" type="Sprite" parent="."]
@@ -55,6 +55,7 @@ scale = Vector2( 0.106913, 0.0763664 )
 texture = ExtResource( 2 )
 
 [node name="Particles2D" type="Particles2D" parent="defender_selected"]
+visible = false
 position = Vector2( -12.7197, -42.9397 )
 scale = Vector2( 4, 4 )
 amount = 5

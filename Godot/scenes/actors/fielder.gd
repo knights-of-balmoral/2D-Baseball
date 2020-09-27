@@ -8,8 +8,9 @@ var motion = Vector2.ZERO
 
 
 func _ready():
+	# show/hide fielder selection circle
 	if fielder.visible:
-		fielder.visible = false # meaning fielder is selected (shows selection bubble)
+		fielder.visible = false 
 	else: 
 		fielder.visible = true
 
@@ -49,44 +50,34 @@ func select_fielder():
 	# Defense Controls
 	if Input.is_action_pressed("select_1"):
 		reselect_fielders(1)
-		print ("PITCHER SELECTED")
-		
+			
 	elif Input.is_action_just_pressed("select_2"):
 		reselect_fielders(2)			
-		print ("CATCHER SELECTED")
-		
+			
 	elif Input.is_action_just_pressed("select_3"):
 		reselect_fielders(3)
-		print ("FIRST BASEMAN SELECTED")
-		
+			
 	elif Input.is_action_just_pressed("select_4"):
 		reselect_fielders(4)
-		print ("2nd BASEMAN SELECTED")
-		
+			
 	elif Input.is_action_just_pressed("select_5"):
 		reselect_fielders(5)
-		print ("3rd BASEMAN SELECTED")
-		
+			
 	elif Input.is_action_just_pressed("select_6"):
 		reselect_fielders(6)
-		print ("SHORTSTOP SELECTED")
-		
+			
 	elif Input.is_action_just_pressed("select_7"):
 		reselect_fielders(7)
-		print ("LEFT FIELDER SELECTED")
-		
+			
 	elif Input.is_action_just_pressed("select_8"):
 		reselect_fielders(8)
-		print ("CENTER FIELDER SELECTED")
-		
+			
 	elif Input.is_action_just_pressed("select_9"):
 		reselect_fielders(9)
-		print ("RIGHT FIELDER SELECTED")
-		
+			
 	elif Input.is_action_just_pressed("closest_fielder"): #KP-ADD is the key
 		reselect_fielders(0)
-		print ("CLOSEST FIELDER SELECTED")
-			
+				
 func reselect_fielders(defender):
 	if defender > 0:
 		for member in fielders:

@@ -242,7 +242,7 @@ script = ExtResource( 1 )
 
 [node name="uiCamera" type="Camera2D" parent="."]
 position = Vector2( 679.607, -922.24 )
-zoom = Vector2( 4, 4 )
+zoom = Vector2( 2, 2 )
 
 [node name="scene_bg" type="Sprite" parent="."]
 material = SubResource( 1 )
@@ -398,7 +398,7 @@ texture = ExtResource( 10 )
 ]]
 position = Vector2( 544.601, 300.391 )
 collision_layer = 17
-collision_mask = 13
+collision_mask = 9
 physics_material_override = SubResource( 3 )
 gravity_scale = 0.0
 contacts_reported = 4
@@ -484,53 +484,62 @@ margin_bottom = 300.0
 "fielders",
 ] instance=ExtResource( 6 )]
 position = Vector2( 543.821, -403.176 )
+collision_layer = 32
 
 [node name="fielder_2" parent="defense" groups=[
 "fielders",
 ] instance=ExtResource( 6 )]
 position = Vector2( 542.526, 442.922 )
+collision_layer = 32
 
 [node name="fielder_3" parent="defense" groups=[
 "fielders",
 "infield",
 ] instance=ExtResource( 6 )]
 position = Vector2( 1298.25, -569.172 )
+collision_layer = 32
 
 [node name="fielder_4" parent="defense" groups=[
 "fielders",
 "infield",
 ] instance=ExtResource( 6 )]
 position = Vector2( 769.237, -1085.4 )
+collision_layer = 32
 
 [node name="fielder_5" parent="defense" groups=[
 "fielders",
 "infield",
 ] instance=ExtResource( 6 )]
 position = Vector2( -154.779, -665.879 )
+collision_layer = 32
 
 [node name="fielder_6" parent="defense" groups=[
 "fielders",
 "infield",
 ] instance=ExtResource( 6 )]
 position = Vector2( 127.17, -937.098 )
+collision_layer = 32
 
 [node name="fielder_7" parent="defense" groups=[
 "fielders",
 "outfield",
 ] instance=ExtResource( 6 )]
 position = Vector2( -809.342, -1321.77 )
+collision_layer = 32
 
 [node name="fielder_8" parent="defense" groups=[
 "fielders",
 "outfield",
 ] instance=ExtResource( 6 )]
 position = Vector2( 504.472, -2019.03 )
+collision_layer = 32
 
 [node name="fielder_9" parent="defense" groups=[
 "fielders",
 "outfield",
 ] instance=ExtResource( 6 )]
 position = Vector2( 1885.85, -1369.98 )
+collision_layer = 32
 
 [node name="offense" type="Node" parent="."]
 
