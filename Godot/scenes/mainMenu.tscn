@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/raw/gui/menu-bg.jpg" type="Texture" id=2]
@@ -6,10 +6,6 @@
 [ext_resource path="res://fx/button_theme.tres" type="Theme" id=4]
 [ext_resource path="res://assets/fonts/imagine_font.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://scripts/buttons/buttons.gd" type="Script" id=6]
-[ext_resource path="res://sfx/organ_1.wav" type="AudioStream" id=7]
-[ext_resource path="res://sfx/organ_2.wav" type="AudioStream" id=8]
-[ext_resource path="res://sfx/organ_3.wav" type="AudioStream" id=9]
-[ext_resource path="res://sfx/organ_4.wav" type="AudioStream" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 44
@@ -98,7 +94,6 @@ __meta__ = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ui/buttons/menu_buttons/btn_exhibition"]
-stream = ExtResource( 7 )
 
 [node name="btn_season" type="Button" parent="ui/buttons/menu_buttons"]
 margin_top = 58.0
@@ -114,7 +109,6 @@ __meta__ = {
 }
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="ui/buttons/menu_buttons/btn_season"]
-stream = ExtResource( 8 )
 
 [node name="btn_teams" type="Button" parent="ui/buttons/menu_buttons"]
 margin_top = 116.0
@@ -130,7 +124,6 @@ __meta__ = {
 }
 
 [node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="ui/buttons/menu_buttons/btn_teams"]
-stream = ExtResource( 9 )
 
 [node name="btn_batting_practice" type="Button" parent="ui/buttons/menu_buttons"]
 margin_top = 174.0
@@ -146,7 +139,6 @@ __meta__ = {
 }
 
 [node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="ui/buttons/menu_buttons/btn_batting_practice"]
-stream = ExtResource( 10 )
 
 [node name="btn_scorecard" type="Button" parent="ui/buttons/menu_buttons"]
 margin_top = 232.0
@@ -162,7 +154,6 @@ __meta__ = {
 }
 
 [node name="AudioStreamPlayer7" type="AudioStreamPlayer" parent="ui/buttons/menu_buttons/btn_scorecard"]
-stream = ExtResource( 10 )
 
 [node name="btn_settings" type="Button" parent="ui/buttons/menu_buttons"]
 margin_top = 290.0
@@ -178,7 +169,6 @@ __meta__ = {
 }
 
 [node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="ui/buttons/menu_buttons/btn_settings"]
-stream = ExtResource( 10 )
 
 [node name="btn_quit" type="Button" parent="ui/buttons/menu_buttons"]
 margin_top = 348.0
@@ -194,7 +184,6 @@ __meta__ = {
 }
 
 [node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="ui/buttons/menu_buttons/btn_quit"]
-stream = ExtResource( 10 )
 [connection signal="mouse_entered" from="ui/buttons/menu_buttons/btn_exhibition" to="ui/buttons/menu_buttons/btn_exhibition" method="_on_btn_exhibition_mouse_entered"]
 [connection signal="pressed" from="ui/buttons/menu_buttons/btn_exhibition" to="ui/buttons/menu_buttons/btn_exhibition" method="_on_btn_exhibition_pressed"]
 [connection signal="mouse_entered" from="ui/buttons/menu_buttons/btn_season" to="ui/buttons/menu_buttons/btn_season" method="_on_btn_season_mouse_entered"]
