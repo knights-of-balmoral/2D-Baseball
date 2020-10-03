@@ -57,7 +57,8 @@ func calcBallMovement():
 	return ball_direction
 
 func _on_foul_area_body_entered(body):
-	foul_banner.visible = true
+	if (!foul_banner.visible && !home_run_banner.visible && body.name == "ball"):
+		foul_banner.visible = true
 	globals.ball_status = "P"
 	if (globals.strikes < 2):globals.strikes +=1
 	#yield(get_tree().create_timer(4.0), "timeout")
@@ -65,9 +66,9 @@ func _on_foul_area_body_entered(body):
 
 
 func _on_home_run_area_body_entered(body):
-	if (body.name == "ball"):
-		print (body.name)
+	if (!foul_banner.visible && !home_run_banner.visible && body.name == "ball"):
 		home_run_banner.visible = true
+		ball.visible = false
 		home_run_distance.text = globals.hit_distance
 	#uiCam.make_current()
 

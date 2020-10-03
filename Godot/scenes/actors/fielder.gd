@@ -2,6 +2,8 @@ extends KinematicBody2D
 onready var fielder = get_node("defender_selected")
 onready var fielders = get_tree().get_nodes_in_group("fielders")
 onready var ball = get_tree().get_nodes_in_group("ball")
+onready var ball_effect = $detection/has_ball_effect
+onready var fielder_cam = $view_fielder
 var MAX_SPEED = 400
 var ACCELERATION = 1500
 var motion = Vector2.ZERO
@@ -13,6 +15,8 @@ func _ready():
 		fielder.visible = false 
 	else: 
 		fielder.visible = true
+		
+	ball_effect.visible = false
 
 func _physics_process(delta):
 	var axis = get_input_axis()
@@ -94,12 +98,15 @@ func get_nearest_fielder():
 	
 #	for member in fielders:
 #		print(member.global_position - ball.global_position)
-		
-	
-	
-	
 
 #func move_fielder(fielder):
 #	globals.fielder_velocity.x = (Input.get_action_strength("defense_move_right") - Input.get_action_strength("defense_move_left")) * globals.fielder_speed
 #	globals.fielder_velocity.y = (Input.get_action_strength("defense_move_down") - Input.get_action_strength("defense_move_up")) * globals.fielder_speed
 #	fielder.move
+
+func _on_detection_body_entered(body):
+	if (body.name == "ball"):
+		ball_effect.visible = true
+		ball[0].visible = false #zero of array is because of way node is selected above
+		fielder_cam.make_current()
+		
