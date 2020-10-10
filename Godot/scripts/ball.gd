@@ -1,13 +1,26 @@
 extends RigidBody2D
 var speed = globals.ball_speed
 var ball_has_been_hit = false
-var ball_english = Vector2(0,0) # selects "origin" - like where cue ball is hit (english)
+var ball_english = Vector2(0, 0) # selects "origin" - like where cue ball is hit (english)
 var ball_origin = Vector2(544, 300)
+var ball_thrown = false
+
 onready var anim = get_node("anim")
 onready var ball = get_node("../ball")
 onready var foul_banner = get_node("../ui_canvas/ui/foul")
 onready var home_run_banner = get_node("../ui_canvas/ui/home_run")
 onready var home_run_distance = get_node("../ui_canvas/ui/home_run/distance")
+
+onready var fielder_1 = get_node("../../defense/fielder_1")
+onready var fielder_2 = get_node("../../defense/fielder_2")
+onready var fielder_3 = get_node("../../defense/fielder_3")
+onready var fielder_4 = get_node("../../defense/fielder_4")
+onready var fielder_5 = get_node("../../defense/fielder_5")
+onready var fielder_6 = get_node("../../defense/fielder_6")
+onready var fielder_7 = get_node("../../defense/fielder_7")
+onready var fielder_8 = get_node("../../defense/fielder_8")
+onready var fielder_9 = get_node("../../defense/fielder_9")
+
 #onready var uiCam = get_node("../../uiCamera")
 #randi()%10+1 returns an int from 1 to 10
 #randf()*10.0+1.0 returns a float from 1.0 to 10.999999~
@@ -15,8 +28,12 @@ onready var home_run_distance = get_node("../ui_canvas/ui/home_run/distance")
 #range(1,11)[randi()%range(1,11).size()] is a little ugly and less efficient but returns an int from 1 to 10 without you having to do the math yourself (aka the 11+1 part) because all you need to do is set the range()
 
 func _ready():
-	print ("initial velocity:" + str(ball.linear_velocity))
-
+	pass
+	
+func _physics_process(delta):
+	if Input.is_action_pressed("throw_1") && globals.ball_status == "FIELDER":
+		ball_thrown = true
+		
 # set_applied_force??	
 func _integrate_forces(state):
 	
@@ -28,13 +45,20 @@ func _integrate_forces(state):
 		ball_has_been_hit = true
 	else:
 		pass
+		# THROW THE BALL TO WHO [player vector- enemy vector]	
+	if (ball_thrown):
+		var throw_target = self.position - fielder_1.position
+		print ("throw ball")
+		ball.visible = true
+		ball.apply_impulse(ball_english, throw_target)
+		ball_thrown = false
 	
 func calcBallMovement():
 	randomize()
 	var random_x_factor = randi()%3+1
 	var random_y_factor = randi()%52+1
 	
-	#get a random hit velocity bonus calmped to max from global settings
+	#get a random hit velocity bonus clamped to max from global settings
 	globals.hit_power_max = randi()%globals.hit_power_default + globals.hit_power_bonus
 	
 	# decide X velocity/direction
@@ -57,18 +81,19 @@ func calcBallMovement():
 	return ball_direction
 
 func _on_foul_area_body_entered(body):
-	if (!foul_banner.visible && !home_run_banner.visible && body.name == "ball"):
+	if (body.name == "ball" && !foul_banner.visible && !home_run_banner.visible && globals.ball_status != "FIELDER" ):
 		foul_banner.visible = true
-	globals.ball_status = "P"
+	globals.ball_status = "FOUL"
 	if (globals.strikes < 2):globals.strikes +=1
 	#yield(get_tree().create_timer(4.0), "timeout")
 	#get_tree().change_scene("res://scenes/battingView.tscn")
 
 
 func _on_home_run_area_body_entered(body):
-	if (!foul_banner.visible && !home_run_banner.visible && body.name == "ball"):
+	if (body.name == "ball" && !foul_banner.visible && !home_run_banner.visible && globals.ball_status != "FIELDER"):
 		home_run_banner.visible = true
-		ball.visible = false
+		globals.ball_status = "HOMERUN"
+		#ball.visible = false
 		home_run_distance.text = globals.hit_distance
 	#uiCam.make_current()
 

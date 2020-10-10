@@ -2,12 +2,17 @@ extends KinematicBody2D
 onready var fielder = get_node("defender_selected")
 onready var fielders = get_tree().get_nodes_in_group("fielders")
 onready var ball = get_tree().get_nodes_in_group("ball")
-onready var ball_effect = $detection/has_ball_effect
-onready var fielder_cam = $view_fielder
+onready var ball_effect = $has_ball_effect
+onready var foul_area = get_node("../../field/spray_chart/foul_area")
+
+
 var MAX_SPEED = 400
 var ACCELERATION = 1500
 var motion = Vector2.ZERO
-
+var fielder_has_ball = false
+var throw_power = 100
+var ball_thrown = false
+var ball_english = Vector2(0,0) # selects "origin" - like where cue ball is hit (english)
 
 func _ready():
 	# show/hide fielder selection circle
@@ -17,6 +22,8 @@ func _ready():
 		fielder.visible = true
 		
 	ball_effect.visible = false
+	fielder_has_ball = false
+
 
 func _physics_process(delta):
 	var axis = get_input_axis()
@@ -27,10 +34,16 @@ func _physics_process(delta):
 		
 	if fielder.visible: # only move if selected
 		motion = move_and_slide(motion)
+		
 
+		
 func _process(delta):
 	select_fielder()
 
+	
+	# if a fielder has the ball, then make ball follow that fielder
+	if (ball_effect.visible):
+		ball[0].position = self.position #0 index of ball because of how we selected node with get by group
 
 #	move_fielder(fielder_selected)
 func get_input_axis():
@@ -105,8 +118,20 @@ func get_nearest_fielder():
 #	fielder.move
 
 func _on_detection_body_entered(body):
-	if (body.name == "ball"):
+	 # if a fielder already has the ball, don't run this
+	if (body.name == "ball" && !fielder_has_ball && globals.ball_status != "FIELDER"):
+		fielder_has_ball = true
+		globals.ball_status = "FIELDER"
 		ball_effect.visible = true
-		ball[0].visible = false #zero of array is because of way node is selected above
-		fielder_cam.make_current()
+		#zero of array is because of way node is selected above
+		ball[0].visible = false 
+		foul_area.monitoring = false
+		
+		#camera_shift(fielder.position)
+		
+#func camera_shift(adj):		
+	#tween.interpolate_property(cam, "position", cam.position, adj, 1, Tween.TRANS_LINEAR)
+	#tween.start()
+		#fielder_cam.make_current() 
+		#replace fielder cam shift with camera tween on main camera
 		

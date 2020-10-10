@@ -2,18 +2,18 @@
 
 [ext_resource path="res://scripts/field_overhead.gd" type="Script" id=1]
 [ext_resource path="res://assets/views/overhead-view3.png" type="Texture" id=2]
-[ext_resource path="res://scripts/anim_tree.gd" type="Script" id=3]
+[ext_resource path="res://scripts/ball.gd" type="Script" id=3]
 [ext_resource path="res://assets/sound/hit.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/raw/baseball.png" type="Texture" id=5]
+[ext_resource path="res://scripts/anim_tree.gd" type="Script" id=5]
 [ext_resource path="res://scenes/actors/fielder.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/raw/gui/TimGouw-Baseball.jpg" type="Texture" id=7]
-[ext_resource path="res://scripts/ball.gd" type="Script" id=8]
-[ext_resource path="res://assets/raw/ball_shadow.png" type="Texture" id=9]
+[ext_resource path="res://scenes/effects/trail.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/raw/baseball.png" type="Texture" id=9]
 [ext_resource path="res://assets/raw/stadiums/homeplate.png" type="Texture" id=10]
 [ext_resource path="res://scenes/triggers/base.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/raw/batter/runner.png" type="Texture" id=12]
 [ext_resource path="res://scenes/ui/ui_overhead.tscn" type="PackedScene" id=13]
-[ext_resource path="res://scenes/effects/trail.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/raw/ball_shadow.png" type="Texture" id=14]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -244,6 +244,8 @@ script = ExtResource( 1 )
 position = Vector2( 679.607, -922.24 )
 zoom = Vector2( 2, 2 )
 
+[node name="tween" type="Tween" parent="."]
+
 [node name="scene_bg" type="Sprite" parent="."]
 material = SubResource( 1 )
 position = Vector2( 767.353, 990.025 )
@@ -281,14 +283,25 @@ autoplay = true
 [node name="field" type="Node" parent="."]
 
 [node name="field_obstacles" type="StaticBody2D" parent="field"]
-visible = false
 physics_material_override = SubResource( 2 )
 
 [node name="outfield_fence" type="CollisionPolygon2D" parent="field/field_obstacles"]
+visible = false
 position = Vector2( -383.876, -284.596 )
 rotation = 0.409826
 scale = Vector2( 1, 2.5 )
 polygon = PoolVector2Array( -1143.23, -203.223, -1151.76, -335.191, -1095.71, -463.553, -960.909, -590.771, -642.855, -763.357, -217.453, -889.851, 292.091, -973.002, 755.625, -1002.33, 1101.18, -988.236, 1528.68, -945.247, 1908.19, -844.044, 2134.4, -766.079, 2044.8, -758.597, 1866.38, -811.169, 1521.5, -902.212, 1094.63, -960.138, 771.496, -965.994, 306.243, -944.458, -189.987, -867.664, -586.226, -735.007, -901.439, -570.146, -1015.41, -458.095, -1067.34, -335.033, -1062.62, -215.882 )
+disabled = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="foul_area_fence" type="CollisionPolygon2D" parent="field/field_obstacles"]
+visible = false
+position = Vector2( -383.876, -284.596 )
+rotation = 0.409826
+scale = Vector2( 1, 2.5 )
+polygon = PoolVector2Array( -1061.1, -218.428, -1057.6, -182.463, -667.726, -118.141, 616.223, 217.508, 1084.91, 223.434, 1357.83, 180.072, 1566.17, 58.532, 1846.69, -459.573, 2109.39, -736.853, 2049.77, -759.004, 2206.94, -763.964, 1898.88, -444.26, 1613.35, 64.5565, 1383.08, 193.971, 1101.05, 242.979, 594.472, 239.574, -688.917, -100.236, -1179.46, -191.766 )
 disabled = true
 __meta__ = {
 "_edit_lock_": true
@@ -303,14 +316,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="backstop" type="CollisionPolygon2D" parent="field/field_obstacles"]
-polygon = PoolVector2Array( 398.337, 696.151, 697.665, 699.405, 1003.5, 507.444, 1221.49, 260.173, 1615.17, -247.383, 1637.95, -227.862, 1241.01, 279.695, 1023.02, 533.473, 697.665, 738.447, 388.576, 738.447, -76.6841, 507.444, -369.505, 68.2126, -610.269, -299.44, -590.748, -315.708, -340.223, 48.6913, -63.6698, 474.909 )
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="spray_chart" type="Node2D" parent="field"]
-visible = false
 __meta__ = {
 "_edit_lock_": true
 }
@@ -319,7 +325,7 @@ __meta__ = {
 modulate = Color( 1, 1, 1, 0.4 )
 monitorable = false
 collision_layer = 8
-collision_mask = 16
+collision_mask = 512
 
 [node name="foul" type="CollisionPolygon2D" parent="field/spray_chart/foul_area"]
 polygon = PoolVector2Array( 485.984, 339.806, -5555.66, -5265.61, -4312.37, 3449.21, 6478.53, 3672.06, 6455.07, -5218.7, 615.875, 352.204 )
@@ -350,6 +356,7 @@ __meta__ = {
 }
 
 [node name="home_run_area" type="Area2D" parent="field/spray_chart"]
+visible = false
 monitorable = false
 collision_layer = 10
 collision_mask = 16
@@ -397,16 +404,14 @@ texture = ExtResource( 10 )
 "ball",
 ]]
 position = Vector2( 544.601, 300.391 )
-collision_layer = 17
+collision_layer = 529
 collision_mask = 9
 physics_material_override = SubResource( 3 )
-gravity_scale = 0.0
-contacts_reported = 4
+contacts_reported = 1
 contact_monitor = true
-can_sleep = false
 linear_damp = 0.5
 angular_damp = 0.5
-script = ExtResource( 8 )
+script = ExtResource( 3 )
 
 [node name="ball_collision" type="CollisionShape2D" parent="field/ball"]
 position = Vector2( -0.0768433, 1.38275 )
@@ -420,15 +425,15 @@ self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 0.277344, 0.883911 )
 rotation = 0.523599
 scale = Vector2( 0.01, 0.01 )
-texture = ExtResource( 9 )
+texture = ExtResource( 14 )
 
 [node name="ball_sprite" type="Sprite" parent="field/ball"]
 position = Vector2( -0.0117188, 1.50586 )
 rotation = -0.785398
 scale = Vector2( 0.01, 0.01 )
-texture = ExtResource( 5 )
+texture = ExtResource( 9 )
 
-[node name="trail" parent="field/ball/ball_sprite" instance=ExtResource( 14 )]
+[node name="trail" parent="field/ball/ball_sprite" instance=ExtResource( 8 )]
 visible = false
 self_modulate = Color( 0.00784314, 0.584314, 0.678431, 1 )
 position = Vector2( -10.2891, -35.3105 )
@@ -445,7 +450,7 @@ anims/roll = SubResource( 9 )
 tree_root = SubResource( 19 )
 anim_player = NodePath("../anim")
 parameters/playback = SubResource( 20 )
-script = ExtResource( 3 )
+script = ExtResource( 5 )
 
 [node name="ballCamera" type="Camera2D" parent="field/ball"]
 position = Vector2( -0.372009, 0.451416 )
@@ -556,7 +561,7 @@ loop = false
 [node name="baserunner" type="Sprite" parent="offense/basepath/runners_path"]
 position = Vector2( 34.0833, -18.2257 )
 rotation = 0.524373
-scale = Vector2( 0.15, 0.15 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 12 )
 [connection signal="body_entered" from="field/spray_chart/foul_area" to="field/ball" method="_on_foul_area_body_entered"]
 [connection signal="body_entered" from="field/spray_chart/home_run_area" to="field/ball" method="_on_home_run_area_body_entered"]

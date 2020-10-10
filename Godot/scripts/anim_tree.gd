@@ -1,14 +1,17 @@
 extends AnimationTree
-onready var fence = get_node("../../field_obstacles/outfield_fence")
+onready var fence = get_node("/root/OverheadView/field/field_obstacles/outfield_fence")
+onready var foul_area_fence = get_node("/root/OverheadView/field/field_obstacles/foul_area_fence")
 var playback : AnimationNodeStateMachinePlayback
 var status_sent = 0
 # status 0 - not sent
 #  0 - hit - 1
 #  1 - rolling - 2
 #  2 - idle - 0
+
 onready var ball_animation = get_parent()
 
 func _ready():
+	
 	randomize() # to be removed 
 	var random_hit = randi()%3+1
 	playback = get("parameters/playback")
@@ -34,6 +37,7 @@ func _process(delta):
 					#field_physics.linear_damp = 0
 					#field_physics.angular_damp = 0
 					fence.disabled = true
+					foul_area_fence.disabled = true
 					#print("It's in the Air!")
 					status_sent += 1
 					
@@ -42,12 +46,14 @@ func _process(delta):
 					#field_physics.linear_damp = 0
 					#field_physics.angular_damp = 0
 					fence.disabled = true
+					foul_area_fence.disabled = true
 					#print("It's in the Air!")
 					status_sent += 1
 					
 			"grounder":
 				if status_sent == 0:
 					fence.disabled = false
+					foul_area_fence.disabled = false
 					#field_physics.linear_damp = 0.5
 					#field_physics.angular_damp = 0.5
 					#print("Grounder!")
@@ -56,6 +62,7 @@ func _process(delta):
 			"roll":
 				if status_sent == 1:
 					fence.disabled = false
+					foul_area_fence.disabled = false
 					#field_physics.linear_damp = 0.75
 					#field_physics.angular_damp = 1
 					#print("ball is rolling")
@@ -64,6 +71,7 @@ func _process(delta):
 			"idle":
 				if status_sent == 2:
 					fence.disabled = false
+					foul_area_fence.disabled = false
 					#field_physics.linear_damp = 1
 					#field_physics.angular_damp = 1
 					#print("it finally stopped rolling")

@@ -12,7 +12,7 @@ var ball_origin = Vector2(-25,-9)
 
 # smallest x coord we allow the ball to be, etc
 var ball_speed = 1
-var hit_power_default = 2000
+var hit_power_default = 1000
 var hit_power_max = 0
 var hit_power_bonus = 1000
 var hit_power_penalty = -3000
