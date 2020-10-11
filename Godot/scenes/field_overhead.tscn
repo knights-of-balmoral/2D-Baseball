@@ -228,7 +228,7 @@ states/pop_up/position = Vector2( 186, -31 )
 states/roll/node = SubResource( 14 )
 states/roll/position = Vector2( 408, 72 )
 transitions = [ "hit", "roll", SubResource( 15 ), "roll", "idle", SubResource( 16 ), "grounder", "roll", SubResource( 17 ), "pop_up", "roll", SubResource( 18 ) ]
-graph_offset = Vector2( -153, -134 )
+graph_offset = Vector2( -153, -253.467 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=20]
 

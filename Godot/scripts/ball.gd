@@ -11,16 +11,6 @@ onready var foul_banner = get_node("../ui_canvas/ui/foul")
 onready var home_run_banner = get_node("../ui_canvas/ui/home_run")
 onready var home_run_distance = get_node("../ui_canvas/ui/home_run/distance")
 
-onready var fielder_1 = get_node("../../defense/fielder_1")
-onready var fielder_2 = get_node("../../defense/fielder_2")
-onready var fielder_3 = get_node("../../defense/fielder_3")
-onready var fielder_4 = get_node("../../defense/fielder_4")
-onready var fielder_5 = get_node("../../defense/fielder_5")
-onready var fielder_6 = get_node("../../defense/fielder_6")
-onready var fielder_7 = get_node("../../defense/fielder_7")
-onready var fielder_8 = get_node("../../defense/fielder_8")
-onready var fielder_9 = get_node("../../defense/fielder_9")
-
 #onready var uiCam = get_node("../../uiCamera")
 #randi()%10+1 returns an int from 1 to 10
 #randf()*10.0+1.0 returns a float from 1.0 to 10.999999~
@@ -30,13 +20,8 @@ onready var fielder_9 = get_node("../../defense/fielder_9")
 func _ready():
 	pass
 	
-func _physics_process(delta):
-	if Input.is_action_pressed("throw_1") && globals.ball_status == "FIELDER":
-		ball_thrown = true
-		
 # set_applied_force??	
 func _integrate_forces(state):
-	
 	if (!ball_has_been_hit):
 		ball.apply_impulse(ball_english, calcBallMovement())
 		print ("hit velocity:" + str(state.linear_velocity))
@@ -45,19 +30,12 @@ func _integrate_forces(state):
 		ball_has_been_hit = true
 	else:
 		pass
-		# THROW THE BALL TO WHO [player vector- enemy vector]	
-	if (ball_thrown):
-		var throw_target = self.position - fielder_1.position
-		print ("throw ball")
-		ball.visible = true
-		ball.apply_impulse(ball_english, throw_target)
-		ball_thrown = false
 	
 func calcBallMovement():
 	randomize()
 	var random_x_factor = randi()%3+1
 	var random_y_factor = randi()%52+1
-	
+
 	#get a random hit velocity bonus clamped to max from global settings
 	globals.hit_power_max = randi()%globals.hit_power_default + globals.hit_power_bonus
 	
@@ -85,9 +63,6 @@ func _on_foul_area_body_entered(body):
 		foul_banner.visible = true
 	globals.ball_status = "FOUL"
 	if (globals.strikes < 2):globals.strikes +=1
-	#yield(get_tree().create_timer(4.0), "timeout")
-	#get_tree().change_scene("res://scenes/battingView.tscn")
-
 
 func _on_home_run_area_body_entered(body):
 	if (body.name == "ball" && !foul_banner.visible && !home_run_banner.visible && globals.ball_status != "FIELDER"):
@@ -95,33 +70,4 @@ func _on_home_run_area_body_entered(body):
 		globals.ball_status = "HOMERUN"
 		#ball.visible = false
 		home_run_distance.text = globals.hit_distance
-	#uiCam.make_current()
 
-	#globals.ball_status = "P"
-	#get_tree().change_scene("res://scenes/battingView.tscn")
-
-
-
-		
-# EXPERIMENTAL
-#	func _ready():
-#    # Create a timer node
-#    var timer = Timer.new()
-#
-#    # Set timer interval
-#    timer.set_wait_time(1.0)
-#
-#    # Set it as repeat
-#    timer.set_one_shot(false)
-#
-#    # Connect its timeout signal to the function you want to repeat
-#    timer.connect("timeout", self, "repeat_me")
-#
-#    # Add to the tree as child of the current node
-#    add_child(timer)
-#
-#    timer.start()
-#
-#
-#func repeat_me():
-#    print("Loop")

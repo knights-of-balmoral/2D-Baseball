@@ -5,7 +5,6 @@ onready var ball = get_tree().get_nodes_in_group("ball")
 onready var ball_effect = $has_ball_effect
 onready var foul_area = get_node("../../field/spray_chart/foul_area")
 
-
 var MAX_SPEED = 400
 var ACCELERATION = 1500
 var motion = Vector2.ZERO
@@ -24,7 +23,6 @@ func _ready():
 	ball_effect.visible = false
 	fielder_has_ball = false
 
-
 func _physics_process(delta):
 	var axis = get_input_axis()
 	if axis == Vector2.ZERO:
@@ -35,11 +33,8 @@ func _physics_process(delta):
 	if fielder.visible: # only move if selected
 		motion = move_and_slide(motion)
 		
-
-		
 func _process(delta):
 	select_fielder()
-
 	
 	# if a fielder has the ball, then make ball follow that fielder
 	if (ball_effect.visible):
