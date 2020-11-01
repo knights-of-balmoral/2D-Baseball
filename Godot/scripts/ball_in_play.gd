@@ -1,14 +1,14 @@
 extends KinematicBody2D
 
-onready var fielder_1 = get_node("../../defense/fielder_1")
-onready var fielder_2 = get_node("../../defense/fielder_2")
-onready var fielder_3 = get_node("../../defense/fielder_3")
-onready var fielder_4 = get_node("../../defense/fielder_4")
-onready var fielder_5 = get_node("../../defense/fielder_5")
-onready var fielder_6 = get_node("../../defense/fielder_6")
-onready var fielder_7 = get_node("../../defense/fielder_7")
-onready var fielder_8 = get_node("../../defense/fielder_8")
-onready var fielder_9 = get_node("../../defense/fielder_9")
+onready var fielder_1 = get_node("/root/OverheadView/defense/fielder_1")
+onready var fielder_2 = get_node("/root/OverheadView/defense/fielder_2")
+onready var fielder_3 = get_node("/root/OverheadView/defense/fielder_3")
+onready var fielder_4 = get_node("/root/OverheadView/defense/fielder_4")
+onready var fielder_5 = get_node("/root/OverheadView/defense/fielder_5")
+onready var fielder_6 = get_node("/root/OverheadView/defense/fielder_6")
+onready var fielder_7 = get_node("/root/OverheadView/defense/fielder_7")
+onready var fielder_8 = get_node("/root/OverheadView/defense/fielder_8")
+onready var fielder_9 = get_node("/root/OverheadView/defense/fielder_9")
 var ball_thrown = false
 
 # default throw velocity

@@ -1,12 +1,12 @@
 extends KinematicBody2D
-onready var fielder = get_node("defender_selected")
+onready var defender_selected = get_node("defender_selected")
 onready var fielders = get_tree().get_nodes_in_group("fielders")
 onready var ball = get_tree().get_nodes_in_group("ball")
 onready var ball_effect = $has_ball_effect
 onready var foul_area = get_node("../../field/spray_chart/foul_area")
 
 var MAX_SPEED = 400
-var ACCELERATION = 1500
+var ACCELERATION = 2000
 var motion = Vector2.ZERO
 var fielder_has_ball = false
 var throw_power = 100
@@ -14,11 +14,12 @@ var ball_thrown = false
 var ball_english = Vector2(0,0) # selects "origin" - like where cue ball is hit (english)
 
 func _ready():
+	
 	# show/hide fielder selection circle
-	if fielder.visible:
-		fielder.visible = false 
+	if defender_selected.visible:
+		defender_selected.visible = false 
 	else: 
-		fielder.visible = true
+		defender_selected.visible = true
 		
 	ball_effect.visible = false
 	fielder_has_ball = false
@@ -26,13 +27,13 @@ func _ready():
 func _physics_process(delta):
 	var axis = get_input_axis()
 	if axis == Vector2.ZERO:
-		apply_friction(ACCELERATION * delta)
+		apply_friction(ACCELERATION) 
 	else: 
-		apply_movement(axis * ACCELERATION * delta)
+		apply_movement(axis * ACCELERATION)
 		
-	if fielder.visible: # only move if selected
+	if defender_selected.visible: # only move if selected
 		motion = move_and_slide(motion)
-		
+	
 func _process(delta):
 	select_fielder()
 	
@@ -46,17 +47,15 @@ func get_input_axis():
 	axis.x = Input.get_action_strength("defense_move_right") - Input.get_action_strength("defense_move_left")
 	axis.y = Input.get_action_strength("defense_move_down") - Input.get_action_strength("defense_move_up")
 	return axis.normalized()
-
 func apply_friction(amount):
 	if motion.length() > amount:
 		motion -= motion.normalized() * amount
 	else:
 		motion = Vector2.ZERO
-
+		
 func apply_movement(acceleration):
 	motion += acceleration
 	motion = motion.clamped(MAX_SPEED)
-
 func select_fielder():
 	
 	# Defense Controls
@@ -89,7 +88,6 @@ func select_fielder():
 			
 	elif Input.is_action_just_pressed("closest_fielder"): #KP-ADD is the key
 		reselect_fielders(0)
-				
 func reselect_fielders(defender):
 	if defender > 0:
 		for member in fielders:
@@ -99,19 +97,9 @@ func reselect_fielders(defender):
 				member.get_node("defender_selected").visible = false
 	else: #when input leads to a zero or closest defender
 		get_nearest_fielder()
-							
 func get_nearest_fielder():
 	var nearest = "fielder_1"
 	#var distance = null
-	
-#	for member in fielders:
-#		print(member.global_position - ball.global_position)
-
-#func move_fielder(fielder):
-#	globals.fielder_velocity.x = (Input.get_action_strength("defense_move_right") - Input.get_action_strength("defense_move_left")) * globals.fielder_speed
-#	globals.fielder_velocity.y = (Input.get_action_strength("defense_move_down") - Input.get_action_strength("defense_move_up")) * globals.fielder_speed
-#	fielder.move
-
 func _on_detection_body_entered(body):
 	 # if a fielder already has the ball, don't run this
 	if (body.name == "ball" && !fielder_has_ball && globals.ball_status != "FIELDER"):
@@ -122,11 +110,9 @@ func _on_detection_body_entered(body):
 		ball[0].visible = false 
 		foul_area.monitoring = false
 		
-		#camera_shift(fielder.position)
 		
-#func camera_shift(adj):		
-	#tween.interpolate_property(cam, "position", cam.position, adj, 1, Tween.TRANS_LINEAR)
-	#tween.start()
-		#fielder_cam.make_current() 
-		#replace fielder cam shift with camera tween on main camera
+		
+		
+		
+		
 		
