@@ -8,7 +8,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 498.693
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "fast_throw"
 length = 0.5
 step = 0.05
@@ -33,7 +33,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.25, 0.5 )
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "idle"
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("ball:scale:x")
@@ -56,39 +56,39 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 1 )
 }
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "average_throw"
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "fast_throw"
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "idle"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+switch_mode = 2
+auto_advance = true
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=10]
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachine" id=7]
-states/average_throw/node = SubResource( 5 )
+[sub_resource type="AnimationNodeStateMachine" id=11]
+states/average_throw/node = SubResource( 4 )
 states/average_throw/position = Vector2( 705, 68 )
-states/fast_throw/node = SubResource( 6 )
+states/fast_throw/node = SubResource( 5 )
 states/fast_throw/position = Vector2( 705, 359 )
-states/idle/node = SubResource( 9 )
+states/idle/node = SubResource( 6 )
 states/idle/position = Vector2( 417, 169 )
-transitions = [ "idle", "average_throw", SubResource( 10 ), "idle", "fast_throw", SubResource( 11 ), "average_throw", "idle", SubResource( 12 ), "fast_throw", "idle", SubResource( 13 ) ]
+transitions = [ "idle", "average_throw", SubResource( 7 ), "idle", "fast_throw", SubResource( 8 ), "average_throw", "idle", SubResource( 9 ), "fast_throw", "idle", SubResource( 10 ) ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
 
 [node name="ball_in_play" type="KinematicBody2D"]
 scale = Vector2( 0.02, 0.02 )
@@ -109,10 +109,10 @@ shape = SubResource( 1 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/average_throw = ExtResource( 3 )
-anims/fast_throw = SubResource( 3 )
-anims/idle = SubResource( 4 )
+anims/fast_throw = SubResource( 2 )
+anims/idle = SubResource( 3 )
 
 [node name="anim_tree" type="AnimationTree" parent="."]
-tree_root = SubResource( 7 )
+tree_root = SubResource( 11 )
 anim_player = NodePath("../anim")
-parameters/playback = SubResource( 8 )
+parameters/playback = SubResource( 12 )

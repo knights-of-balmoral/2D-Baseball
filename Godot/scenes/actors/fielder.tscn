@@ -48,7 +48,11 @@ radius = 28.6024
 [node name="fielder" type="KinematicBody2D"]
 scale = Vector2( 1.5, 1.5 )
 collision_layer = 4
+<<<<<<< HEAD
 collision_mask = 10
+=======
+collision_mask = 2
+>>>>>>> 5d9f54be9bb6b9502a3531ce4225a54ca600e0bd
 script = ExtResource( 3 )
 
 [node name="defender_selected" type="Sprite" parent="."]
@@ -100,6 +104,7 @@ shape = SubResource( 10 )
 [node name="held_ball_position" type="Position2D" parent="."]
 
 [node name="ball_in_play" parent="held_ball_position" instance=ExtResource( 4 )]
+<<<<<<< HEAD
 
 [node name="pos" type="Label" parent="."]
 margin_left = -19.7023
@@ -112,4 +117,7 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+=======
+script = null
+>>>>>>> 5d9f54be9bb6b9502a3531ce4225a54ca600e0bd
 [connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]

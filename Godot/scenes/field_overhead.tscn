@@ -304,7 +304,11 @@ autoplay = true
 [node name="field" type="Node" parent="."]
 
 [node name="field_obstacles" type="StaticBody2D" parent="field"]
+<<<<<<< HEAD
 collision_layer = 3
+=======
+collision_layer = 2
+>>>>>>> 5d9f54be9bb6b9502a3531ce4225a54ca600e0bd
 physics_material_override = SubResource( 2 )
 
 [node name="outfield_fence" type="CollisionPolygon2D" parent="field/field_obstacles"]

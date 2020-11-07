@@ -1,5 +1,5 @@
 extends KinematicBody2D
-onready var fielder = get_node("defender_selected")
+onready var defender_selected = get_node("defender_selected")
 onready var fielders = get_tree().get_nodes_in_group("fielders")
 onready var ball = get_tree().get_nodes_in_group("ball")
 onready var fielder_has_ball_effect = $Light2D #$has_ball_effect  #
@@ -8,10 +8,15 @@ onready var anim = $defender/anim
 onready var anim_tree = $defender/AnimationTree
 onready var pos = $pos
 
+<<<<<<< HEAD
 var MAX_SPEED = 500
 var ACCELERATION = 1500
 var ANIM_SPEED = 10
 
+=======
+var MAX_SPEED = 400
+var ACCELERATION = 2000
+>>>>>>> 5d9f54be9bb6b9502a3531ce4225a54ca600e0bd
 var motion = Vector2.ZERO
 var fielder_has_ball = false
 var throw_power = 100
@@ -22,12 +27,16 @@ var THROW_SPEED = 150
 var throw_target = Vector2()
 
 func _ready():
+<<<<<<< HEAD
 	anim.playback_speed = ANIM_SPEED
+=======
+	
+>>>>>>> 5d9f54be9bb6b9502a3531ce4225a54ca600e0bd
 	# show/hide fielder selection circle
-	if fielder.visible:
-		fielder.visible = false 
+	if defender_selected.visible:
+		defender_selected.visible = false 
 	else: 
-		fielder.visible = true
+		defender_selected.visible = true
 		
 	fielder_has_ball_effect.visible = false
 	fielder_has_ball = false
@@ -35,6 +44,7 @@ func _ready():
 
 func _physics_process(delta):
 	var axis = get_input_axis()
+<<<<<<< HEAD
 
 	if fielder.visible: # only move if selected
 		motion = move_and_slide(motion)
@@ -50,6 +60,16 @@ func _physics_process(delta):
 	else:
 		$defender/anim.play("idle")
 
+=======
+	if axis == Vector2.ZERO:
+		apply_friction(ACCELERATION) 
+	else: 
+		apply_movement(axis * ACCELERATION)
+		
+	if defender_selected.visible: # only move if selected
+		motion = move_and_slide(motion)
+	
+>>>>>>> 5d9f54be9bb6b9502a3531ce4225a54ca600e0bd
 func _process(delta):
 	var direction
 	select_fielder()
@@ -81,17 +101,15 @@ func get_input_axis():
 		$defender.flip_h = true
 		
 	return axis.normalized()
-
 func apply_friction(amount):
 	if motion.length() > amount:
 		motion -= motion.normalized() * amount
 	else:
 		motion = Vector2.ZERO
-
+		
 func apply_movement(acceleration):
 	motion += acceleration
 	motion = motion.clamped(MAX_SPEED)
-
 func select_fielder():
 	
 	# Defense Controls
@@ -124,8 +142,11 @@ func select_fielder():
 			
 	elif Input.is_action_just_pressed("closest_fielder"): #KP-ADD is the key
 		reselect_fielders(0)
+<<<<<<< HEAD
 
 				
+=======
+>>>>>>> 5d9f54be9bb6b9502a3531ce4225a54ca600e0bd
 func reselect_fielders(defender):
 	if defender > 0:
 		for member in fielders:
@@ -135,10 +156,13 @@ func reselect_fielders(defender):
 				member.get_node("defender_selected").visible = false
 	else: #when input leads to a zero or closest defender
 		get_nearest_fielder()
-							
 func get_nearest_fielder():
 	var nearest = "fielder_1"
+<<<<<<< HEAD
 
+=======
+	#var distance = null
+>>>>>>> 5d9f54be9bb6b9502a3531ce4225a54ca600e0bd
 func _on_detection_body_entered(body):
 	 # if a fielder already has the ball, don't run this
 	if (body.name == "ball" && !fielder_has_ball && globals.ball_status != "FIELDER"):
@@ -149,4 +173,13 @@ func _on_detection_body_entered(body):
 		ball[0].visible = false 
 		foul_area.monitoring = false
 		
+<<<<<<< HEAD
 
+=======
+		
+		
+		
+		
+		
+		
+>>>>>>> 5d9f54be9bb6b9502a3531ce4225a54ca600e0bd
