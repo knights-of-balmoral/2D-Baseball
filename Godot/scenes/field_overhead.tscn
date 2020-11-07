@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://scripts/field_overhead.gd" type="Script" id=1]
 [ext_resource path="res://assets/views/overhead-view3.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://assets/raw/batter/runner.png" type="Texture" id=12]
 [ext_resource path="res://scenes/ui/ui_overhead.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/raw/ball_shadow.png" type="Texture" id=14]
+[ext_resource path="res://_placeholders/spotlight.png" type="Texture" id=15]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -185,24 +186,38 @@ tracks/0/keys = {
 "values": [ 0.0, -307.239, -130.346, -34.4153 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=10]
-animation = "grounder"
+[sub_resource type="Animation" id=10]
+resource_name = "standard_throw"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.001, 0.002, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 2, 2 ), Vector2( 1, 1 ) ]
+}
 
 [sub_resource type="AnimationNodeAnimation" id=11]
-animation = "hit"
+animation = "grounder"
 
 [sub_resource type="AnimationNodeAnimation" id=12]
-animation = "idle"
+animation = "hit"
 
 [sub_resource type="AnimationNodeAnimation" id=13]
-animation = "pop_up"
+animation = "idle"
 
 [sub_resource type="AnimationNodeAnimation" id=14]
+animation = "pop_up"
+
+[sub_resource type="AnimationNodeAnimation" id=15]
 animation = "roll"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=15]
-switch_mode = 2
-auto_advance = true
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "standard_throw"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=16]
 switch_mode = 2
@@ -216,23 +231,29 @@ auto_advance = true
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=19]
-states/grounder/node = SubResource( 10 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=20]
+states/grounder/node = SubResource( 11 )
 states/grounder/position = Vector2( 156, 72 )
-states/hit/node = SubResource( 11 )
+states/hit/node = SubResource( 12 )
 states/hit/position = Vector2( 186, 188 )
-states/idle/node = SubResource( 12 )
+states/idle/node = SubResource( 13 )
 states/idle/position = Vector2( 634, 188 )
-states/pop_up/node = SubResource( 13 )
+states/pop_up/node = SubResource( 14 )
 states/pop_up/position = Vector2( 186, -31 )
-states/roll/node = SubResource( 14 )
+states/roll/node = SubResource( 15 )
 states/roll/position = Vector2( 408, 72 )
-transitions = [ "hit", "roll", SubResource( 15 ), "roll", "idle", SubResource( 16 ), "grounder", "roll", SubResource( 17 ), "pop_up", "roll", SubResource( 18 ) ]
-graph_offset = Vector2( -153, -253.467 )
+states/standard_throw/node = SubResource( 23 )
+states/standard_throw/position = Vector2( 408, -128.467 )
+transitions = [ "hit", "roll", SubResource( 16 ), "roll", "idle", SubResource( 17 ), "grounder", "roll", SubResource( 18 ), "pop_up", "roll", SubResource( 19 ) ]
+graph_offset = Vector2( 9, -224.467 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=21]
 
-[sub_resource type="Curve2D" id=21]
+[sub_resource type="Curve2D" id=22]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 551.347, 310.612, -61.8011, 167.315, 61.8011, -167.315, 1306.4, -374.12, 137.168, -12.0588, -137.168, 12.0588, 495.828, -1095.86, 42.2057, -161.286, -42.2057, 161.286, -255.527, -411.133, 0, 0, 0, 0, 538.393, 318.015 )
 }
@@ -283,6 +304,7 @@ autoplay = true
 [node name="field" type="Node" parent="."]
 
 [node name="field_obstacles" type="StaticBody2D" parent="field"]
+collision_layer = 3
 physics_material_override = SubResource( 2 )
 
 [node name="outfield_fence" type="CollisionPolygon2D" parent="field/field_obstacles"]
@@ -317,6 +339,7 @@ __meta__ = {
 }
 
 [node name="spray_chart" type="Node2D" parent="field"]
+visible = false
 __meta__ = {
 "_edit_lock_": true
 }
@@ -381,16 +404,16 @@ polygon = PoolVector2Array( -567.758, -687.818, -447.922, -923.495, -132.354, -1
 [node name="triggers" type="Node" parent="field"]
 
 [node name="base_1" parent="field/triggers" instance=ExtResource( 11 )]
-position = Vector2( 1303.31, -355.563 )
+position = Vector2( 1303, -355 )
 
 [node name="base_2" parent="field/triggers" instance=ExtResource( 11 )]
-position = Vector2( 492.417, -1078.24 )
+position = Vector2( 492, -1078 )
 
 [node name="base_3" parent="field/triggers" instance=ExtResource( 11 )]
-position = Vector2( -263.458, -401.133 )
+position = Vector2( -263, -401 )
 
 [node name="home_plate" type="Node2D" parent="field/triggers"]
-position = Vector2( 34.8594, -196.853 )
+position = Vector2( 35, -197 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -430,7 +453,7 @@ texture = ExtResource( 14 )
 [node name="ball_sprite" type="Sprite" parent="field/ball"]
 position = Vector2( -0.0117188, 1.50586 )
 rotation = -0.785398
-scale = Vector2( 0.01, 0.01 )
+scale = Vector2( 0.03, 0.03 )
 texture = ExtResource( 9 )
 
 [node name="trail" parent="field/ball/ball_sprite" instance=ExtResource( 8 )]
@@ -440,16 +463,18 @@ position = Vector2( -10.2891, -35.3105 )
 scale = Vector2( 100, 100 )
 
 [node name="anim" type="AnimationPlayer" parent="field/ball"]
+playback_process_mode = 0
 anims/grounder = SubResource( 5 )
 anims/hit = SubResource( 6 )
 anims/idle = SubResource( 7 )
 anims/pop_up = SubResource( 8 )
 anims/roll = SubResource( 9 )
+anims/standard_throw = SubResource( 10 )
 
 [node name="anim_tree" type="AnimationTree" parent="field/ball"]
-tree_root = SubResource( 19 )
+tree_root = SubResource( 20 )
 anim_player = NodePath("../anim")
-parameters/playback = SubResource( 20 )
+parameters/playback = SubResource( 21 )
 script = ExtResource( 5 )
 
 [node name="ballCamera" type="Camera2D" parent="field/ball"]
@@ -468,6 +493,11 @@ drag_margin_right = 0.55
 drag_margin_bottom = 0.16
 editor_draw_limits = true
 editor_draw_drag_margin = true
+
+[node name="Light2D" type="Light2D" parent="field/ball"]
+texture = ExtResource( 15 )
+color = Color( 0.815686, 1, 0.054902, 1 )
+shadow_enabled = true
 
 [node name="ui_canvas" type="CanvasLayer" parent="field"]
 layer = 2
@@ -488,7 +518,7 @@ margin_bottom = 300.0
 [node name="fielder_1" parent="defense" groups=[
 "fielders",
 ] instance=ExtResource( 6 )]
-position = Vector2( 543.821, -403.176 )
+position = Vector2( 549.375, -403.002 )
 collision_layer = 32
 
 [node name="fielder_2" parent="defense" groups=[
@@ -550,7 +580,7 @@ collision_layer = 32
 
 [node name="basepath" type="Path2D" parent="offense"]
 position = Vector2( 0, 7.53674 )
-curve = SubResource( 21 )
+curve = SubResource( 22 )
 
 [node name="runners_path" type="PathFollow2D" parent="offense/basepath"]
 position = Vector2( 551.347, 310.612 )

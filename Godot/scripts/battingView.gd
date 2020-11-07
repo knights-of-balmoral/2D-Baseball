@@ -16,7 +16,9 @@ onready var pitcher_anim = get_node("batter_view/pitcher/anim_pitcher")
 var batter_swung = false
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	updateUI()
+	
 		
 	
 func _process(delta):
