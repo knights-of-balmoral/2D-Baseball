@@ -8,18 +8,12 @@ onready var anim = $defender/anim
 onready var anim_tree = $defender/AnimationTree
 onready var pos = $pos
 
-<<<<<<< HEAD
 var MAX_SPEED = 500
 var ACCELERATION = 1500
 var ANIM_SPEED = 10
 
-=======
-var MAX_SPEED = 400
-var ACCELERATION = 2000
->>>>>>> 5d9f54be9bb6b9502a3531ce4225a54ca600e0bd
 var motion = Vector2.ZERO
 var fielder_has_ball = false
-var throw_power = 100
 var ball_is_thrown = false
 var ball_english = Vector2(0,0) # selects "origin" - like where cue ball is hit (english)
 
@@ -27,11 +21,8 @@ var THROW_SPEED = 150
 var throw_target = Vector2()
 
 func _ready():
-<<<<<<< HEAD
 	anim.playback_speed = ANIM_SPEED
-=======
-	
->>>>>>> 5d9f54be9bb6b9502a3531ce4225a54ca600e0bd
+
 	# show/hide fielder selection circle
 	if defender_selected.visible:
 		defender_selected.visible = false 
@@ -44,9 +35,8 @@ func _ready():
 
 func _physics_process(delta):
 	var axis = get_input_axis()
-<<<<<<< HEAD
 
-	if fielder.visible: # only move if selected
+	if defender_selected.visible: # only move if selected
 		motion = move_and_slide(motion)
 		
 		if axis == Vector2.ZERO:
@@ -60,16 +50,7 @@ func _physics_process(delta):
 	else:
 		$defender/anim.play("idle")
 
-=======
-	if axis == Vector2.ZERO:
-		apply_friction(ACCELERATION) 
-	else: 
-		apply_movement(axis * ACCELERATION)
-		
-	if defender_selected.visible: # only move if selected
-		motion = move_and_slide(motion)
-	
->>>>>>> 5d9f54be9bb6b9502a3531ce4225a54ca600e0bd
+
 func _process(delta):
 	var direction
 	select_fielder()
@@ -95,7 +76,7 @@ func get_input_axis():
 	axis.y = Input.get_action_strength("defense_move_down") - Input.get_action_strength("defense_move_up")
 	
 	# detect if we're moving left or right
-	if previous_position.x < axis.x && fielder.visible:
+	if previous_position.x < axis.x && fielder_has_ball_effect.visible:
 		$defender.flip_h = false
 	else:
 		$defender.flip_h = true
@@ -142,11 +123,7 @@ func select_fielder():
 			
 	elif Input.is_action_just_pressed("closest_fielder"): #KP-ADD is the key
 		reselect_fielders(0)
-<<<<<<< HEAD
 
-				
-=======
->>>>>>> 5d9f54be9bb6b9502a3531ce4225a54ca600e0bd
 func reselect_fielders(defender):
 	if defender > 0:
 		for member in fielders:
@@ -158,11 +135,7 @@ func reselect_fielders(defender):
 		get_nearest_fielder()
 func get_nearest_fielder():
 	var nearest = "fielder_1"
-<<<<<<< HEAD
 
-=======
-	#var distance = null
->>>>>>> 5d9f54be9bb6b9502a3531ce4225a54ca600e0bd
 func _on_detection_body_entered(body):
 	 # if a fielder already has the ball, don't run this
 	if (body.name == "ball" && !fielder_has_ball && globals.ball_status != "FIELDER"):
@@ -172,14 +145,4 @@ func _on_detection_body_entered(body):
 		#zero of array is because of way node is selected above
 		ball[0].visible = false 
 		foul_area.monitoring = false
-		
-<<<<<<< HEAD
 
-=======
-		
-		
-		
-		
-		
-		
->>>>>>> 5d9f54be9bb6b9502a3531ce4225a54ca600e0bd

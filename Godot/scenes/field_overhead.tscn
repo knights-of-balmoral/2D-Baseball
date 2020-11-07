@@ -216,12 +216,8 @@ animation = "pop_up"
 [sub_resource type="AnimationNodeAnimation" id=15]
 animation = "roll"
 
-[sub_resource type="AnimationNodeAnimation" id=23]
+[sub_resource type="AnimationNodeAnimation" id=16]
 animation = "standard_throw"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=17]
 switch_mode = 2
@@ -235,7 +231,11 @@ auto_advance = true
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=20]
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=21]
 states/grounder/node = SubResource( 11 )
 states/grounder/position = Vector2( 156, 72 )
 states/hit/node = SubResource( 12 )
@@ -246,14 +246,14 @@ states/pop_up/node = SubResource( 14 )
 states/pop_up/position = Vector2( 186, -31 )
 states/roll/node = SubResource( 15 )
 states/roll/position = Vector2( 408, 72 )
-states/standard_throw/node = SubResource( 23 )
+states/standard_throw/node = SubResource( 16 )
 states/standard_throw/position = Vector2( 408, -128.467 )
-transitions = [ "hit", "roll", SubResource( 16 ), "roll", "idle", SubResource( 17 ), "grounder", "roll", SubResource( 18 ), "pop_up", "roll", SubResource( 19 ) ]
+transitions = [ "hit", "roll", SubResource( 17 ), "roll", "idle", SubResource( 18 ), "grounder", "roll", SubResource( 19 ), "pop_up", "roll", SubResource( 20 ) ]
 graph_offset = Vector2( 9, -224.467 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=21]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
 
-[sub_resource type="Curve2D" id=22]
+[sub_resource type="Curve2D" id=23]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 551.347, 310.612, -61.8011, 167.315, 61.8011, -167.315, 1306.4, -374.12, 137.168, -12.0588, -137.168, 12.0588, 495.828, -1095.86, 42.2057, -161.286, -42.2057, 161.286, -255.527, -411.133, 0, 0, 0, 0, 538.393, 318.015 )
 }
@@ -304,11 +304,7 @@ autoplay = true
 [node name="field" type="Node" parent="."]
 
 [node name="field_obstacles" type="StaticBody2D" parent="field"]
-<<<<<<< HEAD
-collision_layer = 3
-=======
 collision_layer = 2
->>>>>>> 5d9f54be9bb6b9502a3531ce4225a54ca600e0bd
 physics_material_override = SubResource( 2 )
 
 [node name="outfield_fence" type="CollisionPolygon2D" parent="field/field_obstacles"]
@@ -476,9 +472,9 @@ anims/roll = SubResource( 9 )
 anims/standard_throw = SubResource( 10 )
 
 [node name="anim_tree" type="AnimationTree" parent="field/ball"]
-tree_root = SubResource( 20 )
+tree_root = SubResource( 21 )
 anim_player = NodePath("../anim")
-parameters/playback = SubResource( 21 )
+parameters/playback = SubResource( 22 )
 script = ExtResource( 5 )
 
 [node name="ballCamera" type="Camera2D" parent="field/ball"]
@@ -584,7 +580,7 @@ collision_layer = 32
 
 [node name="basepath" type="Path2D" parent="offense"]
 position = Vector2( 0, 7.53674 )
-curve = SubResource( 22 )
+curve = SubResource( 23 )
 
 [node name="runners_path" type="PathFollow2D" parent="offense/basepath"]
 position = Vector2( 551.347, 310.612 )
