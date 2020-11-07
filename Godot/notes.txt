@@ -1,0 +1,4 @@
+#randi()%10+1 returns an int from 1 to 10
+#randf()*10.0+1.0 returns a float from 1.0 to 10.999999~
+#rand_range(1,11) returns a float from 1.0 to 10.999999~
+#range(1,11)[randi()%range(1,11).size()] is a little ugly and less efficient but returns an int from 1 to 10 without you having to do the math yourself (aka the 11+1 part) because all you need to do is set the range()

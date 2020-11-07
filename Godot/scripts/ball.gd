@@ -1,9 +1,4 @@
 extends RigidBody2D
-var speed = globals.ball_speed
-var ball_has_been_hit = false
-var ball_english = Vector2(0, 0) # selects "origin" - like where cue ball is hit (english)
-var ball_origin = Vector2(544, 300)
-var ball_thrown = false
 
 onready var anim = get_node("anim")
 onready var ball = get_node("../ball")
@@ -11,16 +6,17 @@ onready var foul_banner = get_node("../ui_canvas/ui/foul")
 onready var home_run_banner = get_node("../ui_canvas/ui/home_run")
 onready var home_run_distance = get_node("../ui_canvas/ui/home_run/distance")
 
-#onready var uiCam = get_node("../../uiCamera")
-#randi()%10+1 returns an int from 1 to 10
-#randf()*10.0+1.0 returns a float from 1.0 to 10.999999~
-#rand_range(1,11) returns a float from 1.0 to 10.999999~
-#range(1,11)[randi()%range(1,11).size()] is a little ugly and less efficient but returns an int from 1 to 10 without you having to do the math yourself (aka the 11+1 part) because all you need to do is set the range()
+var speed = globals.ball_speed
+var ball_has_been_hit = false
+var ball_english = Vector2(0, 0) # selects "origin" - like where cue ball is hit (english)
+var ball_origin = Vector2(544, 300)
+var ball_thrown = false
+
 
 func _ready():
 	pass
+
 	
-# set_applied_force??	
 func _integrate_forces(state):
 	if (!ball_has_been_hit):
 		ball.apply_impulse(ball_english, calcBallMovement())
