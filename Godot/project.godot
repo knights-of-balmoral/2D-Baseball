@@ -195,7 +195,9 @@ throw_p={
 2d_physics/layer_2="Colliders"
 2d_render/layer_3="Areas"
 2d_physics/layer_3="Actors"
+2d_render/layer_4="Borders"
 2d_physics/layer_4="Areas"
+2d_physics/layer_5="Borders"
 2d_render/layer_6="Guides"
 2d_physics/layer_6="Defenders"
 

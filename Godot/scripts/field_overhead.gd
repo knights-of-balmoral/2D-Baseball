@@ -5,6 +5,7 @@ onready var foul_banner = get_node("field/ui_canvas/ui/foul")
 onready var home_run_banner = get_node("field/ui_canvas/ui/home_run")
 onready var foul_area = $field/spray_chart/center_field_area
 
+
 #get_tree().call_group("my_group","my_function",args...)
 #If you need to do something with your group:
 #

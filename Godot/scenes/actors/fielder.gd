@@ -7,22 +7,21 @@ onready var foul_area = get_node("../../field/spray_chart/foul_area")
 onready var anim = $defender/anim
 onready var anim_tree = $defender/AnimationTree
 onready var pos = $pos
+onready var throw_line = $throw_vector_line
+onready var throw_vector = $throw_vector_line/throw_vector
 
 var MAX_SPEED = 500
 var ACCELERATION = 1500
 var ANIM_SPEED = 10
+
 
 var motion = Vector2.ZERO
 var fielder_has_ball = false
 var ball_is_thrown = false
 var ball_english = Vector2(0,0) # selects "origin" - like where cue ball is hit (english)
 
-var THROW_SPEED = 150
-var throw_target = Vector2()
-
 func _ready():
 	anim.playback_speed = ANIM_SPEED
-
 	# show/hide fielder selection circle
 	if defender_selected.visible:
 		defender_selected.visible = false 
@@ -50,22 +49,20 @@ func _physics_process(delta):
 	else:
 		$defender/anim.play("idle")
 
-
 func _process(delta):
-	var direction
-	select_fielder()
-
-	direction = (globals.FIRST_BASE - ball[0].position).normalized() * THROW_SPEED
 	
-	if Input.is_action_just_released("throw_1") == true:
-		ball_is_thrown = true
-		ball[0].visible = true
-		ball[0].apply_impulse(Vector2(), direction)
-		ball[0].anim.play("standard_throw")
-		print (direction)
+	select_fielder()
+	if Input.is_action_just_pressed("throw_1") && fielder_has_ball:
+		fielder_has_ball_effect.visible = false
+		globals.throw_origin = self.get_global_transform().get_origin()
+		throw_line.points[0] = self.global_position
+		throw_line.points[1] = globals.FIRST_BASE
+		throw_vector.text = str(throw_line.points[0]) + " : " + str(throw_line.points[1])
+		fielder_has_ball = false
+		
 	# if a fielder has the ball, then make ball follow that fielder
-	if (fielder_has_ball_effect.visible) && !ball_is_thrown:
-		ball[0].position = self.position #0 index of ball because of how we selected node with get by group
+	if fielder_has_ball:
+		ball[0].global_position = self.global_position #0 index of ball because of how we selected node with get by group
 
 #	move_fielder(fielder_selected)
 func get_input_axis():
@@ -76,7 +73,7 @@ func get_input_axis():
 	axis.y = Input.get_action_strength("defense_move_down") - Input.get_action_strength("defense_move_up")
 	
 	# detect if we're moving left or right
-	if previous_position.x < axis.x && fielder_has_ball_effect.visible:
+	if previous_position.x < axis.x && defender_selected.visible == true:
 		$defender.flip_h = false
 	else:
 		$defender.flip_h = true
@@ -144,5 +141,6 @@ func _on_detection_body_entered(body):
 		fielder_has_ball_effect.visible = true
 		#zero of array is because of way node is selected above
 		ball[0].visible = false 
+		ball_is_thrown = false
 		foul_area.monitoring = false
 

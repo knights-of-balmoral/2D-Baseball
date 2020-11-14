@@ -5,6 +5,7 @@ onready var ball = get_node("../ball")
 onready var foul_banner = get_node("../ui_canvas/ui/foul")
 onready var home_run_banner = get_node("../ui_canvas/ui/home_run")
 onready var home_run_distance = get_node("../ui_canvas/ui/home_run/distance")
+onready var first_base = get_node("../triggers/base_1")
 
 var speed = globals.ball_speed
 var ball_has_been_hit = false
@@ -12,9 +13,14 @@ var ball_english = Vector2(0, 0) # selects "origin" - like where cue ball is hit
 var ball_origin = Vector2(544, 300)
 var ball_thrown = false
 
+var ANIM_SPEED = 10
+var THROW_SPEED = 100
+var BALL_HEIGHT_OFFSET := Vector2(0, -1)
+var throw_target = Vector2()
+var direction
 
 func _ready():
-	pass
+	anim.playback_speed = ANIM_SPEED
 
 	
 func _integrate_forces(state):
@@ -24,9 +30,19 @@ func _integrate_forces(state):
 		globals.hit_distance = str(stepify(abs(state.linear_velocity.distance_to(ball_origin) / globals.distance_conversion), 0.1)) + " '"
 		#globals.hit_velocity = convertHitVelocity(state.linear_velocity)
 		ball_has_been_hit = true
-	else:
-		pass
 	
+	if Input.is_action_just_pressed("throw_1") && globals.ball_status == "FIELDER":
+		ball_thrown = true
+		globals.ball_status = "THROWN"
+		self.visible = true
+		self.anim.play("standard_throw")
+		direction = (first_base.global_position - globals.throw_origin).normalized() * THROW_SPEED
+		print ("Thrown toward:" + str(direction))
+		ball.apply_impulse(Vector2(), direction)
+		ball_thrown = false
+		
+
+		
 func calcBallMovement():
 	randomize()
 	var random_x_factor = randi()%3+1

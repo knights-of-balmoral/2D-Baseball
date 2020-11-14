@@ -39,8 +39,8 @@ end_node = "idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 
-[sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 9.51407, 30.1683 )
+[sub_resource type="CircleShape2D" id=9]
+radius = 35.8531
 
 [sub_resource type="CircleShape2D" id=10]
 radius = 28.6024
@@ -48,10 +48,11 @@ radius = 28.6024
 [node name="fielder" type="KinematicBody2D"]
 scale = Vector2( 1.5, 1.5 )
 collision_layer = 4
-collision_mask = 2
+collision_mask = 0
 script = ExtResource( 3 )
 
 [node name="defender_selected" type="Sprite" parent="."]
+visible = false
 modulate = Color( 0.192157, 0.698039, 0.87451, 1 )
 self_modulate = Color( 0.537255, 0.803922, 0.964706, 1 )
 scale = Vector2( 0.1, 0.1 )
@@ -88,7 +89,7 @@ parameters/playback = SubResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( -1.16836, -26.0528 )
+position = Vector2( -0.581486, -5.51358 )
 shape = SubResource( 9 )
 
 [node name="detection" type="Area2D" parent="."]
@@ -100,6 +101,7 @@ shape = SubResource( 10 )
 [node name="held_ball_position" type="Position2D" parent="."]
 
 [node name="ball_in_play" parent="held_ball_position" instance=ExtResource( 4 )]
+visible = false
 script = null
 
 [node name="pos" type="Label" parent="."]
@@ -107,6 +109,18 @@ margin_left = -36.1861
 margin_top = -119.759
 margin_right = 3.81392
 margin_bottom = -105.759
+custom_fonts/font = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="throw_vector_line" type="Line2D" parent="."]
+points = PoolVector2Array( -0.230489, -82.2243, 153.225, -84.175 )
+width = 2.0
+
+[node name="throw_vector" type="Label" parent="throw_vector_line"]
+margin_right = 40.0
+margin_bottom = 14.0
 custom_fonts/font = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
