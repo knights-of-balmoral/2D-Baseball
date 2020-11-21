@@ -1,17 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/raw/gui/menu-bg.jpg" type="Texture" id=2]
 [ext_resource path="res://fonts/40_standard.tres" type="DynamicFont" id=3]
 [ext_resource path="res://fx/button_theme.tres" type="Theme" id=4]
-[ext_resource path="res://assets/fonts/imagine_font.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://scripts/buttons/buttons.gd" type="Script" id=6]
 
-[sub_resource type="DynamicFont" id=1]
-size = 44
-font_data = ExtResource( 5 )
-
-[node name="main" type="Node2D"]
+[node name="main_menu" type="Node2D"]
 position = Vector2( 0, -1.10803 )
 script = ExtResource( 1 )
 
@@ -38,45 +33,16 @@ __meta__ = {
 
 [node name="ui" type="Node" parent="."]
 
-[node name="ui_version" type="Label" parent="ui"]
-visible = false
-margin_left = 720.0
-margin_top = 552.0
-margin_right = 1001.0
-margin_bottom = 586.0
-size_flags_vertical = 3
-custom_fonts/font = SubResource( 1 )
-text = "ALPHA .011"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="music_credit" type="Label" parent="ui"]
-visible = false
-margin_left = 68.8667
-margin_top = 641.336
-margin_right = 978.867
-margin_bottom = 675.336
-size_flags_vertical = 3
-custom_fonts/font = SubResource( 1 )
-text = "\"12 String Ramble\" by Stockwrock"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="buttons" type="Control" parent="ui"]
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="menu_buttons" type="VBoxContainer" parent="ui/buttons"]
-margin_left = 57.8949
-margin_top = 96.8423
-margin_right = 439.895
-margin_bottom = 498.842
+margin_left = 43.4549
+margin_top = 119.405
+margin_right = 425.455
+margin_bottom = 539.405
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -184,6 +150,29 @@ __meta__ = {
 }
 
 [node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="ui/buttons/menu_buttons/btn_quit"]
+
+[node name="ui_version" type="Label" parent="ui/buttons/menu_buttons"]
+margin_top = 406.0
+margin_right = 382.0
+margin_bottom = 420.0
+size_flags_vertical = 3
+text = "1.0.0-alpha"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="music_credit" type="Label" parent="ui/buttons/menu_buttons"]
+margin_top = 424.0
+margin_right = 382.0
+margin_bottom = 438.0
+size_flags_vertical = 3
+text = "\"12 String Ramble\" by Stockwrock"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="mouse_entered" from="ui/buttons/menu_buttons/btn_exhibition" to="ui/buttons/menu_buttons/btn_exhibition" method="_on_btn_exhibition_mouse_entered"]
 [connection signal="pressed" from="ui/buttons/menu_buttons/btn_exhibition" to="ui/buttons/menu_buttons/btn_exhibition" method="_on_btn_exhibition_pressed"]
 [connection signal="mouse_entered" from="ui/buttons/menu_buttons/btn_season" to="ui/buttons/menu_buttons/btn_season" method="_on_btn_season_mouse_entered"]

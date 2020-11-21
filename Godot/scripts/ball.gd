@@ -1,28 +1,48 @@
 extends RigidBody2D
-
 onready var anim = get_node("anim")
 onready var ball = get_node("../ball")
 onready var foul_banner = get_node("../ui_canvas/ui/foul")
 onready var home_run_banner = get_node("../ui_canvas/ui/home_run")
 onready var home_run_distance = get_node("../ui_canvas/ui/home_run/distance")
 onready var first_base = get_node("../triggers/base_1")
+onready var foul_area = get_node("../spray_chart/foul_area")
 
-var speed = globals.ball_speed
-var ball_has_been_hit = false
-var ball_english = Vector2(0, 0) # selects "origin" - like where cue ball is hit (english)
-var ball_origin = Vector2(544, 300)
-var ball_thrown = false
+onready var fielder_1 = get_node("../../defense/fielder_1")
+onready var fielder_2 = get_node("../../defense/fielder_2")
+onready var fielder_3 = get_node("../../defense/fielder_3")
+onready var fielder_4 = get_node("../../defense/fielder_4")
+onready var fielder_5 = get_node("../../defense/fielder_5")
+onready var fielder_6 = get_node("../../defense/fielder_6")
+onready var fielder_7 = get_node("../../defense/fielder_7")
+onready var fielder_8 = get_node("../../defense/fielder_8")
+onready var fielder_9 = get_node("../../defense/fielder_9")
 
 var ANIM_SPEED = 10
-var THROW_SPEED = 100
+var THROW_SPEED = globals.THROW_SPEED
 var BALL_HEIGHT_OFFSET := Vector2(0, -1)
+var speed = globals.ball_speed
+var ball_has_been_hit = false
+var ball_has_been_thrown = false
+var ball_english = Vector2(0, 0) # selects "origin" - like where cue ball is hit (english)
+var ball_origin = Vector2(544, 300)
 var throw_target = Vector2()
 var direction
+var fielder_who_has_ball = fielder_1 #default if none have triggered this
 
 func _ready():
 	anim.playback_speed = ANIM_SPEED
 
+# Use unhandled input virtual method to avoid interfering with in-game menus with _gui_input
+func _unhandled_input(event):
+	if Input.is_action_just_pressed("throw_1") && globals.ball_status == "FIELDER":
+		ball_has_been_thrown = true
 	
+	#self.get_tree().get_root().set_input_as_handled()
+	
+func _process(delta):
+	if globals.ball_status == "FIELDER":
+		ball_follow_fielder(fielder_who_has_ball)
+		
 func _integrate_forces(state):
 	if (!ball_has_been_hit):
 		ball.apply_impulse(ball_english, calcBallMovement())
@@ -31,17 +51,19 @@ func _integrate_forces(state):
 		#globals.hit_velocity = convertHitVelocity(state.linear_velocity)
 		ball_has_been_hit = true
 	
-	if Input.is_action_just_pressed("throw_1") && globals.ball_status == "FIELDER":
-		ball_thrown = true
+	if ball_has_been_thrown:
 		globals.ball_status = "THROWN"
 		self.visible = true
 		self.anim.play("standard_throw")
-		direction = (first_base.global_position - globals.throw_origin).normalized() * THROW_SPEED
-		print ("Thrown toward:" + str(direction))
-		ball.apply_impulse(Vector2(), direction)
-		ball_thrown = false
 		
-
+		#always getting a positive on x direction
+		direction = first_base.global_position - fielder_who_has_ball.global_position
+			
+		ball.apply_impulse(Vector2(), direction * THROW_SPEED)
+		print ("Throw Origin: " + str(self.global_position))
+		print ("dir:" + str(direction))
+		globals.ball_status = "INPLAY"
+		ball_has_been_thrown = !ball_has_been_thrown
 		
 func calcBallMovement():
 	randomize()
@@ -69,17 +91,63 @@ func calcBallMovement():
 	var ball_direction = Vector2(ball_x, ball_y)
 	#print("Angle:" + str(globals.ball_origin.angle_to_point(ball_direction)))
 	return ball_direction
-
+	
+func ball_follow_fielder(fielder_to_follow):
+	self.global_position = fielder_to_follow.get_global_transform().get_origin()
+	
 func _on_foul_area_body_entered(body):
 	if (body.name == "ball" && !foul_banner.visible && !home_run_banner.visible && globals.ball_status != "FIELDER" ):
 		foul_banner.visible = true
 	globals.ball_status = "FOUL"
 	if (globals.strikes < 2):globals.strikes +=1
-
+	
 func _on_home_run_area_body_entered(body):
 	if (body.name == "ball" && !foul_banner.visible && !home_run_banner.visible && globals.ball_status != "FIELDER"):
 		home_run_banner.visible = true
 		globals.ball_status = "HOMERUN"
 		#ball.visible = false
 		home_run_distance.text = globals.hit_distance
+func _on_ball_body_entered(body):
+	print (body.name)
+	print (globals.ball_status)
+	 # if a fielder already has the ball, don't run this
+	if "fielder" in body.name && globals.ball_status != "FIELDER":
+		globals.ball_status = "FIELDER"
+		#self.visible = false 
+		foul_area.monitoring = false
+		
+		match body.name:
+			"fielder_1":
+				fielder_who_has_ball =  fielder_1
+			"fielder_2":
+				fielder_who_has_ball =  fielder_2
+			"fielder_3":
+				fielder_who_has_ball =  fielder_3
+			"fielder_4":
+				fielder_who_has_ball =  fielder_4
+			"fielder_5":
+				fielder_who_has_ball =  fielder_5
+			"fielder_6":
+				fielder_who_has_ball =  fielder_6
+			"fielder_7":
+				fielder_who_has_ball =  fielder_7
+			"fielder_8":
+				fielder_who_has_ball =  fielder_8
+			"fielder_9":
+				fielder_who_has_ball =  fielder_9
+			_:
+				pass
+				
 
+
+func _on_right_field_area_body_entered(body):
+	foul_area.monitoring = false # ball was hit to right field
+	#print ("Ball hit to right")
+
+func _on_left_field_area_body_entered(body):
+	foul_area.monitoring = false # ball was hit to left field
+	#print ("Ball hit to left")
+
+func _on_center_field_area_body_entered(body):
+	foul_area.monitoring = false # ball was hit to center field
+	#print ("Ball hit to center")

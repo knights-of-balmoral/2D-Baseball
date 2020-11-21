@@ -1,6 +1,6 @@
 extends AnimationTree
 onready var fence = get_node("/root/OverheadView/field/field_obstacles/outfield_fence")
-onready var foul_area_fence = get_node("/root/OverheadView/field/field_obstacles/foul_area_fence")
+onready var foul_area_fence = get_node("/root/OverheadView/field/field_areas/foul_area_fence")
 var playback : AnimationNodeStateMachinePlayback
 var status_sent = 0
 # status 0 - not sent

@@ -1,11 +1,6 @@
 extends Node
 
-var FIRST_BASE = Vector2(1303, -355)
-var SECOND_BASE = Vector2(492, -1078)
-var THIRD_BASE = Vector2(-263, -401)
-var HOME_BASE = Vector2(35, -197)
-
-var throw_origin = Vector2()
+var THROW_SPEED = 0.8
 
 var pitch_target = "fastball_target_1" #["PTL", "PTC", "PTR", "PLC", "PC", "PRC", "PBL", "PBC", "PBR"]
 var pitch_potential_result = "S" #Use for pitch algorithm to return maybe S (strike) or B (ball) W (wild) H (HBP)

@@ -1,9 +1,8 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://_placeholders/run_right.tres" type="Animation" id=1]
 [ext_resource path="res://assets/raw/has_ball.png" type="Texture" id=2]
 [ext_resource path="res://scenes/actors/fielder.gd" type="Script" id=3]
-[ext_resource path="res://instances/ball_in_play.tscn" type="PackedScene" id=4]
 [ext_resource path="res://_placeholders/run_left.tres" type="Animation" id=5]
 [ext_resource path="res://_placeholders/idle.tres" type="Animation" id=6]
 [ext_resource path="res://font_small.tres" type="DynamicFont" id=7]
@@ -41,9 +40,6 @@ end_node = "idle"
 
 [sub_resource type="CircleShape2D" id=9]
 radius = 35.8531
-
-[sub_resource type="CircleShape2D" id=10]
-radius = 28.6024
 
 [node name="fielder" type="KinematicBody2D"]
 scale = Vector2( 1.5, 1.5 )
@@ -92,18 +88,6 @@ visible = false
 position = Vector2( -0.581486, -5.51358 )
 shape = SubResource( 9 )
 
-[node name="detection" type="Area2D" parent="."]
-
-[node name="ball_pickup_zone" type="CollisionShape2D" parent="detection"]
-visible = false
-shape = SubResource( 10 )
-
-[node name="held_ball_position" type="Position2D" parent="."]
-
-[node name="ball_in_play" parent="held_ball_position" instance=ExtResource( 4 )]
-visible = false
-script = null
-
 [node name="pos" type="Label" parent="."]
 margin_left = -36.1861
 margin_top = -119.759
@@ -113,16 +97,3 @@ custom_fonts/font = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="throw_vector_line" type="Line2D" parent="."]
-points = PoolVector2Array( -0.230489, -82.2243, 153.225, -84.175 )
-width = 2.0
-
-[node name="throw_vector" type="Label" parent="throw_vector_line"]
-margin_right = 40.0
-margin_bottom = 14.0
-custom_fonts/font = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-[connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
