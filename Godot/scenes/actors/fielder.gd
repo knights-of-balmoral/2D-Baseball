@@ -3,7 +3,8 @@ onready var defender_selected = get_node("defender_selected")
 onready var fielders = get_tree().get_nodes_in_group("fielders")
 onready var anim = $defender/anim
 onready var anim_tree = $defender/AnimationTree
-onready var pos = $pos
+onready var test = $test
+onready var ball = get_node("../../field/ball")
 var MAX_SPEED = 500
 var ACCELERATION = 1500
 var ANIM_SPEED = 10
@@ -13,13 +14,17 @@ func _ready():
 	anim.playback_speed = ANIM_SPEED
 	# show/hide fielder selection circle
 	defender_selected.visible = false
-	pos.text = self.name.trim_prefix("fielder_")
+	test.text = self.name.trim_prefix("fielder_")
 	
 func _physics_process(delta):
 	var axis = get_input_axis()
+	
 
+	
 	if defender_selected.visible: # only move if selected
 		motion = move_and_slide(motion)
+#		if globals.ball_status == "F":
+#			ball.set_global_position(self.global_position)
 		
 		if axis == Vector2.ZERO:
 			apply_friction(ACCELERATION * delta)

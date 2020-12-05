@@ -15,7 +15,7 @@ onready var foul_area = $field/spray_chart/center_field_area
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	globals.hit_power_max = globals.hit_power_default # rest hit bonus/penalty
-	globals.ball_status = "INPLAY"
+	globals.ball_status = "IP"
 	ball_state.active = true # turns on auto-advancing animation tree for hits
 	foul_banner.visible = false
 	home_run_banner.visible = false

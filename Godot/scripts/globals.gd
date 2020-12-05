@@ -1,6 +1,6 @@
 extends Node
 
-var THROW_SPEED = 0.8
+var THROW_SPEED = 99
 
 var pitch_target = "fastball_target_1" #["PTL", "PTC", "PTR", "PLC", "PC", "PRC", "PBL", "PBC", "PBR"]
 var pitch_potential_result = "S" #Use for pitch algorithm to return maybe S (strike) or B (ball) W (wild) H (HBP)
@@ -12,7 +12,7 @@ var hit_location = 0 #range from 0 - 110 to decide hit's location (0-10 foul lef
 var ball_status = "P" #IP(In Play) ["1", "P"], ["2", "C"],["3", "1B"],["4", "2B"],["5", "3B"],["6", "SS"],["7", "LF"],["8", "CF"],["9", "RF"]]
 var ball_origin = Vector2(-25,-9)
 
-# smallest x coord we allow the ball to be, etc
+# think about future tracking for individual player stats
 var ball_speed = 1
 var hit_power_default = 1000
 var hit_power_max = 0
@@ -21,6 +21,8 @@ var hit_power_penalty = -3000
 var hit_power = 1
 var distance_conversion = 6.5 # reduces vector toDistance size to convert to "feet"
 var hit_distance = "0 '"
+
+# consider combining into one array
 var strikes = 0
 var balls = 0
 var outs = 0

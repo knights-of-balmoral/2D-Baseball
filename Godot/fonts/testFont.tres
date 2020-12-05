@@ -4,7 +4,7 @@
 font_path = "res://assets/fonts/imagine_font.ttf"
 
 [resource]
-size = 20
+size = 50
 outline_size = 1
 outline_color = Color( 0, 1, 0.321569, 1 )
 font_data = SubResource( 1 )

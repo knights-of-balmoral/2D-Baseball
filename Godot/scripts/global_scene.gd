@@ -6,6 +6,12 @@ onready var bg_music = get_node("/root/global_scene/bgMusic")
 onready var arrow = load("res://assets/raw/gui/cursor.png")
 onready var beam = load("res://assets/raw/gui/beam.png")
 
+#var max = OS.get_screen_size()
+#OS.set_window_size(max)
+#OS.set_window_position(Vector2(0,0))
+#
+#or OS.set_window_fullscreen(true)
+#OS.set_borderless_window(true)
 
 func _ready():
 	get_tree().change_scene("res://scenes/mainMenu.tscn")

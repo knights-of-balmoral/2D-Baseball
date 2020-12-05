@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://scripts/field_overhead.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/overhead-view4.jpg" type="Texture" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://assets/sound/hit.wav" type="AudioStream" id=4]
 [ext_resource path="res://scripts/anim_tree.gd" type="Script" id=5]
 [ext_resource path="res://scenes/actors/fielder.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/effects/trail.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/ball_trail.tscn" type="PackedScene" id=7]
+[ext_resource path="res://fonts/testFont.tres" type="DynamicFont" id=8]
 [ext_resource path="res://assets/raw/baseball.png" type="Texture" id=9]
 [ext_resource path="res://assets/raw/stadiums/homeplate.png" type="Texture" id=10]
 [ext_resource path="res://scenes/triggers/base.tscn" type="PackedScene" id=11]
@@ -22,7 +23,7 @@ bounce = 0.005
 [sub_resource type="PhysicsMaterial" id=2]
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 4.15484
+radius = 12.3472
 
 [sub_resource type="Animation" id=4]
 length = 3.0
@@ -278,11 +279,11 @@ autoplay = true
 [node name="field" type="Node" parent="."]
 
 [node name="field_areas" type="StaticBody2D" parent="field"]
+visible = false
 collision_layer = 0
 collision_mask = 0
 
 [node name="foul_area_fence" type="CollisionPolygon2D" parent="field/field_areas"]
-visible = false
 position = Vector2( -383.876, -284.596 )
 rotation = 0.409826
 scale = Vector2( 1, 2.5 )
@@ -293,6 +294,7 @@ __meta__ = {
 }
 
 [node name="field_borders" type="StaticBody2D" parent="field"]
+visible = false
 collision_layer = 16
 collision_mask = 32
 
@@ -313,6 +315,7 @@ __meta__ = {
 }
 
 [node name="field_obstacles" type="StaticBody2D" parent="field"]
+visible = false
 collision_layer = 2
 physics_material_override = SubResource( 1 )
 
@@ -328,41 +331,52 @@ __meta__ = {
 }
 
 [node name="spray_chart" type="Node2D" parent="field"]
+visible = false
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="foul_area" type="Area2D" parent="field/spray_chart"]
-visible = false
 modulate = Color( 1, 1, 1, 0.4 )
 monitorable = false
-collision_layer = 8
+collision_layer = 0
 collision_mask = 512
 
 [node name="foul" type="CollisionPolygon2D" parent="field/spray_chart/foul_area"]
 polygon = PoolVector2Array( 519.715, 332.476, 286.768, 335.734, -5609.35, -5172.9, -4312.37, 3449.21, 6478.53, 3672.06, 6543.11, -5154.29, 700.534, 339.807, 574.287, 333.291 )
+disabled = true
 
 [node name="right_field_area" type="Area2D" parent="field/spray_chart"]
 visible = false
+collision_layer = 0
+collision_mask = 512
 
 [node name="right_field" type="CollisionPolygon2D" parent="field/spray_chart/right_field_area"]
 build_mode = 1
 polygon = PoolVector2Array( 574.099, 329.589, 504.275, -2260.15, 882.802, -2234.91, 1542.52, -1968.14, 2223.87, -1117.36, 697.741, 330.492 )
+disabled = true
 
 [node name="left_field_area" type="Area2D" parent="field/spray_chart"]
 visible = false
+collision_layer = 0
+collision_mask = 512
 
 [node name="left_field" type="CollisionPolygon2D" parent="field/spray_chart/left_field_area"]
 polygon = PoolVector2Array( 515.39, 318.272, 503.411, -2252, 201.309, -2252, -153.793, -2148.65, -601.646, -1907.5, -910.269, -1661.81, -1204.32, -1080.31, 283.881, 332.91 )
+disabled = true
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="center_field_area" type="Area2D" parent="field/spray_chart"]
 visible = false
+collision_layer = 0
+collision_mask = 512
 
 [node name="center_field" type="CollisionPolygon2D" parent="field/spray_chart/center_field_area"]
+visible = false
 polygon = PoolVector2Array( 522.86, 326.324, -485.548, -1980.81, 53.7413, -2226.88, 867.802, -2235.08, 1421.45, -2032.08, 570.759, 326.324 )
+disabled = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -370,25 +384,29 @@ __meta__ = {
 [node name="home_run_area" type="Area2D" parent="field/spray_chart"]
 visible = false
 monitorable = false
-collision_layer = 10
-collision_mask = 16
+collision_layer = 0
+collision_mask = 512
 
 [node name="home_run" type="CollisionPolygon2D" parent="field/spray_chart/home_run_area"]
 polygon = PoolVector2Array( -1169.7, -1304.93, -5708.15, -5476.74, 6466.8, -5289.07, 2291.48, -1335.91, 1943.32, -1856.49, 1308.89, -2278.66, 857.433, -2407.02, 268.766, -2407.02, -195.97, -2300.79, -647.429, -2035.23, -930.697, -1765.24 )
 
 [node name="outfield" type="Area2D" parent="field/spray_chart"]
 visible = false
-collision_layer = 8
+collision_layer = 0
+collision_mask = 512
 
 [node name="outfield" type="CollisionPolygon2D" parent="field/spray_chart/outfield"]
 polygon = PoolVector2Array( -711.562, -524.042, -399.988, -983.414, -8.52283, -1306.97, 370.958, -1422.81, 806.363, -1410.83, 1249.76, -1207.11, 1533.37, -955.452, 1828.97, -484.096, 2376.22, -1031.35, 2076.63, -1526.67, 1884.89, -1778.33, 1565.33, -2061.94, 1289.7, -2205.74, 826.336, -2333.57, 303.051, -2341.56, 63.3789, -2301.61, -248.195, -2185.77, -647.649, -1958.08, -887.321, -1706.43, -1035.12, -1470.75, -1214.87, -1003.39 )
+disabled = true
 
 [node name="infield" type="Area2D" parent="field/spray_chart"]
 visible = false
-collision_layer = 8
+collision_layer = 0
+collision_mask = 512
 
 [node name="infield" type="CollisionPolygon2D" parent="field/spray_chart/infield"]
 polygon = PoolVector2Array( -567.758, -687.818, -447.922, -923.495, -132.354, -1227.08, 243.133, -1406.83, 670.549, -1430.8, 1066.01, -1322.95, 1469.46, -1047.33, 1705.13, -695.807, 746.445, 194.975, 327.018, 190.981 )
+disabled = true
 
 [node name="triggers" type="Node" parent="field"]
 
@@ -416,8 +434,7 @@ texture = ExtResource( 10 )
 "ball",
 ]]
 position = Vector2( 544.601, 300.391 )
-collision_layer = 529
-collision_mask = 57
+collision_mask = 49
 physics_material_override = SubResource( 2 )
 contacts_reported = 1
 contact_monitor = true
@@ -427,7 +444,6 @@ script = ExtResource( 3 )
 
 [node name="ball_collision" type="CollisionShape2D" parent="field/ball"]
 position = Vector2( -0.0768433, 1.38275 )
-rotation = -0.785398
 scale = Vector2( 1.17967, 1.12307 )
 shape = SubResource( 3 )
 
@@ -435,21 +451,19 @@ shape = SubResource( 3 )
 modulate = Color( 0, 0, 0, 1 )
 self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 0.277344, 0.883911 )
-rotation = 0.523599
 scale = Vector2( 0.01, 0.01 )
 texture = ExtResource( 14 )
 
+[node name="ball_trail" parent="field/ball" instance=ExtResource( 7 )]
+trail_length = 70
+target_path = NodePath("..")
+
 [node name="ball_sprite" type="Sprite" parent="field/ball"]
+modulate = Color( 0.607843, 0.843137, 0.0941176, 1 )
 position = Vector2( -0.0117188, 1.50586 )
 rotation = -0.785398
 scale = Vector2( 0.03, 0.03 )
 texture = ExtResource( 9 )
-
-[node name="trail" parent="field/ball/ball_sprite" instance=ExtResource( 8 )]
-visible = false
-self_modulate = Color( 0.00784314, 0.584314, 0.678431, 1 )
-position = Vector2( -10.2891, -35.3105 )
-scale = Vector2( 100, 100 )
 
 [node name="anim" type="AnimationPlayer" parent="field/ball"]
 playback_process_mode = 0
@@ -492,6 +506,16 @@ __meta__ = {
 "_editor_description_": "ball_glow"
 }
 
+[node name="test" type="Label" parent="field/ball"]
+margin_left = 102.236
+margin_top = -15.2463
+margin_right = 250.236
+margin_bottom = 23.7537
+custom_fonts/font = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ui_canvas" type="CanvasLayer" parent="field"]
 layer = 2
 
@@ -512,66 +536,58 @@ margin_bottom = 300.0
 "fielders",
 ] instance=ExtResource( 6 )]
 position = Vector2( 493.74, -270.095 )
-collision_layer = 32
 
 [node name="fielder_2" parent="defense" groups=[
 "fielders",
 ] instance=ExtResource( 6 )]
 position = Vector2( 508.373, 549.175 )
-collision_layer = 32
 
 [node name="fielder_3" parent="defense" groups=[
 "fielders",
 "infield",
 ] instance=ExtResource( 6 )]
 position = Vector2( 1169.23, -447.74 )
-collision_layer = 32
 
 [node name="fielder_4" parent="defense" groups=[
 "fielders",
 "infield",
 ] instance=ExtResource( 6 )]
 position = Vector2( 769.237, -1020.89 )
-collision_layer = 32
 
 [node name="fielder_5" parent="defense" groups=[
 "fielders",
 "infield",
 ] instance=ExtResource( 6 )]
 position = Vector2( -261.032, -548.242 )
-collision_layer = 32
 
 [node name="fielder_6" parent="defense" groups=[
 "fielders",
 "infield",
 ] instance=ExtResource( 6 )]
 position = Vector2( 5.73787, -861.203 )
-collision_layer = 32
 
 [node name="fielder_7" parent="defense" groups=[
 "fielders",
 "outfield",
 ] instance=ExtResource( 6 )]
 position = Vector2( -793.04, -1169.62 )
-collision_layer = 32
 
 [node name="fielder_8" parent="defense" groups=[
 "fielders",
 "outfield",
 ] instance=ExtResource( 6 )]
 position = Vector2( 504.472, -1953.82 )
-collision_layer = 32
 
 [node name="fielder_9" parent="defense" groups=[
 "fielders",
 "outfield",
 ] instance=ExtResource( 6 )]
 position = Vector2( 1739.13, -1310.21 )
-collision_layer = 32
 
 [node name="offense" type="Node" parent="."]
 
 [node name="basepath" type="Path2D" parent="offense"]
+visible = false
 position = Vector2( 0, 7.53674 )
 curve = SubResource( 22 )
 

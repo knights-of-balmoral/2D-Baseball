@@ -1,11 +1,11 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://_placeholders/run_right.tres" type="Animation" id=1]
 [ext_resource path="res://assets/raw/has_ball.png" type="Texture" id=2]
 [ext_resource path="res://scenes/actors/fielder.gd" type="Script" id=3]
+[ext_resource path="res://font_small.tres" type="DynamicFont" id=4]
 [ext_resource path="res://_placeholders/run_left.tres" type="Animation" id=5]
 [ext_resource path="res://_placeholders/idle.tres" type="Animation" id=6]
-[ext_resource path="res://font_small.tres" type="DynamicFont" id=7]
 [ext_resource path="res://_placeholders/spotlight.png" type="Texture" id=8]
 
 [sub_resource type="StreamTexture" id=1]
@@ -41,11 +41,17 @@ end_node = "idle"
 [sub_resource type="CircleShape2D" id=9]
 radius = 35.8531
 
+[sub_resource type="CircleShape2D" id=10]
+radius = 41.58
+
 [node name="fielder" type="KinematicBody2D"]
 scale = Vector2( 1.5, 1.5 )
-collision_layer = 4
+collision_layer = 32
 collision_mask = 0
 script = ExtResource( 3 )
+
+[node name="held_ball" type="Position2D" parent="."]
+position = Vector2( -10.2912, -79.8797 )
 
 [node name="defender_selected" type="Sprite" parent="."]
 visible = false
@@ -58,12 +64,6 @@ texture = ExtResource( 2 )
 visible = false
 texture = ExtResource( 8 )
 shadow_enabled = true
-
-[node name="has_ball_effect" type="Sprite" parent="."]
-visible = false
-light_mask = 8
-scale = Vector2( 0.08, 0.08 )
-texture = ExtResource( 2 )
 
 [node name="defender" type="Sprite" parent="."]
 position = Vector2( -0.614711, -43.0301 )
@@ -84,16 +84,24 @@ anim_player = NodePath("../anim")
 parameters/playback = SubResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( -0.581486, -5.51358 )
+position = Vector2( 1.54757, -20.1182 )
 shape = SubResource( 9 )
 
-[node name="pos" type="Label" parent="."]
-margin_left = -36.1861
-margin_top = -119.759
-margin_right = 3.81392
-margin_bottom = -105.759
-custom_fonts/font = ExtResource( 7 )
+[node name="test" type="Label" parent="."]
+margin_left = -9.4696
+margin_top = -118.516
+margin_right = 52.5304
+margin_bottom = -89.5159
+custom_fonts/font = ExtResource( 4 )
+text = "test"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="detector" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detector"]
+position = Vector2( 0.490072, -23.5228 )
+shape = SubResource( 10 )
