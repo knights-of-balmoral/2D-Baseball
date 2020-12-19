@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://_placeholders/run_right.tres" type="Animation" id=1]
 [ext_resource path="res://assets/raw/has_ball.png" type="Texture" id=2]
@@ -40,9 +40,6 @@ end_node = "idle"
 
 [sub_resource type="CircleShape2D" id=9]
 radius = 35.8531
-
-[sub_resource type="CircleShape2D" id=10]
-radius = 41.58
 
 [node name="fielder" type="KinematicBody2D"]
 scale = Vector2( 1.5, 1.5 )
@@ -97,11 +94,3 @@ text = "test"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="detector" type="Area2D" parent="."]
-collision_layer = 64
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="detector"]
-position = Vector2( 0.490072, -23.5228 )
-shape = SubResource( 10 )

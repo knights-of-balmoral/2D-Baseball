@@ -1,15 +1,19 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=28 format=2]
 
-[ext_resource path="res://scripts/ball.gd" type="Script" id=2]
-[ext_resource path="res://scripts/anim_tree.gd" type="Script" id=3]
-[ext_resource path="res://assets/raw/baseball.png" type="Texture" id=4]
-[ext_resource path="res://assets/raw/ball_shadow.png" type="Texture" id=5]
-[ext_resource path="res://scenes/effects/trail.tscn" type="PackedScene" id=6]
+[ext_resource path="res://fonts/testFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/raw/baseball.png" type="Texture" id=2]
+[ext_resource path="res://_placeholders/spotlight.png" type="Texture" id=3]
+[ext_resource path="res://assets/raw/ball_shadow.png" type="Texture" id=4]
+[ext_resource path="res://scripts/anim_tree.gd" type="Script" id=5]
+[ext_resource path="res://scripts/ball.gd" type="Script" id=6]
+[ext_resource path="res://scenes/ball_trail.tscn" type="PackedScene" id=8]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 4.15484
+[sub_resource type="PhysicsMaterial" id=1]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="CircleShape2D" id=2]
+radius = 12.3472
+
+[sub_resource type="Animation" id=3]
 length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("ball_sprite:rotation_degrees")
@@ -48,7 +52,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0.01, 0.01 ), Vector2( 0.07, 0.07 ), Vector2( 0.01, 0.01 ), Vector2( 0.01, 0.01 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("ball_sprite:rotation_degrees")
@@ -87,7 +91,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0.01, 0.01 ), Vector2( 0.5, 0.5 ), Vector2( 0.01, 0.01 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ball_sprite:rotation_degrees")
 tracks/0/interp = 1
@@ -113,7 +117,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.01, 0.01 ), Vector2( 0.01, 0.01 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 7.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("ball_sprite:rotation_degrees")
@@ -152,7 +156,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0.01, 0.01 ), Vector2( 0.5, 0.5 ), Vector2( 0.01, 0.01 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("ball_sprite:rotation_degrees")
@@ -167,113 +171,142 @@ tracks/0/keys = {
 "values": [ 0.0, -307.239, -130.346, -34.4153 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=7]
-animation = "grounder"
-
-[sub_resource type="AnimationNodeAnimation" id=8]
-animation = "hit"
+[sub_resource type="Animation" id=8]
+resource_name = "standard_throw"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.001, 0.002, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 2, 2 ), Vector2( 1, 1 ) ]
+}
 
 [sub_resource type="AnimationNodeAnimation" id=9]
-animation = "idle"
+animation = "grounder"
 
 [sub_resource type="AnimationNodeAnimation" id=10]
-animation = "pop_up"
+animation = "hit"
 
 [sub_resource type="AnimationNodeAnimation" id=11]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "pop_up"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "roll"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=14]
-switch_mode = 2
-auto_advance = true
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "standard_throw"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=15]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=16]
-states/grounder/node = SubResource( 7 )
-states/grounder/position = Vector2( 156, 72 )
-states/hit/node = SubResource( 8 )
-states/hit/position = Vector2( 186, 188 )
-states/idle/node = SubResource( 9 )
-states/idle/position = Vector2( 634, 188 )
-states/pop_up/node = SubResource( 10 )
-states/pop_up/position = Vector2( 186, -31 )
-states/roll/node = SubResource( 11 )
-states/roll/position = Vector2( 408, 72 )
-transitions = [ "hit", "roll", SubResource( 12 ), "roll", "idle", SubResource( 13 ), "grounder", "roll", SubResource( 14 ), "pop_up", "roll", SubResource( 15 ) ]
-graph_offset = Vector2( -153, -134 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+switch_mode = 2
+auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=17]
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=19]
+states/grounder/node = SubResource( 9 )
+states/grounder/position = Vector2( 156, 72 )
+states/hit/node = SubResource( 10 )
+states/hit/position = Vector2( 186, 188 )
+states/idle/node = SubResource( 11 )
+states/idle/position = Vector2( 634, 188 )
+states/pop_up/node = SubResource( 12 )
+states/pop_up/position = Vector2( 186, -31 )
+states/roll/node = SubResource( 13 )
+states/roll/position = Vector2( 408, 72 )
+states/standard_throw/node = SubResource( 14 )
+states/standard_throw/position = Vector2( 408, -128.467 )
+transitions = [ "hit", "roll", SubResource( 15 ), "roll", "idle", SubResource( 16 ), "grounder", "roll", SubResource( 17 ), "pop_up", "roll", SubResource( 18 ) ]
+graph_offset = Vector2( 9, -224.467 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
 
 [node name="ball" type="RigidBody2D" groups=[
 "ball",
 ]]
-position = Vector2( 544.601, 300.391 )
-collision_layer = 529
-collision_mask = 9
-script = ExtResource( 2 )
+collision_mask = 49
+physics_material_override = SubResource( 1 )
+contacts_reported = 1
+contact_monitor = true
+linear_damp = 0.5
+angular_damp = 0.5
+script = ExtResource( 6 )
 
 [node name="ball_collision" type="CollisionShape2D" parent="."]
 position = Vector2( -0.0768433, 1.38275 )
-rotation = -0.785398
 scale = Vector2( 1.17967, 1.12307 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="ball_shadow" type="Sprite" parent="."]
 modulate = Color( 0, 0, 0, 1 )
 self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 0.277344, 0.883911 )
-rotation = 0.523599
-scale = Vector2( 0.01, 0.01 )
-texture = ExtResource( 5 )
-
-[node name="ball_sprite" type="Sprite" parent="."]
-position = Vector2( -0.0117188, 1.50586 )
-rotation = -0.785398
 scale = Vector2( 0.01, 0.01 )
 texture = ExtResource( 4 )
 
-[node name="trail" parent="ball_sprite" instance=ExtResource( 6 )]
-visible = false
-self_modulate = Color( 0.00784314, 0.584314, 0.678431, 1 )
-position = Vector2( -10.2891, -35.3105 )
-scale = Vector2( 100, 100 )
+[node name="ball_trail" parent="." instance=ExtResource( 8 )]
+trail_length = 70
+target_path = NodePath("..")
+
+[node name="ball_sprite" type="Sprite" parent="."]
+modulate = Color( 0.607843, 0.843137, 0.0941176, 1 )
+position = Vector2( -0.0117188, 1.50586 )
+rotation = -0.785398
+scale = Vector2( 0.03, 0.03 )
+texture = ExtResource( 2 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
-anims/grounder = SubResource( 2 )
-anims/hit = SubResource( 3 )
-anims/idle = SubResource( 4 )
-anims/pop_up = SubResource( 5 )
-anims/roll = SubResource( 6 )
+playback_process_mode = 0
+anims/grounder = SubResource( 3 )
+anims/hit = SubResource( 4 )
+anims/idle = SubResource( 5 )
+anims/pop_up = SubResource( 6 )
+anims/roll = SubResource( 7 )
+anims/standard_throw = SubResource( 8 )
 
 [node name="anim_tree" type="AnimationTree" parent="."]
-tree_root = SubResource( 16 )
+tree_root = SubResource( 19 )
 anim_player = NodePath("../anim")
-parameters/playback = SubResource( 17 )
-script = ExtResource( 3 )
+parameters/playback = SubResource( 20 )
+script = ExtResource( 5 )
 
-[node name="ballCamera" type="Camera2D" parent="."]
-position = Vector2( -0.372009, 0.451416 )
-scale = Vector2( 2.778, 2.778 )
-current = true
-zoom = Vector2( 2, 2 )
-limit_smoothed = true
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-smoothing_enabled = true
-smoothing_speed = 3.0
-drag_margin_left = 0.55
-drag_margin_top = 0.15
-drag_margin_right = 0.55
-drag_margin_bottom = 0.16
-editor_draw_limits = true
-editor_draw_drag_margin = true
+[node name="Light2D" type="Light2D" parent="."]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+color = Color( 0.823529, 0.835294, 0.776471, 0.752941 )
+shadow_enabled = true
+__meta__ = {
+"_editor_description_": "ball_glow"
+}
+
+[node name="test" type="Label" parent="."]
+margin_left = 102.236
+margin_top = -15.2463
+margin_right = 250.236
+margin_bottom = 23.7537
+custom_fonts/font = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="throw_vector" type="Line2D" parent="."]
+points = PoolVector2Array( 0, 0, 0, 0 )
+default_color = Color( 0.980392, 0.0470588, 0.0470588, 1 )
+[connection signal="body_entered" from="." to="." method="_on_ball_body_entered"]

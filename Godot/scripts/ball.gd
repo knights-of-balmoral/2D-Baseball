@@ -1,7 +1,3 @@
-#mem management (unload nodes no longer being used)
-#func _exit_tree():
-#	self.queue_free()
-
 extends RigidBody2D
 onready var anim = get_node("anim")
 onready var ball = get_node("../ball")
@@ -22,9 +18,8 @@ onready var fielder_8 = get_node("../../defense/fielder_8")
 onready var fielder_9 = get_node("../../defense/fielder_9")
 
 var ANIM_SPEED = 10
-var THROW_SPEED = globals.THROW_SPEED
+var THROW_SPEED = 100
 #var BALL_HELD_OFFSET = Vector2(0, -60)
-var speed = globals.ball_speed
 var ball_has_been_hit = false
 var ball_has_been_thrown = false
 var ball_english = Vector2(0, 0) # selects "origin" - like where cue ball is hit (english)
@@ -37,19 +32,12 @@ onready var trail = $ball_trail
 
 func _ready():
 	anim.playback_speed = ANIM_SPEED
-
-# Use unhandled input virtual method to avoid interfering with in-game menus with _gui_input
-func _unhandled_input(event):
-	if Input.is_action_just_pressed("throw_1") && globals.ball_status == "F":
-		ball_has_been_thrown = true
+	
 			
-	#self.get_tree().get_root().set_input_as_handled()
+
+
 	
 func _process(delta):
-	if globals.ball_status == "F":
-		ball_follow_fielder(fielder_who_has_ball)
-	
-	# test section
 	test.text = "S: " + str(globals.ball_status) 
 
 		
@@ -69,6 +57,7 @@ func throw_ball():
 	globals.ball_status = "T"
 	self.visible = true
 	#self.anim.play("standard_throw")
+	print("F2: " + str(fielder_2.global_position))
 	throw_target = fielder_2.global_position
 	direction = throw_target - fielder_who_has_ball.global_position#first_base.global_position - fielder_who_has_ball.global_position
 	direction = direction.normalized()
@@ -76,6 +65,10 @@ func throw_ball():
 	ball.apply_impulse(Vector2(), direction * THROW_SPEED)
 	print ("Throw Origin: " + str(self.global_position))
 	print ("dir:" + str(direction))
+	print ("LV: " + str(ball.linear_velocity))
+	print ("AV: " + str(ball.angular_velocity))
+	$throw_vector.add_point(fielder_who_has_ball.global_position, 0)
+	$throw_vector.add_point(throw_target, 1)
 	globals.ball_status = "IP"
 	ball_has_been_thrown = !ball_has_been_thrown
 	#fielder_who_has_ball.get_child(4).set_deferred("disabled", false)
@@ -107,9 +100,6 @@ func get_hit_trajectory():
 	#print("Angle:" + str(globals.ball_origin.angle_to_point(ball_direction)))
 	return ball_direction
 	
-func ball_follow_fielder(fielder_to_follow):
-	self.set_global_position(fielder_to_follow.global_position)# + BALL_HELD_OFFSET) 
-	
 func _on_foul_area_body_entered(body):
 	if (body.name == "ball" && !foul_banner.visible && !home_run_banner.visible && globals.ball_status != "F" ):
 		foul_banner.visible = true
@@ -125,34 +115,54 @@ func _on_home_run_area_body_entered(body):
 func _on_ball_body_entered(body):
 	 # if a fielder already has the ball, don't run this
 	if "fielder" in body.name && globals.ball_status != "F":
-		globals.ball_status = "F"
 		
-		#self.visible = false 
-		#foul_area.disabled = true
-		
+		globals.camera_is_set = !globals.camera_is_set		
 		match body.name:
 			"fielder_1":
 				fielder_who_has_ball =  fielder_1
+				globals.ball_status = "F1"	
+				
+					
 			"fielder_2":
 				fielder_who_has_ball =  fielder_2
+				globals.ball_status = "F2"		
+				
 			"fielder_3":
 				fielder_who_has_ball =  fielder_3
+				globals.ball_status = "F3"		
+				
 			"fielder_4":
 				fielder_who_has_ball =  fielder_4
+				globals.ball_status = "F4"		
+				
 			"fielder_5":
 				fielder_who_has_ball =  fielder_5
+				globals.ball_status = "F5"		
+				
 			"fielder_6":
 				fielder_who_has_ball =  fielder_6
+				globals.ball_status = "F6"		
+				
 			"fielder_7":
 				fielder_who_has_ball =  fielder_7
-			"fielder_8":
+				globals.ball_status = "F7"		
+				
+			"fieder_8":
 				fielder_who_has_ball =  fielder_8
+				globals.ball_status = "F8"		
+				
 			"fielder_9":
 				fielder_who_has_ball =  fielder_9
+				globals.ball_status = "F9"
+				
 			_:
 				pass
-				
+		_exit_tree()
 		#fielder_who_has_ball.get_child(4).set_deferred("disabled", true)
+
+func _exit_tree():
+	#remove_child(self) needs a look - might have to move some code around to prevent mem leaks
+	self.queue_free()
 
 func _on_right_field_area_body_entered(body):
 	pass#foul_area.disabled = true # ball was hit to right field
