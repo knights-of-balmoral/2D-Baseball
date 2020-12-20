@@ -50,15 +50,17 @@ func _unhandled_input(event):
 		throw_ball()
 		
 func throw_ball():
-	throw_source = select_throw_source()
-	throw_target = select_throw_target()
+	
 	var new_ball = load("res://scenes/instanced/ball.tscn")
 	ball = new_ball.instance()
 	$field.add_child(ball)
+	throw_source = select_throw_source()
+	throw_target = select_throw_target()
 	ball.global_position = throw_source.global_position
 	
+	
 	ball.apply_central_impulse(Vector2(100,100))
-	#enable_colliders()
+	enable_colliders()
 	
 	globals.ball_status = "IP"
 
