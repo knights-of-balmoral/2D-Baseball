@@ -48,6 +48,7 @@ func _ready():
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("throw_1") && globals.ball_status.left(1) == "F":
 		throw_ball()
+		print ("Ball Thrown")
 		
 func throw_ball():
 	
@@ -57,10 +58,10 @@ func throw_ball():
 	throw_source = select_throw_source()
 	throw_target = select_throw_target()
 	ball.global_position = throw_source.global_position
-	
+	ball.visible = true
 	
 	ball.apply_central_impulse(Vector2(100,100))
-	enable_colliders()
+	
 	
 	globals.ball_status = "IP"
 
@@ -118,12 +119,18 @@ func _process(delta):
 		globals.ball_status = "P"
 		get_tree().change_scene("res://scenes/battingView.tscn")
 	
+	# if the ball is outside of a fielder's AO, turn the fielder collisions back on
+	# But what if the fielders are very close together - problems would ensue
+	#if globals.ball_status == "IP":
+	#	enable_colliders()
+	
 	runner.set_offset(runner.get_offset() + 250 * delta) # .22  - first base, .49 - second base, .73 - third base, 1 - home plate
 		
 func set_camera_position():
 	
 	match globals.ball_status:
 		"IP":
+			# needs error checking for if the ball is not yet loaded to reset cam position onto
 			cam.global_position = ball.global_position	
 		"F1":		
 			cam.global_position = fielder_1.global_position

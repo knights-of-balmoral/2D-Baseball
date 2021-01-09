@@ -21,10 +21,10 @@ var ANIM_SPEED = 10
 var THROW_SPEED = 100
 #var BALL_HELD_OFFSET = Vector2(0, -60)
 var ball_has_been_hit = false
-var ball_has_been_thrown = false
+#var ball_has_been_thrown = false
 var ball_english = Vector2(0, 0) # selects "origin" - like where cue ball is hit (english)
 var ball_origin = Vector2(544, 300)
-var throw_target: Vector2
+#var throw_target: Vector2
 var direction
 var fielder_who_has_ball = fielder_1 #default if none have triggered this
 var ball_trail = []
@@ -40,38 +40,15 @@ func _ready():
 func _process(delta):
 	test.text = "S: " + str(globals.ball_status) 
 
-		
 func _integrate_forces(state):
 	if !ball_has_been_hit:
 		hit_ball(state)
-	if ball_has_been_thrown:
-		throw_ball()
 
 func hit_ball(state):
 	ball.apply_impulse(ball_english, get_hit_trajectory())
 	globals.hit_distance = str(stepify(abs(state.linear_velocity.distance_to(ball_origin) / globals.distance_conversion), 0.1)) + " '"
 	#globals.hit_velocity = convertHitVelocity(state.linear_velocity)
 	ball_has_been_hit = !ball_has_been_hit
-
-func throw_ball():
-	globals.ball_status = "T"
-	self.visible = true
-	#self.anim.play("standard_throw")
-	print("F2: " + str(fielder_2.global_position))
-	throw_target = fielder_2.global_position
-	direction = throw_target - fielder_who_has_ball.global_position#first_base.global_position - fielder_who_has_ball.global_position
-	direction = direction.normalized()
-	#ball.rotate(get_angle_to(throw_target))
-	ball.apply_impulse(Vector2(), direction * THROW_SPEED)
-	print ("Throw Origin: " + str(self.global_position))
-	print ("dir:" + str(direction))
-	print ("LV: " + str(ball.linear_velocity))
-	print ("AV: " + str(ball.angular_velocity))
-	$throw_vector.add_point(fielder_who_has_ball.global_position, 0)
-	$throw_vector.add_point(throw_target, 1)
-	globals.ball_status = "IP"
-	ball_has_been_thrown = !ball_has_been_thrown
-	#fielder_who_has_ball.get_child(4).set_deferred("disabled", false)
 
 func get_hit_trajectory():
 	randomize()
