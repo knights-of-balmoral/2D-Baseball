@@ -290,7 +290,7 @@ script = ExtResource( 5 )
 [node name="Light2D" type="Light2D" parent="."]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
-color = Color( 0.823529, 0.835294, 0.776471, 0.752941 )
+color = Color( 0.0431373, 0.87451, 0.835294, 1 )
 shadow_enabled = true
 __meta__ = {
 "_editor_description_": "ball_glow"

@@ -130,8 +130,8 @@ func set_camera_position():
 	
 	match globals.ball_status:
 		"IP":
-			# needs error checking for if the ball is not yet loaded to reset cam position onto
-			cam.global_position = ball.global_position	
+			if ball != null:
+				cam.global_position = ball.global_position	
 		"F1":		
 			cam.global_position = fielder_1.global_position
 		"F2":		
