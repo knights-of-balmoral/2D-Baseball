@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/field_overhead.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/overhead-view4.jpg" type="Texture" id=2]
 [ext_resource path="res://scenes/instanced/ball.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/sound/hit.wav" type="AudioStream" id=4]
+[ext_resource path="res://fonts/balmoralFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://scenes/actors/fielder.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/raw/stadiums/homeplate.png" type="Texture" id=10]
 [ext_resource path="res://scenes/triggers/base.tscn" type="PackedScene" id=11]
@@ -16,7 +17,7 @@ bounce = 0.005
 
 [sub_resource type="Curve2D" id=2]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 516.509, 423.16, -61.8011, 167.315, 61.8011, -167.315, 1306.4, -374.12, 137.168, -12.0588, -137.168, 12.0588, 495.828, -1095.86, 42.2057, -161.286, -42.2057, 161.286, -255.527, -411.133, 0, 0, 0, 0, 488.078, 415.406 )
+"points": PoolVector2Array( 0, 0, 0, 0, 531.007, 909.376, -61.8011, 167.315, 61.8011, -167.315, 1588.82, -51.0644, 137.168, -12.0588, -137.168, 12.0588, 495.599, -967.244, 42.2057, -161.286, -42.2057, 161.286, -633.028, -99.7504, 0, 0, 0, 0, 491.174, 922.653 )
 }
 
 [node name="OverheadView" type="Node2D"]
@@ -188,18 +189,19 @@ disabled = true
 [node name="triggers" type="Node" parent="field"]
 
 [node name="base_1" parent="field/triggers" instance=ExtResource( 11 )]
-position = Vector2( 1303, -355 )
+position = Vector2( 1594.6, -43.4324 )
 
 [node name="base_2" parent="field/triggers" instance=ExtResource( 11 )]
-position = Vector2( 492, -1078 )
+position = Vector2( 495.994, -958.166 )
 
 [node name="base_3" parent="field/triggers" instance=ExtResource( 11 )]
-position = Vector2( -263, -401 )
+position = Vector2( -630.49, -93.4269 )
 
 [node name="home_plate" type="Node2D" parent="field/triggers"]
+position = Vector2( 514.853, 912.783 )
 
 [node name="home_plate" type="Sprite" parent="field/triggers/home_plate"]
-position = Vector2( 501.185, 442.501 )
+position = Vector2( -2.11652, 3.11087 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 10 )
 
@@ -225,54 +227,54 @@ position = Vector2( 503.806, 407.99 )
 [node name="fielder_1" parent="defense" groups=[
 "fielders",
 ] instance=ExtResource( 6 )]
-position = Vector2( 493.74, -270.095 )
+position = Vector2( 515.87, -88.6294 )
 
 [node name="fielder_2" parent="defense" groups=[
 "fielders",
 ] instance=ExtResource( 6 )]
-position = Vector2( 508.373, 549.175 )
+position = Vector2( 512.799, 1049.31 )
 
 [node name="fielder_3" parent="defense" groups=[
 "fielders",
 "infield",
 ] instance=ExtResource( 6 )]
-position = Vector2( 1169.23, -447.74 )
+position = Vector2( 1545.44, -199.885 )
 
 [node name="fielder_4" parent="defense" groups=[
 "fielders",
 "infield",
 ] instance=ExtResource( 6 )]
-position = Vector2( 769.237, -1020.89 )
+position = Vector2( 809.071, -821.72 )
 
 [node name="fielder_5" parent="defense" groups=[
 "fielders",
 "infield",
 ] instance=ExtResource( 6 )]
-position = Vector2( -261.032, -548.242 )
+position = Vector2( -526.591, -225.145 )
 
 [node name="fielder_6" parent="defense" groups=[
 "fielders",
 "infield",
 ] instance=ExtResource( 6 )]
-position = Vector2( 5.73787, -861.203 )
+position = Vector2( -113.764, -728.423 )
 
 [node name="fielder_7" parent="defense" groups=[
 "fielders",
 "outfield",
 ] instance=ExtResource( 6 )]
-position = Vector2( -793.04, -1169.62 )
+position = Vector2( -1209.08, -1377.64 )
 
 [node name="fielder_8" parent="defense" groups=[
 "fielders",
 "outfield",
 ] instance=ExtResource( 6 )]
-position = Vector2( 504.472, -1953.82 )
+position = Vector2( 460.212, -2334.46 )
 
 [node name="fielder_9" parent="defense" groups=[
 "fielders",
 "outfield",
 ] instance=ExtResource( 6 )]
-position = Vector2( 1739.13, -1310.21 )
+position = Vector2( 2203.86, -1416.43 )
 
 [node name="offense" type="Node" parent="."]
 
@@ -281,13 +283,24 @@ position = Vector2( 0, 7.53674 )
 curve = SubResource( 2 )
 
 [node name="runners_path" type="PathFollow2D" parent="offense/basepath"]
-position = Vector2( 516.509, 423.16 )
+position = Vector2( 531.007, 909.376 )
 rotation = -1.32176
 rotate = false
 loop = false
 
 [node name="baserunner" type="Sprite" parent="offense/basepath/runners_path"]
-position = Vector2( 34.0833, -18.2257 )
+position = Vector2( 53.8462, -39.8181 )
 rotation = 0.524373
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 12 )
+
+[node name="test" type="Label" parent="."]
+margin_left = 278.721
+margin_top = 120.587
+margin_right = 741.721
+margin_bottom = 172.587
+custom_fonts/font = ExtResource( 5 )
+text = "TESTtests"
+__meta__ = {
+"_edit_use_anchors_": false
+}

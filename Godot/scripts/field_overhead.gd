@@ -6,6 +6,7 @@ onready var home_run_banner = get_node("field/ui_canvas/ui/home_run")
 onready var foul_area = $field/spray_chart/center_field_area
 onready var ball = $field/ball
 onready var cam = $"cam-main"
+onready var test = $test
 onready var fielder_1 = $defense/fielder_1
 onready var fielder_2 = $defense/fielder_2
 onready var fielder_3 = $defense/fielder_3
@@ -27,6 +28,7 @@ onready var fielder_9_collision = $defense/fielder_9/CollisionShape2D
 
 var throw_source = fielder_1 #default to pitcher
 var throw_target = fielder_2 #default to catcher
+var camera_is_set = false
 
 #get_tree().call_group("my_group","my_function",args...)
 #If you need to do something with your group:
@@ -43,15 +45,30 @@ func _ready():
 	home_run_banner.visible = false
 	foul_area.monitoring = true
 	
+func _process(delta):
+	#if !camera_is_set:
+	set_camera_position()	
+	test.text = globals.ball_status
+		# Toggle Menu 
+	if Input.is_action_just_released("toggle_menu") == true:
+		globals.ball_status = "P"
+		get_tree().change_scene("res://scenes/battingView.tscn")
 	
+	# if the ball is outside of a fielder's AO, turn the fielder collisions back on
+	# But what if the fielders are very close together - problems would ensue
+	#if globals.ball_status == "IP":
+	#	enable_colliders()
 	
+	runner.set_offset(runner.get_offset() + 250 * delta) # .22  - first base, .49 - second base, .73 - third base, 1 - home plate
+		
+		
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("throw_1") && globals.ball_status.left(1) == "F":
 		throw_ball()
 		print ("Ball Thrown")
-		
-func throw_ball():
 	
+func throw_ball():
+	camera_is_set = false
 	var new_ball = load("res://scenes/instanced/ball.tscn")
 	ball = new_ball.instance()
 	$field.add_child(ball)
@@ -59,13 +76,15 @@ func throw_ball():
 	throw_target = select_throw_target()
 	ball.global_position = throw_source.global_position
 	ball.visible = true
-	
+
 	ball.apply_central_impulse(Vector2(100,100))
 	
 	
 	globals.ball_status = "IP"
 
 func enable_colliders():
+	print("start delay")
+	yield(get_tree().create_timer(1.0), "timeout")
 	fielder_1_collision.set_disabled(false)
 	fielder_2_collision.set_disabled(false)
 	fielder_3_collision.set_disabled(false)
@@ -77,6 +96,11 @@ func enable_colliders():
 	fielder_9_collision.set_disabled(false)
 
 func select_throw_source():
+	
+	## ISSUES ##
+	# 1. Fielder can disable collider while throwing and escape field
+	
+	enable_colliders()
 	match globals.ball_status:
 		"F1":
 			fielder_1_collision.set_disabled(true)
@@ -107,31 +131,21 @@ func select_throw_source():
 			return fielder_9
 		_:
 			pass
+			
+	
 	
 func select_throw_target():
 	pass
 
 
-func _process(delta):
-	set_camera_position()	
-		# Toggle Menu 
-	if Input.is_action_just_released("toggle_menu") == true:
-		globals.ball_status = "P"
-		get_tree().change_scene("res://scenes/battingView.tscn")
-	
-	# if the ball is outside of a fielder's AO, turn the fielder collisions back on
-	# But what if the fielders are very close together - problems would ensue
-	#if globals.ball_status == "IP":
-	#	enable_colliders()
-	
-	runner.set_offset(runner.get_offset() + 250 * delta) # .22  - first base, .49 - second base, .73 - third base, 1 - home plate
-		
 func set_camera_position():
-	
+	camera_is_set = true
 	match globals.ball_status:
 		"IP":
-			if ball != null:
+			if $field.has_node("ball"):
 				cam.global_position = ball.global_position	
+			else:
+				camera_is_set = false
 		"F1":		
 			cam.global_position = fielder_1.global_position
 		"F2":		

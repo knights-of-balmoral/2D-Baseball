@@ -91,7 +91,7 @@ func _on_home_run_area_body_entered(body):
 		home_run_distance.text = globals.hit_distance
 func _on_ball_body_entered(body):
 	 # if a fielder already has the ball, don't run this
-	if "fielder" in body.name && globals.ball_status != "F":
+	if "fielder" in body.name && globals.ball_status.left(1) != "F": 
 		
 		globals.camera_is_set = !globals.camera_is_set		
 		match body.name:
@@ -99,7 +99,6 @@ func _on_ball_body_entered(body):
 				fielder_who_has_ball =  fielder_1
 				globals.ball_status = "F1"	
 				
-					
 			"fielder_2":
 				fielder_who_has_ball =  fielder_2
 				globals.ball_status = "F2"		
@@ -124,9 +123,10 @@ func _on_ball_body_entered(body):
 				fielder_who_has_ball =  fielder_7
 				globals.ball_status = "F7"		
 				
-			"fieder_8":
+			"fielder_8":
 				fielder_who_has_ball =  fielder_8
 				globals.ball_status = "F8"		
+				
 				
 			"fielder_9":
 				fielder_who_has_ball =  fielder_9
