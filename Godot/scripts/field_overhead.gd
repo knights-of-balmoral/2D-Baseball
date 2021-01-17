@@ -6,7 +6,6 @@ onready var home_run_banner = get_node("field/ui_canvas/ui/home_run")
 onready var foul_area = $field/spray_chart/center_field_area
 onready var ball = $field/ball
 onready var cam = $"cam-main"
-onready var test = $test
 onready var fielder_1 = $defense/fielder_1
 onready var fielder_2 = $defense/fielder_2
 onready var fielder_3 = $defense/fielder_3
@@ -48,7 +47,6 @@ func _ready():
 func _process(delta):
 	#if !camera_is_set:
 	set_camera_position()	
-	test.text = globals.ball_status
 		# Toggle Menu 
 	if Input.is_action_just_released("toggle_menu") == true:
 		globals.ball_status = "P"

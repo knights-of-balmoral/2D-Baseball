@@ -6,7 +6,6 @@
 [ext_resource path="res://font_small.tres" type="DynamicFont" id=4]
 [ext_resource path="res://_placeholders/run_left.tres" type="Animation" id=5]
 [ext_resource path="res://_placeholders/idle.tres" type="Animation" id=6]
-[ext_resource path="res://_placeholders/spotlight.png" type="Texture" id=8]
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
@@ -38,6 +37,9 @@ end_node = "idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 
+[sub_resource type="OccluderPolygon2D" id=10]
+polygon = PoolVector2Array( -21.4679, -7.75122, -8.49223, -17.2844, 30.6995, -17.814, 43.4103, -2.71989, 37.0549, 10.5206, 20.3719, 15.5519, -4.25528, 12.639, -23.0567, 1.78186 )
+
 [sub_resource type="CircleShape2D" id=9]
 radius = 35.8531
 
@@ -57,11 +59,6 @@ self_modulate = Color( 0.537255, 0.803922, 0.964706, 1 )
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 2 )
 
-[node name="Light2D" type="Light2D" parent="."]
-visible = false
-texture = ExtResource( 8 )
-shadow_enabled = true
-
 [node name="defender" type="Sprite" parent="."]
 position = Vector2( -0.614711, -43.0301 )
 scale = Vector2( 0.4, 0.4 )
@@ -79,6 +76,11 @@ anims/run_right = ExtResource( 1 )
 tree_root = SubResource( 7 )
 anim_player = NodePath("../anim")
 parameters/playback = SubResource( 8 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="defender"]
+position = Vector2( -17.6596, 105.209 )
+scale = Vector2( 2.5, 2.5 )
+occluder = SubResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1.54757, -20.1182 )

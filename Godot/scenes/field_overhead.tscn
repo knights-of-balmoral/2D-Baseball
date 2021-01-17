@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/field_overhead.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/overhead-view4.jpg" type="Texture" id=2]
 [ext_resource path="res://scenes/instanced/ball.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/sound/hit.wav" type="AudioStream" id=4]
-[ext_resource path="res://fonts/balmoralFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://scenes/actors/fielder.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/raw/stadiums/homeplate.png" type="Texture" id=10]
 [ext_resource path="res://scenes/triggers/base.tscn" type="PackedScene" id=11]
@@ -220,7 +219,7 @@ margin_right = 512.0
 margin_bottom = 300.0
 
 [node name="ball" parent="field" instance=ExtResource( 3 )]
-position = Vector2( 503.806, 407.99 )
+position = Vector2( 505.238, 903.448 )
 
 [node name="defense" type="Node" parent="."]
 
@@ -294,13 +293,4 @@ rotation = 0.524373
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 12 )
 
-[node name="test" type="Label" parent="."]
-margin_left = 278.721
-margin_top = 120.587
-margin_right = 741.721
-margin_bottom = 172.587
-custom_fonts/font = ExtResource( 5 )
-text = "TESTtests"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="deco" type="Node" parent="."]

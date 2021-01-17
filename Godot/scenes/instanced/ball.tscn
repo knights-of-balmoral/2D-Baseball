@@ -11,7 +11,7 @@
 [sub_resource type="PhysicsMaterial" id=1]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 12.3472
+radius = 12.5287
 
 [sub_resource type="Animation" id=3]
 length = 3.0
@@ -250,7 +250,6 @@ angular_damp = 0.5
 script = ExtResource( 6 )
 
 [node name="ball_collision" type="CollisionShape2D" parent="."]
-position = Vector2( -0.0768433, 1.38275 )
 scale = Vector2( 1.17967, 1.12307 )
 shape = SubResource( 2 )
 
@@ -266,9 +265,6 @@ trail_length = 70
 target_path = NodePath("..")
 
 [node name="ball_sprite" type="Sprite" parent="."]
-modulate = Color( 0.607843, 0.843137, 0.0941176, 1 )
-position = Vector2( -0.0117188, 1.50586 )
-rotation = -0.785398
 scale = Vector2( 0.03, 0.03 )
 texture = ExtResource( 2 )
 
@@ -290,8 +286,9 @@ script = ExtResource( 5 )
 [node name="Light2D" type="Light2D" parent="."]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
-color = Color( 0.0431373, 0.87451, 0.835294, 1 )
+color = Color( 0.0823529, 0.690196, 0.662745, 1 )
 shadow_enabled = true
+shadow_color = Color( 0.14902, 0.12549, 0.12549, 0 )
 __meta__ = {
 "_editor_description_": "ball_glow"
 }
