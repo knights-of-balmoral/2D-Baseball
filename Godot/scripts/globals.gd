@@ -30,8 +30,8 @@ var inning = 1
 var team_at_bat = false # false = Visitor,  true = Home Team
 
 # Sound effects
-var ambience_volume = -12
-var music_volume = -12
+var ambience_volume = -7
+var music_volume = -7
 
 # Theme
 var hover_color = Color(150, 150, 10, 0.8)

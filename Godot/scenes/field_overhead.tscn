@@ -55,16 +55,39 @@ autoplay = true
 
 [node name="field" type="Node" parent="."]
 
+[node name="sound_areas" type="Node" parent="field"]
+
+[node name="dirt_area" type="Area2D" parent="field/sound_areas"]
+visible = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="base_path" type="CollisionPolygon2D" parent="field/sound_areas/dirt_area"]
+polygon = PoolVector2Array( -1141.21, -382.703, -857.287, -816.334, -698.93, -973.829, -244.576, -1301.46, 70.6901, -1428.18, 574.498, -1474.55, 540.498, -745.106, 333.412, -816.196, -318.756, -114.574, -260.03, -21.8486, -238.395, 73.9675, -287.848, 175.966, 98.7433, 594.055, 186.832, 482.475, 318.966, 406.131, 515.698, 359.15, 809.329, 453.112, 923.844, 576.437, 1331.99, 180.036, 1282.07, 71.3927, 1282.07, -57.8046, 1340.8, -140.021, 668.386, -797.753, 586.398, -736.089, 552.049, -743.846, 583.784, -1473.32, 888.418, -1440.28, 1323.13, -1278.29, 1638.91, -1062.98, 1815.26, -907.139, 2096.18, -497.033, 2159.75, -388.355, 1962.9, -189.454, 1956.74, 321.128, 1126.28, 1303.33, 117.419, 1311.53, -840.179, 556.939, -824.79, -56.7625 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="mound" type="CollisionPolygon2D" parent="field/sound_areas/dirt_area"]
+polygon = PoolVector2Array( 360.446, -117.162, 418.348, -197.723, 493.874, -230.45, 584.504, -220.38, 644.924, -170.03, 677.652, -99.5396, 665.065, -16.4617, 604.644, 69.1338, 501.426, 94.309, 405.761, 51.5112, 362.963, -21.4967 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="field_areas" type="StaticBody2D" parent="field"]
 visible = false
 collision_layer = 0
 collision_mask = 0
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="foul_area_fence" type="CollisionPolygon2D" parent="field/field_areas"]
 position = Vector2( -383.876, -284.596 )
 rotation = 0.409826
 scale = Vector2( 1, 2.5 )
-polygon = PoolVector2Array( -1154.8, -172.271, -1079.23, -163.314, -708.884, -106.182, 854.525, 122.936, 1051.43, 86.0364, 1170.49, 68.0308, 1255.94, 54.0765, 1797.42, -468.371, 2088.12, -737.981, 2049.77, -759.004, 2206.94, -763.964, 1898.88, -444.26, 1613.35, 64.5565, 1383.08, 193.971, 1101.05, 242.979, 594.472, 239.574, -744.14, -83.0641, -1230.93, -164.14 )
+polygon = PoolVector2Array( -1805.16, -76.2753, -1667.82, -94.8885, -930.398, 15.9225, 750.906, 246.308, 1245.89, 315.221, 1376.53, 287.77, 1582.62, 100.826, 2192.31, -444.885, 2627.02, -835.613, 2740.14, -862.379, 3298.71, -871.759, 2864.78, -360.304, 2331.53, 256.092, 1606.66, 399.578, 947.359, 469.505, 122.029, 410.731, -1331.45, 190.648, -2220.83, 66.8548 )
 disabled = true
 __meta__ = {
 "_edit_lock_": true
@@ -74,6 +97,9 @@ __meta__ = {
 visible = false
 collision_layer = 16
 collision_mask = 32
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="player_border" type="CollisionPolygon2D" parent="field/field_borders"]
 visible = false
@@ -83,10 +109,9 @@ __meta__ = {
 }
 
 [node name="game_border" type="CollisionPolygon2D" parent="field/field_borders"]
-visible = false
 position = Vector2( 559.704, -59.7742 )
 scale = Vector2( 48.84, 42.32 )
-polygon = PoolVector2Array( -24.9067, 33.3736, -28.1847, 78.4733, 58.5227, 77.0146, 79.7572, -72.0632, 43.7245, -69.3493, -2.88851, -72.0526, -39.4294, -70.0252, -101.241, -68.2706, -89.5204, 56.4893, -28.4375, 80.5155, -71.6648, 35.2962, -92.6465, -59.5185, -38.8438, -68.4032, -3.00563, -70.2955, 43.6074, -67.4571, 72.4262, -60.9772, 34.2548, 33.254 )
+polygon = PoolVector2Array( 2.43713, 88.2483, -27.1396, 109.545, 116.447, 111.296, 123.019, -101.965, 42.1256, -105.466, -5.39943, -105.466, -45.5934, -105.758, -118.398, -105.466, -144.941, 106.92, -26.1284, 112.171, -124.212, 54.9901, -102.725, -88.2537, -44.3295, -87.9619, -4.64106, -89.1289, 43.3895, -89.7124, 98.4983, -88.2537, 99.0039, 79.2044 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -95,9 +120,11 @@ __meta__ = {
 visible = false
 collision_layer = 2
 physics_material_override = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="outfield_fence" type="CollisionPolygon2D" parent="field/field_obstacles"]
-visible = false
 position = Vector2( -383.876, -284.596 )
 rotation = 0.409826
 scale = Vector2( 1, 2.5 )

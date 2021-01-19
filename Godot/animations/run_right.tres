@@ -3,7 +3,7 @@
 [ext_resource path="res://sfx/dirt.ogg" type="AudioStream" id=1]
 
 [resource]
-resource_name = "run_left"
+resource_name = "run_right"
 length = 2.0
 loop = true
 step = 0.2
@@ -27,7 +27,7 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
 "clips": [ {
-"end_offset": 6.74,
+"end_offset": 6.75,
 "start_offset": 0.0,
 "stream": ExtResource( 1 )
 } ],

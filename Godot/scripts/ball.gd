@@ -6,7 +6,6 @@ onready var home_run_banner = get_node("../ui_canvas/ui/home_run")
 onready var home_run_distance = get_node("../ui_canvas/ui/home_run/distance")
 onready var first_base = get_node("../triggers/base_1")
 onready var foul_area = get_node("../spray_chart/foul_area/foul")
-onready var test = $test
 onready var fielder_1 = get_node("../../defense/fielder_1")
 onready var fielder_2 = get_node("../../defense/fielder_2")
 onready var fielder_3 = get_node("../../defense/fielder_3")
@@ -19,6 +18,7 @@ onready var fielder_9 = get_node("../../defense/fielder_9")
 
 var ANIM_SPEED = 10
 var THROW_SPEED = 100
+var BALL_ENGLISH_LIMIT = 20
 #var BALL_HELD_OFFSET = Vector2(0, -60)
 var ball_has_been_hit = false
 #var ball_has_been_thrown = false
@@ -33,22 +33,23 @@ onready var trail = $ball_trail
 func _ready():
 	anim.playback_speed = ANIM_SPEED
 	
-			
-
-
-	
 func _process(delta):
-	test.text = "S: " + str(globals.ball_status) 
+	pass
 
 func _integrate_forces(state):
-	if !ball_has_been_hit:
+	if ball_has_been_hit == false && globals.ball_status == "H":
 		hit_ball(state)
+		print ("ball status: " + globals.ball_status)
 
 func hit_ball(state):
+	randomize()
+	ball_english = Vector2(rand_range(BALL_ENGLISH_LIMIT * -1, BALL_ENGLISH_LIMIT), rand_range(BALL_ENGLISH_LIMIT * -1, BALL_ENGLISH_LIMIT))
+	print("English" + str(ball_english))
+	randomize()
 	ball.apply_impulse(ball_english, get_hit_trajectory())
 	globals.hit_distance = str(stepify(abs(state.linear_velocity.distance_to(ball_origin) / globals.distance_conversion), 0.1)) + " '"
 	#globals.hit_velocity = convertHitVelocity(state.linear_velocity)
-	ball_has_been_hit = !ball_has_been_hit
+	ball_has_been_hit = true
 
 func get_hit_trajectory():
 	randomize()
@@ -97,39 +98,47 @@ func _on_ball_body_entered(body):
 		match body.name:
 			"fielder_1":
 				fielder_who_has_ball =  fielder_1
+				fielder_1.reselect_fielders(1)
 				globals.ball_status = "F1"	
 				
 			"fielder_2":
 				fielder_who_has_ball =  fielder_2
+				fielder_1.reselect_fielders(2)
 				globals.ball_status = "F2"		
 				
 			"fielder_3":
 				fielder_who_has_ball =  fielder_3
+				fielder_1.reselect_fielders(3)
 				globals.ball_status = "F3"		
 				
 			"fielder_4":
 				fielder_who_has_ball =  fielder_4
+				fielder_1.reselect_fielders(4)
 				globals.ball_status = "F4"		
 				
 			"fielder_5":
 				fielder_who_has_ball =  fielder_5
+				fielder_1.reselect_fielders(5)
 				globals.ball_status = "F5"		
 				
 			"fielder_6":
 				fielder_who_has_ball =  fielder_6
+				fielder_1.reselect_fielders(6)
 				globals.ball_status = "F6"		
 				
 			"fielder_7":
 				fielder_who_has_ball =  fielder_7
+				fielder_1.reselect_fielders(7)
 				globals.ball_status = "F7"		
 				
 			"fielder_8":
 				fielder_who_has_ball =  fielder_8
+				fielder_1.reselect_fielders(8)
 				globals.ball_status = "F8"		
-				
 				
 			"fielder_9":
 				fielder_who_has_ball =  fielder_9
+				fielder_1.reselect_fielders(9)
 				globals.ball_status = "F9"
 				
 			_:

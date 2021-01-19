@@ -1,47 +1,45 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://_placeholders/run_right.tres" type="Animation" id=1]
+[ext_resource path="res://animations/run_right.tres" type="Animation" id=1]
 [ext_resource path="res://assets/raw/has_ball.png" type="Texture" id=2]
 [ext_resource path="res://scenes/actors/fielder.gd" type="Script" id=3]
 [ext_resource path="res://font_small.tres" type="DynamicFont" id=4]
 [ext_resource path="res://_placeholders/run_left.tres" type="Animation" id=5]
 [ext_resource path="res://_placeholders/idle.tres" type="Animation" id=6]
+[ext_resource path="res://_placeholders/mega.png" type="Texture" id=7]
+[ext_resource path="res://sfx/dirt.ogg" type="AudioStream" id=8]
 
-[sub_resource type="StreamTexture" id=1]
-flags = 4
-load_path = "res://.import/running2.png-6e3aaa80869405a89581e48ec9978252.stex"
-
-[sub_resource type="AnimationNodeAnimation" id=2]
+[sub_resource type="AnimationNodeAnimation" id=1]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=3]
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "run_left"
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "run_right"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=5]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=6]
-
-[sub_resource type="AnimationNodeStateMachine" id=7]
-states/idle/node = SubResource( 2 )
+[sub_resource type="AnimationNodeStateMachine" id=6]
+states/idle/node = SubResource( 1 )
 states/idle/position = Vector2( 570, 76 )
-states/run_left/node = SubResource( 3 )
+states/run_left/node = SubResource( 2 )
 states/run_left/position = Vector2( 323, 76 )
-states/run_right/node = SubResource( 4 )
+states/run_right/node = SubResource( 3 )
 states/run_right/position = Vector2( 870, 76 )
-transitions = [ "run_left", "idle", SubResource( 5 ), "run_right", "idle", SubResource( 6 ) ]
+transitions = [ "run_left", "idle", SubResource( 4 ), "run_right", "idle", SubResource( 5 ) ]
 start_node = "idle"
 end_node = "idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
 
-[sub_resource type="OccluderPolygon2D" id=10]
+[sub_resource type="OccluderPolygon2D" id=8]
 polygon = PoolVector2Array( -21.4679, -7.75122, -8.49223, -17.2844, 30.6995, -17.814, 43.4103, -2.71989, 37.0549, 10.5206, 20.3719, 15.5519, -4.25528, 12.639, -23.0567, 1.78186 )
 
 [sub_resource type="CircleShape2D" id=9]
-radius = 35.8531
+radius = 37.7923
 
 [node name="fielder" type="KinematicBody2D"]
 scale = Vector2( 1.5, 1.5 )
@@ -50,22 +48,22 @@ collision_mask = 0
 script = ExtResource( 3 )
 
 [node name="held_ball" type="Position2D" parent="."]
-position = Vector2( -10.2912, -79.8797 )
+position = Vector2( 0, -53.88 )
 
 [node name="defender_selected" type="Sprite" parent="."]
 visible = false
 modulate = Color( 0.192157, 0.698039, 0.87451, 1 )
 self_modulate = Color( 0.537255, 0.803922, 0.964706, 1 )
-scale = Vector2( 0.1, 0.1 )
+position = Vector2( -3.01881, 22.3895 )
+scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 2 )
 
 [node name="defender" type="Sprite" parent="."]
-position = Vector2( -0.614711, -43.0301 )
-scale = Vector2( 0.4, 0.4 )
-texture = SubResource( 1 )
-vframes = 5
-hframes = 12
-frame = 23
+position = Vector2( -4.6398, -33.2189 )
+texture = ExtResource( 7 )
+vframes = 2
+hframes = 5
+frame = 9
 
 [node name="anim" type="AnimationPlayer" parent="defender"]
 anims/idle = ExtResource( 6 )
@@ -73,17 +71,18 @@ anims/run_left = ExtResource( 5 )
 anims/run_right = ExtResource( 1 )
 
 [node name="AnimationTree" type="AnimationTree" parent="defender"]
-tree_root = SubResource( 7 )
+tree_root = SubResource( 6 )
 anim_player = NodePath("../anim")
-parameters/playback = SubResource( 8 )
+parameters/playback = SubResource( 7 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="defender"]
+visible = false
 position = Vector2( -17.6596, 105.209 )
 scale = Vector2( 2.5, 2.5 )
-occluder = SubResource( 10 )
+occluder = SubResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.54757, -20.1182 )
+position = Vector2( 1.54757, -0.244329 )
 shape = SubResource( 9 )
 
 [node name="test" type="Label" parent="."]
@@ -96,3 +95,6 @@ text = "test"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="footsteps_dirt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )

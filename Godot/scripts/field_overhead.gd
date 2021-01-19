@@ -5,6 +5,7 @@ onready var foul_banner = get_node("field/ui_canvas/ui/foul")
 onready var home_run_banner = get_node("field/ui_canvas/ui/home_run")
 onready var foul_area = $field/spray_chart/center_field_area
 onready var ball = $field/ball
+onready var anim = $field/ball/anim
 onready var cam = $"cam-main"
 onready var fielder_1 = $defense/fielder_1
 onready var fielder_2 = $defense/fielder_2
@@ -27,6 +28,7 @@ onready var fielder_9_collision = $defense/fielder_9/CollisionShape2D
 
 var throw_source = fielder_1 #default to pitcher
 var throw_target = fielder_2 #default to catcher
+export var DEFAULT_THROW_STRENGTH = 1500
 var camera_is_set = false
 
 #get_tree().call_group("my_group","my_function",args...)
@@ -38,7 +40,6 @@ var camera_is_set = false
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	globals.hit_power_max = globals.hit_power_default # rest hit bonus/penalty
-	globals.ball_status = "IP"
 	ball_state.active = true # turns on auto-advancing animation tree for hits
 	foul_banner.visible = false
 	home_run_banner.visible = false
@@ -61,27 +62,44 @@ func _process(delta):
 		
 		
 func _unhandled_input(event):
-	if Input.is_action_just_pressed("throw_1") && globals.ball_status.left(1) == "F":
-		throw_ball()
-		print ("Ball Thrown")
+	if globals.ball_status.left(1) == "F":
+		if Input.is_action_just_pressed("throw_1"):
+			throw_target = fielder_3 # First Baseman
+			throw_ball()
+		elif Input.is_action_just_pressed("throw_2"):
+			throw_target = fielder_4 # Second Baseman
+			throw_ball()
+		elif Input.is_action_just_pressed("throw_3"):
+			throw_target = fielder_5 # Third Baseman
+			throw_ball()
+		elif Input.is_action_just_pressed("throw_4"):
+			throw_target = fielder_2 # Home Plate / Catcher
+			throw_ball()	
+		elif Input.is_action_just_pressed("throw_p"):
+			throw_target = fielder_1 # Pitcher
+			throw_ball()
+		else:
+			pass
 	
 func throw_ball():
+	var throw_direction = Vector2.ZERO
 	camera_is_set = false
 	var new_ball = load("res://scenes/instanced/ball.tscn")
 	ball = new_ball.instance()
 	$field.add_child(ball)
+	
 	throw_source = select_throw_source()
-	throw_target = select_throw_target()
 	ball.global_position = throw_source.global_position
+	throw_direction = (throw_target.global_position - ball.global_position).normalized()
+	
 	ball.visible = true
-
-	ball.apply_central_impulse(Vector2(100,100))
-	
-	
+	# throw strength will need a per-player bonus
+	ball.apply_central_impulse(throw_direction * DEFAULT_THROW_STRENGTH)
+	anim = $field/ball/anim
+	anim.play("standard_throw")
 	globals.ball_status = "IP"
 
 func enable_colliders():
-	print("start delay")
 	yield(get_tree().create_timer(1.0), "timeout")
 	fielder_1_collision.set_disabled(false)
 	fielder_2_collision.set_disabled(false)
@@ -130,15 +148,11 @@ func select_throw_source():
 		_:
 			pass
 			
-	
-	
-func select_throw_target():
-	pass
-
-
 func set_camera_position():
 	camera_is_set = true
 	match globals.ball_status:
+		"H":
+			cam.global_position = ball.global_position
 		"IP":
 			if $field.has_node("ball"):
 				cam.global_position = ball.global_position	

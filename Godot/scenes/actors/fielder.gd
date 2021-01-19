@@ -7,8 +7,9 @@ onready var test = $test
 #onready var ball = get_node("../../field/ball")
 var MAX_SPEED = 500
 var ACCELERATION = 1500
-var ANIM_SPEED = 10
+var ANIM_SPEED = 4
 var motion = Vector2.ZERO
+var defender_is_moving = false
 
 func _ready():
 	anim.playback_speed = ANIM_SPEED
@@ -44,8 +45,11 @@ func get_input_axis():
 	var axis = Vector2.ZERO
 	var previous_position = Vector2(axis.x, axis.y)
 	
-	axis.x = Input.get_action_strength("defense_move_right") - Input.get_action_strength("defense_move_left")
-	axis.y = Input.get_action_strength("defense_move_down") - Input.get_action_strength("defense_move_up")
+	axis.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	axis.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+	
+	if axis.x != 0 || axis.y != 0:
+		defender_is_moving = true
 	
 	# detect if we're moving left or right
 	if previous_position.x < axis.x && defender_selected.visible == true:
@@ -67,7 +71,7 @@ func apply_movement(acceleration):
 	
 func select_fielder():
 	
-	# Defense Controls
+	# Defense Controls - Move to unhandled input?
 	if Input.is_action_pressed("select_1"):
 		reselect_fielders(1)
 			
@@ -110,6 +114,5 @@ func reselect_fielders(defender):
 		
 func get_nearest_fielder():
 	var nearest = "fielder_1"
-
 
 

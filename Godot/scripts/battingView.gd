@@ -48,7 +48,7 @@ func _process(delta):
 		# If we swing within the hit window as determined by global variables	
 		if(Input.is_action_just_pressed("swing_bat")) && anim_ball.current_animation_position >= globals.swing_window_min && anim_ball.current_animation_position < globals.swing_window_max:
 			batter_anim.play("swing")
-			globals.ball_status = "IP" # In Play 
+			globals.ball_status = "H" # Hit
 			get_tree().change_scene('res://scenes/field_overhead.tscn')
 		else: # BAT NOT SWUNG (handle no swing)
 			# check for end of animation
