@@ -45,6 +45,7 @@ func _ready():
 	home_run_banner.visible = false
 	foul_area.monitoring = true
 	
+	
 func _process(delta):
 	#if !camera_is_set:
 	set_camera_position()	
@@ -94,9 +95,7 @@ func throw_ball():
 	
 	ball.visible = true
 	# throw strength will need a per-player bonus
-	ball.apply_central_impulse(throw_direction * DEFAULT_THROW_STRENGTH)
-	anim = $field/ball/anim
-	anim.play("standard_throw")
+	ball.apply_impulse(Vector2.ZERO, throw_direction * DEFAULT_THROW_STRENGTH)
 	globals.ball_status = "IP"
 
 func enable_colliders():

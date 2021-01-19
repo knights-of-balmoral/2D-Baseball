@@ -21,6 +21,7 @@ var THROW_SPEED = 100
 var BALL_ENGLISH_LIMIT = 20
 #var BALL_HELD_OFFSET = Vector2(0, -60)
 var ball_has_been_hit = false
+var ball_has_been_thrown = false
 #var ball_has_been_thrown = false
 var ball_english = Vector2(0, 0) # selects "origin" - like where cue ball is hit (english)
 var ball_origin = Vector2(544, 300)
