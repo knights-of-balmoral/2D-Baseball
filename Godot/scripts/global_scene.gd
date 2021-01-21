@@ -19,8 +19,8 @@ func _ready():
 	bg_fans.volume_db = globals.ambience_volume
 	bg_music.volume_db = globals.music_volume
 	bg_fans.stop()
-	bg_music.stop()
-	
+	#bg_music.stop()
+	bg_music.play()
 	# Changes only the arrow shape of the cursor.
 	# This is similar to changing it in the project settings.
 	Input.set_custom_mouse_cursor(arrow)

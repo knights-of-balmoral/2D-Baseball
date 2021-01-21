@@ -31,6 +31,9 @@ var throw_target = fielder_2 #default to catcher
 export var DEFAULT_THROW_STRENGTH = 1500
 var camera_is_set = false
 
+
+
+
 #get_tree().call_group("my_group","my_function",args...)
 #If you need to do something with your group:
 #
@@ -87,6 +90,7 @@ func throw_ball():
 	camera_is_set = false
 	var new_ball = load("res://scenes/instanced/ball.tscn")
 	ball = new_ball.instance()
+	
 	$field.add_child(ball)
 	
 	throw_source = select_throw_source()

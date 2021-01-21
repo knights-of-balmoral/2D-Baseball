@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/effects/ball_trail.gd" type="Script" id=1]
+[ext_resource path="res://fx/fire_gradient.tres" type="Gradient" id=2]
 
 [node name="ball_trail" type="Line2D"]
 position = Vector2( 0.71698, 2.15088 )
 points = PoolVector2Array( 0, 0 )
-width = 5.0
-default_color = Color( 0.839216, 0.839216, 0.823529, 1 )
+default_color = Color( 0, 0.607843, 0.819608, 0.803922 )
+gradient = ExtResource( 2 )
 script = ExtResource( 1 )
+trail_length = 7

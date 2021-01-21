@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/sfx/crowd.ogg" type="AudioStream" id=1]
-[ext_resource path="res://assets/sound/12_string_ramble.ogg" type="AudioStream" id=2]
+[ext_resource path="res://sfx/menubg.ogg" type="AudioStream" id=2]
 [ext_resource path="res://scripts/global_scene.gd" type="Script" id=3]
 
 [node name="global_scene" type="Node"]

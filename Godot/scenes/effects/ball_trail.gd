@@ -1,11 +1,13 @@
 extends Line2D
 var target
 var point
-export var trail_length = 10
+export var trail_length = 17
 export (NodePath) var target_path
 
 func _ready():
 	target = get_node(target_path)
+	while get_point_count() > 0:
+		remove_point(0)
 
 func _process(delta):
 	update_ball_trail()
