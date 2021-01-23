@@ -5,11 +5,10 @@
 [ext_resource path="res://assets/raw/gui/arrow.png" type="Texture" id=4]
 [ext_resource path="res://assets/raw/gui/yellow_circle.png" type="Texture" id=5]
 
-[node name="scoreboard" type="Node"]
+[node name="scoreboard" type="Node2D"]
 
 [node name="scoreboard" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0.631373 )
-position = Vector2( 906.955, 476.891 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 __meta__ = {
@@ -17,10 +16,10 @@ __meta__ = {
 }
 
 [node name="dash" type="Label" parent="."]
-margin_left = 889.873
-margin_top = 515.508
-margin_right = 929.873
-margin_bottom = 544.508
+margin_left = -18.8463
+margin_top = 32.009
+margin_right = 21.1537
+margin_bottom = 80.009
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
@@ -32,10 +31,10 @@ __meta__ = {
 }
 
 [node name="balls_display" type="Label" parent="."]
-margin_left = 879.937
-margin_top = 520.603
-margin_right = 930.937
-margin_bottom = 572.603
+margin_left = -46.0499
+margin_top = 24.1532
+margin_right = 4.95007
+margin_bottom = 76.1532
 rect_scale = Vector2( 0.28, 0.28 )
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0.717647, 0.831373, 0.0235294, 1 )
@@ -49,10 +48,10 @@ __meta__ = {
 }
 
 [node name="strikes_display" type="Label" parent="."]
-margin_left = 920.569
-margin_top = 520.667
-margin_right = 971.569
-margin_bottom = 572.667
+margin_left = 22.6422
+margin_top = 17.7416
+margin_right = 73.6422
+margin_bottom = 69.7416
 rect_scale = Vector2( 0.28, 0.28 )
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0.717647, 0.831373, 0.0235294, 1 )
@@ -66,7 +65,7 @@ __meta__ = {
 
 [node name="out_1" type="Sprite" parent="."]
 visible = false
-position = Vector2( 893.064, 494.296 )
+position = Vector2( -11.3381, 17.2724 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 5 )
 __meta__ = {
@@ -75,7 +74,7 @@ __meta__ = {
 
 [node name="out_2" type="Sprite" parent="."]
 visible = false
-position = Vector2( 917.704, 493.596 )
+position = Vector2( 11.1434, 18.7309 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 5 )
 __meta__ = {
@@ -83,10 +82,10 @@ __meta__ = {
 }
 
 [node name="inning_number" type="Label" parent="."]
-margin_left = 951.177
-margin_top = 527.742
-margin_right = 991.177
-margin_bottom = 575.742
+margin_left = 57.5672
+margin_top = -3.24359
+margin_right = 97.5672
+margin_bottom = 44.7564
 custom_fonts/font = ExtResource( 1 )
 text = "1"
 align = 1
@@ -101,6 +100,3 @@ position = Vector2( 4.33179, 29.3424 )
 rotation = 3.14159
 scale = Vector2( 0.02, 0.02 )
 texture = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}

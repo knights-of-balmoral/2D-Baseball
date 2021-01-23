@@ -12,7 +12,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 483.981, 165.334 ), Vector2( 496.693, 284.293 ), Vector2( 507.838, 458.747 ) ]
+"values": [ Vector2( 491.141, 252.685 ), Vector2( 496.693, 284.293 ), Vector2( 507.838, 458.747 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("ball:rotation_degrees")

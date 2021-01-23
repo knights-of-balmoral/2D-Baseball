@@ -10,12 +10,9 @@
 script = ExtResource( 1 )
 
 [node name="bg" type="Sprite" parent="."]
-position = Vector2( 513.429, 304.269 )
+position = Vector2( 514.861, 304.269 )
 scale = Vector2( 0.270548, 0.282258 )
 texture = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="bg_filter" type="ColorRect" parent="bg"]
 anchor_right = 1.0

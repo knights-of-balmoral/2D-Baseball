@@ -15,10 +15,13 @@ onready var fielder_6 = get_node("../../defense/fielder_6")
 onready var fielder_7 = get_node("../../defense/fielder_7")
 onready var fielder_8 = get_node("../../defense/fielder_8")
 onready var fielder_9 = get_node("../../defense/fielder_9")
+onready var dpad = get_tree().get_nodes_in_group("dpad")
 
 var ANIM_SPEED = 10
 var THROW_SPEED = 100
 var BALL_ENGLISH_LIMIT = 20
+var curve_force = Vector2(0,0)
+var CURVE_FORCE_LIMIT = 10
 #var BALL_HELD_OFFSET = Vector2(0, -60)
 var ball_has_been_hit = false
 var ball_has_been_thrown = false
@@ -33,25 +36,21 @@ onready var trail = $ball_trail
 
 func _ready():
 	anim.playback_speed = ANIM_SPEED
-	
-func _process(delta):
-	pass
 
 func _integrate_forces(state):
-	if ball_has_been_hit == false && globals.ball_status == "H":
+	if !ball_has_been_hit && globals.ball_status == "H":
 		hit_ball(state)
-		print ("ball status: " + globals.ball_status)
+		randomize()
+		ball_english = Vector2(rand_range(BALL_ENGLISH_LIMIT * -1, BALL_ENGLISH_LIMIT), 0)
+		curve_force = Vector2(rand_range(CURVE_FORCE_LIMIT * -1, CURVE_FORCE_LIMIT), 0)
+		add_force(curve_force, ball_english)
 
 func hit_ball(state):
 	randomize()
-	ball_english = Vector2(rand_range(BALL_ENGLISH_LIMIT * -1, BALL_ENGLISH_LIMIT), rand_range(BALL_ENGLISH_LIMIT * -1, BALL_ENGLISH_LIMIT))
-	print("English" + str(ball_english))
-	randomize()
-	ball.apply_impulse(ball_english, get_hit_trajectory())
+	ball.apply_impulse(Vector2(), get_hit_trajectory())
 	globals.hit_distance = str(stepify(abs(state.linear_velocity.distance_to(ball_origin) / globals.distance_conversion), 0.1)) + " '"
-	#globals.hit_velocity = convertHitVelocity(state.linear_velocity)
 	ball_has_been_hit = true
-
+	
 func get_hit_trajectory():
 	randomize()
 	var random_x_factor = randi()%3+1
@@ -84,7 +83,6 @@ func _on_foul_area_body_entered(body):
 		foul_banner.visible = true
 	globals.ball_status = "FOUL"
 	if (globals.strikes < 2):globals.strikes +=1
-	
 func _on_home_run_area_body_entered(body):
 	if (body.name == "ball" && !foul_banner.visible && !home_run_banner.visible && globals.ball_status != "F"):
 		home_run_banner.visible = true
@@ -94,7 +92,8 @@ func _on_home_run_area_body_entered(body):
 func _on_ball_body_entered(body):
 	 # if a fielder already has the ball, don't run this
 	if "fielder" in body.name && globals.ball_status.left(1) != "F": 
-		
+		for pad in dpad:
+			pad.visible = true
 		globals.camera_is_set = !globals.camera_is_set		
 		match body.name:
 			"fielder_1":
@@ -145,20 +144,15 @@ func _on_ball_body_entered(body):
 			_:
 				pass
 		_exit_tree()
-		#fielder_who_has_ball.get_child(4).set_deferred("disabled", true)
-
 func _exit_tree():
 	#remove_child(self) needs a look - might have to move some code around to prevent mem leaks
 	self.queue_free()
-
 func _on_right_field_area_body_entered(body):
 	pass#foul_area.disabled = true # ball was hit to right field
 	#print ("Ball hit to right")
-
 func _on_left_field_area_body_entered(body):
 	pass#foul_area.disabled = true # ball was hit to left field
 	#print ("Ball hit to left")
-
 func _on_center_field_area_body_entered(body):
 	pass#foul_area.disabled = true # ball was hit to center field
 	#print ("Ball hit to center")

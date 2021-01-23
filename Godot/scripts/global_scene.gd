@@ -4,7 +4,7 @@ onready var bg_music = get_node("/root/global_scene/bgMusic")
 
 # Load custom images for the mouse
 onready var arrow = load("res://assets/raw/gui/cursor.png")
-onready var beam = load("res://assets/raw/gui/beam.png")
+#onready var beam = load("res://assets/raw/gui/beam.png")
 
 #var max = OS.get_screen_size()
 #OS.set_window_size(max)
@@ -25,4 +25,4 @@ func _ready():
 	# This is similar to changing it in the project settings.
 	Input.set_custom_mouse_cursor(arrow)
 	# Changes a specific shape of the cursor (here, the I-beam shape).
-	Input.set_custom_mouse_cursor(beam, Input.CURSOR_IBEAM)
+	#Input.set_custom_mouse_cursor(beam, Input.CURSOR_IBEAM)

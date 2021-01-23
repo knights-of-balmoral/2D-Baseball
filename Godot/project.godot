@@ -186,7 +186,7 @@ move_up={
 2d/default_gravity=0
 2d/default_gravity_vector=Vector2( 0, 0 )
 2d/default_linear_damp=100.0
-2d/default_angular_damp=0.0
+2d/default_angular_damp=0.5
 
 [rendering]
 

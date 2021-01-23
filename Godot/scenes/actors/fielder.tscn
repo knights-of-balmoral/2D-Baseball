@@ -3,7 +3,7 @@
 [ext_resource path="res://animations/run_right.tres" type="Animation" id=1]
 [ext_resource path="res://assets/raw/has_ball.png" type="Texture" id=2]
 [ext_resource path="res://scenes/actors/fielder.gd" type="Script" id=3]
-[ext_resource path="res://font_small.tres" type="DynamicFont" id=4]
+[ext_resource path="res://fonts/40_standard.tres" type="DynamicFont" id=4]
 [ext_resource path="res://_placeholders/run_left.tres" type="Animation" id=5]
 [ext_resource path="res://_placeholders/idle.tres" type="Animation" id=6]
 [ext_resource path="res://_placeholders/mega.png" type="Texture" id=7]
@@ -58,6 +58,22 @@ position = Vector2( -3.01881, 22.3895 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 2 )
 
+[node name="test" type="Label" parent="."]
+margin_left = -65.3322
+margin_top = -2.66683
+margin_right = 4.66779
+margin_bottom = 45.3332
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.827451, 0.113725, 0.113725, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+text = "9"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="defender" type="Sprite" parent="."]
 position = Vector2( -4.6398, -33.2189 )
 texture = ExtResource( 7 )
@@ -84,16 +100,8 @@ occluder = SubResource( 8 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1.54757, -0.244329 )
 shape = SubResource( 9 )
-
-[node name="test" type="Label" parent="."]
-margin_left = -9.4696
-margin_top = -118.516
-margin_right = 52.5304
-margin_bottom = -89.5159
-custom_fonts/font = ExtResource( 4 )
-text = "test"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
 
 [node name="footsteps_dirt" type="AudioStreamPlayer" parent="."]

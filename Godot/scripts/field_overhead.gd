@@ -25,10 +25,10 @@ onready var fielder_6_collision = $defense/fielder_6/CollisionShape2D
 onready var fielder_7_collision = $defense/fielder_7/CollisionShape2D
 onready var fielder_8_collision = $defense/fielder_8/CollisionShape2D
 onready var fielder_9_collision = $defense/fielder_9/CollisionShape2D
-
+onready var dpad = get_tree().get_nodes_in_group("dpad")
 var throw_source = fielder_1 #default to pitcher
 var throw_target = fielder_2 #default to catcher
-export var DEFAULT_THROW_STRENGTH = 1500
+export var DEFAULT_THROW_STRENGTH = 2000
 var camera_is_set = false
 
 
@@ -47,6 +47,8 @@ func _ready():
 	foul_banner.visible = false
 	home_run_banner.visible = false
 	foul_area.monitoring = true
+	for pad in dpad:
+		pad.visible = false
 	
 	
 func _process(delta):
@@ -62,7 +64,7 @@ func _process(delta):
 	#if globals.ball_status == "IP":
 	#	enable_colliders()
 	
-	runner.set_offset(runner.get_offset() + 250 * delta) # .22  - first base, .49 - second base, .73 - third base, 1 - home plate
+	runner.set_offset(runner.get_offset() + 450 * delta) # .22  - first base, .49 - second base, .73 - third base, 1 - home plate
 		
 		
 func _unhandled_input(event):
@@ -86,6 +88,8 @@ func _unhandled_input(event):
 			pass
 	
 func throw_ball():
+	for pad in dpad:
+		pad.visible = false
 	var throw_direction = Vector2.ZERO
 	camera_is_set = false
 	var new_ball = load("res://scenes/instanced/ball.tscn")
