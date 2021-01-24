@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/raw/gui/menu-bg.jpg" type="Texture" id=1]
+[ext_resource path="res://fonts/40_standard.tres" type="DynamicFont" id=2]
+[ext_resource path="res://fonts/s_30.tres" type="DynamicFont" id=3]
+[ext_resource path="res://scripts/teams.gd" type="Script" id=4]
+
+[node name="teams" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="bg" type="Sprite" parent="."]
+position = Vector2( 512.491, 293.517 )
+scale = Vector2( 0.27, 0.28 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="menu_darkener" type="ColorRect" parent="."]
+margin_left = -18.0
+margin_top = -14.0
+margin_right = 1042.0
+margin_bottom = 607.0
+color = Color( 0.0352941, 0.156863, 0.227451, 0.772549 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="btn_play" type="Button" parent="."]
+margin_left = 88.4763
+margin_top = 510.746
+margin_right = 302.476
+margin_bottom = 580.746
+custom_fonts/font = ExtResource( 2 )
+text = "Play"
+flat = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="team_selection_title" type="Label" parent="."]
+margin_left = 380.803
+margin_top = 15.8668
+margin_right = 663.803
+margin_bottom = 63.8668
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.47451, 0.658824, 0.827451, 1 )
+custom_colors/font_outline_modulate = Color( 0.960784, 0.960784, 0.960784, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Team Selection"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="blue_versus_white" type="Label" parent="."]
+margin_left = 385.563
+margin_top = 187.228
+margin_right = 665.563
+margin_bottom = 235.228
+custom_fonts/font = ExtResource( 2 )
+text = "BLUE vs WHITE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="comment" type="Label" parent="blue_versus_white"]
+margin_left = -180.974
+margin_top = 48.0
+margin_right = 452.026
+margin_bottom = 192.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.776471, 0.764706, 0.764706, 1 )
+text = "Someday the developer will do something important with this screen. Someday. Maybe."
+align = 1
+valign = 1
+autowrap = true
+[connection signal="pressed" from="btn_play" to="." method="_on_btn_play_pressed"]

@@ -26,3 +26,7 @@ func _ready():
 	Input.set_custom_mouse_cursor(arrow)
 	# Changes a specific shape of the cursor (here, the I-beam shape).
 	#Input.set_custom_mouse_cursor(beam, Input.CURSOR_IBEAM)
+
+func _process(delta):
+	#if Input.is_action_just_pressed("")
+	pass

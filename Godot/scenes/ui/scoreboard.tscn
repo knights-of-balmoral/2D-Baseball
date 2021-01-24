@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://fonts/40_standard.tres" type="DynamicFont" id=1]
-[ext_resource path="res://assets/raw/scoreboard/scoreboard3.png" type="Texture" id=3]
+[ext_resource path="res://fonts/s_20.tres" type="DynamicFont" id=2]
+[ext_resource path="res://_placeholders/scoreboard2.png" type="Texture" id=3]
 [ext_resource path="res://assets/raw/gui/arrow.png" type="Texture" id=4]
 [ext_resource path="res://assets/raw/gui/yellow_circle.png" type="Texture" id=5]
 
@@ -16,6 +17,7 @@ __meta__ = {
 }
 
 [node name="dash" type="Label" parent="."]
+visible = false
 margin_left = -18.8463
 margin_top = 32.009
 margin_right = 21.1537
@@ -31,72 +33,148 @@ __meta__ = {
 }
 
 [node name="balls_display" type="Label" parent="."]
-margin_left = -46.0499
-margin_top = 24.1532
-margin_right = 4.95007
-margin_bottom = 76.1532
+margin_left = 67.0171
+margin_top = -21.8228
+margin_right = 118.017
+margin_bottom = 30.1772
 rect_scale = Vector2( 0.28, 0.28 )
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0.717647, 0.831373, 0.0235294, 1 )
 custom_colors/font_outline_modulate = Color( 0.301961, 0.733333, 0.831373, 1 )
 custom_colors/font_color_shadow = Color( 0.866667, 0.866667, 0.866667, 1 )
 text = "0"
+align = 1
+valign = 1
 max_lines_visible = 1
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="strikes_display" type="Label" parent="."]
-margin_left = 22.6422
-margin_top = 17.7416
-margin_right = 73.6422
-margin_bottom = 69.7416
+margin_left = 98.5878
+margin_top = -22.4449
+margin_right = 149.588
+margin_bottom = 29.5551
 rect_scale = Vector2( 0.28, 0.28 )
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0.717647, 0.831373, 0.0235294, 1 )
 custom_colors/font_outline_modulate = Color( 0.792157, 0.85098, 0.443137, 1 )
 custom_colors/font_color_shadow = Color( 0.513726, 0.505882, 0.505882, 1 )
 text = "0"
+align = 1
+valign = 1
 max_lines_visible = 1
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="out_1" type="Sprite" parent="."]
-visible = false
-position = Vector2( -11.3381, 17.2724 )
-scale = Vector2( 0.4, 0.4 )
+position = Vector2( 33.4684, 12.164 )
+scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 5 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="out_2" type="Sprite" parent="."]
-visible = false
-position = Vector2( 11.1434, 18.7309 )
-scale = Vector2( 0.4, 0.4 )
+position = Vector2( 52.011, 11.971 )
+scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 5 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="inning_number" type="Label" parent="."]
-margin_left = 57.5672
-margin_top = -3.24359
-margin_right = 97.5672
-margin_bottom = 44.7564
-custom_fonts/font = ExtResource( 1 )
+margin_left = -1.56181
+margin_top = -12.0319
+margin_right = 19.4382
+margin_bottom = 11.9681
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.996078, 0.988235, 0.988235, 1 )
 text = "1"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="inning_arrow" type="Sprite" parent="inning_number"]
-position = Vector2( 4.33179, 29.3424 )
+[node name="v_score" type="Label" parent="."]
+margin_left = -32.4794
+margin_top = -25.8259
+margin_right = -11.4794
+margin_bottom = -1.82587
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.996078, 0.988235, 0.988235, 1 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="h_score" type="Label" parent="."]
+margin_left = -32.0038
+margin_top = 0.335205
+margin_right = -11.0038
+margin_bottom = 24.3352
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.996078, 0.988235, 0.988235, 1 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pitch_count" type="Label" parent="."]
+margin_left = 78.824
+margin_top = 5.56741
+margin_right = 99.824
+margin_bottom = 29.5674
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.996078, 0.988235, 0.988235, 1 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="top_inning" type="Sprite" parent="."]
+position = Vector2( 8.14996, -15.9968 )
 rotation = 3.14159
 scale = Vector2( 0.02, 0.02 )
 texture = ExtResource( 4 )
+
+[node name="bottom_inning" type="Sprite" parent="."]
+visible = false
+position = Vector2( 8.62579, 16.5857 )
+scale = Vector2( 0.02, 0.02 )
+texture = ExtResource( 4 )
+
+[node name="base_1" type="ColorRect" parent="."]
+visible = false
+margin_left = 50.6573
+margin_top = -15.221
+margin_right = 59.6573
+margin_bottom = -6.22099
+rect_rotation = 45.0
+color = Color( 0.768627, 0.556863, 0.0470588, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="base_2" type="ColorRect" parent="."]
+visible = false
+margin_left = 43.2847
+margin_top = -23.7828
+margin_right = 52.2847
+margin_bottom = -14.7828
+rect_rotation = 45.0
+color = Color( 0.768627, 0.556863, 0.0470588, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="base_3" type="ColorRect" parent="."]
+visible = false
+margin_left = 34.7229
+margin_top = -15.6966
+margin_right = 43.7229
+margin_bottom = -6.69664
+rect_rotation = 45.0
+color = Color( 0.768627, 0.556863, 0.0470588, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

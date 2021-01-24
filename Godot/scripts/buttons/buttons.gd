@@ -1,13 +1,14 @@
 extends Button
-onready var sound_1 = get_node("../btn_exhibition/AudioStreamPlayer")
+onready var sound_1 = get_node("../btn_play/AudioStreamPlayer")
 onready var sound_2 = get_node("../btn_season/AudioStreamPlayer2")
 onready var sound_3 = get_node("../btn_teams/AudioStreamPlayer3")
 onready var sound_4 = get_node("../btn_settings/AudioStreamPlayer4")
 onready var sound_7 = get_node("../btn_scorecard/AudioStreamPlayer7")
 
 # BUTTON ACTIONS
-func _on_btn_exhibition_pressed():
-	get_tree().change_scene('res://scenes/battingView.tscn')
+func _on_btn_play_pressed():
+	#get_tree().change_scene('res://scenes/battingView.tscn')
+	get_tree().change_scene('res://scenes/teams.tscn')
 
 func _on_btn_scorecard_pressed():
 	get_tree().change_scene('res://scenes/scorecard_tool.tscn')
@@ -22,7 +23,8 @@ func _on_btn_batting_practice_pressed():
 	get_tree().change_scene('res://scenes/battingView.tscn')
 
 # BUTTON SOUNDS
-func _on_btn_exhibition_mouse_entered():
+func _on_btn_play_mouse_entered():
+	pass
 	sound_1.play() 
 		
 func _on_btn_season_mouse_entered():

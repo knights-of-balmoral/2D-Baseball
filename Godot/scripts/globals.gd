@@ -1,7 +1,14 @@
 extends Node
 
-var camera_is_set = false
+var game_state = { 
+	balls: 0,
+	strikes: 0,
+	outs: 0,
+	inning: 1,
+	team_at_bat: "V"
+}
 
+var camera_is_set = false
 var pitch_target = "fastball_target_1" #["PTL", "PTC", "PTR", "PLC", "PC", "PRC", "PBL", "PBC", "PBR"]
 var pitch_potential_result = "S" #Use for pitch algorithm to return maybe S (strike) or B (ball) W (wild) H (HBP)
 var pitch_strength = 1 # speed of animation
@@ -11,7 +18,6 @@ var swing_window_max = 0.9 # last point during pitch a hit is possible
 var hit_location = 0 #range from 0 - 110 to decide hit's location (0-10 foul left/back), (100,110 foul rightback)
 var ball_status = "P" #IP(In Play) ["1", "P"], ["2", "C"],["3", "1B"],["4", "2B"],["5", "3B"],["6", "SS"],["7", "LF"],["8", "CF"],["9", "RF"]]
 var ball_origin = Vector2(-25,-9)
-
 
 # think about future tracking for individual player stats
 var hit_power_default = 4000
@@ -23,6 +29,7 @@ var distance_conversion = 6.5 # reduces vector toDistance size to convert to "fe
 var hit_distance = "0 '"
 
 # consider combining into one array (dictionary state)
+
 var strikes = 0
 var balls = 0
 var outs = 0

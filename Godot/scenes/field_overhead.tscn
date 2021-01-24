@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scripts/field_overhead.gd" type="Script" id=1]
 [ext_resource path="res://_placeholders/field.jpg" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://assets/raw/batter/runner.png" type="Texture" id=12]
 [ext_resource path="res://scenes/ui/ui_overhead.tscn" type="PackedScene" id=13]
 [ext_resource path="res://_placeholders/r.png" type="Texture" id=14]
+[ext_resource path="res://fonts/40_standard.tres" type="DynamicFont" id=15]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 2.0
@@ -140,6 +141,7 @@ __meta__ = {
 }
 
 [node name="spray_chart" type="Node2D" parent="field"]
+visible = false
 __meta__ = {
 "_edit_lock_": true
 }
@@ -243,6 +245,148 @@ margin_left = -512.0
 margin_top = -300.0
 margin_right = 512.0
 margin_bottom = 300.0
+
+[node name="v_score" type="Label" parent="field/ui_canvas"]
+margin_left = 366.0
+margin_top = -2033.0
+margin_right = 439.0
+margin_bottom = -1978.0
+custom_fonts/font = ExtResource( 15 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="h_score" type="Label" parent="field/ui_canvas"]
+margin_left = 743.727
+margin_top = -2033.0
+margin_right = 816.727
+margin_bottom = -1978.0
+custom_fonts/font = ExtResource( 15 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="inning" type="Label" parent="field/ui_canvas"]
+margin_left = 564.0
+margin_top = -2033.0
+margin_right = 620.0
+margin_bottom = -1978.0
+custom_fonts/font = ExtResource( 15 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ball_1" type="ColorRect" parent="field/ui_canvas"]
+visible = false
+margin_left = 362.322
+margin_top = -1920.79
+margin_right = 372.322
+margin_bottom = -1911.79
+color = Color( 0.870588, 0.917647, 0.0392157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ball_2" type="ColorRect" parent="field/ui_canvas"]
+visible = false
+margin_left = 402.543
+margin_top = -1920.51
+margin_right = 412.543
+margin_bottom = -1911.51
+color = Color( 0.870588, 0.917647, 0.0392157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ball_3" type="ColorRect" parent="field/ui_canvas"]
+visible = false
+margin_left = 442.764
+margin_top = -1920.51
+margin_right = 452.764
+margin_bottom = -1911.51
+color = Color( 0.870588, 0.917647, 0.0392157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="strike_1" type="ColorRect" parent="field/ui_canvas"]
+visible = false
+margin_left = 525.425
+margin_top = -1920.79
+margin_right = 535.425
+margin_bottom = -1911.79
+color = Color( 0.870588, 0.917647, 0.0392157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="strike_2" type="ColorRect" parent="field/ui_canvas"]
+visible = false
+margin_left = 565.646
+margin_top = -1920.79
+margin_right = 575.646
+margin_bottom = -1911.79
+color = Color( 0.870588, 0.917647, 0.0392157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="out_1" type="ColorRect" parent="field/ui_canvas"]
+visible = false
+margin_left = 658.932
+margin_top = -1921.05
+margin_right = 668.932
+margin_bottom = -1912.05
+color = Color( 0.870588, 0.917647, 0.0392157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="out_2" type="ColorRect" parent="field/ui_canvas"]
+visible = false
+margin_left = 699.25
+margin_top = -1920.52
+margin_right = 709.25
+margin_bottom = -1911.52
+color = Color( 0.870588, 0.917647, 0.0392157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="v_pitch_count" type="Label" parent="field/ui_canvas"]
+margin_left = 442.0
+margin_top = -1887.08
+margin_right = 503.0
+margin_bottom = -1839.08
+custom_fonts/font = ExtResource( 15 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="h_pitch_count" type="Label" parent="field/ui_canvas"]
+margin_left = 679.315
+margin_top = -1886.36
+margin_right = 740.315
+margin_bottom = -1838.36
+custom_fonts/font = ExtResource( 15 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ball" parent="field" instance=ExtResource( 3 )]
 position = Vector2( 552.772, 1307.96 )

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/kob_field.jpg-fc9c45668ef9926c6a9abe7c6ef735e8.stex"
+path="res://.import/scoreboard2.png-f0cc6f310faa323a15554aceb22681d4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/raw/stadiums/kob_field.jpg"
-dest_files=[ "res://.import/kob_field.jpg-fc9c45668ef9926c6a9abe7c6ef735e8.stex" ]
+source_file="res://_placeholders/scoreboard2.png"
+dest_files=[ "res://.import/scoreboard2.png-f0cc6f310faa323a15554aceb22681d4.stex" ]
 
 [params]
 
