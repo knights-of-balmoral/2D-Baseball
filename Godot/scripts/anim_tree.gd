@@ -34,50 +34,37 @@ func _process(delta):
 		
 			"hit":
 				if status_sent == 0:
-					#field_physics.linear_damp = 0
-					#field_physics.angular_damp = 0
-					fence.disabled = true
-					foul_area_fence.disabled = true
-					#print("It's in the Air!")
+					#fence.disabled = true [O]
+					fence.set_deferred("disabled", true)
+					foul_area_fence.set_deferred("disabled", true)
+					print("It's in the Air!")
 					status_sent += 1
 					
 			"pop_up":
 				if status_sent == 0:
-					#field_physics.linear_damp = 0
-					#field_physics.angular_damp = 0
-					fence.disabled = true
-					foul_area_fence.disabled = true
-					#print("It's in the Air!")
+					fence.set_deferred("disabled", true)
+					foul_area_fence.set_deferred("disabled", true)
+					print("It's in the Air!")
 					status_sent += 1
 					
 			"grounder":
 				if status_sent == 0:
-					fence.disabled = false
-					foul_area_fence.disabled = false
-					#field_physics.linear_damp = 0.5
-					#field_physics.angular_damp = 0.5
-					#print("Grounder!")
+					fence.set_deferred("disabled", false)
+					foul_area_fence.set_deferred("disabled", false)
+					print("Grounder!")
 					status_sent += 1
 		
 			"roll":
 				if status_sent == 1:
-					fence.disabled = false
-					foul_area_fence.disabled = false
-					#field_physics.linear_damp = 0.75
-					#field_physics.angular_damp = 1
-					#print("ball is rolling")
+					fence.set_deferred("disabled", false)
+					foul_area_fence.set_deferred("disabled", false)
+					print("ball is rolling")
 					status_sent += 1
 					
 			"idle":
 				if status_sent == 2:
-					fence.disabled = false
-					foul_area_fence.disabled = false
-					#field_physics.linear_damp = 1
-					#field_physics.angular_damp = 1
-					#print("it finally stopped rolling")
+					fence.set_deferred("disabled", false)
+					foul_area_fence.set_deferred("disabled", false)
+					print("it finally stopped rolling")
 					status_sent = 0
-					#ball_animation.sleeping = true
-					
-				
-		
-	
+

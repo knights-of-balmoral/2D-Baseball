@@ -14,7 +14,7 @@ var ball_origin = Vector2(-25,-9)
 
 
 # think about future tracking for individual player stats
-var hit_power_default = 2000
+var hit_power_default = 4000
 var hit_power_max = 0
 var hit_power_bonus = 1000
 var hit_power_penalty = -3000

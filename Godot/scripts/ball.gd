@@ -79,14 +79,19 @@ func get_hit_trajectory():
 	return ball_direction
 	
 func _on_foul_area_body_entered(body):
+	print("foul entered")
 	if (body.name == "ball" && !foul_banner.visible && !home_run_banner.visible && globals.ball_status != "F" ):
 		foul_banner.visible = true
-	globals.ball_status = "FOUL"
-	if (globals.strikes < 2):globals.strikes +=1
+		globals.ball_status = "FOUL"
+		if (globals.strikes < 2):globals.strikes +=1
+		print ('foul recorded')
+		
 func _on_home_run_area_body_entered(body):
+	print ("HR area entered")
 	if (body.name == "ball" && !foul_banner.visible && !home_run_banner.visible && globals.ball_status != "F"):
 		home_run_banner.visible = true
 		globals.ball_status = "HR"
+		print ("HOME RUN!")
 		#ball.visible = false
 		home_run_distance.text = globals.hit_distance
 func _on_ball_body_entered(body):
