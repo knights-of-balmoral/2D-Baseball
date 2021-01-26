@@ -92,6 +92,7 @@ extents = Vector2( 2.26746, 43.4001 )
 extents = Vector2( 4.84229, 29.6729 )
 
 [node name="battingView" type="Node2D"]
+pause_mode = 1
 script = ExtResource( 1 )
 
 [node name="batter_view" type="Node2D" parent="."]

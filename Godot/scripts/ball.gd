@@ -17,6 +17,7 @@ onready var fielder_8 = get_node("../../defense/fielder_8")
 onready var fielder_9 = get_node("../../defense/fielder_9")
 onready var dpad = get_tree().get_nodes_in_group("dpad")
 
+var fouls_enabled = true
 var ANIM_SPEED = 10
 var THROW_SPEED = 100
 var BALL_ENGLISH_LIMIT = 20
@@ -79,19 +80,20 @@ func get_hit_trajectory():
 	return ball_direction
 	
 func _on_foul_area_body_entered(body):
-	print("foul entered")
-	if (body.name == "ball" && !foul_banner.visible && !home_run_banner.visible && globals.ball_status != "F" ):
-		foul_banner.visible = true
-		globals.ball_status = "FOUL"
-		if (globals.strikes < 2):globals.strikes +=1
-		print ('foul recorded')
+	if fouls_enabled:
+		if (body.name == "ball" && !foul_banner.visible && !home_run_banner.visible && globals.ball_status != "F" ):
+			foul_banner.visible = true
+			globals.ball_status = "FOUL"
+			if (globals.game_state.strikes <= 2):
+				globals.game_state.strikes +=1
+		
 		
 func _on_home_run_area_body_entered(body):
 	print ("HR area entered")
 	if (body.name == "ball" && !foul_banner.visible && !home_run_banner.visible && globals.ball_status != "F"):
 		home_run_banner.visible = true
 		globals.ball_status = "HR"
-		print ("HOME RUN!")
+		update_score()
 		#ball.visible = false
 		home_run_distance.text = globals.hit_distance
 func _on_ball_body_entered(body):
@@ -161,3 +163,19 @@ func _on_left_field_area_body_entered(body):
 func _on_center_field_area_body_entered(body):
 	pass#foul_area.disabled = true # ball was hit to center field
 	#print ("Ball hit to center")
+func update_score():
+	# handle home run ball
+	if globals.game_state.team_at_bat == "V":
+		globals.game_state.v_score += 1
+	elif globals.game_state.team_at_bat == "H":
+		globals.game_state.h_score += 1
+
+func _on_fair_territory_line_body_entered(body):
+	if body.name == "ball":
+		disable_foul()
+
+func disable_foul():
+	fouls_enabled = false
+	
+func enable_foul():
+	fouls_enabled = true

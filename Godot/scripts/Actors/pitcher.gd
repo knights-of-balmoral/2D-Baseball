@@ -38,7 +38,7 @@ func pitchComputation(): #accepts where pitcher aimed and then calculates result
 	return random_pitch
 
 func _on_anim_pitcher_animation_finished():
-	ball.visible = true
+	ball.visible = false
 	if anim_pitcher.animation == "idle":
 		pass
 	else:

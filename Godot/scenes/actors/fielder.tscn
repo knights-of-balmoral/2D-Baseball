@@ -58,7 +58,7 @@ position = Vector2( -3.01881, 22.3895 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 2 )
 
-[node name="test" type="Label" parent="."]
+[node name="player_id" type="Label" parent="."]
 margin_left = -65.3322
 margin_top = -2.66683
 margin_right = 4.66779
@@ -79,7 +79,7 @@ position = Vector2( -4.6398, -33.2189 )
 texture = ExtResource( 7 )
 vframes = 2
 hframes = 5
-frame = 9
+frame = 1
 
 [node name="anim" type="AnimationPlayer" parent="defender"]
 anims/idle = ExtResource( 6 )

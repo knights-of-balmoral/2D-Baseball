@@ -49,6 +49,7 @@ func _ready():
 	foul_area.monitoring = true
 	for pad in dpad:
 		pad.visible = false
+	cam.make_current()
 	
 	
 func _process(delta):

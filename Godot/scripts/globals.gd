@@ -1,11 +1,18 @@
 extends Node
 
 var game_state = { 
-	balls: 0,
-	strikes: 0,
-	outs: 0,
-	inning: 1,
-	team_at_bat: "V"
+	"balls": 0,
+	"strikes": 0,
+	"outs": 0,
+	"inning": 1,
+	"inning_marker": 1,
+	"v_team_name": "Badgers",
+	"h_team_name": "Knights",
+	"v_score": 0,
+	"h_score": 0,
+	"team_at_bat": "V",
+	"v_pitch_count": 0,
+	"h_pitch_count":-1
 }
 
 var camera_is_set = false
@@ -27,14 +34,6 @@ var hit_power_penalty = -3000
 var hit_power = 1
 var distance_conversion = 6.5 # reduces vector toDistance size to convert to "feet"
 var hit_distance = "0 '"
-
-# consider combining into one array (dictionary state)
-
-var strikes = 0
-var balls = 0
-var outs = 0
-var inning = 1
-var team_at_bat = false # false = Visitor,  true = Home Team
 
 # Sound effects
 var ambience_volume = -7

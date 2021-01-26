@@ -3,7 +3,7 @@ onready var defender_selected = get_node("defender_selected")
 onready var fielders = get_tree().get_nodes_in_group("fielders")
 onready var anim = $defender/anim
 onready var anim_tree = $defender/AnimationTree
-onready var test = $test
+onready var player_id = $player_id
 #onready var ball = get_node("../../field/ball")
 var MAX_SPEED = 500
 var ACCELERATION = 1500
@@ -13,9 +13,10 @@ var defender_is_moving = false
 
 func _ready():
 	anim.playback_speed = ANIM_SPEED
+	anim.play("idle")
 	# show/hide fielder selection circle
 	defender_selected.visible = false
-	test.text = self.name.trim_prefix("fielder_")
+	player_id.text = self.name.trim_prefix("fielder_")
 	
 func _physics_process(delta):
 	var axis = get_input_axis()
@@ -41,6 +42,12 @@ func _physics_process(delta):
 func _process(delta):
 	select_fielder()
 	
+func play_anim( animation_name ) -> void:
+	anim.play( animation_name )
+
+func stop_anim() -> void:
+	anim.stop()
+
 func get_input_axis():
 	var axis = Vector2.ZERO
 	var previous_position = Vector2(axis.x, axis.y)

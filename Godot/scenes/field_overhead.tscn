@@ -26,6 +26,7 @@ _data = {
 }
 
 [node name="OverheadView" type="Node2D"]
+pause_mode = 1
 script = ExtResource( 1 )
 
 [node name="cam-main" type="Camera2D" parent="."]
@@ -140,8 +141,25 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="foul_pole_r" type="CollisionPolygon2D" parent="field/field_obstacles"]
+polygon = PoolVector2Array( 4724.89, -1116.16, 4752.29, -1116.16, 4769.41, -2486.06, 4694.06, -2475.78, 4670.09, -2441.54, 4665.57, -1408.37, 4728.31, -1403.84 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="foul_pole_l" type="CollisionPolygon2D" parent="field/field_obstacles"]
+polygon = PoolVector2Array( -3843.75, -1113.25, -3817.25, -1121.2, -3822.55, -1380.9, -3796.05, -1378.25, -3756.3, -1415.35, -3769.55, -2422.35, -3801.35, -2451.5, -3862.3, -2459.45 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ball_boundary" type="CollisionPolygon2D" parent="field/field_obstacles"]
+polygon = PoolVector2Array( -4062, -1100.26, -4062, -343.416, -5266.9, 799.113, -5258.91, 3619.2, 6488.78, 3671.13, 4944.85, -462.354, 4948.65, -1118.84, 4960.03, -1418.63, 5108.02, -1403.45, 6872.57, 3840.87, 6519.66, 3890.2, -5573.09, 3793.69, -5403.65, 697.002, -4174.35, -427.756, -4174.35, -1397.5, -4066.2, -1386.69 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="spray_chart" type="Node2D" parent="field"]
-visible = false
 __meta__ = {
 "_edit_lock_": true
 }
@@ -196,23 +214,14 @@ collision_layer = 0
 [node name="home_run" type="CollisionPolygon2D" parent="field/spray_chart/home_run_area"]
 polygon = PoolVector2Array( -1313.26, -1514.23, -3799.35, -1413.95, -5615.59, -5492.14, 6466.8, -5289.07, 4726.02, -1436.23, 1706.38, -1581.09, 280.129, -1603.37, -889.843, -1547.66 )
 
-[node name="outfield" type="Area2D" parent="field/spray_chart"]
-visible = false
+[node name="fair_territory_line" type="Area2D" parent="field/spray_chart"]
 collision_layer = 0
-collision_mask = 512
 
-[node name="outfield" type="CollisionPolygon2D" parent="field/spray_chart/outfield"]
-polygon = PoolVector2Array( -711.562, -524.042, -399.988, -983.414, -8.52283, -1306.97, 370.958, -1422.81, 806.363, -1410.83, 1249.76, -1207.11, 1533.37, -955.452, 1828.97, -484.096, 2376.22, -1031.35, 2076.63, -1526.67, 1884.89, -1778.33, 1565.33, -2061.94, 1289.7, -2205.74, 826.336, -2333.57, 303.051, -2341.56, 63.3789, -2301.61, -248.195, -2185.77, -647.649, -1958.08, -887.321, -1706.43, -1035.12, -1470.75, -1214.87, -1003.39 )
-disabled = true
-
-[node name="infield" type="Area2D" parent="field/spray_chart"]
-visible = false
-collision_layer = 0
-collision_mask = 512
-
-[node name="infield" type="CollisionPolygon2D" parent="field/spray_chart/infield"]
-polygon = PoolVector2Array( -567.758, -687.818, -447.922, -923.495, -132.354, -1227.08, 243.133, -1406.83, 670.549, -1430.8, 1066.01, -1322.95, 1469.46, -1047.33, 1705.13, -695.807, 746.445, 194.975, 327.018, 190.981 )
-disabled = true
+[node name="fair_ball_line" type="CollisionPolygon2D" parent="field/spray_chart/fair_territory_line"]
+polygon = PoolVector2Array( -1443.97, 324.196, 569.78, -268.285, 2443.12, 303.647, 2497.91, 272.824, 556.081, -319.657, -1483.24, 292.642 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="triggers" type="Node" parent="field"]
 
@@ -521,3 +530,4 @@ scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 12 )
 [connection signal="body_entered" from="field/spray_chart/foul_area" to="field/ball" method="_on_foul_area_body_entered"]
 [connection signal="body_entered" from="field/spray_chart/home_run_area" to="field/ball" method="_on_home_run_area_body_entered"]
+[connection signal="body_entered" from="field/spray_chart/fair_territory_line" to="field/ball" method="_on_fair_territory_line_body_entered"]

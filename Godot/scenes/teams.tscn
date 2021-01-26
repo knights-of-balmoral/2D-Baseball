@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/raw/gui/menu-bg.jpg" type="Texture" id=1]
 [ext_resource path="res://fonts/40_standard.tres" type="DynamicFont" id=2]
 [ext_resource path="res://fonts/s_30.tres" type="DynamicFont" id=3]
 [ext_resource path="res://scripts/teams.gd" type="Script" id=4]
+[ext_resource path="res://_placeholders/versus.png" type="Texture" id=5]
 
 [node name="teams" type="Node2D"]
 script = ExtResource( 4 )
@@ -28,12 +29,13 @@ __meta__ = {
 }
 
 [node name="btn_play" type="Button" parent="."]
-margin_left = 88.4763
-margin_top = 510.746
-margin_right = 302.476
-margin_bottom = 580.746
+margin_left = 426.372
+margin_top = 470.746
+margin_right = 640.372
+margin_bottom = 540.746
 custom_fonts/font = ExtResource( 2 )
-text = "Play"
+custom_colors/font_color_hover = Color( 0.152941, 0.470588, 0.572549, 1 )
+text = "PLAY"
 flat = true
 __meta__ = {
 "_edit_lock_": true,
@@ -63,20 +65,60 @@ margin_top = 187.228
 margin_right = 665.563
 margin_bottom = 235.228
 custom_fonts/font = ExtResource( 2 )
-text = "BLUE vs WHITE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="comment" type="Label" parent="blue_versus_white"]
-margin_left = -180.974
-margin_top = 48.0
-margin_right = 452.026
-margin_bottom = 192.0
+[node name="comment" type="Label" parent="."]
+margin_left = 204.589
+margin_top = 300.491
+margin_right = 837.589
+margin_bottom = 444.491
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.776471, 0.764706, 0.764706, 1 )
 text = "Someday the developer will do something important with this screen. Someday. Maybe."
 align = 1
 valign = 1
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="v_team" type="LineEdit" parent="."]
+margin_left = 177.052
+margin_top = 207.947
+margin_right = 474.052
+margin_bottom = 259.947
+custom_fonts/font = ExtResource( 2 )
+text = "Visitor"
+align = 1
+max_length = 50
+editable = false
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="vs" type="Sprite" parent="."]
+position = Vector2( 524.213, 236.843 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="h_team" type="LineEdit" parent="."]
+margin_left = 573.896
+margin_top = 212.158
+margin_right = 870.896
+margin_bottom = 264.158
+custom_fonts/font = ExtResource( 2 )
+text = "Home"
+align = 1
+max_length = 50
+editable = false
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="btn_play" to="." method="_on_btn_play_pressed"]

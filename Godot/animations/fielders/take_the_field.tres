@@ -1,0 +1,305 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+resource_name = "take_the_field"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("fielder_1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1826.38, 584.324 ), Vector2( 64.5984, 554.961 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("fielder_2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 2.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1708.93, 596.069 ), Vector2( 64.5985, 1242.05 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("fielder_3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1632.58, 322.993 ), Vector2( 901.444, 487.426 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("fielder_4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.1, 2.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1629.65, 472.744 ), Vector2( 311.248, 308.311 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("fielder_5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.3, 1.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1826.38, 372.91 ), Vector2( -807.483, 493.298 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("fielder_6:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.2, 1.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1940.89, 496.235 ), Vector2( -314.184, 343.547 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("fielder_7:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.5, 2.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1984.94, 340.611 ), Vector2( -1286.1, -85.1527 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("fielder_8:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 2.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1659.01, 678.285 ), Vector2( 52.8534, -146.815 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("fielder_9:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1741.23, 446.318 ), Vector2( 1336.02, -46.9809 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("scoreboard:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 1.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -3225.53, -496.469 ), Vector2( 1.02954, -244.187 ), Vector2( 1.02954, -244.187 ) ]
+}
+tracks/10/type = "method"
+tracks/10/path = NodePath("fielder_1")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 2, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ "run_right" ],
+"method": "play_anim"
+}, {
+"args": [ "idle" ],
+"method": "play_anim"
+}, {
+"args": [  ],
+"method": "stop_anim"
+} ]
+}
+tracks/11/type = "method"
+tracks/11/path = NodePath("fielder_2")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0.1, 2.1, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ "run_right" ],
+"method": "play_anim"
+}, {
+"args": [ "idle" ],
+"method": "play_anim"
+}, {
+"args": [  ],
+"method": "stop_anim"
+} ]
+}
+tracks/12/type = "method"
+tracks/12/path = NodePath("fielder_3")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0.2, 2.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ "run_right" ],
+"method": "play_anim"
+}, {
+"args": [ "idle" ],
+"method": "play_anim"
+}, {
+"args": [  ],
+"method": "stop_anim"
+} ]
+}
+tracks/13/type = "method"
+tracks/13/path = NodePath("fielder_4")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0.1, 2.4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ "run_right" ],
+"method": "play_anim"
+}, {
+"args": [ "idle" ],
+"method": "play_anim"
+}, {
+"args": [  ],
+"method": "stop_anim"
+} ]
+}
+tracks/14/type = "method"
+tracks/14/path = NodePath("fielder_5")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0.3, 1.6, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ "run_right" ],
+"method": "play_anim"
+}, {
+"args": [ "idle" ],
+"method": "play_anim"
+}, {
+"args": [  ],
+"method": "stop_anim"
+} ]
+}
+tracks/15/type = "method"
+tracks/15/path = NodePath("fielder_6")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0.2, 1.8, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ "run_right" ],
+"method": "play_anim"
+}, {
+"args": [ "idle" ],
+"method": "play_anim"
+}, {
+"args": [  ],
+"method": "stop_anim"
+} ]
+}
+tracks/16/type = "method"
+tracks/16/path = NodePath("fielder_7")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0.5, 2.8, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ "run_right" ],
+"method": "play_anim"
+}, {
+"args": [ "idle" ],
+"method": "play_anim"
+}, {
+"args": [  ],
+"method": "stop_anim"
+} ]
+}
+tracks/17/type = "method"
+tracks/17/path = NodePath("fielder_8")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0, 2.9, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ "run_right" ],
+"method": "play_anim"
+}, {
+"args": [ "idle" ],
+"method": "play_anim"
+}, {
+"args": [  ],
+"method": "stop_anim"
+} ]
+}
+tracks/18/type = "method"
+tracks/18/path = NodePath("fielder_9")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0, 3, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ "run_right" ],
+"method": "play_anim"
+}, {
+"args": [ "idle" ],
+"method": "play_anim"
+}, {
+"args": [  ],
+"method": "stop_anim"
+} ]
+}

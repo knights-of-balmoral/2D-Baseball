@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://fonts/40_standard.tres" type="DynamicFont" id=1]
 [ext_resource path="res://fonts/s_20.tres" type="DynamicFont" id=2]
 [ext_resource path="res://_placeholders/scoreboard2.png" type="Texture" id=3]
 [ext_resource path="res://assets/raw/gui/arrow.png" type="Texture" id=4]
 [ext_resource path="res://assets/raw/gui/yellow_circle.png" type="Texture" id=5]
+[ext_resource path="res://scripts/scoreboard.gd" type="Script" id=6]
 
 [node name="scoreboard" type="Node2D"]
+script = ExtResource( 6 )
 
 [node name="scoreboard" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0.631373 )
@@ -47,6 +49,7 @@ align = 1
 valign = 1
 max_lines_visible = 1
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -64,18 +67,29 @@ text = "0"
 align = 1
 valign = 1
 max_lines_visible = 1
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="out_1" type="Sprite" parent="."]
+visible = false
 position = Vector2( 33.4684, 12.164 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="out_2" type="Sprite" parent="."]
+visible = false
 position = Vector2( 52.011, 11.971 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="inning_number" type="Label" parent="."]
+[node name="inning" type="Label" parent="."]
 margin_left = -1.56181
 margin_top = -12.0319
 margin_right = 19.4382
@@ -86,6 +100,7 @@ text = "1"
 align = 1
 valign = 1
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -100,6 +115,7 @@ text = "0"
 align = 1
 valign = 1
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -114,6 +130,7 @@ text = "0"
 align = 1
 valign = 1
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -128,6 +145,7 @@ text = "0"
 align = 1
 valign = 1
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -136,12 +154,18 @@ position = Vector2( 8.14996, -15.9968 )
 rotation = 3.14159
 scale = Vector2( 0.02, 0.02 )
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="bottom_inning" type="Sprite" parent="."]
 visible = false
 position = Vector2( 8.62579, 16.5857 )
 scale = Vector2( 0.02, 0.02 )
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="base_1" type="ColorRect" parent="."]
 visible = false
@@ -152,6 +176,7 @@ margin_bottom = -6.22099
 rect_rotation = 45.0
 color = Color( 0.768627, 0.556863, 0.0470588, 1 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -164,6 +189,7 @@ margin_bottom = -14.7828
 rect_rotation = 45.0
 color = Color( 0.768627, 0.556863, 0.0470588, 1 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -176,5 +202,32 @@ margin_bottom = -6.69664
 rect_rotation = 45.0
 color = Color( 0.768627, 0.556863, 0.0470588, 1 )
 __meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="v_team_name" type="Label" parent="."]
+margin_left = -117.0
+margin_top = -25.0
+margin_right = -39.0
+margin_bottom = -2.0
+text = "Visitor"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="h_team_name" type="Label" parent="."]
+margin_left = -117.0
+margin_top = 1.3989
+margin_right = -39.0
+margin_bottom = 24.3989
+text = "Home"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }

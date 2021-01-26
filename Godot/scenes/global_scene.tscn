@@ -5,6 +5,7 @@
 [ext_resource path="res://scripts/global_scene.gd" type="Script" id=3]
 
 [node name="global_scene" type="Node"]
+pause_mode = 2
 script = ExtResource( 3 )
 
 [node name="bgStadium" type="AudioStreamPlayer" parent="."]
