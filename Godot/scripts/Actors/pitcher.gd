@@ -18,7 +18,7 @@ func _physics_process(delta): # delta times things with clock/render cycle
 	
 		
 	# If ball hasn't been pitched, pitch it
-	if Input.is_action_just_pressed("pitch_ball") && globals.ball_status == "P":
+	if Input.is_action_just_pressed("pitch_ball") && globals.game_state.ball_status == "P":
 		globals.pitch_potential_result = pitchComputation() #replace with a pitch selection function
 		anim_pitcher.play("pitch_motion")
 	
@@ -42,5 +42,5 @@ func _on_anim_pitcher_animation_finished():
 	if anim_pitcher.animation == "idle":
 		pass
 	else:
-		globals.ball_status = "PITCHED"
+		globals.game_state.ball_status = "PITCHED"
 		anim_pitcher.play("idle")

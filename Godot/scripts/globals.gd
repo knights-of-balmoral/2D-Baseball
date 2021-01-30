@@ -1,6 +1,7 @@
 extends Node
 
 var game_state = { 
+	"ball_status": "P",
 	"balls": 0,
 	"strikes": 0,
 	"outs": 0,
@@ -23,11 +24,10 @@ var swing_target = "idle" #["W - for Waiting", STL", "STC", "STR", "SLC", "SC", 
 var swing_window_min = 0.5 # first point during pitch a hit is possible
 var swing_window_max = 0.9 # last point during pitch a hit is possible
 var hit_location = 0 #range from 0 - 110 to decide hit's location (0-10 foul left/back), (100,110 foul rightback)
-var ball_status = "P" #IP(In Play) ["1", "P"], ["2", "C"],["3", "1B"],["4", "2B"],["5", "3B"],["6", "SS"],["7", "LF"],["8", "CF"],["9", "RF"]]
 var ball_origin = Vector2(-25,-9)
 
 # think about future tracking for individual player stats
-var hit_power_default = 4000
+var hit_power_default = 2000
 var hit_power_max = 0
 var hit_power_bonus = 1000
 var hit_power_penalty = -3000

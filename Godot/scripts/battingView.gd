@@ -1,5 +1,6 @@
 # KNOWN BUGS
-# - Bottom of inning indicator does not turn on appropriately
+# 1. Bottom of inning indicator is currently utilizing 
+# dupe code in the ready function of the scoreboard
 
 extends Node2D
 onready var ui_balls = get_node("batter_view/UI/scoreboard/balls_display")
@@ -30,7 +31,7 @@ var batter_swung = false
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	update_ui()
-	globals.ball_status = "P"
+	globals.game_state.ball_status = "P"
 	
 func _process(delta):
 #------------- Batter Idle Animation -----------
@@ -42,7 +43,7 @@ func _process(delta):
 #-----------------------------------------------
 
 #------------- Ball Pitched -----------
-	if globals.ball_status == "PITCHED":
+	if globals.game_state.ball_status == "PITCHED":
 		animateBall()
 		
 		#---------  Swing and miss ----------
@@ -56,7 +57,7 @@ func _process(delta):
 		# -------- Swing and hit ------------
 		if(Input.is_action_just_pressed("swing_bat")) && anim_ball.current_animation_position >= globals.swing_window_min && anim_ball.current_animation_position < globals.swing_window_max:
 			batter_anim.play("swing")
-			globals.ball_status = "H" # Hit
+			globals.game_state.ball_status = "H" # Hit
 			update_pitch_count()
 			get_tree().change_scene('res://scenes/field_overhead.tscn')
 		# -------- Bat not swung ------------	
@@ -66,7 +67,7 @@ func _process(delta):
 				si_gc.play()
 				updateStrikes()
 				update_pitch_count()
-				globals.ball_status = "P" #PITCHER for now - but will need some update functions
+				globals.game_state.ball_status = "P" #PITCHER for now - but will need some update functions
 				update_ui()
 
 func updateStrikes():
@@ -104,9 +105,11 @@ func updateInnings():
 		# start game
 		1.5:
 			go_to_bottom()
+			print ('supposed to go to bottom')
 		2.0:
 			globals.game_state.inning = 2
 			go_to_top()
+			print ('back to top')
 		2.5:
 			go_to_bottom()
 		3.0:
@@ -149,25 +152,19 @@ func updateInnings():
 			
 	if globals.game_state.inning > 9:
 		check_for_end_of_game()
-	else:
-		match globals.game_state.team_at_bat:
-			"H":
-				globals.game_state.team_at_bat = "V"
-				go_to_top()
-			"V":
-				globals.game_state.team_at_bat = "H"
-				go_to_bottom()
-	
+		
 	update_ui()
 	get_tree().change_scene("res://scenes/team_transition.tscn")
 
 func go_to_top():
 	ui_top.visible = true
 	ui_bottom.visible = false
+	globals.game_state.team_at_bat = "V"
 
 func go_to_bottom():
 	ui_top.visible = false
 	ui_bottom.visible = true
+	globals.game_state.team_at_bat = "H"
 
 func update_scoreboard():
 	pass
@@ -176,8 +173,8 @@ func updateWildPitch():
 	pass
 	
 func updateHitByPitch():
-	globals.balls = 0
-	globals.strikes = 0
+	globals.game_state.balls = 0
+	globals.game_state.strikes = 0
 	
 func check_for_end_of_game():
 	pass
@@ -222,4 +219,4 @@ func animateBall():
 	anim_ball.play(globals.pitch_target)
 
 func _on_anim_ball_animation_finished(anim_name):
-	globals.ball_status = "P"
+	globals.game_state.ball_status = "P"

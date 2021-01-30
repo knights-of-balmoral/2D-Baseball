@@ -39,7 +39,7 @@ func _ready():
 	anim.playback_speed = ANIM_SPEED
 
 func _integrate_forces(state):
-	if !ball_has_been_hit && globals.ball_status == "H":
+	if !ball_has_been_hit && globals.game_state.ball_status == "H":
 		hit_ball(state)
 		randomize()
 		ball_english = Vector2(rand_range(BALL_ENGLISH_LIMIT * -1, BALL_ENGLISH_LIMIT), 0)
@@ -51,6 +51,12 @@ func hit_ball(state):
 	ball.apply_impulse(Vector2(), get_hit_trajectory())
 	globals.hit_distance = str(stepify(abs(state.linear_velocity.distance_to(ball_origin) / globals.distance_conversion), 0.1)) + " '"
 	ball_has_been_hit = true
+
+func update_count(state):
+	match state:
+		"fair_ball":
+			globals.game_state.strikes = 0
+			globals.game_state.balls = 0
 	
 func get_hit_trajectory():
 	randomize()
@@ -81,24 +87,24 @@ func get_hit_trajectory():
 	
 func _on_foul_area_body_entered(body):
 	if fouls_enabled:
-		if (body.name == "ball" && !foul_banner.visible && !home_run_banner.visible && globals.ball_status != "F" ):
+		if (body.name == "ball" && !foul_banner.visible && !home_run_banner.visible && globals.game_state.ball_status != "F" ):
 			foul_banner.visible = true
-			globals.ball_status = "FOUL"
-			if (globals.game_state.strikes <= 2):
+			globals.game_state.ball_status = "FOUL"
+			if globals.game_state.strikes <= 1: # avoid strike if it's third for foul balls
 				globals.game_state.strikes +=1
 		
 		
 func _on_home_run_area_body_entered(body):
 	print ("HR area entered")
-	if (body.name == "ball" && !foul_banner.visible && !home_run_banner.visible && globals.ball_status != "F"):
+	if (body.name == "ball" && !foul_banner.visible && !home_run_banner.visible && globals.game_state.ball_status != "F"):
 		home_run_banner.visible = true
-		globals.ball_status = "HR"
+		globals.game_state.ball_status = "HR"
 		update_score()
 		#ball.visible = false
 		home_run_distance.text = globals.hit_distance
 func _on_ball_body_entered(body):
 	 # if a fielder already has the ball, don't run this
-	if "fielder" in body.name && globals.ball_status.left(1) != "F": 
+	if "fielder" in body.name && globals.game_state.ball_status.left(1) != "F": 
 		for pad in dpad:
 			pad.visible = true
 		globals.camera_is_set = !globals.camera_is_set		
@@ -106,47 +112,47 @@ func _on_ball_body_entered(body):
 			"fielder_1":
 				fielder_who_has_ball =  fielder_1
 				fielder_1.reselect_fielders(1)
-				globals.ball_status = "F1"	
+				globals.game_state.ball_status = "F1"	
 				
 			"fielder_2":
 				fielder_who_has_ball =  fielder_2
 				fielder_1.reselect_fielders(2)
-				globals.ball_status = "F2"		
+				globals.game_state.ball_status = "F2"		
 				
 			"fielder_3":
 				fielder_who_has_ball =  fielder_3
 				fielder_1.reselect_fielders(3)
-				globals.ball_status = "F3"		
+				globals.game_state.ball_status = "F3"		
 				
 			"fielder_4":
 				fielder_who_has_ball =  fielder_4
 				fielder_1.reselect_fielders(4)
-				globals.ball_status = "F4"		
+				globals.game_state.ball_status = "F4"		
 				
 			"fielder_5":
 				fielder_who_has_ball =  fielder_5
 				fielder_1.reselect_fielders(5)
-				globals.ball_status = "F5"		
+				globals.game_state.ball_status = "F5"		
 				
 			"fielder_6":
 				fielder_who_has_ball =  fielder_6
 				fielder_1.reselect_fielders(6)
-				globals.ball_status = "F6"		
+				globals.game_state.ball_status = "F6"		
 				
 			"fielder_7":
 				fielder_who_has_ball =  fielder_7
 				fielder_1.reselect_fielders(7)
-				globals.ball_status = "F7"		
+				globals.game_state.ball_status = "F7"		
 				
 			"fielder_8":
 				fielder_who_has_ball =  fielder_8
 				fielder_1.reselect_fielders(8)
-				globals.ball_status = "F8"		
+				globals.game_state.ball_status = "F8"		
 				
 			"fielder_9":
 				fielder_who_has_ball =  fielder_9
 				fielder_1.reselect_fielders(9)
-				globals.ball_status = "F9"
+				globals.game_state.ball_status = "F9"
 				
 			_:
 				pass
@@ -173,6 +179,7 @@ func update_score():
 func _on_fair_territory_line_body_entered(body):
 	if body.name == "ball":
 		disable_foul()
+		update_count("fair_ball")
 
 func disable_foul():
 	fouls_enabled = false

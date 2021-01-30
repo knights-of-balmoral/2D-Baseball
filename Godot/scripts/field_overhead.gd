@@ -3,7 +3,7 @@ onready var ball_state = get_node("field/ball/anim_tree")
 onready var runner = get_node("offense/basepath/runners_path")
 onready var foul_banner = get_node("field/ui_canvas/ui/foul")
 onready var home_run_banner = get_node("field/ui_canvas/ui/home_run")
-onready var foul_area = $field/spray_chart/center_field_area
+onready var foul_area = $field/spray_chart/foul_area
 onready var ball = $field/ball
 onready var anim = $field/ball/anim
 onready var cam = $"cam-main"
@@ -30,15 +30,7 @@ var throw_source = fielder_1 #default to pitcher
 var throw_target = fielder_2 #default to catcher
 export var DEFAULT_THROW_STRENGTH = 2000
 var camera_is_set = false
-
-
-
-
-#get_tree().call_group("my_group","my_function",args...)
-#If you need to do something with your group:
-#
-#for member in get_tree().get_nodes_in_group("my_group"):
-#    member.my_function(args...)
+var ball_caught = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -46,30 +38,28 @@ func _ready():
 	ball_state.active = true # turns on auto-advancing animation tree for hits
 	foul_banner.visible = false
 	home_run_banner.visible = false
-	foul_area.monitoring = true
 	for pad in dpad:
 		pad.visible = false
 	cam.make_current()
 	
-	
 func _process(delta):
 	#if !camera_is_set:
 	set_camera_position()	
+	
+	if ball_caught:
+		handle_caught_ball()
 		# Toggle Menu 
 	if Input.is_action_just_released("toggle_menu") == true:
-		globals.ball_status = "P"
+		globals.game_state.ball_status = "P"
 		get_tree().change_scene("res://scenes/battingView.tscn")
-	
-	# if the ball is outside of a fielder's AO, turn the fielder collisions back on
-	# But what if the fielders are very close together - problems would ensue
-	#if globals.ball_status == "IP":
-	#	enable_colliders()
 	
 	runner.set_offset(runner.get_offset() + 450 * delta) # .22  - first base, .49 - second base, .73 - third base, 1 - home plate
 		
+func handle_caught_ball():
+	pass		
 		
 func _unhandled_input(event):
-	if globals.ball_status.left(1) == "F":
+	if globals.game_state.ball_status.left(1) == "F":
 		if Input.is_action_just_pressed("throw_1"):
 			throw_target = fielder_3 # First Baseman
 			throw_ball()
@@ -89,23 +79,26 @@ func _unhandled_input(event):
 			pass
 	
 func throw_ball():
+	# Overhead icons for potential throw targets
 	for pad in dpad:
 		pad.visible = false
+	
 	var throw_direction = Vector2.ZERO
 	camera_is_set = false
+	
+	# reinstantiate ball and refresh reference nodes
 	var new_ball = load("res://scenes/instanced/ball.tscn")
 	ball = new_ball.instance()
-	
 	$field.add_child(ball)
-	
+	anim = $field/ball/anim
 	throw_source = select_throw_source()
 	ball.global_position = throw_source.global_position
 	throw_direction = (throw_target.global_position - ball.global_position).normalized()
-	
 	ball.visible = true
 	# throw strength will need a per-player bonus
 	ball.apply_impulse(Vector2.ZERO, throw_direction * DEFAULT_THROW_STRENGTH)
-	globals.ball_status = "IP"
+	anim.play("standard_throw")
+	globals.game_state.ball_status = "IP"
 
 func enable_colliders():
 	yield(get_tree().create_timer(1.0), "timeout")
@@ -119,13 +112,24 @@ func enable_colliders():
 	fielder_8_collision.set_disabled(false)
 	fielder_9_collision.set_disabled(false)
 
+func disable_colliders():
+	fielder_1_collision.set_disabled(true)
+	fielder_2_collision.set_disabled(true)
+	fielder_3_collision.set_disabled(true)
+	fielder_4_collision.set_disabled(true)
+	fielder_5_collision.set_disabled(true)
+	fielder_6_collision.set_disabled(true)
+	fielder_7_collision.set_disabled(true)
+	fielder_8_collision.set_disabled(true)
+	fielder_9_collision.set_disabled(true)
+
 func select_throw_source():
 	
 	## ISSUES ##
 	# 1. Fielder can disable collider while throwing and escape field
 	
 	enable_colliders()
-	match globals.ball_status:
+	match globals.game_state.ball_status:
 		"F1":
 			fielder_1_collision.set_disabled(true)
 			return fielder_1
@@ -158,7 +162,7 @@ func select_throw_source():
 			
 func set_camera_position():
 	camera_is_set = true
-	match globals.ball_status:
+	match globals.game_state.ball_status:
 		"H":
 			cam.global_position = ball.global_position
 		"IP":

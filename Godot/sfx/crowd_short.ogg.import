@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/crowd_short.ogg-ff7d4ca6ce86e99745a3491e1f9743d7.oggstr"
+
+[deps]
+
+source_file="res://sfx/crowd_short.ogg"
+dest_files=[ "res://.import/crowd_short.ogg-ff7d4ca6ce86e99745a3491e1f9743d7.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

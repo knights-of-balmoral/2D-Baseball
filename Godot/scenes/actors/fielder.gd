@@ -25,7 +25,7 @@ func _physics_process(delta):
 	
 	if defender_selected.visible: # only move if selected
 		motion = move_and_slide(motion)
-#		if globals.ball_status == "F":
+#		if globals.game_state.ball_status == "F":
 #			ball.set_global_position(self.global_position)
 		
 		if axis == Vector2.ZERO:

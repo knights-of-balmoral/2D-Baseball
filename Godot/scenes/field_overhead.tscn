@@ -82,24 +82,6 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="field_areas" type="StaticBody2D" parent="field"]
-visible = false
-collision_layer = 0
-collision_mask = 0
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="foul_area_fence" type="CollisionPolygon2D" parent="field/field_areas"]
-position = Vector2( -383.876, -284.596 )
-rotation = 0.409826
-scale = Vector2( 1, 2.5 )
-polygon = PoolVector2Array( -1805.16, -76.2753, -1667.82, -94.8885, -930.398, 15.9225, 750.906, 246.308, 1245.89, 315.221, 1376.53, 287.77, 1582.62, 100.826, 2192.31, -444.885, 2627.02, -835.613, 2740.14, -862.379, 3298.71, -871.759, 2864.78, -360.304, 2331.53, 256.092, 1606.66, 399.578, 947.359, 469.505, 122.029, 410.731, -1331.45, 190.648, -2220.83, 66.8548 )
-disabled = true
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="field_borders" type="StaticBody2D" parent="field"]
 visible = false
 collision_layer = 16
@@ -125,6 +107,7 @@ __meta__ = {
 }
 
 [node name="field_obstacles" type="StaticBody2D" parent="field"]
+visible = false
 collision_layer = 2
 physics_material_override = SubResource( 1 )
 __meta__ = {
@@ -132,6 +115,7 @@ __meta__ = {
 }
 
 [node name="outfield_fence" type="CollisionPolygon2D" parent="field/field_obstacles"]
+visible = false
 position = Vector2( -383.876, -284.596 )
 rotation = 0.409826
 scale = Vector2( 1, 2.5 )
@@ -142,24 +126,28 @@ __meta__ = {
 }
 
 [node name="foul_pole_r" type="CollisionPolygon2D" parent="field/field_obstacles"]
+visible = false
 polygon = PoolVector2Array( 4724.89, -1116.16, 4752.29, -1116.16, 4769.41, -2486.06, 4694.06, -2475.78, 4670.09, -2441.54, 4665.57, -1408.37, 4728.31, -1403.84 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="foul_pole_l" type="CollisionPolygon2D" parent="field/field_obstacles"]
+visible = false
 polygon = PoolVector2Array( -3843.75, -1113.25, -3817.25, -1121.2, -3822.55, -1380.9, -3796.05, -1378.25, -3756.3, -1415.35, -3769.55, -2422.35, -3801.35, -2451.5, -3862.3, -2459.45 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="ball_boundary" type="CollisionPolygon2D" parent="field/field_obstacles"]
+visible = false
 polygon = PoolVector2Array( -4062, -1100.26, -4062, -343.416, -5266.9, 799.113, -5258.91, 3619.2, 6488.78, 3671.13, 4944.85, -462.354, 4948.65, -1118.84, 4960.03, -1418.63, 5108.02, -1403.45, 6872.57, 3840.87, 6519.66, 3890.2, -5573.09, 3793.69, -5403.65, 697.002, -4174.35, -427.756, -4174.35, -1397.5, -4066.2, -1386.69 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="spray_chart" type="Node2D" parent="field"]
+visible = false
 __meta__ = {
 "_edit_lock_": true
 }
@@ -172,42 +160,44 @@ collision_layer = 0
 [node name="foul" type="CollisionPolygon2D" parent="field/spray_chart/foul_area"]
 polygon = PoolVector2Array( 500.221, 1440.43, 422.115, 1443.22, -3847.25, -1077.93, -3837.32, -1476.86, -4965.69, -3989.55, -5239.34, 3618.41, 6478.53, 3672.06, 6486.1, -5318.1, 4739.68, -1434.76, 4750.75, -1107.94, 642.485, 1415.32, 578.327, 1440.43 )
 
-[node name="right_field_area" type="Area2D" parent="field/spray_chart"]
-visible = false
+[node name="spray" type="Area2D" parent="field/spray_chart"]
 collision_layer = 0
 collision_mask = 512
 
-[node name="right_field" type="CollisionPolygon2D" parent="field/spray_chart/right_field_area"]
+[node name="right_field" type="CollisionPolygon2D" parent="field/spray_chart/spray"]
+visible = false
 build_mode = 1
-polygon = PoolVector2Array( 574.099, 329.589, 504.275, -2260.15, 882.802, -2234.91, 1542.52, -1968.14, 2223.87, -1117.36, 697.741, 330.492 )
-disabled = true
-
-[node name="left_field_area" type="Area2D" parent="field/spray_chart"]
-visible = false
-collision_layer = 0
-collision_mask = 512
-
-[node name="left_field" type="CollisionPolygon2D" parent="field/spray_chart/left_field_area"]
-polygon = PoolVector2Array( 515.39, 318.272, 503.411, -2252, 201.309, -2252, -153.793, -2148.65, -601.646, -1907.5, -910.269, -1661.81, -1204.32, -1080.31, 283.881, 332.91 )
+polygon = PoolVector2Array( 637.487, -308.125, 1697.91, -1301.67, 4735.88, -1120.16, 2452.62, 274.63 )
 disabled = true
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="center_field_area" type="Area2D" parent="field/spray_chart"]
+[node name="center_field" type="CollisionPolygon2D" parent="field/spray_chart/spray"]
 visible = false
-collision_layer = 0
-collision_mask = 512
-
-[node name="center_field" type="CollisionPolygon2D" parent="field/spray_chart/center_field_area"]
-visible = false
-polygon = PoolVector2Array( 522.86, 326.324, -485.548, -1980.81, 53.7413, -2226.88, 867.802, -2235.08, 1421.45, -2032.08, 570.759, 326.324 )
+polygon = PoolVector2Array( 561.061, -317.678, -852.836, -1263.46, 188.479, -1311.23, 857.214, -1330.33, 1678.8, -1311.23, 618.38, -317.678 )
 disabled = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="left_field" type="CollisionPolygon2D" parent="field/spray_chart/spray"]
+visible = false
+polygon = PoolVector2Array( 522.847, -327.231, -919.709, -1273.01, -3795.27, -1101.05, -1454.7, 284.183 )
+disabled = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="infield" type="CollisionPolygon2D" parent="field/spray_chart/spray"]
+visible = false
+polygon = PoolVector2Array( 503.721, 1390.65, 287.422, 1376.23, 182.877, 1293.31, -1435.76, 323.569, 586.636, -260.44, 2428.79, 305.544, 849.801, 1286.1, 752.466, 1397.86 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="home_run_area" type="Area2D" parent="field/spray_chart"]
+visible = false
 monitorable = false
 collision_layer = 0
 
@@ -218,6 +208,7 @@ polygon = PoolVector2Array( -1313.26, -1514.23, -3799.35, -1413.95, -5615.59, -5
 collision_layer = 0
 
 [node name="fair_ball_line" type="CollisionPolygon2D" parent="field/spray_chart/fair_territory_line"]
+visible = false
 polygon = PoolVector2Array( -1443.97, 324.196, 569.78, -268.285, 2443.12, 303.647, 2497.91, 272.824, 556.081, -319.657, -1483.24, 292.642 )
 __meta__ = {
 "_edit_lock_": true
@@ -407,7 +398,7 @@ angular_damp = -1.0
 [node name="fielder_1" parent="defense" groups=[
 "fielders",
 ] instance=ExtResource( 6 )]
-position = Vector2( -473.257, 1026.82 )
+position = Vector2( -550.505, -904.387 )
 
 [node name="target_key" type="Sprite" parent="defense/fielder_1" groups=[
 "dpad",
@@ -423,7 +414,7 @@ __meta__ = {
 [node name="fielder_2" parent="defense" groups=[
 "fielders",
 ] instance=ExtResource( 6 )]
-position = Vector2( -623.22, 939.15 )
+position = Vector2( 1188.6, -956.944 )
 
 [node name="target_key" type="Sprite" parent="defense/fielder_2" groups=[
 "dpad",
@@ -440,7 +431,7 @@ __meta__ = {
 "fielders",
 "infield",
 ] instance=ExtResource( 6 )]
-position = Vector2( -735.258, 837.909 )
+position = Vector2( -1774.6, -1079.25 )
 
 [node name="target_key" type="Sprite" parent="defense/fielder_3" groups=[
 "dpad",
@@ -457,7 +448,7 @@ __meta__ = {
 "fielders",
 "infield",
 ] instance=ExtResource( 6 )]
-position = Vector2( -929.365, 715.547 )
+position = Vector2( 2539.78, -1103.3 )
 
 [node name="target_key" type="Sprite" parent="defense/fielder_4" groups=[
 "dpad",
