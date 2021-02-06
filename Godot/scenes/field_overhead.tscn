@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scripts/field_overhead.gd" type="Script" id=1]
 [ext_resource path="res://_placeholders/field.jpg" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://scenes/ui/ui_overhead.tscn" type="PackedScene" id=13]
 [ext_resource path="res://_placeholders/r.png" type="Texture" id=14]
 [ext_resource path="res://fonts/40_standard.tres" type="DynamicFont" id=15]
+[ext_resource path="res://_placeholders/spotlight.png" type="Texture" id=16]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 2.0
@@ -61,6 +62,22 @@ stream = ExtResource( 4 )
 autoplay = true
 
 [node name="field" type="Node" parent="."]
+
+[node name="decor" type="Node2D" parent="field"]
+
+[node name="stadium_light_left" type="Light2D" parent="field/decor"]
+visible = false
+position = Vector2( -566.524, -2407.73 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 16 )
+shadow_enabled = true
+
+[node name="stadium_light_right" type="Light2D" parent="field/decor"]
+visible = false
+position = Vector2( 1624.33, -2447.56 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 16 )
+shadow_enabled = true
 
 [node name="sound_areas" type="Node" parent="field"]
 
@@ -398,7 +415,7 @@ angular_damp = -1.0
 [node name="fielder_1" parent="defense" groups=[
 "fielders",
 ] instance=ExtResource( 6 )]
-position = Vector2( -550.505, -904.387 )
+position = Vector2( 608.219, 310.518 )
 
 [node name="target_key" type="Sprite" parent="defense/fielder_1" groups=[
 "dpad",
@@ -414,7 +431,7 @@ __meta__ = {
 [node name="fielder_2" parent="defense" groups=[
 "fielders",
 ] instance=ExtResource( 6 )]
-position = Vector2( 1188.6, -956.944 )
+position = Vector2( 535.501, 1655.45 )
 
 [node name="target_key" type="Sprite" parent="defense/fielder_2" groups=[
 "dpad",
@@ -431,7 +448,7 @@ __meta__ = {
 "fielders",
 "infield",
 ] instance=ExtResource( 6 )]
-position = Vector2( -1774.6, -1079.25 )
+position = Vector2( 2214.22, 170.768 )
 
 [node name="target_key" type="Sprite" parent="defense/fielder_3" groups=[
 "dpad",
@@ -448,7 +465,7 @@ __meta__ = {
 "fielders",
 "infield",
 ] instance=ExtResource( 6 )]
-position = Vector2( 2539.78, -1103.3 )
+position = Vector2( 742.002, -225.479 )
 
 [node name="target_key" type="Sprite" parent="defense/fielder_4" groups=[
 "dpad",
@@ -465,7 +482,7 @@ __meta__ = {
 "fielders",
 "infield",
 ] instance=ExtResource( 6 )]
-position = Vector2( -1076.74, 611.019 )
+position = Vector2( -1210.17, 161.574 )
 
 [node name="target_key" type="Sprite" parent="defense/fielder_5" groups=[
 "dpad",
@@ -482,25 +499,25 @@ __meta__ = {
 "fielders",
 "infield",
 ] instance=ExtResource( 6 )]
-position = Vector2( -1245.83, 499.633 )
+position = Vector2( -325.873, -153.466 )
 
 [node name="fielder_7" parent="defense" groups=[
 "fielders",
 "outfield",
 ] instance=ExtResource( 6 )]
-position = Vector2( -1415.48, 446.276 )
+position = Vector2( -2433.75, -859.922 )
 
 [node name="fielder_8" parent="defense" groups=[
 "fielders",
 "outfield",
 ] instance=ExtResource( 6 )]
-position = Vector2( -1539.54, 335.546 )
+position = Vector2( 447.848, -1104.08 )
 
 [node name="fielder_9" parent="defense" groups=[
 "fielders",
 "outfield",
 ] instance=ExtResource( 6 )]
-position = Vector2( 221.948, -985.337 )
+position = Vector2( 3466.38, -950.224 )
 
 [node name="offense" type="Node" parent="."]
 

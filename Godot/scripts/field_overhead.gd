@@ -28,13 +28,13 @@ onready var fielder_9_collision = $defense/fielder_9/CollisionShape2D
 onready var dpad = get_tree().get_nodes_in_group("dpad")
 var throw_source = fielder_1 #default to pitcher
 var throw_target = fielder_2 #default to catcher
-export var DEFAULT_THROW_STRENGTH = 2000
+export var DEFAULT_THROW_STRENGTH = 2500
 var camera_is_set = false
 var ball_caught = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	globals.hit_power_max = globals.hit_power_default # rest hit bonus/penalty
+	globals._settings.hit_power_max = globals._settings.HIT_POWER_DEFAULT # rest hit bonus/penalty
 	ball_state.active = true # turns on auto-advancing animation tree for hits
 	foul_banner.visible = false
 	home_run_banner.visible = false
@@ -50,7 +50,7 @@ func _process(delta):
 		handle_caught_ball()
 		# Toggle Menu 
 	if Input.is_action_just_released("toggle_menu") == true:
-		globals.game_state.ball_status = "P"
+		globals._state.ball_status = "P"
 		get_tree().change_scene("res://scenes/battingView.tscn")
 	
 	runner.set_offset(runner.get_offset() + 450 * delta) # .22  - first base, .49 - second base, .73 - third base, 1 - home plate
@@ -59,7 +59,7 @@ func handle_caught_ball():
 	pass		
 		
 func _unhandled_input(event):
-	if globals.game_state.ball_status.left(1) == "F":
+	if globals._state.ball_status.left(1) == "F":
 		if Input.is_action_just_pressed("throw_1"):
 			throw_target = fielder_3 # First Baseman
 			throw_ball()
@@ -98,7 +98,7 @@ func throw_ball():
 	# throw strength will need a per-player bonus
 	ball.apply_impulse(Vector2.ZERO, throw_direction * DEFAULT_THROW_STRENGTH)
 	anim.play("standard_throw")
-	globals.game_state.ball_status = "IP"
+	globals._state.ball_status = "IP"
 
 func enable_colliders():
 	yield(get_tree().create_timer(1.0), "timeout")
@@ -129,7 +129,7 @@ func select_throw_source():
 	# 1. Fielder can disable collider while throwing and escape field
 	
 	enable_colliders()
-	match globals.game_state.ball_status:
+	match globals._state.ball_status:
 		"F1":
 			fielder_1_collision.set_disabled(true)
 			return fielder_1
@@ -162,7 +162,7 @@ func select_throw_source():
 			
 func set_camera_position():
 	camera_is_set = true
-	match globals.game_state.ball_status:
+	match globals._state.ball_status:
 		"H":
 			cam.global_position = ball.global_position
 		"IP":

@@ -5,13 +5,13 @@ onready var ui_top = $top_inning
 onready var ui_bottom = $bottom_inning
 
 func _ready():
-	v_team.text = globals.game_state.v_team_name
-	h_team.text = globals.game_state.h_team_name
-	$v_score.text = str(globals.game_state.v_score)
-	$h_score.text = str(globals.game_state.h_score)
-	$inning.text = str(globals.game_state.inning)
+	v_team.text = globals._state.v_team_name
+	h_team.text = globals._state.h_team_name
+	$v_score.text = str(globals._state.v_score)
+	$h_score.text = str(globals._state.h_score)
+	$inning.text = str(globals._state.inning)
 	
-	if globals.game_state.team_at_bat == "V":
+	if globals._state.team_at_bat == "V":
 		ui_top.visible = true
 		ui_bottom.visible = false
 	else:

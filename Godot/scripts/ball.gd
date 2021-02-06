@@ -1,4 +1,6 @@
 extends RigidBody2D
+
+# ====================== get nodes
 onready var anim = get_node("anim")
 onready var ball = get_node("../ball")
 onready var foul_banner = get_node("../ui_canvas/ui/foul")
@@ -16,47 +18,39 @@ onready var fielder_7 = get_node("../../defense/fielder_7")
 onready var fielder_8 = get_node("../../defense/fielder_8")
 onready var fielder_9 = get_node("../../defense/fielder_9")
 onready var dpad = get_tree().get_nodes_in_group("dpad")
-
+onready var trail = $ball_trail
 var fouls_enabled = true
-var ANIM_SPEED = 10
-var THROW_SPEED = 100
-var BALL_ENGLISH_LIMIT = 20
 var curve_force = Vector2(0,0)
-var CURVE_FORCE_LIMIT = 10
-#var BALL_HELD_OFFSET = Vector2(0, -60)
 var ball_has_been_hit = false
 var ball_has_been_thrown = false
-#var ball_has_been_thrown = false
 var ball_english = Vector2(0, 0) # selects "origin" - like where cue ball is hit (english)
 var ball_origin = Vector2(544, 300)
-#var throw_target: Vector2
 var direction
 var fielder_who_has_ball = fielder_1 #default if none have triggered this
 var ball_trail = []
-onready var trail = $ball_trail
 
 func _ready():
-	anim.playback_speed = ANIM_SPEED
+	anim.playback_speed = globals._settings.ANIM_SPEED
 
 func _integrate_forces(state):
-	if !ball_has_been_hit && globals.game_state.ball_status == "H":
+	if !ball_has_been_hit && globals._state.ball_status == "H":
 		hit_ball(state)
 		randomize()
-		ball_english = Vector2(rand_range(BALL_ENGLISH_LIMIT * -1, BALL_ENGLISH_LIMIT), 0)
-		curve_force = Vector2(rand_range(CURVE_FORCE_LIMIT * -1, CURVE_FORCE_LIMIT), 0)
+		ball_english = Vector2(rand_range(globals._settings.BALL_ENGLISH_LIMIT * -1, globals._settings.BALL_ENGLISH_LIMIT), 0)
+		curve_force = Vector2(rand_range(globals._settings.CURVE_FORCE_LIMIT * -1, globals._settings.CURVE_FORCE_LIMIT), 0)
 		add_force(curve_force, ball_english)
 
 func hit_ball(state):
 	randomize()
 	ball.apply_impulse(Vector2(), get_hit_trajectory())
-	globals.hit_distance = str(stepify(abs(state.linear_velocity.distance_to(ball_origin) / globals.distance_conversion), 0.1)) + " '"
+	globals._settings.hit_distance = str(stepify(abs(state.linear_velocity.distance_to(ball_origin) / globals._settings.HIT_DISTANCE_CONVERSION), 0.1)) + " '"
 	ball_has_been_hit = true
 
 func update_count(state):
 	match state:
 		"fair_ball":
-			globals.game_state.strikes = 0
-			globals.game_state.balls = 0
+			globals._state.strikes = 0
+			globals._state.balls = 0
 	
 func get_hit_trajectory():
 	randomize()
@@ -64,17 +58,17 @@ func get_hit_trajectory():
 	var random_y_factor = randi()%52+1
 
 	#get a random hit velocity bonus clamped to max from global settings
-	globals.hit_power_max = randi()%globals.hit_power_default + globals.hit_power_bonus
+	globals._settings.HIT_POWER_MAX = randi()%globals._settings.HIT_POWER_DEFAULT + globals._settings.HIT_POWER_BONUS
 	
 	# decide X velocity/direction
-	var ball_x = randf()*globals.hit_power_max + 1
+	var ball_x = randf()*globals._settings.HIT_POWER_MAX + 1
 	match random_x_factor:
 		1:pass #[RIGHT FIELD]
 		2:ball_x *= -1 #[LEFT FIELD]
 		3:ball_x = 0 #[CENTER FIELD]
 		
 	# decide Y velocity
-	var ball_y = (randf()*globals.hit_power_max + 1) * -1
+	var ball_y = (randf()*globals._settings.HIT_POWER_MAX + 1) * -1
 	match random_y_factor:
 		51,52: # two chances out of 52 to be fouled back
 			ball_y *= -1
@@ -87,24 +81,27 @@ func get_hit_trajectory():
 	
 func _on_foul_area_body_entered(body):
 	if fouls_enabled:
-		if (body.name == "ball" && !foul_banner.visible && !home_run_banner.visible && globals.game_state.ball_status != "F" ):
+		if (body.name == "ball" && !foul_banner.visible && !home_run_banner.visible && globals._state.ball_status != "F" ):
 			foul_banner.visible = true
-			globals.game_state.ball_status = "FOUL"
-			if globals.game_state.strikes <= 1: # avoid strike if it's third for foul balls
-				globals.game_state.strikes +=1
+			globals._state.ball_status = "FOUL"
+			if globals._state.strikes <= 1: # avoid strike if it's third for foul balls
+				globals._state.strikes +=1
 		
 		
 func _on_home_run_area_body_entered(body):
 	print ("HR area entered")
-	if (body.name == "ball" && !foul_banner.visible && !home_run_banner.visible && globals.game_state.ball_status != "F"):
+	if (body.name == "ball" && !foul_banner.visible && !home_run_banner.visible && globals._state.ball_status != "F"):
 		home_run_banner.visible = true
-		globals.game_state.ball_status = "HR"
+		globals._state.ball_status = "HR"
 		update_score()
 		#ball.visible = false
-		home_run_distance.text = globals.hit_distance
+		home_run_distance.text = globals._settings.hit_distance
 func _on_ball_body_entered(body):
-	 # if a fielder already has the ball, don't run this
-	if "fielder" in body.name && globals.game_state.ball_status.left(1) != "F": 
+	if "fielder" in body.name && anim.get_current_animation() == "catchable":
+		print ("out")
+		return
+	 # handle normal ball transfer
+	if "fielder" in body.name && globals._state.ball_status.left(1) != "F": 
 		for pad in dpad:
 			pad.visible = true
 		globals.camera_is_set = !globals.camera_is_set		
@@ -112,47 +109,47 @@ func _on_ball_body_entered(body):
 			"fielder_1":
 				fielder_who_has_ball =  fielder_1
 				fielder_1.reselect_fielders(1)
-				globals.game_state.ball_status = "F1"	
+				globals._state.ball_status = "F1"	
 				
 			"fielder_2":
 				fielder_who_has_ball =  fielder_2
 				fielder_1.reselect_fielders(2)
-				globals.game_state.ball_status = "F2"		
+				globals._state.ball_status = "F2"		
 				
 			"fielder_3":
 				fielder_who_has_ball =  fielder_3
 				fielder_1.reselect_fielders(3)
-				globals.game_state.ball_status = "F3"		
+				globals._state.ball_status = "F3"		
 				
 			"fielder_4":
 				fielder_who_has_ball =  fielder_4
 				fielder_1.reselect_fielders(4)
-				globals.game_state.ball_status = "F4"		
+				globals._state.ball_status = "F4"		
 				
 			"fielder_5":
 				fielder_who_has_ball =  fielder_5
 				fielder_1.reselect_fielders(5)
-				globals.game_state.ball_status = "F5"		
+				globals._state.ball_status = "F5"		
 				
 			"fielder_6":
 				fielder_who_has_ball =  fielder_6
 				fielder_1.reselect_fielders(6)
-				globals.game_state.ball_status = "F6"		
+				globals._state.ball_status = "F6"		
 				
 			"fielder_7":
 				fielder_who_has_ball =  fielder_7
 				fielder_1.reselect_fielders(7)
-				globals.game_state.ball_status = "F7"		
+				globals._state.ball_status = "F7"		
 				
 			"fielder_8":
 				fielder_who_has_ball =  fielder_8
 				fielder_1.reselect_fielders(8)
-				globals.game_state.ball_status = "F8"		
+				globals._state.ball_status = "F8"		
 				
 			"fielder_9":
 				fielder_who_has_ball =  fielder_9
 				fielder_1.reselect_fielders(9)
-				globals.game_state.ball_status = "F9"
+				globals._state.ball_status = "F9"
 				
 			_:
 				pass
@@ -171,10 +168,10 @@ func _on_center_field_area_body_entered(body):
 	#print ("Ball hit to center")
 func update_score():
 	# handle home run ball
-	if globals.game_state.team_at_bat == "V":
-		globals.game_state.v_score += 1
-	elif globals.game_state.team_at_bat == "H":
-		globals.game_state.h_score += 1
+	if globals._state.team_at_bat == "V":
+		globals._state.v_score += 1
+	elif globals._state.team_at_bat == "H":
+		globals._state.h_score += 1
 
 func _on_fair_territory_line_body_entered(body):
 	if body.name == "ball":

@@ -1,25 +1,20 @@
 extends AnimationTree
+
+# ====================== get nodes
 onready var fence = get_node("/root/OverheadView/field/field_obstacles/outfield_fence")
 onready var foul_area_fence = get_node("/root/OverheadView/field/spray_chart/foul_area")
 onready var field_overhead = get_node("/root/OverheadView")
-var playback : AnimationNodeStateMachinePlayback
-var status_sent = 0
-# status 0 - not sent
-#  0 - hit - 1
-#  1 - rolling - 2
-#  2 - idle - 0
-
-var catchable = true
-
 onready var ball_animation = get_parent()
+var playback : AnimationNodeStateMachinePlayback
+var catchable = true
+var status_sent = 0 # 0 = not sent => hit => 1 => rolling => 2 => idle => 0
 
 func _ready():
-	
-	randomize() # to be removed 
+	# to be removed with more sophisticated hit system
+	randomize() 
 	var random_hit = randi()%3+1
 	playback = get("parameters/playback")
 	
-	# to be removed with better simulation
 	match random_hit:
 		1:
 			playback.start("hit")
@@ -31,7 +26,6 @@ func _ready():
 			playback.start("hit")
 	
 func _process(delta):
-	
 	if status_sent < 3:
 		match playback.get_current_node():
 		

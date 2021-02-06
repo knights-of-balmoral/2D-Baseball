@@ -6,8 +6,8 @@ onready var bg_fans = get_node("/root/global_scene/bgStadium")
 onready var bg_music = get_node("/root/global_scene/bgMusic")
 
 func _on_sldMusicVolume_value_changed(value):
-	globals.music_volume = value
-	bg_music.volume_db = globals.music_volume # Replace with function body.
+	globals._settings.music_vol = value
+	bg_music.volume_db = globals._settings.music_vol # Replace with function body.
 	
 	if value <= -24:
 		music_volume_status.text = "OFF"
@@ -27,8 +27,8 @@ func _process(delta):
 
 
 func _on_sld_ambience_volume_value_changed(value):
-	globals.ambience_volume = value
-	bg_fans.volume_db = globals.ambience_volume # Replace with function body.
+	globals._settings.ambience_vol = value
+	bg_fans.volume_db = globals._settings.ambience_vol # Replace with function body.
 	
 	if value <= -24:
 		ambience_volume_status.text = "OFF"

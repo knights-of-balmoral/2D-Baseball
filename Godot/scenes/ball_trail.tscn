@@ -6,7 +6,7 @@
 [node name="ball_trail" type="Line2D"]
 position = Vector2( 0.71698, 2.15088 )
 points = PoolVector2Array( 0, 0 )
-default_color = Color( 0, 0.607843, 0.819608, 0.803922 )
+default_color = Color( 1, 1, 1, 0.458824 )
 gradient = ExtResource( 2 )
 script = ExtResource( 1 )
 trail_length = 7

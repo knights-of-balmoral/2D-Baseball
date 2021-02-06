@@ -15,8 +15,8 @@ onready var arrow = load("res://assets/raw/gui/cursor.png")
 func _ready():
 	get_tree().change_scene("res://scenes/mainMenu.tscn")
 	#get_tree().change_scene("res://scenes/field_overhead.tscn")
-	bg_fans.volume_db = globals.ambience_volume
-	bg_music.volume_db = globals.music_volume
+	bg_fans.volume_db = globals._settings.ambience_vol
+	bg_music.volume_db = globals._settings.music_vol
 	bg_fans.stop()
 	bg_music.stop()
 	#bg_music.play()

@@ -2,7 +2,7 @@
 
 [resource]
 resource_name = "standard_throw"
-length = 10.0
+length = 20.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
@@ -10,20 +10,20 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.001, 0.002, 5, 10 ),
+"times": PoolRealArray( 0, 0.001, 0.002, 10, 19.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0.1, 0.1 ), Vector2( 1, 1 ), Vector2( 0.3, 0.3 ), Vector2( 5, 5 ), Vector2( 0.3, 0.3 ) ]
+"values": [ Vector2( 0.3, 0.3 ), Vector2( 1, 1 ), Vector2( 0.3, 0.3 ), Vector2( 0.5, 0.5 ), Vector2( 0.3, 0.3 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("ball_trail:visible")
+tracks/1/path = NodePath(".:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 9.8, 10 ),
+"times": PoolRealArray( 0, 9.4, 19.9 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, false, true ]
+"update": 0,
+"values": [ 0.0, 75.8, 360.0 ]
 }

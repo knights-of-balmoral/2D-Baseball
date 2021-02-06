@@ -1,6 +1,6 @@
 extends Node
 
-var game_state = { 
+var _state = { 
 	"ball_status": "P",
 	"balls": 0,
 	"strikes": 0,
@@ -16,6 +16,20 @@ var game_state = {
 	"h_pitch_count":-1
 }
 
+var _settings = {
+	"ANIM_SPEED" : 10,
+	"BALL_ENGLISH_LIMIT" : 20,
+	"CURVE_FORCE_LIMIT" : 10,
+	"HIT_POWER_DEFAULT" : 2000,
+	"hit_power_max" : 0,
+	"HIT_POWER_BONUS" : 1000,
+	"HIT_POWER_PENALTY" : -3000,
+	"HIT_DISTANCE_CONVERSION" : 6.5,
+	"hit_distance" : "0 '",
+	"ambience_vol" : -7,
+	"music_vol" : -7
+}
+
 var camera_is_set = false
 var pitch_target = "fastball_target_1" #["PTL", "PTC", "PTR", "PLC", "PC", "PRC", "PBL", "PBC", "PBR"]
 var pitch_potential_result = "S" #Use for pitch algorithm to return maybe S (strike) or B (ball) W (wild) H (HBP)
@@ -26,26 +40,9 @@ var swing_window_max = 0.9 # last point during pitch a hit is possible
 var hit_location = 0 #range from 0 - 110 to decide hit's location (0-10 foul left/back), (100,110 foul rightback)
 var ball_origin = Vector2(-25,-9)
 
-# think about future tracking for individual player stats
-var hit_power_default = 2000
-var hit_power_max = 0
-var hit_power_bonus = 1000
-var hit_power_penalty = -3000
-var hit_power = 1
-var distance_conversion = 6.5 # reduces vector toDistance size to convert to "feet"
-var hit_distance = "0 '"
-
-# Sound effects
-var ambience_volume = -7
-var music_volume = -7
-
 # Theme
 var hover_color = Color(150, 150, 10, 0.8)
 var button_color = Color(1, 1, 1, 1)
-
-# Fielders
-var fielder_velocity: = Vector2.ZERO # start with no velocity
-var fielder_speed: = 200
 
 # Scorecard Tool
 var home_lineup = [[8, "CF", "Happ"], [12, "LF", "Schwarber"], [22, "RF", "Heyward"], 
