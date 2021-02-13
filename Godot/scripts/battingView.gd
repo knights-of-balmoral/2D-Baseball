@@ -1,6 +1,7 @@
 # KNOWN BUGS
 # 1. Bottom of inning indicator is currently utilizing 
 # dupe code in the ready function of the scoreboard
+# 2. Everything is a strike right now
 
 extends Node2D
 onready var ui_balls = get_node("batter_view/UI/scoreboard/balls_display")
@@ -50,7 +51,7 @@ func _process(delta):
 		if(Input.is_action_just_pressed("swing_bat")) && anim_ball.current_animation_position < globals.swing_window_min:
 			batter_anim.play("swing")
 			batter_swung = true
-			updateStrikes()
+			_update_state("strikes")
 			update_pitch_count()
 			update_ui()
 		
@@ -65,106 +66,110 @@ func _process(delta):
 			# check for end of animation
 			if anim_ball.current_animation_position >= 0.9:
 				si_gc.play()
-				updateStrikes()
+				_update_state("strikes")
 				update_pitch_count()
 				globals._state.ball_status = "P" #PITCHER for now - but will need some update functions
 				update_ui()
 
-func updateStrikes():
-	if globals._state.strikes >= 2:
-		globals._state.strikes = 0
-		globals._state.balls = 0
-		updateOuts()
-	else:
-		globals._state.strikes += 1
-		si_strike.play() 
-
-func updateBalls():
-	if batter_swung == false:
-		if globals._state.balls >= 3:
-			globals._state.balls = 0
-			globals._state.strikes = 0
-			updateRunners()
-		else:
-			globals._state.balls += 1
-			si_ball.play()
-	else:
-		batter_swung = false
-		updateStrikes()
-
-func updateOuts():
-	if globals._state.outs >= 2:
-		globals._state.outs = 0
-		updateInnings()
-	else:
-		globals._state.outs += 1
-
-func updateInnings():
-	globals._state.inning_marker += 0.5
-	match globals._state.inning_marker:
-		# start game
-		1.5:
-			go_to_bottom()
-			print ('supposed to go to bottom')
-		2.0:
-			globals._state.inning = 2
-			go_to_top()
-			print ('back to top')
-		2.5:
-			go_to_bottom()
-		3.0:
-			globals._state.inning = 3
-			go_to_top()
-		3.5:
-			go_to_bottom()
-		4.0:
-			globals._state.inning = 4
-			go_to_top()
-		4.5:
-			go_to_bottom()
-		5.0:
-			globals._state.inning = 5
-			go_to_top()
-		5.5:
-			go_to_bottom()
-		6.0:
-			globals._state.inning = 6
-			go_to_top()
-		6.5:
-			go_to_bottom()
-		7.0:
-			globals._state.inning = 7
-			go_to_top()
-		7.5:
-			go_to_bottom()
-		8.0:
-			globals._state.inning = 8
-			go_to_top()
-		8.5:
-			go_to_bottom()
-		9.0:
-			globals._state.inning = 9
-			go_to_top()
-		9.5:
-			go_to_bottom()
-		_:
-			print ("error in inning incrementation or extra innings")
+func _update_state(state):
+	match state:
+		"strikes":
+			if globals._state.strikes >= 2:
+				globals._state.strikes = 0
+				globals._state.balls = 0
+				_update_state("outs")
+			else:
+				globals._state.strikes += 1
+				si_strike.play() 
+		"balls":
+			if batter_swung == false:
+				if globals._state.balls >= 3:
+					globals._state.balls = 0
+					globals._state.strikes = 0
+					updateRunners()
+				else:
+					globals._state.balls += 1
+					si_ball.play()
+			else:
+				batter_swung = false
+				_update_state("strikes")
+		"outs":
+			if globals._state.outs >= 2:
+				globals._state.outs = 0
+				_update_state("innings")
+			else:
+				globals._state.outs += 1
+		"top":
+			ui_top.visible = true
+			ui_bottom.visible = false
+			globals._state.team_at_bat = "V"
+		"bottom":	
+			ui_top.visible = false
+			ui_bottom.visible = true
+			globals._state.team_at_bat = "H"
+		"innings":
+			globals._state.inning_marker += 0.5
 			
-	if globals._state.inning > 9:
-		check_for_end_of_game()
-		
-	update_ui()
-	get_tree().change_scene("res://scenes/team_transition.tscn")
-
-func go_to_top():
-	ui_top.visible = true
-	ui_bottom.visible = false
-	globals._state.team_at_bat = "V"
-
-func go_to_bottom():
-	ui_top.visible = false
-	ui_bottom.visible = true
-	globals._state.team_at_bat = "H"
+			if str(globals._state.inning_marker).right(2) == "5": # right(2) from "1.5" gives us just the "5"
+				_update_state("bottom")
+			else:
+				_update_state("top")
+				globals._state.inning = int(globals._state.inning_marker)
+			
+			if globals._state.inning > 9:
+				check_for_end_of_game()
+			
+			update_ui()
+			get_tree().change_scene("res://scenes/team_transition.tscn")
+			
+#			match globals._state.inning_marker:
+#			# start game
+#				1.5:
+#					_update_state("bottom")
+#				2.0:
+#					globals._state.inning = 2
+#					_update_state("top")
+#				2.5:
+#					_update_state("bottom")
+#				3.0:
+#					globals._state.inning = 3
+#					_update_state("top")
+#				3.5:
+#					_update_state("bottom")
+#				4.0:
+#					globals._state.inning = 4
+#					_update_state("top")
+#				4.5:
+#					_update_state("bottom")
+#				5.0:
+#					globals._state.inning = 5
+#					_update_state("top")
+#				5.5:
+#					_update_state("bottom")
+#				6.0:
+#					globals._state.inning = 6
+#					_update_state("top")
+#				6.5:
+#					_update_state("bottom")
+#				7.0:
+#					globals._state.inning = 7
+#					_update_state("top")
+#				7.5:
+#					_update_state("bottom")
+#				8.0:
+#					globals._state.inning = 8
+#					_update_state("top")
+#				8.5:
+#					_update_state("bottom")
+#				9.0:
+#					globals._state.inning = 9
+#					_update_state("top")
+#				9.5:
+#					_update_state("bottom")
+#				_:
+#					print ("error in inning incrementation or extra innings")
+			
+			
 
 func update_scoreboard():
 	pass

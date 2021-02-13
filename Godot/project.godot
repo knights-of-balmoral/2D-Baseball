@@ -180,6 +180,7 @@ move_up={
 2d_render/layer_6="Guides"
 2d_physics/layer_6="Defenders"
 2d_physics/layer_7="Detectors"
+2d_physics/layer_11="Ball"
 
 [physics]
 

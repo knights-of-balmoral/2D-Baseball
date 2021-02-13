@@ -176,6 +176,7 @@ stream = ExtResource( 48 )
 stream = ExtResource( 49 )
 
 [node name="battersBox" type="StaticBody2D" parent="batter_view"]
+visible = false
 position = Vector2( -324.293, -456.412 )
 scale = Vector2( 1.8749, 1.78409 )
 
@@ -196,6 +197,7 @@ position = Vector2( 429.1, 589.17 )
 shape = SubResource( 7 )
 
 [node name="pitchersBox" type="StaticBody2D" parent="batter_view"]
+visible = false
 position = Vector2( 561.613, 704.025 )
 
 [node name="right" type="CollisionShape2D" parent="batter_view/pitchersBox"]

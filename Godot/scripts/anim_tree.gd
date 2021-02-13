@@ -5,6 +5,7 @@ onready var fence = get_node("/root/OverheadView/field/field_obstacles/outfield_
 onready var foul_area_fence = get_node("/root/OverheadView/field/spray_chart/foul_area")
 onready var field_overhead = get_node("/root/OverheadView")
 onready var ball_animation = get_parent()
+onready var ball_col = get_node("../ball_collision")
 var playback : AnimationNodeStateMachinePlayback
 var catchable = true
 var status_sent = 0 # 0 = not sent => hit => 1 => rolling => 2 => idle => 0
@@ -34,42 +35,52 @@ func _process(delta):
 					#fence.disabled = true [O]
 					fence.set_deferred("disabled", true)
 					foul_area_fence.set_deferred("disabled", true)
+					ball_col.set_deferred("disabled", true)
 					print("Catchable!") # to be split into 1. high in the air, 2. catchable
 					status_sent += 1
-					field_overhead.disable_colliders()
+					
 					
 			"pop_up":
 				if status_sent == 0:
 					fence.set_deferred("disabled", true)
 					foul_area_fence.set_deferred("disabled", true)
+					ball_col.set_deferred("disabled", true)
 					print("It's in the Air!")
 					status_sent += 1
-					field_overhead.disable_colliders()
+					
 			
 			"catchable":
-				if catchable && globals.game_state.ball_status != "HR":
+				if catchable && globals._state.ball_status != "HR":
+					ball_col.set_deferred("disabled", false)
 					print("CATCH IT!")
-					field_overhead.enable_colliders()
+					globals._state.ball_status = "CA"
+					print (globals._state.ball_status)
+					
 					catchable = false
 					
 			"grounder":
 				if status_sent == 0:
 					fence.set_deferred("disabled", false)
 					foul_area_fence.set_deferred("disabled", false)
+					ball_col.set_deferred("disabled", false)
 					print("Grounder!")
 					status_sent += 1
 		
 			"roll":
 				if status_sent == 1:
+					globals._state.ball_status = "IP"
 					fence.set_deferred("disabled", false)
 					foul_area_fence.set_deferred("disabled", false)
+					ball_col.set_deferred("disabled", false)
 					print("ball is rolling")
 					status_sent += 1
 					
 			"idle":
 				if status_sent == 2:
+					globals._state.ball_status = "IP"
 					fence.set_deferred("disabled", false)
 					foul_area_fence.set_deferred("disabled", false)
+					ball_col.set_deferred("disabled", false)
 					print("it finally stopped rolling")
 					status_sent = 0
 

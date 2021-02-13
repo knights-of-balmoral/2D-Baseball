@@ -18,7 +18,8 @@ onready var fielder_7 = get_node("../../defense/fielder_7")
 onready var fielder_8 = get_node("../../defense/fielder_8")
 onready var fielder_9 = get_node("../../defense/fielder_9")
 onready var dpad = get_tree().get_nodes_in_group("dpad")
-onready var trail = $ball_trail
+#onready var bv = get_node("/root/battingView")
+#onready var trail = $ball_trail
 var fouls_enabled = true
 var curve_force = Vector2(0,0)
 var ball_has_been_hit = false
@@ -27,22 +28,22 @@ var ball_english = Vector2(0, 0) # selects "origin" - like where cue ball is hit
 var ball_origin = Vector2(544, 300)
 var direction
 var fielder_who_has_ball = fielder_1 #default if none have triggered this
-var ball_trail = []
+#var ball_trail = []
 
 func _ready():
 	anim.playback_speed = globals._settings.ANIM_SPEED
+	
 
 func _integrate_forces(state):
 	if !ball_has_been_hit && globals._state.ball_status == "H":
 		hit_ball(state)
-		randomize()
-		ball_english = Vector2(rand_range(globals._settings.BALL_ENGLISH_LIMIT * -1, globals._settings.BALL_ENGLISH_LIMIT), 0)
-		curve_force = Vector2(rand_range(globals._settings.CURVE_FORCE_LIMIT * -1, globals._settings.CURVE_FORCE_LIMIT), 0)
-		add_force(curve_force, ball_english)
 
 func hit_ball(state):
 	randomize()
+	ball_english = Vector2(rand_range(globals._settings.BALL_ENGLISH_LIMIT * -1, globals._settings.BALL_ENGLISH_LIMIT), 0)
+	curve_force = Vector2(rand_range(globals._settings.CURVE_FORCE_LIMIT * -1, globals._settings.CURVE_FORCE_LIMIT), 0)
 	ball.apply_impulse(Vector2(), get_hit_trajectory())
+	add_force(curve_force, ball_english)
 	globals._settings.hit_distance = str(stepify(abs(state.linear_velocity.distance_to(ball_origin) / globals._settings.HIT_DISTANCE_CONVERSION), 0.1)) + " '"
 	ball_has_been_hit = true
 
@@ -96,16 +97,30 @@ func _on_home_run_area_body_entered(body):
 		update_score()
 		#ball.visible = false
 		home_run_distance.text = globals._settings.hit_distance
+		_exit_tree()
+		
 func _on_ball_body_entered(body):
-	if "fielder" in body.name && anim.get_current_animation() == "catchable":
+	if "fielder" in body.name && globals._state.ball_status == "CA":
+		reassign_fielder(body.name)
+		#bv.update_outs()
+		_exit_tree()
 		print ("out")
 		return
+		
+		
 	 # handle normal ball transfer
 	if "fielder" in body.name && globals._state.ball_status.left(1) != "F": 
 		for pad in dpad:
 			pad.visible = true
-		globals.camera_is_set = !globals.camera_is_set		
-		match body.name:
+		globals.camera_is_set = !globals.camera_is_set	
+		reassign_fielder(body.name)
+		_exit_tree()
+		
+func _exit_tree():
+	self.queue_free()
+	
+func reassign_fielder(fielder):
+	match fielder:
 			"fielder_1":
 				fielder_who_has_ball =  fielder_1
 				fielder_1.reselect_fielders(1)
@@ -152,11 +167,8 @@ func _on_ball_body_entered(body):
 				globals._state.ball_status = "F9"
 				
 			_:
-				pass
-		_exit_tree()
-func _exit_tree():
-	#remove_child(self) needs a look - might have to move some code around to prevent mem leaks
-	self.queue_free()
+				pass	
+	
 func _on_right_field_area_body_entered(body):
 	pass#foul_area.disabled = true # ball was hit to right field
 	#print ("Ball hit to right")

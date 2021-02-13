@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://animations/run_right.tres" type="Animation" id=1]
 [ext_resource path="res://assets/raw/has_ball.png" type="Texture" id=2]
@@ -40,6 +40,9 @@ polygon = PoolVector2Array( -21.4679, -7.75122, -8.49223, -17.2844, 30.6995, -17
 
 [sub_resource type="CircleShape2D" id=9]
 radius = 37.7923
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 43.2511
 
 [node name="fielder" type="KinematicBody2D"]
 scale = Vector2( 1.5, 1.5 )
@@ -106,3 +109,11 @@ __meta__ = {
 
 [node name="footsteps_dirt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+
+[node name="detection" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1024
+
+[node name="ring" type="CollisionShape2D" parent="detection"]
+shape = SubResource( 10 )
+[connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]

@@ -123,3 +123,7 @@ func get_nearest_fielder():
 	var nearest = "fielder_1"
 
 
+
+func _on_detection_body_entered(body):
+	if body.name == "ball":
+		pass

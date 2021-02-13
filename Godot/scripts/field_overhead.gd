@@ -26,6 +26,7 @@ onready var fielder_7_collision = $defense/fielder_7/CollisionShape2D
 onready var fielder_8_collision = $defense/fielder_8/CollisionShape2D
 onready var fielder_9_collision = $defense/fielder_9/CollisionShape2D
 onready var dpad = get_tree().get_nodes_in_group("dpad")
+var new_ball = load("res://scenes/instanced/ball.tscn")
 var throw_source = fielder_1 #default to pitcher
 var throw_target = fielder_2 #default to catcher
 export var DEFAULT_THROW_STRENGTH = 2500
@@ -87,7 +88,7 @@ func throw_ball():
 	camera_is_set = false
 	
 	# reinstantiate ball and refresh reference nodes
-	var new_ball = load("res://scenes/instanced/ball.tscn")
+
 	ball = new_ball.instance()
 	$field.add_child(ball)
 	anim = $field/ball/anim
