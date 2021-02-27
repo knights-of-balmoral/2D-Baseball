@@ -11,7 +11,7 @@
 [ext_resource path="res://_placeholders/l.png" type="Texture" id=9]
 [ext_resource path="res://_placeholders/home.png" type="Texture" id=10]
 [ext_resource path="res://scenes/triggers/base.tscn" type="PackedScene" id=11]
-[ext_resource path="res://assets/raw/batter/runner.png" type="Texture" id=12]
+[ext_resource path="res://scenes/baserunner.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/ui/ui_overhead.tscn" type="PackedScene" id=13]
 [ext_resource path="res://_placeholders/r.png" type="Texture" id=14]
 [ext_resource path="res://fonts/40_standard.tres" type="DynamicFont" id=15]
@@ -521,11 +521,7 @@ rotation = -1.32176
 rotate = false
 loop = false
 
-[node name="baserunner" type="Sprite" parent="offense/basepath/runners_path"]
-position = Vector2( 18.6598, 1.82886 )
-rotation = 0.524373
-scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 12 )
+[node name="baserunner" parent="offense/basepath/runners_path" instance=ExtResource( 12 )]
 
 [node name="cam-main" type="Camera2D" parent="."]
 position = Vector2( 506.329, 551.197 )

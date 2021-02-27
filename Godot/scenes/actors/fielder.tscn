@@ -109,11 +109,13 @@ __meta__ = {
 
 [node name="footsteps_dirt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+volume_db = -12.772
 
 [node name="detection" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 1024
 
 [node name="ring" type="CollisionShape2D" parent="detection"]
+visible = false
 shape = SubResource( 10 )
 [connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]

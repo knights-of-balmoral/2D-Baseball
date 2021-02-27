@@ -125,5 +125,10 @@ func get_nearest_fielder():
 
 
 func _on_detection_body_entered(body):
-	if body.name == "ball":
-		pass
+	match body:
+		"ball":
+			pass
+		"baserunner":
+			pass
+			# If fielder has ball and contacts baserunner (do something)
+		
