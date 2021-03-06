@@ -18,6 +18,7 @@ onready var fielder_7 = get_node("../../defense/fielder_7")
 onready var fielder_8 = get_node("../../defense/fielder_8")
 onready var fielder_9 = get_node("../../defense/fielder_9")
 onready var dpad = get_tree().get_nodes_in_group("dpad")
+onready var ball_col = get_node("ball_collision")
 #onready var bv = get_node("/root/battingView")
 #onready var trail = $ball_trail
 var fouls_enabled = true
@@ -28,6 +29,7 @@ var ball_english = Vector2(0, 0) # selects "origin" - like where cue ball is hit
 var ball_origin = Vector2(544, 300)
 var direction
 var fielder_who_has_ball = fielder_1 #default if none have triggered this
+var catchable = true
 #var ball_trail = []
 
 func _ready():
@@ -195,3 +197,11 @@ func disable_foul():
 	
 func enable_foul():
 	fouls_enabled = true
+	
+
+func _is_ball_catchable():
+				
+	if catchable && globals._state.ball_status != "HR":
+		ball_col.set_deferred("disabled", false)
+		globals._state.ball_status = "CA"
+		catchable = false
